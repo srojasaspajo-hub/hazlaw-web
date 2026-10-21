@@ -537,6 +537,218 @@ button.band__link::after { content: none; }
   .band { top: auto; }
 }
 
+/* ===== Hero de celular: tres fotos con fundido lento, sin video =====
+   Solo en pantalla vertical de menos de 900 px. Misma media query que la tercera compuerta de GATES en scrub.js.
+   En escritorio el hero del video queda como está y este se oculta. */
+.hero-m { display: none; }
+@media (max-width: 899px) and (max-aspect-ratio: 1/1) {
+  .hero { display: none; }
+  .hero-m {
+    display: block;
+    position: relative;
+    height: 100vh;
+    height: 100svh;
+    min-height: 560px;
+    overflow: hidden;
+    isolation: isolate;
+    background: var(--tinta);
+  }
+  /* Al abrir la página, la primera foto sale de la oscuridad en vez de aparecer de golpe */
+  .hero-m__slides { position: absolute; inset: 0; animation: hero-m-open 1.4s cubic-bezier(0.4, 0, 0.2, 1) both; }
+  /* Cruce de fotos sin bajón de luz: la que entra se funde ENCIMA de la que sale, que se queda
+     al 100 % hasta que la nueva termina de cubrirla (cada una dura lo que dice STEP en scrub.js).
+     Si las dos bajaran a la vez, a mitad del cruce se vería el fondo oscuro. */
+  .hero-m__slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 0;
+  }
+  .hero-m__slide.is-leaving { opacity: 1; visibility: visible; z-index: 1; }
+  .hero-m__slide.is-active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 2;
+    transition: opacity 1.6s cubic-bezier(0.37, 0, 0.63, 1);
+  }
+  .hero-m__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: var(--pos, 50% 50%);
+    transform-origin: var(--origin, 50% 40%);
+    /* Movimiento casi imperceptible: un acercamiento mínimo (3 % en 14 s, así que en pantalla no llega
+       a 1,5 %) con un leve desplazamiento (--dx, --dy) distinto en cada foto. Queda en pausa cuando la
+       foto no es la activa: al salir se congela donde estaba y no da un salto mientras se desvanece. */
+    animation: hero-m-drift 14s cubic-bezier(0.3, 0.2, 0.4, 1) both paused;
+  }
+  .hero-m__slide.is-active .hero-m__img { animation-play-state: running; }
+  /* Velo suave: arriba ayuda al encabezado, abajo sostiene el texto. El medio de la foto queda limpio */
+  .hero-m__slide::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg,
+      rgba(20,14,12,.5) 0%, rgba(20,14,12,.3) 12%, rgba(20,14,12,.06) 26%,
+      rgba(20,14,12,0) 38%, rgba(20,14,12,.2) 50%, rgba(20,14,12,.5) 62%,
+      rgba(20,14,12,.78) 80%, rgba(20,14,12,.92) 100%);
+  }
+  .hero-m__copy {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    padding: 0 var(--margin-side) calc(76px + env(safe-area-inset-bottom));
+    text-shadow: var(--tshadow);
+  }
+  /* El texto que sale se apaga rápido, antes de que la foto nueva lo cubra: nunca se ven dos frases encimadas */
+  .hero-m__slide.is-leaving .hero-m__copy { opacity: 0; transition: opacity 0.35s ease-out; }
+  .hero-m__title {
+    color: var(--papel);
+    max-width: 11em;
+    margin: 0;
+    font-size: clamp(28px, 8.2vw, 32px);
+    line-height: 1.1;
+    letter-spacing: -0.028em;
+  }
+  .hero-m__sub {
+    margin: 14px 0 0;
+    max-width: 30ch;
+    font-size: 15.5px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: rgba(255,255,255,.86);
+  }
+  .hero-m__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px 24px;
+    margin-top: 26px;
+  }
+  .hero-m .btn { text-shadow: none; }
+  .hero-m__foot {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: calc(18px + env(safe-area-inset-bottom));
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 0 var(--margin-side);
+  }
+  .hero-m__proof {
+    margin: 0;
+    font-size: 11.5px;
+    letter-spacing: 0;
+    color: rgba(255,255,255,.7);
+    text-shadow: var(--tshadow);
+  }
+  /* Tres líneas finas que marcan el avance: la de la foto actual se llena en lo que dura (--step) */
+  .hero-m__dots { display: flex; flex: 0 0 auto; align-items: center; margin-right: -3px; }
+  .hero-m__dot {
+    position: relative;
+    width: 26px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+  .hero-m__dot::before,
+  .hero-m__dot::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 2px;
+    margin: -1px 0 0 -10px;
+    border-radius: 2px;
+  }
+  .hero-m__dot::before { background: rgba(255,255,255,.28); }
+  .hero-m__dot::after {
+    background: rgba(255,255,255,.95);
+    transform: scaleX(0);
+    transform-origin: left center;
+  }
+  .hero-m__dot[aria-current="true"]::after { transform: scaleX(1); }
+  .hero-m.is-running .hero-m__dot[aria-current="true"]::after { animation: hero-m-fill var(--step, 3s) linear both; }
+
+  /* El texto entra después de que la foto nueva empieza a cubrir a la anterior, línea por línea */
+  .hero-m__slide.is-active .hero-m__title,
+  .hero-m__slide.is-active .hero-m__sub,
+  .hero-m__slide.is-active .hero-m__actions { animation: hero-m-rise 1.2s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  .hero-m__slide.is-active .hero-m__title { animation-delay: 0.45s; }
+  .hero-m__slide.is-active .hero-m__sub { animation-delay: 0.6s; }
+  .hero-m__slide.is-active .hero-m__actions { animation-delay: 0.75s; }
+
+  /* Flechas para pasar de una foto a otra: pequeñas, translúcidas y arriba, donde no tapan caras ni texto */
+  .hero-m__nav {
+    position: absolute;
+    top: 27%;
+    z-index: 3;
+    width: 44px;
+    height: 44px;
+    margin-top: -22px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--papel);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .hero-m__nav--prev { left: 4px; }
+  .hero-m__nav--next { right: 4px; }
+  .hero-m__nav::before {
+    content: "";
+    position: absolute;
+    inset: 5px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.3);
+    background: rgba(20,14,12,.3);
+    transition: background-color 0.3s ease, transform 0.3s var(--ease-out);
+  }
+  .hero-m__nav:active::before { background: rgba(20,14,12,.5); transform: scale(0.94); }
+  .hero-m__nav svg {
+    position: relative;
+    display: block;
+    width: 16px;
+    height: 16px;
+    margin: auto;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0.92;
+  }
+  .hero-m__nav:focus-visible { outline: 2px solid var(--papel); outline-offset: -2px; border-radius: 50%; }
+}
+@keyframes hero-m-open { from { opacity: 0; } to { opacity: 1; } }
+@keyframes hero-m-drift { from { transform: scale(1); } to { transform: scale(1.03) translate3d(var(--dx, 0), var(--dy, 0), 0); } }
+@keyframes hero-m-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes hero-m-rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-m__slides,
+  .hero-m__img,
+  .hero-m__dot::after,
+  .hero-m__slide.is-active .hero-m__title,
+  .hero-m__slide.is-active .hero-m__sub,
+  .hero-m__slide.is-active .hero-m__actions { animation: none !important; }
+  .hero-m__slide.is-active, .hero-m__slide.is-leaving .hero-m__copy, .hero-m__nav::before { transition: none; }
+}
+
 /* ===== Fotografías narrativas: pequeñas, esquinas suaves, sin bordes ni sombras ===== */
 .story-photo {
   position: relative;

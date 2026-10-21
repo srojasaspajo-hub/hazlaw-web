@@ -1,10 +1,12 @@
 (function () {
   "use strict";
 
-  // Deben coincidir carácter por carácter con la media query del hero estático en styles.css
+  // Deben coincidir carácter por carácter con las media queries del hero estático y del hero de
+  // celular (.hero-m) en styles.css. En celular no hay video: el hero fijo de tres fotos lo reemplaza.
   var GATES = [
     "(orientation: landscape) and (pointer: coarse) and (max-height: 560px)",
-    "(prefers-reduced-motion: reduce)"
+    "(prefers-reduced-motion: reduce)",
+    "(max-width: 899px) and (max-aspect-ratio: 1/1)"
   ];
 
   // Pantalla vertical: versión 4:3 enmarcada (1200x900). Horizontal: 1920x1080 a pantalla completa.
@@ -360,4 +362,146 @@
     else if (m.addListener) m.addListener(applyHeroMode);
   });
   applyHeroMode();
+})();
+
+// Hero de celular: tres fotos con cruce suave. El cruce, el movimiento de la foto, la entrada del texto
+// y la barra de avance están en el CSS (.hero-m); aquí solo se decide cuál foto está activa y cuál sale.
+// Da una sola vuelta (1, 2, 3 y de nuevo la 1) y se queda quieto. Se detiene si la persona toca la
+// pantalla, desliza o pulsa una línea; se pausa si la pestaña no se ve o el hero sale de pantalla; y
+// no corre si el dispositivo pide menos movimiento.
+(function () {
+  "use strict";
+
+  var root = document.getElementById("movil-hero");
+  if (!root) return;
+  var slides = Array.prototype.slice.call(root.querySelectorAll(".hero-m__slide"));
+  var dots = Array.prototype.slice.call(root.querySelectorAll(".hero-m__dot"));
+  var total = slides.length;
+  if (total < 2) return;
+
+  var STEP = 4000;  // lo que dura cada foto
+  var FADE = 1600;  // igual que la transición de opacidad de .hero-m__slide.is-active en styles.css
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var index = 0;
+  var timer = null;
+  var leaveTimer = null;
+  var changing = false;
+  var pending = null;
+  var stopped = false;
+  var inView = false;
+  var prevBtn = root.querySelector(".hero-m__nav--prev");
+  var nextBtn = root.querySelector(".hero-m__nav--next");
+  root.style.setProperty("--step", STEP + "ms");
+
+  // La foto que entra se funde encima de la que sale; esa se queda al 100 % hasta que la nueva la cubre.
+  // Si la persona pide otra foto mientras dura el cruce, se anota y se muestra apenas termine.
+  function show(n) {
+    if (changing) { pending = n; return; }
+    if (n === index) return;
+    var prev = slides[index];
+    slides.forEach(function (s) { s.classList.remove("is-leaving"); });
+    prev.classList.remove("is-active");
+    prev.classList.add("is-leaving");
+    slides[n].classList.add("is-active");
+    dots.forEach(function (d, i) { d.setAttribute("aria-current", i === n ? "true" : "false"); });
+    index = n;
+    changing = true;
+    clearTimeout(leaveTimer);
+    leaveTimer = setTimeout(function () {
+      prev.classList.remove("is-leaving");
+      changing = false;
+      if (pending !== null) {
+        var p = pending;
+        pending = null;
+        show(p);
+      }
+    }, reduce.matches ? 0 : FADE);
+  }
+
+  // La foto que viene se decodifica antes del cruce, para que no haya tirones al aparecer
+  function go(n, done) {
+    var img = slides[n].querySelector("img");
+    var fired = false;
+    function fire() {
+      if (fired) return;
+      fired = true;
+      show(n);
+      if (done) done();
+    }
+    if (img && img.decode) img.decode().then(fire, fire);
+    else fire();
+    setTimeout(fire, 1500);
+  }
+
+  function stop() {
+    stopped = true;
+    clearTimeout(timer);
+    timer = null;
+    root.classList.remove("is-running");
+  }
+
+  function advance() {
+    timer = null;
+    var n = index === total - 1 ? 0 : index + 1;
+    go(n, function () {
+      if (n === 0) stop();
+      else schedule();
+    });
+  }
+
+  // Cada foto arranca su propio tiempo (y su barra de avance desde cero)
+  function schedule() {
+    clearTimeout(timer);
+    timer = null;
+    root.classList.remove("is-running");
+    if (stopped || reduce.matches || document.hidden || !inView) return;
+    void root.offsetWidth;
+    root.classList.add("is-running");
+    timer = setTimeout(advance, STEP);
+  }
+
+  dots.forEach(function (dot, n) {
+    dot.addEventListener("click", function () {
+      stop();
+      go(n);
+    });
+  });
+
+  // Las flechas pasan a la foto anterior o a la siguiente (dan la vuelta) y detienen el automático
+  function step(d) {
+    stop();
+    go((index + d + total) % total);
+  }
+  if (prevBtn) prevBtn.addEventListener("click", function () { step(-1); });
+  if (nextBtn) nextBtn.addEventListener("click", function () { step(1); });
+
+  // Tocar detiene el automático; deslizar hacia los lados cambia de foto
+  var x0 = null;
+  var y0 = 0;
+  root.addEventListener("touchstart", function (e) {
+    stop();
+    x0 = e.touches[0].clientX;
+    y0 = e.touches[0].clientY;
+  }, { passive: true });
+  root.addEventListener("touchend", function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0;
+    var dy = e.changedTouches[0].clientY - y0;
+    x0 = null;
+    if (Math.abs(dx) < 48 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+    go(dx < 0 ? (index + 1) % total : (index - 1 + total) % total);
+  }, { passive: true });
+
+  document.addEventListener("visibilitychange", schedule);
+
+  // Solo corre mientras el hero está a la vista
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (entries) {
+      inView = entries[0].isIntersecting;
+      schedule();
+    }, { threshold: 0.5 }).observe(root);
+  } else {
+    inView = true;
+    schedule();
+  }
 })();
