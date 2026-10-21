@@ -1381,6 +1381,10 @@ body.is-hidden .brand-card__scan::before { animation-play-state: paused; }
 }
 .faq-hero__title { max-width: 16ch; }
 .faq-hero__text .lede { margin-bottom: 0; }
+/* Índice de temas bajo el título de las preguntas frecuentes */
+.faq-topics { margin: 18px 0 0; font-family: var(--text); font-size: 15px; line-height: 1.7; color: var(--grafito); }
+.faq-topics a { color: var(--tinta); font-weight: 600; text-decoration: underline; text-decoration-color: rgba(33,27,24,0.3); text-underline-offset: 3px; }
+@media (hover: hover) and (pointer: fine) { .faq-topics a:hover { text-decoration-color: currentColor; } }
 .faq-hero__media { position: relative; padding: 22px 0 30px; }
 .faq-hero__photo { max-width: 520px; margin-left: auto; }
 
