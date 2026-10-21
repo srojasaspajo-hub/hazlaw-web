@@ -1014,7 +1014,7 @@
   // (build/libro-apps-script/ y docs/libro-de-reclamaciones.md). Ese programa asigna el número
   // correlativo, guarda la hoja y envía la copia al consumidor. Mientras esté vacío, se abre el
   // correo del visitante con la hoja ya escrita: sirve de respaldo, pero no cumple como registro.
-  var LIBRO_ENDPOINT = "";
+  var LIBRO_ENDPOINT = "https://script.google.com/macros/s/AKfycbxDhHb6Lcbr4NaSe7VG87S2q4CTCAVHEudKCR6Hx1EQ0oYn1gju1pFzcZnIORm_FeRh/exec";
   var LIBRO_EMAIL = "contacto@hazlawpe.com";
 
   function initLibro() {
