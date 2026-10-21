@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-4zd2smDdcAUaJ7gzkxrkyD/owwoLFxcWP8NtZjfyz54=' https://www.googletagmanager.com https://*.clarity.ms https://c.bing.com https://connect.facebook.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://*.clarity.ms https://c.bing.com https://www.facebook.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.clarity.ms https://c.bing.com https://www.facebook.com https://connect.facebook.net; media-src 'self' blob:; frame-src https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self'; manifest-src 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script>if(self!==top){document.documentElement.style.display="none";try{top.location=self.location}catch(e){}}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Accesibilidad · Hazlaw+</title>
+<meta name="description" content="Cómo hacemos accesible la web de Hazlaw+, qué limitaciones conocemos y cómo pedirnos la información en otro formato.">
+<!-- Google Search Console: descomente la línea de abajo y pegue su código
+<meta name="google-site-verification" content="SU-CODIGO">
+-->
+<meta name="theme-color" content="#FFFFFF">
+
+<link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/logo/favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/logo/favicon-180.png">
+<link rel="shortcut icon" href="assets/logo/favicon.ico">
+<link rel="canonical" href="https://hazlawpe.com/accesibilidad.html">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Hazlaw+">
+<meta property="og:locale" content="es_PE">
+<meta property="og:url" content="https://hazlawpe.com/accesibilidad.html">
+<meta property="og:title" content="Accesibilidad · Hazlaw+">
+<meta property="og:description" content="Cómo hacemos accesible la web de Hazlaw+, qué limitaciones conocemos y cómo pedirnos la información en otro formato.">
+<meta property="og:image" content="https://hazlawpe.com/assets/logo/og-image.jpg">
+
+<!-- Jost servida desde la propia web (assets/fonts, licencia OFL); se pide desde el inicio -->
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/jost-latin.woff2" crossorigin>
+
+<link rel="stylesheet" href="assets/css/styles.css?v=147">
+</head>
+<body class="has-header page-legal">
+
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+
+<!-- Encabezado -->
+<header class="site-header is-solid is-scrolled" id="site-header">
+  <div class="site-header__bar">
+    <a class="site-header__logo" href="index.html"><img src="assets/logo/wordmark-red-320.png" alt="Hazlaw+, inicio" width="320" height="74"></a>
+    <nav class="site-header__nav" aria-label="Servicios">
+      <ul class="site-header__list">
+        <li><a class="site-header__link" href="constitucion-de-empresas.html">Constitución</a></li>
+        <li><a class="site-header__link" href="registro-de-marca.html">Registro de marca</a></li>
+        <li><a class="site-header__link" href="gestion-notarial.html">Gestión notarial</a></li>
+        <li class="site-header__item--wide"><a class="site-header__link site-header__link--wide" href="preguntas-frecuentes.html">Preguntas frecuentes</a></li>
+      </ul>
+    </nav>
+    <a class="site-header__wa" data-wa="Hola, vengo de la web. Tengo una consulta." href="https://wa.me/51924021846"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.3 20.7l4.4-1.1A8.8 8.8 0 1 0 12 3.2z"/></svg>WhatsApp</a>
+  </div>
+</header>
+
+<main id="contenido" tabindex="-1">
+
+<article class="block block--papel legal">
+  <div class="container container--narrow">
+    <h1 class="h1 legal__title">Declaración de accesibilidad</h1>
+    <p class="legal__fecha">Última actualización: 5 de octubre de 2026</p>
+
+    <div class="legal__resumen">
+      <h2 class="legal__resumen-t">En pocas palabras</h2>
+      <ul>
+        <li>Queremos que cualquier persona pueda usar esta web, también con lector de pantalla, solo con teclado o con la pantalla ampliada.</li>
+        <li>Tomamos como referencia las pautas WCAG 2.2, nivel AA.</li>
+        <li>Si algo no te funciona, avísanos y te damos la información por otro medio.</li>
+      </ul>
+    </div>
+
+    <nav class="legal__indice" aria-label="Contenido de esta página">
+      <h2 class="legal__indice-t">Contenido</h2>
+      <ol>
+        <li><a href="#compromiso">Nuestro compromiso</a></li>
+        <li><a href="#estado">Estado actual</a></li>
+        <li><a href="#hicimos">Qué hicimos</a></li>
+        <li><a href="#limitaciones">Limitaciones conocidas</a></li>
+        <li><a href="#contacto">Si encuentras una barrera</a></li>
+      </ol>
+    </nav>
+
+    <section class="legal__sec" id="compromiso" aria-labelledby="compromiso-t">
+      <h2 class="legal__h2" id="compromiso-t">Nuestro compromiso</h2>
+      <p>En línea con la Ley N.° 29973, Ley General de la Persona con Discapacidad, buscamos que esta web sea accesible. Tomamos como referencia las Pautas de Accesibilidad para el Contenido Web (WCAG) 2.2 del W3C, nivel AA.</p>
+    </section>
+
+    <section class="legal__sec" id="estado" aria-labelledby="estado-t">
+      <h2 class="legal__h2" id="estado-t">Estado actual</h2>
+      <p>Consideramos que la web es <b>parcialmente conforme</b> con las WCAG 2.2 AA: cumple la mayoría de los criterios, con las limitaciones que indicamos abajo. Lo evaluamos nosotros mismos el 5 de octubre de 2026, con herramientas automáticas (Lighthouse y las reglas de axe) en todas las páginas y con pruebas manuales de teclado, foco y movimiento reducido. No es una auditoría externa.</p>
+    </section>
+
+    <section class="legal__sec" id="hicimos" aria-labelledby="hicimos-t">
+      <h2 class="legal__h2" id="hicimos-t">Qué hicimos</h2>
+      <ul>
+        <li>Textos alternativos en las imágenes que aportan información; las decorativas se ocultan a los lectores de pantalla.</li>
+        <li>Contraste de color suficiente entre texto y fondo.</li>
+        <li>Navegación completa con teclado, enlace para saltar al contenido y foco siempre visible.</li>
+        <li>Botones y enlaces que dicen lo que hacen, y áreas de toque de al menos 44 píxeles.</li>
+        <li>Formularios con etiquetas y mensajes de error unidos a cada campo.</li>
+        <li>Si tu dispositivo pide reducir el movimiento, quitamos las animaciones y el video de portada queda quieto.</li>
+        <li>Idioma de la página declarado, títulos ordenados y estructura con regiones.</li>
+      </ul>
+    </section>
+
+    <section class="legal__sec" id="limitaciones" aria-labelledby="limitaciones-t">
+      <h2 class="legal__h2" id="limitaciones-t">Limitaciones conocidas</h2>
+      <ul>
+        <li><b>Video «Conoce Hazlaw+»:</b> se reproduce en YouTube. Los subtítulos dependen de YouTube.</li>
+        <li><b>Portada con video:</b> el video avanza al bajar. Es decorativo; todo su texto también está en la página como texto real.</li>
+        <li><b>Testimonios en movimiento:</b> se mueven solos, se detienen al pasar el mouse y quedan quietos si tu dispositivo pide reducir el movimiento.</li>
+        <li><b>Contenido de terceros:</b> WhatsApp, YouTube y Google Maps tienen su propio nivel de accesibilidad, que no controlamos.</li>
+      </ul>
+    </section>
+
+    <section class="legal__sec" id="contacto" aria-labelledby="contacto-t">
+      <h2 class="legal__h2" id="contacto-t">Si encuentras una barrera</h2>
+      <p>Escríbenos a <a href="mailto:contacto@hazlawpe.com">contacto@hazlawpe.com</a>, por WhatsApp al <a href="https://wa.me/51924021846">924 021 846</a> o en nuestra oficina de Av. Próceres de la Independencia 1625, San Juan de Lurigancho, Lima. Dinos qué página y qué parte no pudiste usar. Te daremos la información por el medio que te resulte más cómodo y corregiremos el problema. Te respondemos en un máximo de 1 día hábil.</p>
+    </section>
+
+    <p class="legal__otros">Mira también: <a href="politica-de-privacidad.html">Política de privacidad</a>, <a href="terminos-y-condiciones.html">términos y condiciones</a>, <a href="politica-de-cookies.html">política de cookies</a>, <a href="politica-de-reembolsos.html">política de reembolsos</a>.</p>
+  </div>
+</article>
+
+</main>
+
+<footer class="page-foot">
+  <div class="container">
+    <div class="page-foot__row">
+      <p class="page-foot__biz"><b>Hazlaw S.R.L.</b> · RUC 20614415950<br>Av. Próceres de la Independencia 1625, San Juan de Lurigancho, Lima<br><a href="mailto:contacto@hazlawpe.com">contacto@hazlawpe.com</a> · <a href="tel:+51924021846">924 021 846</a><br>Lunes a viernes de 9:00 a 18:00 · Sábados de 9:00 a 13:00</p>
+      <a class="libro-link" href="libro-de-reclamaciones.html"><svg class="libro-link__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 6.5C10 5 7.2 4.6 4 5v13c3.2-.4 6 0 8 1.5 2-1.5 4.8-1.9 8-1.5V5c-3.2-.4-6 0-8 1.5z"/><path d="M12 6.5v13"/></svg><span>Libro de reclamaciones</span></a>
+    </div>
+    <nav class="legal-nav" aria-label="Información legal">
+      <ul>
+        <li><a href="politica-de-privacidad.html">Política de privacidad</a></li>
+        <li><a href="terminos-y-condiciones.html">Términos y condiciones</a></li>
+        <li><a href="politica-de-cookies.html">Política de cookies</a></li>
+        <li><a href="politica-de-reembolsos.html">Política de reembolsos</a></li>
+        <li><a href="accesibilidad.html" aria-current="page">Accesibilidad</a></li>
+        <li><button class="legal-nav__cookies" type="button" data-consent-open hidden>Configurar cookies</button></li>
+      </ul>
+    </nav>
+    <p class="page-foot__note">No garantizamos la decisión de SUNARP, INDECOPI ni de las notarías: depende de cada entidad. Los plazos indicados son referenciales. Salvo las fotos de nuestra oficina y de nuestro equipo, las imágenes de personas son ilustrativas, creadas con inteligencia artificial, y no muestran a clientes reales.</p>
+    <p class="page-foot__copy">© <span data-year>2026</span> Hazlaw S.R.L. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://hazlawpe.com/accesibilidad.html#pagina",
+  "url": "https://hazlawpe.com/accesibilidad.html",
+  "name": "Declaración de accesibilidad",
+  "inLanguage": "es-PE",
+  "dateModified": "2026-10-05",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Hazlaw S.R.L.",
+    "taxID": "20614415950"
+  }
+}
+</script>
+
+<script src="assets/js/analytics.js?v=7"></script>
+<script src="assets/js/main.js?v=66"></script>
+</body>
+</html>
