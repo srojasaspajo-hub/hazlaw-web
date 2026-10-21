@@ -1009,9 +1009,11 @@
     });
   }
 
-  // Libro de reclamaciones: valida los datos, arma la hoja y la envía.
-  // PARA QUE LLEGUE SOLO: pegue aquí la dirección de su formulario (por ejemplo, de Formspree).
-  // Mientras esté vacío, se abre el correo del visitante con la hoja ya escrita para que la envíe.
+  // Libro de reclamaciones: valida los datos, los envía al registro y muestra la hoja con su número.
+  // PARA QUE QUEDE REGISTRADO: pegue aquí la dirección de la aplicación web de Google Apps Script
+  // (build/libro-apps-script/ y docs/libro-de-reclamaciones.md). Ese programa asigna el número
+  // correlativo, guarda la hoja y envía la copia al consumidor. Mientras esté vacío, se abre el
+  // correo del visitante con la hoja ya escrita: sirve de respaldo, pero no cumple como registro.
   var LIBRO_ENDPOINT = "";
   var LIBRO_EMAIL = "contacto@hazlawpe.com";
 
@@ -1027,10 +1029,11 @@
     function two(n) { return (n < 10 ? "0" : "") + n; }
     var now = new Date();
     var fecha = two(now.getDate()) + "/" + two(now.getMonth() + 1) + "/" + now.getFullYear();
+    // Número provisional, solo para el respaldo por correo. Con registro, el número oficial lo asigna el servidor.
     var codigo = "HZ-" + now.getFullYear() + two(now.getMonth() + 1) + two(now.getDate()) + "-" +
       String(Math.floor(1000 + Math.random() * 9000));
     document.getElementById("libro-fecha").textContent = fecha;
-    document.getElementById("libro-codigo").textContent = codigo;
+    document.getElementById("libro-codigo").textContent = LIBRO_ENDPOINT ? "Se asigna al enviar" : codigo;
 
     menor.addEventListener("change", function () {
       tutor.hidden = !menor.checked;
@@ -1175,27 +1178,41 @@
       var trampa = document.getElementById("libro-web");
       if (trampa && trampa.value) return; // lo llenó un robot
       var data = collect();
-      renderSheet(data);
-      var listo = "Tu hoja N° " + data.codigo + " quedó registrada. Te respondemos a " + data.correo +
-        " en un plazo máximo de 15 días hábiles.";
+      function respaldo(aviso) {
+        document.getElementById("libro-codigo").textContent = data.codigo;
+        renderSheet(data);
+        openMail(data);
+        finish(aviso);
+      }
       if (LIBRO_ENDPOINT) {
         var btn = document.getElementById("libro-send");
         btn.disabled = true;
         btn.textContent = "Enviando…";
+        // text/plain: es una petición simple, que Google Apps Script acepta desde otra dirección
         fetch(LIBRO_ENDPOINT, {
           method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
           body: JSON.stringify(data)
         }).then(function (res) {
           if (!res.ok) throw new Error("envío");
-          finish(listo);
+          return res.json();
+        }).then(function (r) {
+          if (!r || !r.ok || !/^HZ-\d{4}-\d{6}$/.test(r.codigo || "")) throw new Error("respuesta");
+          data.codigo = r.codigo;
+          if (r.fecha) data.fecha = r.fecha;
+          document.getElementById("libro-codigo").textContent = data.codigo;
+          renderSheet(data);
+          finish("Tu hoja N° " + data.codigo + " quedó registrada. " +
+            (r.copia ? "Te enviamos una copia a " + data.correo + ". " : "No pudimos enviarte la copia por correo: guarda o imprime tu hoja con el botón de abajo. ") +
+            "Te respondemos en un plazo máximo de 15 días hábiles.");
         }).catch(function () {
-          openMail(data);
-          finish("Abrimos tu correo con la hoja N° " + data.codigo + " ya escrita. Envíala para que quede registrada.");
+          btn.disabled = false;
+          btn.textContent = "Enviar mi reclamo";
+          respaldo("No pudimos registrar tu hoja en este momento. Abrimos tu correo con la hoja N° " + data.codigo +
+            " ya escrita: envíala para que quede registrada. También puedes escribirnos por WhatsApp.");
         });
       } else {
-        openMail(data);
-        finish("Abrimos tu correo con la hoja N° " + data.codigo + " ya escrita. Envíala para que quede registrada y te respondamos.");
+        respaldo("Abrimos tu correo con la hoja N° " + data.codigo + " ya escrita. Envíala para que quede registrada y te respondamos.");
       }
     });
 

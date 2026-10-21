@@ -1394,6 +1394,44 @@ body.is-hidden .faq-bubble { animation-play-state: paused; }
 @media (hover: hover) and (pointer: fine) {
   .site-foot__social a:hover { background: var(--papel); border-color: var(--papel); color: var(--tinta); transform: translateY(-3px); }
 }
+
+/* Instagram del estudio: una píldora con el nombre a la vista, sin color de marca (el rojo es de WhatsApp) */
+.site-foot__ig {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 60px;
+  padding: 8px 22px 8px 8px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 999px;
+  background: linear-gradient(120deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02));
+  color: var(--papel);
+  text-decoration: none;
+  transition: border-color 0.35s ease, background-color 0.35s ease, transform 0.35s var(--ease-out);
+}
+.site-foot__ig-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.2);
+  transition: background-color 0.35s ease, color 0.35s ease, transform 0.5s var(--ease-out);
+}
+.site-foot__ig-icon svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.site-foot__ig-icon svg .fill { fill: currentColor; stroke: none; }
+.site-foot__ig-text { display: grid; gap: 2px; line-height: 1.2; }
+.site-foot__ig-label { font-family: var(--text); font-size: 13px; color: rgba(255,255,255,0.62); }
+.site-foot__ig b { font-family: var(--display); font-size: 18px; font-weight: 500; letter-spacing: -0.01em; }
+.site-foot__ig:active { transform: scale(0.98); }
+@media (hover: hover) and (pointer: fine) {
+  .site-foot__ig:hover { border-color: rgba(255,255,255,0.5); background-color: rgba(255,255,255,0.06); transform: translateY(-2px); }
+  .site-foot__ig:hover .site-foot__ig-icon { background: var(--papel); color: var(--tinta); transform: rotate(-8deg) scale(1.06); }
+}
+@media (prefers-reduced-motion: reduce) { .site-foot__ig, .site-foot__ig-icon { transition: none; } }
 .site-foot__title {
   margin: 0 0 16px;
   font-family: var(--text);
@@ -2900,6 +2938,13 @@ p, li { text-wrap: pretty; }
 .page-foot__row { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 18px 32px; }
 .page-foot__biz b { color: var(--tinta); font-weight: 600; }
 .page-foot .libro-link { color: var(--tinta); text-decoration: none; }
+.page-foot__side { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; }
+.page-foot__ig { display: inline-flex; align-items: center; gap: 9px; min-height: 44px; font-family: var(--text); font-size: 15px; font-weight: 500; color: var(--tinta); text-decoration: none; }
+.page-foot__ig svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.page-foot__ig svg .fill { fill: currentColor; stroke: none; }
+.page-foot__ig span { background-image: linear-gradient(currentColor, currentColor); background-position: 0 100%; background-repeat: no-repeat; background-size: 0 1px; padding-bottom: 1px; transition: background-size 0.4s var(--ease-out); }
+@media (hover: hover) and (pointer: fine) { .page-foot__ig:hover span { background-size: 100% 1px; } }
+@media (prefers-reduced-motion: reduce) { .page-foot__ig span { transition: none; } }
 .page-foot .legal-nav { margin: 18px 0 14px; padding-top: 10px; border-top: 1px solid rgba(33,27,24,0.1); color: var(--tinta); }
 .page-foot .legal-nav a { color: var(--tinta); }
 .page-foot__note { max-width: 78ch; }
