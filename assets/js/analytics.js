@@ -6,7 +6,7 @@
   // Google, de Microsoft ni de Meta, y no se envía ningún dato de sus visitantes.
   var GA_ID = "G-8WY2205C5N"; // Google Analytics 4 (propiedad hazlawpe.com, cuenta contacto@hazlawpe.com)
   var CLARITY_ID = "";     // Microsoft Clarity. Se ve así: abcd1234ef
-  var META_PIXEL_ID = "";  // Pixel de Meta (Facebook e Instagram). Solo números
+  var META_PIXEL_ID = "3339213739574943"; // Pixel de Meta: conjunto de datos "hazlawpe Event Data" (portafolio del estudio)
   // Google Search Console se verifica con la etiqueta <meta name="google-site-verification">
   // que está lista, comentada, en el <head> de cada página.
 
@@ -32,7 +32,11 @@
   function track(name, params) {
     if (choice.medicion && hasGA && window.gtagLoaded) gtag("event", name, params || {});
     if (choice.medicion && hasClarity && window.clarity) window.clarity("event", name);
-    if (choice.publicidad && hasMeta && window.fbq) window.fbq("trackCustom", name, params || {});
+    if (choice.publicidad && hasMeta && window.fbq) {
+      // WhatsApp es la única conversión: para Meta va como su evento estándar "Contact", que los anuncios saben optimizar
+      if (name === "whatsapp_click") window.fbq("track", "Contact", { content_category: (params || {}).tema || "" });
+      else window.fbq("trackCustom", name, params || {});
+    }
   }
   window.hzTrack = track;
   // El resto del sitio avisa sus eventos con: document.dispatchEvent(new CustomEvent("hz:track", {detail}))
@@ -230,7 +234,7 @@
   // Solo el tipo de consulta: nunca se envía lo que la persona escribió
   function topicOf(msg) {
     if (/marca/i.test(msg)) return "marca";
-    if (/notarial|notar/i.test(msg)) return "notarial";
+    if (/notarial|notar|poder|compraventa|leg[ií]tima|convenio/i.test(msg)) return "notarial";
     if (/consulta|pregunta/i.test(msg)) return "consulta";
     return "empresa";
   }

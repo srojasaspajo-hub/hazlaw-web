@@ -29,7 +29,7 @@
 <!-- Jost servida desde la propia web (assets/fonts, licencia OFL); se pide desde el inicio -->
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/jost-latin.woff2" crossorigin>
 
-<link rel="stylesheet" href="assets/css/styles.css?v=151">
+<link rel="stylesheet" href="assets/css/styles.css?v=152">
 </head>
 <body class="page-constitucion" data-cta-main="empresa">
 
@@ -60,156 +60,136 @@
   </div>
   <div class="photo-hero__content">
     <h1 class="h1 photo-hero__title">Constitución de empresas en Lima, sin ir a la notaría.</h1>
-    <p class="photo-hero__lede">El motorizado de la notaría va a tu casa, tu oficina o tu negocio, en Lima Metropolitana y Callao. Tu minuta se redacta a la medida de tu caso.</p>
-    <p class="photo-hero__precio"><b>S/ 500</b> con derechos notariales incluidos, para un capital de hasta S/ 20 000. Los derechos registrales van aparte. <a href="#precio" data-scroll>Ver el detalle</a></p>
+    <p class="photo-hero__lede">La notaría va a tu casa, tu oficina o tu negocio, en Lima Metropolitana y Callao, y tu minuta se redacta a la medida de tu caso.</p>
+    <p class="photo-hero__precio"><b>S/ 500</b> con derechos notariales incluidos. Los derechos registrales van aparte.</p>
     <div class="photo-hero__actions">
       <a class="btn btn--red" data-wa="Hola, vengo de la web. Quiero constituir mi empresa." href="https://wa.me/51924021846"><svg class="btn__wa" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.3 20.7l4.4-1.1A8.8 8.8 0 1 0 12 3.2z"/></svg>Constituir mi empresa<span class="sr-only"> por WhatsApp</span></a>
-      <a class="photo-hero__link" href="#guia" data-scroll>¿Qué empresa me conviene?</a>
+      <a class="photo-hero__link" href="#cotiza" data-scroll>Calcula tu total</a>
     </div>
-    <p class="photo-hero__proof">RUC 20614415950 · Lima Metropolitana y Callao</p>
+    <p class="photo-hero__proof">RUC 20614415950, verificable en SUNAT</p>
   </div>
 </section>
 
-<section class="block block--crema" id="guia">
-  <div class="container guide guide--vertical" data-guide="empresa">
-    <div class="guide__media reveal" style="--foco:50% 50%">
-      <picture><source type="image/webp" srcset="assets/img/brazos-700.webp 700w, assets/img/brazos-1100.webp 1100w" sizes="(min-width: 900px) 420px, calc(100vw - 40px)"><img src="assets/img/brazos-700.jpg" srcset="assets/img/brazos-700.jpg 700w, assets/img/brazos-1100.jpg 1100w" sizes="(min-width: 900px) 420px, calc(100vw - 40px)" width="1100" height="1956" alt="Imagen ilustrativa: emprendedora sonriente, de brazos cruzados, en su taller de cerámica" loading="lazy" decoding="async"></picture>
+<section class="block block--papel cotiza-sec" id="cotiza" aria-labelledby="cotiza-t">
+  <div class="container cotiza" data-cotiza="empresa">
+    <div class="cotiza__form">
+      <h2 class="h2 cotiza__title" id="cotiza-t">Tu empresa y tu total, en tres respuestas.</h2>
+      <p class="cotiza__bajada">Así sabes cuánto es antes de escribirnos. Te lo confirmamos por escrito.</p>
+      <fieldset class="cotiza__q">
+        <legend class="cotiza__legend">¿Cuántos dueños tendrá tu empresa?</legend>
+        <div class="cotiza__chips">
+          <label class="chip"><input type="radio" name="duenos" value="uno" checked><span>Solo yo</span></label>
+          <label class="chip"><input type="radio" name="duenos" value="varios"><span>Dos o más</span></label>
+        </div>
+      </fieldset>
+      <fieldset class="cotiza__q" data-si="duenos=varios">
+        <legend class="cotiza__legend">¿Piensan sumar socios o inversionistas más adelante?</legend>
+        <div class="cotiza__chips">
+          <label class="chip"><input type="radio" name="crecer" value="si" checked><span>Sí, queremos crecer</span></label>
+          <label class="chip"><input type="radio" name="crecer" value="no"><span>No, algo simple</span></label>
+        </div>
+      </fieldset>
+      <fieldset class="cotiza__q">
+        <legend class="cotiza__legend">¿Cuánto será el capital?</legend>
+        <p class="cotiza__ayuda">No hay un mínimo. Lo importante es que sea real.</p>
+        <div class="cotiza__chips">
+          <label class="chip"><input type="radio" name="capital" value="hasta" checked><span>Hasta S/ 20 000</span></label>
+          <label class="chip"><input type="radio" name="capital" value="mas"><span>Más de S/ 20 000</span></label>
+        </div>
+      </fieldset>
+      <fieldset class="cotiza__q">
+        <legend class="cotiza__legend">¿Dónde prefieres firmar?</legend>
+        <div class="cotiza__chips">
+          <label class="chip"><input type="radio" name="firma" value="casa" checked><span>Mi casa</span></label>
+          <label class="chip"><input type="radio" name="firma" value="oficina"><span>Mi oficina</span></label>
+          <label class="chip"><input type="radio" name="firma" value="negocio"><span>Mi negocio</span></label>
+        </div>
+      </fieldset>
     </div>
-    <div class="guide__panel">
-      <h2 class="h2 reveal">¿Qué tipo de empresa te conviene?</h2>
-      <div class="guide__card reveal" aria-live="polite">
-        <div class="guide__progress" aria-hidden="true"><span></span><span></span></div>
-      <div class="guide__step is-active" data-step="1">
-        <p class="guide__count">Pregunta 1 de 2</p>
-        <p class="guide__q">¿Vas a emprender solo o con socios?</p>
-        <div class="guide__opts">
-          <button class="guide__opt" type="button" data-answer="socios:solo" data-go="result"><span class="guide__opt-text">Solo</span><span class="guide__opt-hint">Yo seré el único dueño</span></button>
-          <button class="guide__opt" type="button" data-answer="socios:varios" data-go="2"><span class="guide__opt-text">Con socios</span><span class="guide__opt-hint">Somos dos o más</span></button>
-        </div>
-      </div>
-      <div class="guide__step" data-step="2">
-        <p class="guide__count">Pregunta 2 de 2</p>
-        <p class="guide__q">¿Piensan sumar socios o inversionistas más adelante?</p>
-        <div class="guide__opts">
-          <button class="guide__opt" type="button" data-answer="crecer:si" data-go="result"><span class="guide__opt-text">Sí, queremos crecer</span><span class="guide__opt-hint">Abrir la puerta a nuevos socios</span></button>
-          <button class="guide__opt" type="button" data-answer="crecer:no" data-go="result"><span class="guide__opt-text">No, algo simple</span><span class="guide__opt-hint">Pocos socios y una gestión sencilla</span></button>
-        </div>
-      </div>
-      <div class="guide__result" data-for="socios:solo">
-        <p class="guide__tag">Te podría convenir</p>
-        <p class="guide__answer">EIRL</p>
-        <p class="guide__why">Empresa Individual de Responsabilidad Limitada. Para quien emprende por cuenta propia y quiere separar el negocio de su patrimonio personal.</p>
-        <p class="guide__extra"><span class="plus-mark" aria-hidden="true"></span>Tú eres el único titular.</p>
-        <div class="guide__actions">
-          <a class="btn btn--red" data-wa="Hola, vengo de la web. Voy a emprender solo y creo que me conviene una EIRL." href="https://wa.me/51924021846"><svg class="btn__wa" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.3 20.7l4.4-1.1A8.8 8.8 0 1 0 12 3.2z"/></svg>Confirmarlo por WhatsApp</a>
-          <button class="guide__restart" type="button">Volver a empezar</button>
-        </div>
-      </div>
-      <div class="guide__result" data-for="crecer:si">
-        <p class="guide__tag">Te podría convenir</p>
-        <p class="guide__answer">SAC</p>
-        <p class="guide__why">Sociedad Anónima Cerrada. Para negocios con 2 o más socios que quieren crecer con una estructura clara.</p>
-        <p class="guide__extra"><span class="plus-mark" aria-hidden="true"></span>Deja definidas la propiedad y las decisiones entre socios.</p>
-        <div class="guide__actions">
-          <a class="btn btn--red" data-wa="Hola, vengo de la web. Somos socios, queremos crecer y creo que nos conviene una SAC." href="https://wa.me/51924021846"><svg class="btn__wa" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.3 20.7l4.4-1.1A8.8 8.8 0 1 0 12 3.2z"/></svg>Confirmarlo por WhatsApp</a>
-          <button class="guide__restart" type="button">Volver a empezar</button>
-        </div>
-      </div>
-      <div class="guide__result" data-for="crecer:no">
-        <p class="guide__tag">Te podría convenir</p>
-        <p class="guide__answer">SRL</p>
-        <p class="guide__why">Sociedad Comercial de Responsabilidad Limitada. Para negocios pequeños con pocos socios que buscan una estructura sencilla.</p>
-        <p class="guide__extra"><span class="plus-mark" aria-hidden="true"></span>Una gestión simple y estable.</p>
-        <div class="guide__actions">
-          <a class="btn btn--red" data-wa="Hola, vengo de la web. Somos pocos socios y creo que nos conviene una SRL." href="https://wa.me/51924021846"><svg class="btn__wa" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.3 20.7l4.4-1.1A8.8 8.8 0 1 0 12 3.2z"/></svg>Confirmarlo por WhatsApp</a>
-          <button class="guide__restart" type="button">Volver a empezar</button>
-        </div>
-      </div>
-      </div>
-      <p class="guide__note reveal">Es una orientación. La forma final la definimos juntos por WhatsApp.</p>
-    </div>
-  </div>
-</section>
-
-<section class="block block--papel" id="precio" aria-labelledby="precio-t">
-  <div class="container">
-    <div class="precio">
-      <div class="precio__intro">
-        <h2 class="h2" id="precio-t">¿Cuánto cuesta constituir tu empresa?</h2>
-        <p class="precio__answer"><strong>S/ 500</strong>, con los derechos notariales incluidos, si el capital de tu empresa es de hasta S/ 20 000. Aparte van los <strong>derechos registrales</strong>, que se pagan al Estado: en promedio entre S/ 100 y S/ 200, según tu capital.</p>
-        <p class="precio__answer">El precio es el mismo para una SAC, una SRL o una EIRL, y no cambia por el número de socios. Antes de que pagues, te damos un solo total por escrito.</p>
-      </div>
+    <div class="cotiza__recibo">
       <div class="recibo">
+        <p class="sr-only" aria-live="polite" data-anuncio></p>
+        <p class="recibo__rotulo">Te podría convenir</p>
+        <p class="recibo__valor" data-out="valor">EIRL</p>
+        <p class="recibo__porque" data-out="porque">Para quien emprende solo y quiere separar su patrimonio del negocio.</p>
         <table>
-          <caption>Constitución con capital de hasta S/ 20 000</caption>
-          <tr class="recibo__principal"><th scope="row">Nuestro servicio<small>Con derechos notariales y una toma de firmas donde estés</small></th><td>S/ 500</td></tr>
-          <tr><th scope="row">Derechos registrales<small>Pago al Estado, aproximado, según tu capital</small></th><td>S/ 100 a 200</td></tr>
-          <tr class="recibo__total"><th scope="row">Total aproximado</th><td>S/ 600 a 700</td></tr>
+          <caption class="sr-only">Detalle del total</caption>
+            <tr class="recibo__principal" data-fila="serv"><th scope="row">Nuestro servicio<small data-out="serv-det">Con derechos notariales y una toma de firmas</small></th><td data-out="serv">S/ 500</td></tr>
+            <tr class="recibo__linea" data-fila="reg"><th scope="row">Derechos registrales<small data-out="reg-det">Pago al Estado, aproximado</small></th><td data-out="reg">S/ 100 a 200</td></tr>
+            <tr class="recibo__total" data-fila="total"><th scope="row">Total aproximado</th><td data-out="total">S/ 600 a 700</td></tr>
         </table>
-        <ul class="recibo__notas">
-          <li><span class="plus-mark" aria-hidden="true"></span>Adelanto de S/ 180 y el resto el día de la firma, por transferencia bancaria.</li>
-          <li><span class="plus-mark" aria-hidden="true"></span>Si tu capital es mayor a S/ 20 000, te confirmamos el precio antes de pagar.</li>
-          <li><span class="plus-mark" aria-hidden="true"></span>Cada punto de firma adicional cuesta S/ 45.</li>
-        </ul>
+        <p class="recibo__pie" data-out="pie">Firmas en tu casa, en Lima Metropolitana y Callao. Adelanto de S/ 180 y el resto el día de la firma.</p>
+        <a class="btn btn--red recibo__cta" data-out-wa data-wa="Hola, vengo de la web. Quiero constituir una EIRL, solo yo como dueño, con capital de hasta S/ 20 000, y firmar en mi casa." href="https://wa.me/51924021846"><svg class="btn__wa" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.3 20.7l4.4-1.1A8.8 8.8 0 1 0 12 3.2z"/></svg>Escribir por WhatsApp</a>
+        <p class="recibo__nota">Tus respuestas ya van escritas en el mensaje.</p>
+        <details class="recibo__mas">
+          <summary>Qué incluye y qué va aparte</summary>
+          <div class="recibo__mas-cuerpo">
+            <p class="recibo__mas-t">Incluye</p>
+            <ul class="recibo__si">
+            <li>Minuta y estatuto redactados a la medida de tu caso, con las hojas que haga falta.</li>
+            <li>Derechos notariales y una toma de firmas donde estés, en Lima Metropolitana y Callao.</li>
+            <li>Reserva del nombre e inscripción en SUNARP, con aviso en cada etapa.</li>
+            <li>Asesoría legal para elegir el tipo de empresa y repartir las acciones.</li>
+            <li>Primera asesoría contable de 45 minutos, con la activación de tu RUC.</li>
+            <li>Asiento de inscripción y testimonio, en PDF.</li>
+            </ul>
+            <p class="recibo__mas-t">Va aparte</p>
+            <ul class="recibo__no">
+            <li>Derechos registrales: se pagan al Estado y van dentro de tu total.</li>
+            <li>Cada punto de firma adicional: S/ 45.</li>
+            <li>Libros societarios y cambios posteriores en tu empresa.</li>
+            </ul>
+          </div>
+        </details>
       </div>
     </div>
-    <div class="alcance">
-      <div class="alcance__col alcance__col--si">
-        <h3 class="alcance__t">Incluye</h3>
-        <ul>
-          <li>Minuta y estatuto redactados a la medida de tu caso, con las hojas que haga falta.</li>
-          <li>Derechos notariales y una toma de firmas en tu casa, tu oficina o tu negocio, en Lima Metropolitana y Callao.</li>
-          <li>Gestión de la reserva del nombre en SUNARP.</li>
-          <li>Inscripción en Registros Públicos, con aviso en cada etapa.</li>
-          <li>Asesoría legal: qué empresa te conviene y cómo repartir las acciones.</li>
-          <li>Primera asesoría contable de 45 minutos, con la activación de tu RUC.</li>
-          <li>Asiento de inscripción y testimonio, en PDF.</li>
-        </ul>
-      </div>
-      <div class="alcance__col alcance__col--aparte">
-        <h3 class="alcance__t">Va aparte</h3>
-        <ul>
-          <li>Derechos registrales: se pagan al Estado y van dentro de tu total.</li>
-          <li>Puntos de firma adicionales.</li>
-          <li>Libros societarios.</li>
-          <li>Registro de marca y cambios posteriores en tu empresa: son otros servicios.</li>
-        </ul>
-      </div>
+      <figure class="cita cotiza__cita">
+        <blockquote>«Yo quería SAC porque un amigo me dijo que era mejor. Me preguntaron si tenía socios y terminamos haciendo otra cosa. Me explicaron por qué.»</blockquote>
+        <figcaption><span class="plus-mark" aria-hidden="true"></span><b>Percy Huamán</b>, taller mecánico, Lima Este</figcaption>
+      </figure>
+  </div>
+</section>
+
+<section class="block block--crema" id="firma" aria-labelledby="firma-t">
+  <div class="container banda">
+    <div class="banda__foto reveal"><picture><source type="image/webp" srcset="assets/img/toma-firma-800.webp 800w" sizes="(min-width: 900px) 460px, calc(100vw - 40px)"><img src="assets/img/toma-firma-800.jpg" srcset="assets/img/toma-firma-800.jpg 800w" sizes="(min-width: 900px) 460px, calc(100vw - 40px)" width="800" height="1511" alt="Imagen ilustrativa: un cliente firma la escritura sobre el mostrador de su local mientras el mensajero de la notaría espera con el sobre" loading="lazy" decoding="async"></picture></div>
+    <div class="banda__texto">
+      <h2 class="h2 reveal" id="firma-t">Firmas donde estés.</h2>
+      <p class="banda__lede reveal">El motorizado de la notaría va a tu casa, tu oficina o tu negocio, en Lima Metropolitana y Callao, de lunes a viernes y los sábados hasta el mediodía.</p>
+      <ul class="banda__lista reveal">
+        <li><b>Si atiendes tu negocio,</b> firmas ahí, mientras sigues atendiendo.</li>
+        <li><b>Si trabajas con horario,</b> en tu casa o tu oficina, en la franja que coordinemos.</li>
+        <li><b>Si tus socios están en distintos lugares,</b> elegimos juntos un punto.</li>
+      </ul>
+      <figure class="cita reveal">
+        <blockquote>«Yo pensaba cerrar mi taller para ir a la notaría. Al final firmé en mi mismo taller: un motorizado de la notaría llegó y me hizo firmar la minuta y la escritura pública ahí.»</blockquote>
+        <figcaption><span class="plus-mark" aria-hidden="true"></span><b>Marisol Quispe</b>, confecciones, Lima Este</figcaption>
+      </figure>
     </div>
   </div>
 </section>
 
-<section class="block block--crema" id="incluye">
+<section class="block block--papel" id="incluye" aria-labelledby="incluye-t">
   <div class="container">
-    <h2 class="h2">Tres cosas que vienen con tu empresa.</h2>
-    <div class="include">
-      <article class="include__feature">
-        <div class="include__feature-media"><picture><source type="image/webp" srcset="assets/img/toma-firma-800.webp 800w" sizes="(min-width: 900px) 600px, calc(100vw - 40px)"><img src="assets/img/toma-firma-800.jpg" srcset="assets/img/toma-firma-800.jpg 800w" sizes="(min-width: 900px) 600px, calc(100vw - 40px)" width="800" height="1511" alt="Imagen ilustrativa: un cliente firma la escritura sobre el mostrador de su local mientras el mensajero de la notaría espera con el sobre" loading="lazy" decoding="async"></picture></div>
-        <div class="include__feature-text">
-          <svg class="firma-trazo" viewBox="0 0 160 52" aria-hidden="true" focusable="false"><path pathLength="1" d="M6 36c8-20 16-27 17-14s-3 21 4 16 9-24 14-23-2 22 4 22 8-18 12-17-1 14 4 13 6-11 10-10 0 9 5 8 9-14 14-12-3 12 3 12 10-9 14-9M30 45c32-4 76-8 122-11"/></svg>
-          <h3 class="include__title">La notaría va a donde estés</h3>
-          <p class="include__text">Del trámite nos encargamos nosotros. El motorizado de la notaría va a tu casa, tu oficina o tu negocio, en Lima Metropolitana y Callao, de lunes a viernes y los sábados hasta el mediodía: firmas sin hacer colas.</p>
-          <ul class="include__situaciones">
-            <li><b>Si atiendes tu negocio</b>Firmas ahí, mientras sigues atendiendo.</li>
-            <li><b>Si trabajas con horario</b>Firmas en tu casa o en tu oficina, en la franja que coordinemos.</li>
-            <li><b>Si tus socios están en distintos lugares</b>Elegimos juntos un punto para que todos firmen.</li>
-          </ul>
-        </div>
-      </article>
-      <article class="include__card">
-        <span class="include__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13.5 3.5H7A1.5 1.5 0 0 0 5.5 5v14A1.5 1.5 0 0 0 7 20.5h10a1.5 1.5 0 0 0 1.5-1.5V8.5z"/><path d="M13.5 3.5v5h5"/><path d="M8.5 12.5h7M8.5 16h4"/></svg></span>
-        <h3 class="include__title">Minuta personalizada</h3>
-        <p class="include__text">La redactamos a la medida de tu caso, con las hojas que haga falta: socios, aportes y quién decide qué.</p>
-      </article>
-      <article class="include__card">
-        <span class="include__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5.5" y="3.5" width="13" height="17" rx="2"/><path d="M8.5 7.5h7"/><path d="M8.5 11.5h1M11.5 11.5h1M14.5 11.5h1M8.5 14.5h1M11.5 14.5h1M14.5 14.5h1M8.5 17.5h1M11.5 17.5h4"/></svg></span>
-        <h3 class="include__title">Asesoría contable incluida</h3>
-        <p class="include__text">Una sesión de 45 minutos con un contador aliado, incluida en el precio. Tras la inscripción, te ayuda a escoger tu régimen y tu clave SOL, y deja tu RUC 20 activo para facturar en orden con <button class="term" data-term="sunat" type="button" aria-expanded="false">SUNAT</button>.</p>
-      </article>
+    <h2 class="h2" id="incluye-t">Lo que no se ve en el papel, también cuenta.</h2>
+    <div class="pilares">
+      <div class="pilar">
+        <h3 class="pilar__t">Tu minuta, a la medida</h3>
+        <p class="pilar__x">La redactamos según tus socios, tus aportes y quién decide qué, con las hojas que haga falta. Así aguanta el día que alguien quiera salir.</p>
+      </div>
+      <div class="pilar">
+        <h3 class="pilar__t">Tu RUC, activo</h3>
+        <p class="pilar__x">Tras la inscripción, un contador aliado te acompaña 45 minutos para escoger tu régimen y activar tu RUC 20. Va incluido en el precio.</p>
+      </div>
     </div>
-    <div class="cifras cifras--4" role="group" aria-label="Formalizarse, en cifras">
+    <div class="cifras cifras--3" role="group" aria-label="Formalizarse, en cifras">
     <p class="cifras__kicker">Formalizarse, en cifras</p>
     <ul class="cifras__list">
+      <li class="cifra">
+        <p class="cifra__num"><span class="cifra__n" data-cifra="10 a 13">10 a 13</span><span class="cifra__unit">&nbsp;d&iacute;as</span></p>
+        <p class="cifra__txt">h&aacute;biles, en promedio, desde la reserva del nombre hasta que tu empresa queda inscrita. Por lo general, 7 desde que firmas.</p>
+        <p class="cifra__src">Plazo promedio de nuestros tr&aacute;mites</p>
+      </li>
       <li class="cifra cifra--pct">
         <p class="cifra__num"><span class="cifra__n" data-cifra="86,8">86,8</span><span class="cifra__unit">%</span></p>
         <span class="cifra__bar" aria-hidden="true" style="--p:86.8%"><span></span></span>
@@ -222,16 +202,6 @@
         <p class="cifra__txt">de las empresas del Per&uacute; eran micro y peque&ntilde;as en 2024, como la tuya.</p>
         <p class="cifra__src">Fuente: ComexPer&uacute;, 2024</p>
       </li>
-      <li class="cifra">
-        <p class="cifra__num"><span class="cifra__pre">+</span><span class="cifra__n" data-cifra="250">250</span><span class="cifra__unit">&nbsp;mil</span></p>
-        <p class="cifra__txt">empresas nuevas se inscriben cada a&ntilde;o en el Per&uacute;.</p>
-        <p class="cifra__src">Fuente: SUNARP</p>
-      </li>
-      <li class="cifra">
-        <p class="cifra__num"><span class="cifra__n" data-cifra="10 a 13">10 a 13</span><span class="cifra__unit">&nbsp;d&iacute;as</span></p>
-        <p class="cifra__txt">h&aacute;biles, en promedio, desde la reserva del nombre hasta que tu empresa queda inscrita. Por lo general, 7 desde que firmas.</p>
-        <p class="cifra__src">Plazo promedio de nuestros tr&aacute;mites</p>
-      </li>
     </ul>
     </div>
   </div>
@@ -240,9 +210,9 @@
 <section class="block block--tinta faq-end" id="cierre">
   <div class="container container--narrow faq-end__inner">
     <h2 class="h2 h2--light">¿Empezamos con tu empresa?</h2>
-    <p class="lede lede--light">Te hacemos tres preguntas por WhatsApp y te enviamos el total.</p>
+    <p class="lede lede--light">Te hacemos tres preguntas por WhatsApp y te enviamos el total por escrito.</p>
     <a class="btn btn--red" data-wa="Hola, vengo de la web. Quiero constituir mi empresa." href="https://wa.me/51924021846"><svg class="btn__wa" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.3 20.7l4.4-1.1A8.8 8.8 0 1 0 12 3.2z"/></svg>Constituir mi empresa<span class="sr-only"> por WhatsApp</span></a>
-    <a class="faq-end__back" href="cuanto-cuesta-constituir-una-empresa-en-lima.html">Guía: cuánto cuesta constituir una empresa</a><br><a class="faq-end__back" href="sac-srl-o-eirl.html">Guía: ¿SAC, SRL o EIRL?</a><br><a class="faq-end__back" href="como-constituir-una-empresa-en-lima.html">Guía: cómo constituir una empresa en Lima</a><br><a class="faq-end__back" href="preguntas-frecuentes.html#faq-empresa">Preguntas frecuentes</a>
+    <p class="faq-end__guias">Para leer antes: <a href="cuanto-cuesta-constituir-una-empresa-en-lima.html">cuánto cuesta constituir</a>, <a href="sac-srl-o-eirl.html">SAC, SRL o EIRL</a> y <a href="preguntas-frecuentes.html#faq-empresa">preguntas frecuentes</a>.</p>
   </div>
 </section>
 
@@ -250,14 +220,16 @@
 
 <footer class="page-foot">
   <div class="container">
-    <div class="page-foot__row">
-      <p class="page-foot__biz"><b>Hazlaw S.R.L.</b> · RUC 20614415950<br>Av. Próceres de la Independencia 1625, San Juan de Lurigancho, Lima<br><a href="mailto:contacto@hazlawpe.com">contacto@hazlawpe.com</a> · <a href="tel:+51924021846">924 021 846</a><br>Lunes a viernes de 9:00 a 18:00 · Sábados de 9:00 a 13:00</p>
-      <div class="page-foot__side">
-        <a class="libro-link" href="libro-de-reclamaciones.html"><svg class="libro-link__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 6.5C10 5 7.2 4.6 4 5v13c3.2-.4 6 0 8 1.5 2-1.5 4.8-1.9 8-1.5V5c-3.2-.4-6 0-8 1.5z"/><path d="M12 6.5v13"/></svg><span>Libro de reclamaciones</span></a>
-        <div class="page-foot__redes"><a href="https://www.instagram.com/hazlawpe/" target="_blank" rel="noopener" aria-label="Instagram de Hazlaw+ (se abre en otra pestaña)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle class="fill" cx="17.2" cy="6.8" r="1.1"/></svg></a><a href="https://www.facebook.com/hazlaw.pe" target="_blank" rel="noopener" aria-label="Facebook de Hazlaw+ (se abre en otra pestaña)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14.2 20.5v-7.1h2.4l.4-2.8h-2.8V8.8c0-.8.2-1.4 1.4-1.4h1.5V4.9c-.3 0-1.1-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2H8.8v2.8h2.4v7.1"/></svg></a><a href="https://www.tiktok.com/@hazlawpe" target="_blank" rel="noopener" aria-label="TikTok de Hazlaw+ (se abre en otra pestaña)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14.5 3.5v11.2a3.3 3.3 0 1 1-3.3-3.3M14.5 3.5c.4 2.4 2.1 4.1 4.5 4.3"/></svg></a><a href="https://www.linkedin.com/company/hazlaw" target="_blank" rel="noopener" aria-label="LinkedIn de Hazlaw+ (se abre en otra pestaña)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/><path d="M8.2 10.6v5.9M8.2 7.7v.1M11.6 16.5v-5.9M11.6 13.2c0-1.6 1-2.7 2.3-2.7s2.2.9 2.2 2.7v3.3"/></svg></a></div>
+    <div class="page-foot__grid">
+      <div class="page-foot__marca">
+        <p class="page-foot__biz"><b>Hazlaw S.R.L.</b>, RUC 20614415950<br>Av. Próceres de la Independencia 1625, San Juan de Lurigancho, Lima<br><a href="mailto:contacto@hazlawpe.com">contacto@hazlawpe.com</a> · <a href="tel:+51924021846">924 021 846</a><br>Lunes a viernes de 9:00 a 18:00 · Sábados de 9:00 a 13:00</p>
+        <div class="page-foot__acciones">
+          <a class="libro-link" href="libro-de-reclamaciones.html"><svg class="libro-link__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 6.5C10 5 7.2 4.6 4 5v13c3.2-.4 6 0 8 1.5 2-1.5 4.8-1.9 8-1.5V5c-3.2-.4-6 0-8 1.5z"/><path d="M12 6.5v13"/></svg><span>Libro de reclamaciones</span></a>
+          <div class="page-foot__redes"><a href="https://www.instagram.com/hazlawpe/" target="_blank" rel="noopener" aria-label="Instagram de Hazlaw+ (se abre en otra pestaña)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle class="fill" cx="17.2" cy="6.8" r="1.1"/></svg></a><a href="https://www.facebook.com/hazlaw.pe" target="_blank" rel="noopener" aria-label="Facebook de Hazlaw+ (se abre en otra pestaña)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14.2 20.5v-7.1h2.4l.4-2.8h-2.8V8.8c0-.8.2-1.4 1.4-1.4h1.5V4.9c-.3 0-1.1-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2H8.8v2.8h2.4v7.1"/></svg></a><a href="https://www.tiktok.com/@hazlawpe" target="_blank" rel="noopener" aria-label="TikTok de Hazlaw+ (se abre en otra pestaña)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14.5 3.5v11.2a3.3 3.3 0 1 1-3.3-3.3M14.5 3.5c.4 2.4 2.1 4.1 4.5 4.3"/></svg></a><a href="https://www.linkedin.com/company/hazlaw" target="_blank" rel="noopener" aria-label="LinkedIn de Hazlaw+ (se abre en otra pestaña)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/><path d="M8.2 10.6v5.9M8.2 7.7v.1M11.6 16.5v-5.9M11.6 13.2c0-1.6 1-2.7 2.3-2.7s2.2.9 2.2 2.7v3.3"/></svg></a></div>
+        </div>
       </div>
+      <nav class="page-foot__guias" aria-label="Guías"><p class="page-foot__guias-t">Guías</p><ul><li><a href="cuanto-cuesta-constituir-una-empresa-en-lima.html">Cuánto cuesta constituir una empresa</a></li><li><a href="sac-srl-o-eirl.html">SAC, SRL o EIRL</a></li><li><a href="como-constituir-una-empresa-en-lima.html">Cómo constituir una empresa</a></li><li><a href="cuanto-cuesta-registrar-una-marca-en-indecopi.html">Cuánto cuesta registrar una marca</a></li><li><a href="como-registrar-una-marca-en-indecopi.html">Cómo registrar una marca</a></li><li><a href="tramites-notariales-a-domicilio-en-lima.html">Trámites notariales a domicilio</a></li><li><a href="poder-notarial-para-un-adulto-mayor.html">Poder notarial para un adulto mayor</a></li><li><a href="constitucion-de-empresas-en-san-juan-de-lurigancho.html">Constitución de empresas en San Juan de Lurigancho</a></li></ul></nav>
     </div>
-    <nav class="page-foot__guias" aria-label="Guías"><p class="page-foot__guias-t">Guías</p><ul><li><a href="cuanto-cuesta-constituir-una-empresa-en-lima.html">Cuánto cuesta constituir una empresa</a></li><li><a href="sac-srl-o-eirl.html">SAC, SRL o EIRL</a></li><li><a href="como-constituir-una-empresa-en-lima.html">Cómo constituir una empresa</a></li><li><a href="cuanto-cuesta-registrar-una-marca-en-indecopi.html">Cuánto cuesta registrar una marca</a></li><li><a href="como-registrar-una-marca-en-indecopi.html">Cómo registrar una marca</a></li><li><a href="tramites-notariales-a-domicilio-en-lima.html">Trámites notariales a domicilio</a></li><li><a href="poder-notarial-para-un-adulto-mayor.html">Poder notarial para un adulto mayor</a></li><li><a href="constitucion-de-empresas-en-san-juan-de-lurigancho.html">Constitución de empresas en San Juan de Lurigancho</a></li></ul></nav>
     <nav class="legal-nav" aria-label="Información legal">
       <ul>
         <li><a href="politica-de-privacidad.html">Política de privacidad</a></li>
@@ -349,7 +321,7 @@
         "price": "500",
         "priceCurrency": "PEN",
         "description": "Para un capital de hasta S/ 20 000. Incluye derechos notariales y una toma de firmas. Los derechos registrales, que se pagan al Estado, van aparte.",
-        "url": "https://hazlawpe.com/constitucion-de-empresas.html#precio"
+        "url": "https://hazlawpe.com/constitucion-de-empresas.html#cotiza"
       },
       "url": "https://hazlawpe.com/constitucion-de-empresas.html"
     },
@@ -374,7 +346,7 @@
 }
 </script>
 
-<script src="assets/js/analytics.js?v=8"></script>
-<script src="assets/js/main.js?v=68"></script>
+<script src="assets/js/analytics.js?v=9"></script>
+<script src="assets/js/main.js?v=69"></script>
 </body>
 </html>

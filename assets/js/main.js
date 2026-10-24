@@ -675,71 +675,255 @@
     }
   }
 
-  // Guía de preguntas: orienta paso a paso, como lo haría un abogado, y termina con una
-  // recomendación y su mensaje de WhatsApp. La recomendación la da la última respuesta que la tenga.
-  function initGuides() {
-    document.querySelectorAll("[data-guide]").forEach(function (root) {
-      var steps = Array.prototype.slice.call(root.querySelectorAll(".guide__step"));
-      var results = Array.prototype.slice.call(root.querySelectorAll(".guide__result"));
-      var bars = Array.prototype.slice.call(root.querySelectorAll(".guide__progress span"));
-      var answers = {};
-      var order = [];
+  // Cotizador (constitución y marca): tres respuestas arman el tipo de empresa o de marca, el total
+  // y el mensaje de WhatsApp. Sin JavaScript se ve el caso por defecto, que ya viene en el HTML.
+  // Los montos cuentan del valor anterior al nuevo; con "reducir movimiento" cambian de golpe.
+  var NBSP = " ";
+  function soles(n) {
+    var t = n.toFixed(Math.round(n * 100) % 100 ? 2 : 0).split(".");
+    t[0] = t[0].replace(/\B(?=(\d{3})+(?!\d))/g, NBSP);
+    return "S/" + NBSP + t.join(".");
+  }
+  function sinEspacios(s) { return String(s).replace(/[\s ]+/g, " ").trim(); }
+  function marcaCambio(el) {
+    el.classList.remove("is-cambio");
+    void el.offsetWidth;
+    el.classList.add("is-cambio");
+  }
 
-      var card = root.querySelector(".guide__card");
-      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var COTIZA = {
+    empresa: function (r) {
+      var varios = r.duenos === "varios", mas = r.capital === "mas";
+      var tipo = !varios ? "EIRL" : (r.crecer === "si" ? "SAC" : "SRL");
+      var porque = {
+        EIRL: "Para quien emprende solo y quiere separar su patrimonio del negocio.",
+        SAC: "Para socios que piensan sumar a otros o recibir inversión más adelante.",
+        SRL: "Para pocos socios, como familia o amigos, que quieren una empresa simple."
+      }[tipo];
+      var lugar = { casa: "casa", oficina: "oficina", negocio: "negocio" }[r.firma];
+      return {
+        valor: tipo,
+        porque: porque,
+        filas: {
+          serv: mas ? "Según tu capital" : 500,
+          "serv-det": mas ? "Te lo confirmamos antes de que pagues" : "Con derechos notariales y una toma de firmas",
+          reg: mas ? "Según tu capital" : "S/ 100 a 200",
+          total: mas ? "Te lo enviamos por escrito" : "S/ 600 a 700"
+        },
+        pie: "Firmas en tu " + lugar + ", en Lima Metropolitana y Callao. Adelanto de S/ 180 y el resto el día de la firma.",
+        wa: "Hola, vengo de la web. Quiero constituir una " + tipo + ", " + (varios ? "somos dos o más socios" : "solo yo como dueño") +
+            ", con capital de " + (mas ? "más de" : "hasta") + " S/ 20 000, y firmar en mi " + lugar + "."
+      };
+    },
+    marca: function (r) {
+      var que = {
+        nombre: ["El nombre", "La palabra, con cualquier tipo de letra.", "el nombre"],
+        logo: ["El logo", "El dibujo o símbolo de tu negocio.", "el logo"],
+        ambos: ["Nombre y logo", "El nombre con su diseño, tal como lo ve tu cliente.", "el nombre y el logo"]
+      }[r.protege];
+      var dos = r.clases === "2", remype = r.remype === "si";
+      // Tasas de gob.pe (trámite 333), consultadas el 2026-10-24. El beneficio publicado baja solo la primera clase.
+      var t1 = remype ? 401.2 : 534.9, t2 = 533.3;
+      return {
+        valor: que[0],
+        porque: que[1],
+        filas: {
+          serv: 370,
+          tasa1: t1,
+          "tasa1-det": remype ? "Pago al Estado, con el beneficio para mypes" : "Pago al Estado",
+          tasa2: dos ? t2 : null,
+          total: 370 + t1 + (dos ? t2 : 0)
+        },
+        pie: remype && dos
+          ? "El beneficio para mypes baja la tasa de la primera clase; la segunda te la confirmamos antes de que pagues. Tasas de gob.pe, consultadas el 24 de octubre de 2026."
+          : "Tasas de gob.pe, consultadas el 24 de octubre de 2026. Las fija el Estado y pueden cambiar.",
+        wa: "Hola, vengo de la web. Quiero registrar " + que[2] + " de mi negocio en " + (dos ? "dos clases" : "una clase") +
+            (remype ? ". Tengo RUC activo y REMYPE." : ".")
+      };
+    }
+  };
 
-      function show(panel, fromKeyboard) {
-        steps.concat(results).forEach(function (el) { el.classList.toggle("is-active", el === panel); });
-        // Si la tarjeta quedó debajo del encabezado, se acomoda para leer desde arriba
-        var header = document.getElementById("site-header");
-        var top = card.getBoundingClientRect().top - (header ? header.offsetHeight : 0) - 12;
-        if (top < 0) window.scrollBy({ top: top, behavior: reduce ? "auto" : "smooth" });
-        if (fromKeyboard) {
-          var first = panel.querySelector("button, a");
-          if (first) first.focus();
+  function initCotizador() {
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    document.querySelectorAll("[data-cotiza]").forEach(function (root) {
+      var regla = COTIZA[root.getAttribute("data-cotiza")];
+      if (!regla) return;
+      var cta = root.querySelector("[data-out-wa]");
+      var usado = false;
+
+      function out(id) { return root.querySelector('[data-out="' + id + '"]'); }
+      function respuestas() {
+        var r = {};
+        root.querySelectorAll("input[type=radio]:checked").forEach(function (i) { r[i.name] = i.value; });
+        return r;
+      }
+      // Escribe un monto o un texto; los montos cuentan desde el valor anterior
+      function pon(el, valor) {
+        if (!el) return false;
+        var nuevo = typeof valor === "number" ? soles(valor) : valor;
+        if (sinEspacios(el.textContent) === sinEspacios(nuevo)) return false;
+        var m = /^S\/\s*([\d\s ]+(?:\.\d+)?)$/.exec(sinEspacios(el.textContent));
+        var desde = m ? parseFloat(m[1].replace(/\s/g, "")) : null;
+        if (el.tagName === "TD") el.classList.toggle("is-texto", !/^S\//.test(nuevo));
+        var turno = el.hzTurno = {};
+        if (typeof valor === "number" && desde !== null && !reduce) {
+          var t0 = null;
+          requestAnimationFrame(function paso(ts) {
+            if (el.hzTurno !== turno) return;
+            if (!t0) t0 = ts;
+            var k = Math.min((ts - t0) / 560, 1), e = 1 - Math.pow(1 - k, 4);
+            el.textContent = k < 1 ? soles(Math.round(desde + (valor - desde) * e)) : nuevo;
+            if (k < 1) requestAnimationFrame(paso);
+          });
+          // Si el navegador pausa los cuadros (pestaña en segundo plano), el monto final llega igual
+          setTimeout(function () { if (el.hzTurno === turno) el.textContent = nuevo; }, 700);
+        } else {
+          el.textContent = nuevo;
         }
+        return true;
       }
-      function progress(done) {
-        bars.forEach(function (b, i) { b.classList.toggle("is-done", i < done); });
-      }
-
-      root.addEventListener("click", function (e) {
-        var opt = e.target.closest(".guide__opt");
-        var keyboard = e.detail === 0;
-        if (opt) {
-          var kv = opt.getAttribute("data-answer").split(":");
-          answers[kv[0]] = kv[1];
-          order = order.filter(function (k) { return k !== kv[0]; });
-          order.push(kv[0]);
-          var go = opt.getAttribute("data-go");
-          if (go === "result") {
-            var result = null;
-            for (var i = order.length - 1; i >= 0 && !result; i--) {
-              result = root.querySelector('.guide__result[data-for="' + order[i] + ":" + answers[order[i]] + '"]');
-            }
-            if (!result) return;
-            result.querySelectorAll("[data-note]").forEach(function (n) {
-              var p = n.getAttribute("data-note").split(":");
-              n.hidden = answers[p[0]] !== p[1];
-            });
-            progress(bars.length);
-            show(result, keyboard);
-            hzTrack("guia_resultado", { guia: root.getAttribute("data-guide"), resultado: result.getAttribute("data-for") });
-          } else {
-            var next = root.querySelector('.guide__step[data-step="' + go + '"]');
-            progress(steps.indexOf(next));
-            show(next, keyboard);
+      function pinta(avisar) {
+        var r = respuestas();
+        // Preguntas que dependen de otra respuesta (data-si="otra=valor")
+        root.querySelectorAll("[data-si]").forEach(function (q) {
+          var c = q.getAttribute("data-si").split("=");
+          var ver = r[c[0]] === c[1];
+          if (ver && q.hidden) {
+            q.hidden = false;
+            q.classList.remove("is-nueva");
+            void q.offsetWidth;
+            if (!reduce) q.classList.add("is-nueva");
+          } else if (!ver) {
+            q.hidden = true;
           }
-          return;
+        });
+        var s = regla(r);
+        ["valor", "porque"].forEach(function (k) {
+          if (pon(out(k), s[k]) && !reduce) marcaCambio(out(k));
+        });
+        Object.keys(s.filas).forEach(function (id) {
+          var celda = out(id);
+          if (!celda) return;
+          var fila = celda.closest("tr");
+          if (s.filas[id] === null) { if (fila) fila.hidden = true; return; }
+          var aparece = fila && fila.hidden;
+          if (fila) fila.hidden = false;
+          var cambio = pon(celda, s.filas[id]);
+          if (!reduce && fila && cambio && celda.tagName === "TD") {
+            if (aparece) { fila.classList.remove("is-nueva"); void fila.offsetWidth; fila.classList.add("is-nueva"); }
+            else marcaCambio(fila);
+          }
+        });
+        pon(out("pie"), s.pie);
+        // Lectores de pantalla: un solo aviso con el resultado, no cada cifra mientras cuenta
+        var anuncio = root.querySelector("[data-anuncio]");
+        var total = root.querySelector(".recibo__total th");
+        if (anuncio && avisar) anuncio.textContent = s.valor + ". " + (total ? total.textContent + ": " : "") +
+          (typeof s.filas.total === "number" ? soles(s.filas.total) : s.filas.total) + ".";
+        if (cta) {
+          cta.setAttribute("data-wa", s.wa);
+          cta.setAttribute("href", WA_BASE + encodeURIComponent(s.wa));
         }
-        if (e.target.closest(".guide__restart")) {
-          answers = {};
-          order = [];
-          progress(0);
-          show(steps[0], keyboard);
-        }
+      }
+      root.addEventListener("change", function () {
+        pinta(true);
+        if (!usado) { usado = true; hzTrack("cotizador_uso", { servicio: root.getAttribute("data-cotiza") }); }
       });
+      pinta();
     });
+  }
+
+  // Trámites notariales: "¿Qué necesitas firmar?". El recorrido se dibuja como una línea del Metro
+  // (una parada tras otra) al entrar en pantalla, y cada respuesta reescribe las paradas que cambian.
+  var RUTA = {
+    p2: {
+      poder: ["Preparamos el poder", "Te decimos qué tipo de poder corresponde y lo preparamos: carta poder, fuera de registro o por escritura pública."],
+      compraventa: ["Preparamos la minuta", "Revisamos los papeles del inmueble y redactamos la compraventa a la medida del caso."],
+      anticipo: ["Preparamos la minuta", "Redactamos el anticipo de legítima: qué bien se entrega y a quién, a cuenta de la herencia."],
+      otro: ["Vemos tu caso", "Te explicamos cómo se hace y preparamos lo que haga falta firmar."]
+    },
+    lugar: {
+      yo: { casa: "a tu casa", oficina: "a tu oficina", negocio: "a tu negocio" },
+      familiar: { casa: "a su casa", oficina: "a su oficina", negocio: "a su negocio" },
+      varios: { casa: "a la casa", oficina: "a la oficina", negocio: "al negocio" }
+    },
+    p3: {
+      yo: "Verifica tu identidad con un lector biométrico y firmas ahí mismo.",
+      familiar: "Verifica su identidad con un lector biométrico y firma ahí mismo, con calma.",
+      varios: "Coordinamos una franja para que todos firmen ahí. Si están en distintos lugares, elegimos juntos un punto."
+    },
+    p4: {
+      poder: "Si el poder se inscribe en SUNARP, lo seguimos hasta que Registros Públicos responda.",
+      compraventa: "Llevamos la escritura a SUNARP y la seguimos hasta que Registros Públicos responda.",
+      anticipo: "Llevamos la escritura a SUNARP y la seguimos hasta que Registros Públicos responda.",
+      otro: "Te avisamos en cada etapa, hasta que el trámite termine."
+    },
+    wa: {
+      tramite: { poder: "un poder", compraventa: "una compraventa", anticipo: "un anticipo de legítima", otro: "un trámite notarial" },
+      quien: { yo: " y prefiero firmar en mi ", familiar: " para un familiar mayor, que firmaría en su ", varios: " en el que firmamos varias personas, de preferencia en " },
+      donde: {
+        yo: { casa: "casa", oficina: "oficina", negocio: "negocio" },
+        familiar: { casa: "casa", oficina: "oficina", negocio: "negocio" },
+        varios: { casa: "una casa", oficina: "una oficina", negocio: "un negocio" }
+      }
+    }
+  };
+
+  function initRuta() {
+    var root = document.querySelector("[data-ruta]");
+    if (!root) return;
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var linea = root.querySelector(".linea");
+    var cta = root.querySelector("[data-out-wa]");
+    var usado = false;
+
+    function out(id) { return root.querySelector('[data-out="' + id + '"]'); }
+    function pon(id, texto) {
+      var el = out(id);
+      if (!el || sinEspacios(el.textContent) === sinEspacios(texto)) return false;
+      el.textContent = texto;
+      return true;
+    }
+    function pinta(avisar) {
+      var r = {};
+      root.querySelectorAll("input[type=radio]:checked").forEach(function (i) { r[i.name] = i.value; });
+      var cambios = {
+        p2: [pon("p2-t", RUTA.p2[r.tramite][0]), pon("p2", RUTA.p2[r.tramite][1])],
+        p3: [pon("p3-t", "La notaría va " + RUTA.lugar[r.quien][r.donde]), pon("p3", RUTA.p3[r.quien])],
+        p4: [pon("p4", RUTA.p4[r.tramite])]
+      };
+      if (!reduce) {
+        Object.keys(cambios).forEach(function (id) {
+          if (cambios[id].some(Boolean)) marcaCambio(out(id).closest(".linea__parada"));
+        });
+      }
+      var anuncio = root.querySelector("[data-anuncio]");
+      if (anuncio && avisar) anuncio.textContent = out("p2-t").textContent + ". " + out("p3-t").textContent + ".";
+      var msg = "Hola, vengo de la web. Necesito " + RUTA.wa.tramite[r.tramite] + RUTA.wa.quien[r.quien] +
+                RUTA.wa.donde[r.quien][r.donde] + ".";
+      if (cta) {
+        cta.setAttribute("data-wa", msg);
+        cta.setAttribute("href", WA_BASE + encodeURIComponent(msg));
+      }
+    }
+    root.addEventListener("change", function () {
+      pinta(true);
+      if (!usado) { usado = true; hzTrack("cotizador_uso", { servicio: "notarial" }); }
+    });
+    pinta();
+
+    // La línea se llena parada por parada la primera vez que se ve
+    if (linea && !reduce && "IntersectionObserver" in window) {
+      linea.classList.add("is-pending");
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (!en.isIntersecting) return;
+          io.disconnect();
+          linea.classList.remove("is-pending");
+        });
+      }, { threshold: 0.45 });
+      io.observe(linea);
+    }
   }
 
   // Gestión notarial: la persona toca su trámite y la tarjeta le explica de qué se trata,
@@ -1323,7 +1507,8 @@
     initPreloader();
     upgradeWhatsAppLinks();
     initSiteHeader();
-    initGuides();
+    initCotizador();
+    initRuta();
     initLibro();
     initTramites();
     initPerfiles();
