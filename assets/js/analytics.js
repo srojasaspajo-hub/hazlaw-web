@@ -4,7 +4,7 @@
   // ======================= Medición =======================
   // Pegue aquí cada identificador. Mientras estén vacíos no se carga nada de
   // Google, de Microsoft ni de Meta, y no se envía ningún dato de sus visitantes.
-  var GA_ID = "";          // Google Analytics 4. Se ve así: G-ABC123XYZ9
+  var GA_ID = "G-8WY2205C5N"; // Google Analytics 4 (propiedad hazlawpe.com, cuenta contacto@hazlawpe.com)
   var CLARITY_ID = "";     // Microsoft Clarity. Se ve así: abcd1234ef
   var META_PIXEL_ID = "";  // Pixel de Meta (Facebook e Instagram). Solo números
   // Google Search Console se verifica con la etiqueta <meta name="google-site-verification">
