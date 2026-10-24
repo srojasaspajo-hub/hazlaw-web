@@ -3602,3 +3602,124 @@ p, li { text-wrap: pretty; }
 
 /* ===== Libro de reclamaciones: campo trampa para robots, fuera de la vista ===== */
 .libro__trampa { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+
+/* =====================================================================
+   2026-10-24 · Precios a la vista, notaría para personas, redes y guías
+   ===================================================================== */
+
+/* Portada de cada servicio: el precio, dicho completo, antes del botón */
+.photo-hero__precio { margin: -6px 0 24px; max-width: 46ch; font-family: var(--text); font-size: 15px; line-height: 1.55; color: rgba(255,255,255,0.78); text-wrap: pretty; }
+.photo-hero__precio b { margin-right: 2px; font-family: var(--display); font-size: 21px; font-weight: 500; letter-spacing: -0.01em; color: var(--papel); font-variant-numeric: lining-nums tabular-nums; }
+.photo-hero__precio a { color: var(--papel); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.45); text-underline-offset: 3px; white-space: nowrap; transition: text-decoration-color 0.25s var(--ease-out); }
+.photo-hero__precio a:hover { text-decoration-color: var(--papel); }
+@media (min-width: 900px) {
+  .photo-hero__precio { font-size: 16px; }
+  .photo-hero__precio b { font-size: 24px; }
+}
+
+/* ¿Cuánto cuesta?: la respuesta directa y un comprobante con cada parte por separado */
+.precio { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; }
+.precio__intro .h2 { margin-bottom: 18px; }
+.precio__answer { margin: 0 0 14px; max-width: 48ch; font-family: var(--text); font-size: 18px; line-height: 1.6; color: rgba(33,27,24,0.84); text-wrap: pretty; }
+.precio__answer strong { font-weight: 600; color: var(--tinta); }
+.recibo { position: relative; padding: 24px 20px 20px; border-radius: 8px; background: var(--crema); }
+.block--crema .recibo { background: var(--papel); box-shadow: 0 1px 2px rgba(33,27,24,0.06), 0 24px 50px -28px rgba(33,27,24,0.3); }
+.recibo table { width: 100%; border-collapse: collapse; font-family: var(--text); font-variant-numeric: lining-nums tabular-nums; }
+.recibo caption { padding: 0 0 8px; text-align: left; font-family: var(--text); font-size: 14px; font-weight: 600; color: var(--grafito); }
+.recibo th, .recibo td { padding: 14px 0; vertical-align: baseline; border-bottom: 1px solid rgba(33,27,24,0.09); }
+.recibo th { padding-right: 14px; text-align: left; font-size: 16px; font-weight: 500; line-height: 1.35; color: var(--tinta); }
+.recibo th small { display: block; margin-top: 3px; font-size: 14px; font-weight: 400; line-height: 1.4; color: var(--grafito); }
+.recibo td { text-align: right; white-space: nowrap; font-family: var(--display); font-size: 19px; font-weight: 500; letter-spacing: -0.01em; color: var(--tinta); }
+.recibo__principal td { font-size: 32px; font-weight: 400; letter-spacing: -0.03em; }
+.recibo__total th, .recibo__total td { border-bottom: 0; border-top: 1px dashed rgba(33,27,24,0.34); padding-top: 18px; }
+.recibo__total th { font-weight: 600; }
+.recibo__total td { font-size: 24px; color: var(--granate); }
+.recibo__notas { display: grid; gap: 8px; margin: 6px 0 0; padding: 16px 0 0; border-top: 1px solid rgba(33,27,24,0.09); }
+.recibo__notas li { position: relative; padding-left: 22px; font-family: var(--text); font-size: 15px; line-height: 1.5; color: rgba(33,27,24,0.78); }
+.recibo__notas .plus-mark { --t: 1.5px; position: absolute; left: 0; top: 0.42em; width: 11px; height: 11px; }
+.alcance { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; margin-top: 44px; padding-top: 32px; border-top: 1px solid rgba(33,27,24,0.1); }
+.alcance__t { margin: 0 0 14px; font-family: var(--display); font-size: 20px; font-weight: 500; letter-spacing: -0.01em; color: var(--tinta); }
+.alcance ul { display: grid; gap: 10px; }
+.alcance li { position: relative; max-width: 56ch; padding-left: 28px; font-family: var(--text); font-size: 17px; line-height: 1.5; color: rgba(33,27,24,0.86); }
+.alcance__col--si li::before { content: ""; position: absolute; left: 3px; top: 0.42em; width: 12px; height: 6px; border-left: 1.8px solid var(--granate); border-bottom: 1.8px solid var(--granate); transform: rotate(-45deg); }
+.alcance__col--aparte li { color: rgba(33,27,24,0.74); }
+.alcance__col--aparte li::before { content: ""; position: absolute; left: 3px; top: 0.78em; width: 12px; height: 1.6px; background: rgba(33,27,24,0.4); }
+@media (min-width: 900px) {
+  .precio { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr); gap: 72px; align-items: start; }
+  .precio__answer { font-size: 19px; }
+  .recibo { padding: 30px 32px 24px; }
+  .recibo__principal td { font-size: 38px; }
+  .alcance { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 64px; }
+}
+
+/* Constitución: el bloque de lo que viene con tu empresa ahora va sobre gris */
+.block--crema .include__card { background: var(--papel); }
+.block--crema .include__icon { background: var(--crema); }
+.include__situaciones { display: grid; gap: 12px; margin: 18px 0 0; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.14); }
+.include__situaciones li { font-family: var(--text); font-size: 15px; line-height: 1.45; color: rgba(255,255,255,0.78); }
+.include__situaciones b { display: block; font-weight: 600; color: var(--papel); }
+@media (min-width: 900px) { .include__feature { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); } }
+
+/* Trámites notariales para personas: tres situaciones y una sola respuesta */
+.parati { display: grid; grid-template-columns: minmax(0, 1fr); gap: 36px; }
+.parati__intro .lede { margin-bottom: 26px; }
+.parati__list { border-top: 1px solid rgba(33,27,24,0.12); }
+.parati__item { display: grid; grid-template-columns: 40px minmax(0, 1fr); column-gap: 14px; padding: 24px 0; border-bottom: 1px solid rgba(33,27,24,0.12); }
+.parati__icon { grid-row: 1 / span 2; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: var(--crema); color: var(--granate); }
+.parati__icon svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.parati__t { margin: 0 0 6px; font-family: var(--display); font-size: 20px; font-weight: 500; line-height: 1.25; letter-spacing: -0.01em; color: var(--tinta); }
+.parati__x { margin: 0; max-width: 54ch; font-family: var(--text); font-size: 16px; line-height: 1.55; color: rgba(33,27,24,0.8); }
+.parati__tramites { padding: 22px 22px 24px; border-radius: 16px; background: var(--crema); }
+.parati__tramites-t { margin: 0 0 12px; font-family: var(--display); font-size: 19px; font-weight: 500; letter-spacing: -0.01em; color: var(--tinta); }
+.parati__tramites dl { margin: 0 0 14px; }
+.parati__tramites dt { margin: 12px 0 2px; font-family: var(--text); font-size: 16px; font-weight: 600; color: var(--tinta); }
+.parati__tramites dt:first-child { margin-top: 0; }
+.parati__tramites dd { margin: 0; font-family: var(--text); font-size: 15px; line-height: 1.5; color: rgba(33,27,24,0.78); }
+.parati__otro { margin: 0 0 18px; font-family: var(--text); font-size: 15px; color: var(--grafito); }
+@media (min-width: 900px) {
+  .parati { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); grid-template-areas: "intro lista" "tramites lista"; grid-template-rows: auto 1fr; gap: 0 80px; align-items: start; }
+  .parati__intro { grid-area: intro; }
+  .parati__list { grid-area: lista; }
+  .parati__tramites { grid-area: tramites; }
+  .parati__item { padding: 28px 0; }
+  .parati__t { font-size: 22px; }
+  .parati__tramites { padding: 26px 28px 28px; }
+}
+.faq-end__small a { color: var(--papel); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.5); text-underline-offset: 3px; }
+.faq-end__small + .faq-end__back { margin-top: 18px; }
+
+/* Pie de las páginas internas: las cuatro redes y las guías */
+.page-foot__redes { display: flex; align-items: center; gap: 4px; }
+.page-foot__redes a { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; color: var(--tinta); text-decoration: none; transition: background-color 0.25s var(--ease-out), color 0.25s var(--ease-out); }
+.page-foot__redes a:hover { background: rgba(33,27,24,0.07); color: var(--granate); }
+.page-foot__redes svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.page-foot__redes svg .fill { fill: currentColor; stroke: none; }
+.page-foot__guias { margin: 20px 0 0; padding-top: 14px; border-top: 1px solid rgba(33,27,24,0.1); }
+.page-foot .page-foot__guias-t { margin: 0 0 6px; font-family: var(--display); font-size: 15px; font-weight: 500; color: var(--tinta); }
+.page-foot__guias ul { display: flex; flex-wrap: wrap; gap: 0 20px; }
+.page-foot__guias a { display: inline-flex; align-items: center; min-height: 36px; font-family: var(--text); font-size: 14px; color: var(--tinta); text-decoration: underline; text-decoration-color: rgba(33,27,24,0.3); text-underline-offset: 3px; }
+.page-foot__guias a[aria-current="page"] { font-weight: 600; text-decoration: none; }
+
+/* Guías: viñetas y números visibles, subtítulos de preguntas y la nota de cada tabla */
+.legal__sec ul, .legal__resumen ul { list-style: disc; }
+.legal__sec ol { margin: 0 0 12px; padding-left: 22px; max-width: 68ch; list-style: decimal; }
+.legal__sec li::marker, .legal__resumen li::marker { color: var(--granate); }
+.legal__sec ol li { padding-left: 4px; }
+.legal__h3 { margin: 22px 0 6px; font-family: var(--display); font-size: 18px; font-weight: 500; line-height: 1.3; color: var(--tinta); }
+.legal__h3:first-of-type { margin-top: 4px; }
+.legal__tabla:focus-visible { outline-offset: 3px; }
+.legal__tabla thead th { white-space: nowrap; }
+.legal__tabla tbody th { font-weight: 600; background: none; color: var(--tinta); }
+.legal__tabla-nota { margin: -6px 0 16px; font-family: var(--text); font-size: 14px; line-height: 1.5; color: var(--grafito); }
+::selection { background: rgba(122,31,34,0.18); color: var(--tinta); }
+/* Tablas de las guías en el celular: cada fila se lee como una ficha, sin deslizar de lado */
+@media (max-width: 599px) {
+  .legal__tabla--apilada { overflow: visible; border: 0; border-radius: 0; }
+  .legal__tabla--apilada table { min-width: 0; }
+  .legal__tabla--apilada thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .legal__tabla--apilada tr { display: block; margin: 0 0 10px; padding: 14px 16px 10px; border: 1px solid rgba(33,27,24,0.12); border-radius: 12px; }
+  .legal__tabla--apilada th, .legal__tabla--apilada td { display: block; padding: 0 0 8px; border: 0; }
+  .legal__tabla--apilada tbody th { padding-bottom: 8px; font-size: 16px; }
+  .legal__tabla--apilada td::before { content: attr(data-label); display: block; font-size: 13px; font-weight: 600; color: var(--grafito); }
+  .legal__tabla--apilada td[data-label=""]::before { content: none; }
+}
