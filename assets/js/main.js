@@ -1511,6 +1511,68 @@
     });
   }
 
+  // Cinta: avanza sola; al bajar se acelera, se inclina y va hacia la izquierda; al subir cambia de sentido.
+  // Los "+" giran con el avance. Solo corre mientras está en pantalla. Con "reducir movimiento" queda quieta.
+  function initCinta() {
+    var cintas = document.querySelectorAll("[data-cinta]");
+    if (!cintas.length || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var impulso = 0, sentido = -1, ultimaY = window.scrollY;
+    window.addEventListener("scroll", function () {
+      var y = window.scrollY, d = y - ultimaY;
+      ultimaY = y;
+      if (!d) return;
+      sentido = d > 0 ? -1 : 1;
+      impulso = Math.max(-70, Math.min(70, impulso + d * 0.35));
+    }, { passive: true });
+
+    cintas.forEach(function (c) {
+      var pista = c.querySelector(".cinta__pista");
+      var grupo = pista.firstElementChild;
+      var ancho = 0, x = 0, visible = false, antes = null;
+      function medir() { ancho = grupo.getBoundingClientRect().width; }
+      medir();
+      window.addEventListener("resize", medir);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(medir);
+      function paso(t) {
+        if (!visible) { antes = null; return; }
+        var dt = antes ? Math.min(t - antes, 64) : 16;
+        antes = t;
+        impulso *= Math.pow(0.9, dt / 16);
+        x += sentido * (0.05 + Math.abs(impulso) * 0.012) * dt;
+        if (ancho) { while (x <= -ancho) x += ancho; while (x > 0) x -= ancho; }
+        var inclina = Math.max(-9, Math.min(9, -impulso * 0.16));
+        pista.style.transform = "translate3d(" + x.toFixed(1) + "px,0,0) skewX(" + inclina.toFixed(2) + "deg)";
+        c.style.setProperty("--giro", (x * 0.5).toFixed(1) + "deg");
+        requestAnimationFrame(paso);
+      }
+      new IntersectionObserver(function (entries) {
+        var v = entries[0].isIntersecting;
+        if (v && !visible) { visible = true; requestAnimationFrame(paso); }
+        else if (!v) visible = false;
+      }).observe(c);
+    });
+  }
+
+  // Botones rojos (solo con mouse): se acercan un poco al cursor, como un imán
+  function initImanes() {
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches ||
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    document.querySelectorAll(".btn--red").forEach(function (b) {
+      var r = null;
+      b.addEventListener("pointerenter", function () { r = b.getBoundingClientRect(); });
+      b.addEventListener("pointermove", function (e) {
+        if (!r) return;
+        b.style.setProperty("--mx", (((e.clientX - r.left) / r.width - 0.5) * 12).toFixed(1) + "px");
+        b.style.setProperty("--my", (((e.clientY - r.top) / r.height - 0.5) * 10).toFixed(1) + "px");
+      });
+      b.addEventListener("pointerleave", function () {
+        r = null;
+        b.style.removeProperty("--mx");
+        b.style.removeProperty("--my");
+      });
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     initPreloader();
     upgradeWhatsAppLinks();
@@ -1534,5 +1596,7 @@
     initStickyCta();
     initVideo();
     initCifras();
+    initCinta();
+    initImanes();
   });
 })();

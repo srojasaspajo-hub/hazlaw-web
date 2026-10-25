@@ -213,7 +213,8 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
   font-weight: 600;
   font-size: 18px;
   text-align: center;
-  transition: transform 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease;
+  transition: transform 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease, translate 0.45s var(--ease-out, ease);
+  translate: var(--mx, 0) var(--my, 0);
 }
 .btn:active, .btn.is-pressed { transform: scale(0.97); opacity: 0.9; }
 @media (hover: hover) {
@@ -2450,8 +2451,8 @@ section[id] { scroll-margin-top: var(--header-h); }
 
 /* ===== Páginas de servicio: portada con foto fuerte ===== */
 /* Celular: la foto arriba y el mensaje debajo, sobre fondo oscuro. Computadora: mensaje a la izquierda, foto a la derecha. */
-.photo-hero { position: relative; overflow: hidden; padding-top: var(--header-h); background: var(--tinta); color: var(--papel); }
-.photo-hero__media { position: relative; width: 100%; aspect-ratio: 1 / 1; max-height: 68svh; overflow: hidden; }
+.photo-hero { position: relative; overflow: hidden; overflow: clip; padding-top: var(--header-h); background: var(--tinta); color: var(--papel); }
+.photo-hero__media { position: relative; width: 100%; aspect-ratio: 1 / 1; max-height: 68svh; overflow: hidden; overflow: clip; }
 .photo-hero__media picture, .photo-hero__media img { display: block; width: 100%; height: 100%; }
 .photo-hero__media img {
   object-fit: cover;
@@ -3564,7 +3565,7 @@ p, li { text-wrap: pretty; }
 
 /* ----- Prueba: una sola banda con foto, tres líneas y un testimonio ----- */
 .banda { display: grid; grid-template-columns: minmax(0, 1fr); gap: 30px; }
-.banda__foto { overflow: hidden; aspect-ratio: 4 / 5; border-radius: 20px; background: rgba(33,27,24,0.06); }
+.banda__foto { overflow: hidden; overflow: clip; aspect-ratio: 4 / 5; border-radius: 20px; background: rgba(33,27,24,0.06); }
 .banda__foto picture, .banda__foto img { display: block; width: 100%; height: 100%; }
 /* Foto vertical: se ve el documento que se firma */
 .banda__foto img { object-fit: cover; object-position: 50% 82%; }
@@ -3645,11 +3646,11 @@ a, button, label, summary, input { touch-action: manipulation; }
 
 /* Portada de cada servicio: el texto entra en cascada mientras la foto se asienta */
 @media (prefers-reduced-motion: no-preference) {
-  .photo-hero__content > * { animation: hero-entra 0.85s var(--ease-out) both; }
-  .photo-hero__content > :nth-child(2) { animation-delay: 0.08s; }
-  .photo-hero__content > :nth-child(3) { animation-delay: 0.16s; }
-  .photo-hero__content > :nth-child(4) { animation-delay: 0.24s; }
-  .photo-hero__content > :nth-child(5) { animation-delay: 0.32s; }
+  .photo-hero__content > :not(.photo-hero__title) { animation: hero-entra 0.85s var(--ease-out) both; }
+  .photo-hero__content > :nth-child(2) { animation-delay: 0.38s; }
+  .photo-hero__content > :nth-child(3) { animation-delay: 0.48s; }
+  .photo-hero__content > :nth-child(4) { animation-delay: 0.58s; }
+  .photo-hero__content > :nth-child(5) { animation-delay: 0.68s; }
 }
 @keyframes hero-entra { from { opacity: 0.12; transform: translateY(18px); } }
 
@@ -3657,3 +3658,87 @@ a, button, label, summary, input { touch-action: manipulation; }
 .recibo { transition: clip-path 1.1s cubic-bezier(0.65, 0, 0.35, 1); }
 .recibo.is-pendiente { clip-path: inset(0 0 100% 0); }
 .recibo.is-impreso { clip-path: inset(-2px -2px -14px -2px); }
+
+/* =====================================================================
+   2026-10-25 · Movimiento que se nota: la web responde al bajar
+   El hilo es la idea del estudio: la notaría va hacia donde estás. Las cosas se mueven contigo.
+   Todo se apaga con "reducir movimiento"; sin JavaScript se ve el estado final.
+   ===================================================================== */
+
+/* ----- Cinta: las promesas del estudio corren con el scroll y cambian de sentido si subes ----- */
+.cinta {
+  position: relative;
+  overflow: hidden;
+  padding: 20px 0;
+  background: var(--crema);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+.cinta__pista { display: flex; width: max-content; will-change: transform; }
+.cinta__grupo { display: flex; align-items: center; flex: 0 0 auto; }
+.cinta__frase { font-family: var(--display); font-size: 30px; font-weight: 500; line-height: 1.15; letter-spacing: -0.025em; color: var(--tinta); white-space: nowrap; }
+/* Una frase llena y otra en contorno, para que el ojo note el avance */
+.cinta__frase:nth-child(4n+3) { color: transparent; -webkit-text-stroke: 1.2px rgba(33,27,24,0.6); }
+.cinta__plus { --t: 3px; flex: 0 0 auto; width: 18px; height: 18px; margin: 0 22px; transform: rotate(var(--giro, 0deg)); }
+@media (min-width: 900px) {
+  .cinta { padding: 30px 0; }
+  .cinta__frase { font-size: 60px; letter-spacing: -0.035em; }
+  .cinta__frase:nth-child(4n+3) { -webkit-text-stroke-width: 1.5px; }
+  .cinta__plus { --t: 5px; width: 30px; height: 30px; margin: 0 38px; }
+}
+
+/* ----- Portada de cada servicio: el título sube palabra por palabra ----- */
+.photo-hero__title .w { display: inline-block; overflow: hidden; vertical-align: top; padding: 0.06em 0.02em 0.12em; margin: -0.06em -0.02em -0.12em; }
+.photo-hero__title .w > span { display: inline-block; }
+@media (prefers-reduced-motion: no-preference) {
+  .photo-hero__title .w > span { animation: palabra-sube 1s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: calc(0.1s + var(--i) * 55ms); }
+}
+@keyframes palabra-sube { from { transform: translateY(110%) rotate(3deg); } }
+
+/* Al bajar, la foto se hunde y se acerca, y el texto sube y se apaga: profundidad de cine */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .photo-hero__media picture { animation: hero-hondo linear both; animation-timeline: view(); animation-range: exit 0% exit 100%; }
+    .photo-hero__content { animation: hero-sube linear both; animation-timeline: view(); animation-range: exit 0% exit 100%; }
+  }
+}
+@keyframes hero-hondo { to { transform: translateY(18%) scale(1.1); } }
+@keyframes hero-sube { to { transform: translateY(-14%); opacity: 0.15; } }
+
+/* ----- Los títulos se escriben de izquierda a derecha al llegar ----- */
+/* Con una máscara y no con clip-path: un elemento recortado entero no cuenta como "en pantalla" y nunca aparecería */
+@media (prefers-reduced-motion: no-preference) {
+  .h2.reveal, .h1.reveal {
+    opacity: 1;
+    transform: none;
+    -webkit-mask-image: linear-gradient(90deg, #000 50%, transparent 60%);
+    mask-image: linear-gradient(90deg, #000 50%, transparent 60%);
+    -webkit-mask-size: 220% 100%;
+    mask-size: 220% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: 100% 0;
+    mask-position: 100% 0;
+    transition: -webkit-mask-position 1.2s cubic-bezier(0.65, 0, 0.35, 1), mask-position 1.2s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+  .h2.reveal.is-visible, .h1.reveal.is-visible { -webkit-mask-position: 0 0; mask-position: 0 0; }
+}
+
+/* ----- Constitución: una firma se traza sola mientras bajas ----- */
+.firma-trazo { display: block; width: 150px; height: auto; margin: -4px 0 20px; overflow: visible; }
+.firma-trazo path { fill: none; stroke: var(--granate); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 0; }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .firma-trazo path { animation: firma-traza linear both; animation-timeline: view(); animation-range: entry 30% cover 45%; }
+  }
+}
+@keyframes firma-traza { from { stroke-dashoffset: 1; } }
+@media (min-width: 900px) { .firma-trazo { width: 190px; } }
+
+/* ----- Una línea fina bajo el encabezado avanza con la lectura ----- */
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .site-header::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: rgba(255,255,255,0.85); transform: scaleX(0); transform-origin: 0 50%; pointer-events: none; animation: avance linear both; animation-timeline: scroll(root); }
+  }
+}
+@keyframes avance { to { transform: scaleX(1); } }
