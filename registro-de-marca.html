@@ -29,7 +29,7 @@
 <!-- Jost servida desde la propia web (assets/fonts, licencia OFL); se pide desde el inicio -->
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/jost-latin.woff2" crossorigin>
 
-<link rel="stylesheet" href="assets/css/styles.css?v=154">
+<link rel="stylesheet" href="assets/css/styles.css?v=155">
 </head>
 <body class="page-marca" data-cta-main="marca">
 
@@ -78,10 +78,6 @@
   </div>
 </section>
 
-<div class="cinta" aria-hidden="true" data-cinta>
-  <div class="cinta__pista"><span class="cinta__grupo"><span class="cinta__frase">Búsqueda previa</span><span class="cinta__plus plus-mark"></span><span class="cinta__frase">Solicitud ante INDECOPI</span><span class="cinta__plus plus-mark"></span><span class="cinta__frase">Seguimiento hasta que resuelva</span><span class="cinta__plus plus-mark"></span><span class="cinta__frase">Diez años de protección si se concede</span><span class="cinta__plus plus-mark"></span></span><span class="cinta__grupo"><span class="cinta__frase">Búsqueda previa</span><span class="cinta__plus plus-mark"></span><span class="cinta__frase">Solicitud ante INDECOPI</span><span class="cinta__plus plus-mark"></span><span class="cinta__frase">Seguimiento hasta que resuelva</span><span class="cinta__plus plus-mark"></span><span class="cinta__frase">Diez años de protección si se concede</span><span class="cinta__plus plus-mark"></span></span><span class="cinta__grupo"><span class="cinta__frase">Búsqueda previa</span><span class="cinta__plus plus-mark"></span><span class="cinta__frase">Solicitud ante INDECOPI</span><span class="cinta__plus plus-mark"></span><span class="cinta__frase">Seguimiento hasta que resuelva</span><span class="cinta__plus plus-mark"></span><span class="cinta__frase">Diez años de protección si se concede</span><span class="cinta__plus plus-mark"></span></span></div>
-</div>
-
 <section class="block block--papel cotiza-sec" id="cotiza" aria-labelledby="cotiza-t">
   <div class="container cotiza" data-cotiza="marca">
     <div class="cotiza__form">
@@ -111,11 +107,19 @@
         </div>
       </fieldset>
     </div>
-    <div class="cotiza__recibo">
-      <div class="recibo">
+    <div class="cotiza__recibo" id="cotiza-recibo">
+      <div class="recibo" data-protege="nombre">
         <p class="sr-only" aria-live="polite" data-anuncio></p>
-        <p class="recibo__rotulo">Vas a proteger</p>
-        <p class="recibo__valor" data-out="valor">El nombre</p>
+        <div class="recibo__cabeza">
+          <div class="recibo__titulo">
+            <p class="recibo__rotulo">Vas a proteger</p>
+            <p class="recibo__valor" data-out="valor">El nombre</p>
+          </div>
+          <svg class="recibo__ilustra recibo__ilustra--marca" viewBox="0 0 132 56" aria-hidden="true" focusable="false">
+            <g class="ilu ilu--logo"><circle cx="24" cy="28" r="15"/><path d="M24 17.5l3.6 6.9 6.9 3.6-6.9 3.6-3.6 6.9-3.6-6.9-6.9-3.6 6.9-3.6z"/></g>
+            <text class="ilu ilu--nombre" x="48" y="33.5">Tu marca</text>
+          </svg>
+        </div>
         <p class="recibo__porque" data-out="porque">La palabra, con cualquier tipo de letra.</p>
         <table>
           <caption class="sr-only">Detalle del total</caption>
@@ -148,6 +152,10 @@
         </details>
       </div>
     </div>
+    <a class="cotiza__barra" href="#cotiza-recibo" data-barra data-scroll hidden>
+      <span class="cotiza__barra-txt"><span class="cotiza__barra-rotulo">Vas a proteger</span><b data-barra-valor>El nombre</b></span>
+      <span class="cotiza__barra-total"><b data-barra-total>S/ 904.90</b><span class="cotiza__barra-ver">Ver el detalle</span></span>
+    </a>
   </div>
 </section>
 
@@ -351,6 +359,6 @@
 </script>
 
 <script src="assets/js/analytics.js?v=9"></script>
-<script src="assets/js/main.js?v=71"></script>
+<script src="assets/js/main.js?v=72"></script>
 </body>
 </html>

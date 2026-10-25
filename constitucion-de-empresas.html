@@ -29,7 +29,7 @@
 <!-- Jost servida desde la propia web (assets/fonts, licencia OFL); se pide desde el inicio -->
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/jost-latin.woff2" crossorigin>
 
-<link rel="stylesheet" href="assets/css/styles.css?v=154">
+<link rel="stylesheet" href="assets/css/styles.css?v=155">
 </head>
 <body class="page-constitucion" data-cta-main="empresa">
 
@@ -70,10 +70,6 @@
   </div>
 </section>
 
-<div class="cinta" aria-hidden="true" data-cinta>
-  <div class="cinta__pista"><span class="cinta__grupo"><span class="cinta__frase">Minuta a la medida de tu caso</span><span class="cinta__plus plus-mark"></span><span class="cinta__frase">La notaría va a donde estés</span><span class="cinta__plus plus-mark"></span><span class="cinta__frase">Asesoría contable con tu RUC activo</span><span class="cinta__plus plus-mark"></span><span class="cinta__frase">Lima Metropolitana y Callao</span><span class="cinta__plus plus-mark"></span></span><span class="cinta__grupo"><span class="cinta__frase">Minuta a la medida de tu caso</span><span class="cinta__plus plus-mark"></span><span class="cinta__frase">La notaría va a donde estés</span><span class="cinta__plus plus-mark"></span><span class="cinta__frase">Asesoría contable con tu RUC activo</span><span class="cinta__plus plus-mark"></span><span class="cinta__frase">Lima Metropolitana y Callao</span><span class="cinta__plus plus-mark"></span></span><span class="cinta__grupo"><span class="cinta__frase">Minuta a la medida de tu caso</span><span class="cinta__plus plus-mark"></span><span class="cinta__frase">La notaría va a donde estés</span><span class="cinta__plus plus-mark"></span><span class="cinta__frase">Asesoría contable con tu RUC activo</span><span class="cinta__plus plus-mark"></span><span class="cinta__frase">Lima Metropolitana y Callao</span><span class="cinta__plus plus-mark"></span></span></div>
-</div>
-
 <section class="block block--papel cotiza-sec" id="cotiza" aria-labelledby="cotiza-t">
   <div class="container cotiza" data-cotiza="empresa">
     <div class="cotiza__form">
@@ -110,11 +106,20 @@
         </div>
       </fieldset>
     </div>
-    <div class="cotiza__recibo">
-      <div class="recibo">
+    <div class="cotiza__recibo" id="cotiza-recibo">
+      <div class="recibo" data-forma="EIRL">
         <p class="sr-only" aria-live="polite" data-anuncio></p>
-        <p class="recibo__rotulo">Te podría convenir</p>
-        <p class="recibo__valor" data-out="valor">EIRL</p>
+        <div class="recibo__cabeza">
+          <div class="recibo__titulo">
+            <p class="recibo__rotulo">Te podría convenir</p>
+            <p class="recibo__valor" data-out="valor">EIRL</p>
+          </div>
+          <svg class="recibo__ilustra recibo__ilustra--personas" viewBox="0 0 112 56" aria-hidden="true" focusable="false">
+            <g class="ilu ilu--p1"><circle cx="28" cy="16" r="8"/><path d="M12 50c0-9.4 7.2-16 16-16s16 6.6 16 16"/></g>
+            <g class="ilu ilu--p2"><circle cx="60" cy="16" r="8"/><path d="M44 50c0-9.4 7.2-16 16-16s16 6.6 16 16"/></g>
+            <g class="ilu ilu--mas"><path class="ilu__fuerte" d="M95 20v11h11"/><path class="ilu__suave" d="M95 31v11M95 31H84"/></g>
+          </svg>
+        </div>
         <p class="recibo__porque" data-out="porque">Para quien emprende solo y quiere separar su patrimonio del negocio.</p>
         <table>
           <caption class="sr-only">Detalle del total</caption>
@@ -151,6 +156,10 @@
         <blockquote>«Yo quería SAC porque un amigo me dijo que era mejor. Me preguntaron si tenía socios y terminamos haciendo otra cosa. Me explicaron por qué.»</blockquote>
         <figcaption><span class="plus-mark" aria-hidden="true"></span><b>Percy Huamán</b>, taller mecánico, Lima Este</figcaption>
       </figure>
+    <a class="cotiza__barra" href="#cotiza-recibo" data-barra data-scroll hidden>
+      <span class="cotiza__barra-txt"><span class="cotiza__barra-rotulo">Te podría convenir</span><b data-barra-valor>EIRL</b></span>
+      <span class="cotiza__barra-total"><b data-barra-total>S/ 600 a 700</b><span class="cotiza__barra-ver">Ver el detalle</span></span>
+    </a>
   </div>
 </section>
 
@@ -352,6 +361,6 @@
 </script>
 
 <script src="assets/js/analytics.js?v=9"></script>
-<script src="assets/js/main.js?v=71"></script>
+<script src="assets/js/main.js?v=72"></script>
 </body>
 </html>

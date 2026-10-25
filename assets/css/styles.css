@@ -53,7 +53,7 @@
   --display: "Jost", "Jost Fallback", Futura, Helvetica, Arial, sans-serif;
   --text: "Jost", "Jost Fallback", Futura, Helvetica, Arial, sans-serif;
 
-  --gap-block: 64px;
+  --gap-block: 72px;
   --margin-side: 20px;
   --container-max: 1120px;
   --text-max: 620px;
@@ -61,7 +61,7 @@
 
 @media (min-width: 900px) {
   :root {
-    --gap-block: 96px;
+    --gap-block: 120px;
     --margin-side: 40px;
   }
 }
@@ -128,8 +128,8 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
 /* ===== Scroll reveal general ===== */
 .reveal {
   opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: translateY(14px);
+  transition: opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1), transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
 }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
 .block--papel { background: var(--papel); }
@@ -206,40 +206,20 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 44px;
-  padding: 12px 24px;
-  border-radius: 8px;
+  min-height: 48px;
+  padding: 12px 26px;
+  border-radius: 999px;
   font-family: var(--text);
   font-weight: 600;
   font-size: 18px;
   text-align: center;
-  transition: transform 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease, translate 0.45s var(--ease-out, ease);
-  translate: var(--mx, 0) var(--my, 0);
+  transition: transform 0.16s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.16s ease, box-shadow 0.2s ease;
 }
 .btn:active, .btn.is-pressed { transform: scale(0.97); opacity: 0.9; }
 @media (hover: hover) {
   .btn--red:hover { box-shadow: 0 2px 8px rgba(33,27,24,0.06); }
 }
 .btn--red { background: var(--rojo); color: var(--papel); }
-.hero .btn--red { position: relative; overflow: hidden; }
-.hero .btn--red::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -60%;
-  width: 40%;
-  height: 100%;
-  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.35), transparent);
-  transform: skewX(-20deg);
-  animation: btn-shimmer 1.1s ease 2.6s 1;
-}
-@media (prefers-reduced-motion: reduce) {
-  .hero .btn--red::after { display: none; }
-}
-@keyframes btn-shimmer {
-  0% { left: -60%; }
-  100% { left: 130%; }
-}
 .btn--block { display: flex; width: 100%; }
 
 /* ===== Hero con scroll (estándar 10K) ===== */
@@ -1672,7 +1652,7 @@ body.is-hidden .faq-bubble { animation-play-state: paused; }
   inset: -4px;
   border-radius: 50%;
   border: 1.5px solid rgba(255,255,255,0.7);
-  animation: quick-pulse 2s ease-out infinite;
+  display: none;
 }
 .site-foot__address { margin: 0 0 16px; font-family: var(--text); font-size: 16px; line-height: 1.5; color: rgba(255,255,255,0.8); }
 .site-foot__hours { list-style: none; margin: 0 0 20px; padding: 0; border-top: 1px solid rgba(255,255,255,0.1); }
@@ -1716,11 +1696,6 @@ body.is-hidden .faq-bubble { animation-play-state: paused; }
   inset: -1px;
   border-radius: 50%;
   border: 1px solid rgba(255,255,255,0.45);
-  animation: foot-radar 2.6s ease-out 3;
-}
-@keyframes foot-radar {
-  0% { transform: scale(1); opacity: 0.9; }
-  100% { transform: scale(1.8); opacity: 0; }
 }
 @media (hover: hover) and (pointer: fine) {
   .site-foot__map:hover .site-foot__pin { background: rgba(255,255,255,0.12); }
@@ -1825,25 +1800,6 @@ body.is-hidden .faq-bubble { animation-play-state: paused; }
 @media (hover: hover) and (pointer: fine) {
   .quick-cta__btn:hover { box-shadow: 0 8px 22px rgba(122,31,34,0.35); }
 }
-/* Brillo que cruza cada cierto tiempo, mientras nadie lo abre */
-.quick-cta__btn::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: -40%;
-  width: 30%;
-  z-index: -1;
-  background: linear-gradient(100deg, transparent, rgba(255,255,255,0.3), transparent);
-  transform: skewX(-18deg);
-  opacity: 0;
-}
-.quick-cta.is-visible:not(.is-open):not(.was-opened) .quick-cta__btn::after { animation: quick-shine 7s ease 1.5s 2; }
-@keyframes quick-shine {
-  0% { left: -40%; opacity: 1; }
-  14% { left: 120%; opacity: 1; }
-  100% { left: 120%; opacity: 0; }
-}
 .quick-cta__icon {
   position: relative;
   flex: 0 0 auto;
@@ -1858,14 +1814,6 @@ body.is-hidden .faq-bubble { animation-play-state: paused; }
 .quick-cta__icon svg { width: 23px; height: 23px; }
 .quick-cta__icon svg path { fill: none; stroke: var(--rojo); stroke-width: 1.7; stroke-linejoin: round; }
 .quick-cta__icon svg .quick-cta__phone { fill: var(--rojo); stroke: none; }
-.quick-cta.is-nudging .quick-cta__icon { animation: quick-wiggle 0.9s ease; }
-@keyframes quick-wiggle {
-  0%, 100% { transform: rotate(0); }
-  20% { transform: rotate(-14deg); }
-  40% { transform: rotate(11deg); }
-  60% { transform: rotate(-7deg); }
-  80% { transform: rotate(4deg); }
-}
 .quick-cta__label {
   flex: 1 1 auto;
   font-family: var(--text);
@@ -1922,7 +1870,7 @@ body.is-hidden .faq-bubble { animation-play-state: paused; }
   inset: -4px;
   border-radius: 50%;
   border: 1.5px solid rgba(255,255,255,0.7);
-  animation: quick-pulse 2s ease-out infinite;
+  display: none;
 }
 @keyframes quick-pulse {
   0% { transform: scale(0.5); opacity: 1; }
@@ -2006,7 +1954,7 @@ body.is-hidden .faq-bubble { animation-play-state: paused; }
 .quick-cta__foot .plus-mark { width: 10px; height: 10px; }
 @media (prefers-reduced-motion: reduce) {
   .quick-cta, .quick-cta__nudge, .quick-cta__chev { transition: none; }
-  .quick-cta__btn::after, .quick-cta.is-nudging .quick-cta__icon, .quick-cta__sheet, .quick-cta__opt, .quick-cta.is-staffed .quick-cta__dot::after { animation: none !important; }
+  .quick-cta__sheet, .quick-cta__opt, .quick-cta.is-staffed .quick-cta__dot::after { animation: none !important; }
 }
 
 /* ===== Aviso de medición (solo aparece cuando GA4 está activado) ===== */
@@ -3665,28 +3613,6 @@ a, button, label, summary, input { touch-action: manipulation; }
    Todo se apaga con "reducir movimiento"; sin JavaScript se ve el estado final.
    ===================================================================== */
 
-/* ----- Cinta: las promesas del estudio corren con el scroll y cambian de sentido si subes ----- */
-.cinta {
-  position: relative;
-  overflow: hidden;
-  padding: 20px 0;
-  background: var(--crema);
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
-}
-.cinta__pista { display: flex; width: max-content; will-change: transform; }
-.cinta__grupo { display: flex; align-items: center; flex: 0 0 auto; }
-.cinta__frase { font-family: var(--display); font-size: 30px; font-weight: 500; line-height: 1.15; letter-spacing: -0.025em; color: var(--tinta); white-space: nowrap; }
-/* Una frase llena y otra en contorno, para que el ojo note el avance */
-.cinta__frase:nth-child(4n+3) { color: transparent; -webkit-text-stroke: 1.2px rgba(33,27,24,0.6); }
-.cinta__plus { --t: 3px; flex: 0 0 auto; width: 18px; height: 18px; margin: 0 22px; transform: rotate(var(--giro, 0deg)); }
-@media (min-width: 900px) {
-  .cinta { padding: 30px 0; }
-  .cinta__frase { font-size: 60px; letter-spacing: -0.035em; }
-  .cinta__frase:nth-child(4n+3) { -webkit-text-stroke-width: 1.5px; }
-  .cinta__plus { --t: 5px; width: 30px; height: 30px; margin: 0 38px; }
-}
-
 /* ----- Portada de cada servicio: el título sube palabra por palabra ----- */
 .photo-hero__title .w { display: inline-block; overflow: hidden; vertical-align: top; padding: 0.06em 0.02em 0.12em; margin: -0.06em -0.02em -0.12em; }
 .photo-hero__title .w > span { display: inline-block; }
@@ -3702,27 +3628,8 @@ a, button, label, summary, input { touch-action: manipulation; }
     .photo-hero__content { animation: hero-sube linear both; animation-timeline: view(); animation-range: exit 0% exit 100%; }
   }
 }
-@keyframes hero-hondo { to { transform: translateY(18%) scale(1.1); } }
-@keyframes hero-sube { to { transform: translateY(-14%); opacity: 0.15; } }
-
-/* ----- Los títulos se escriben de izquierda a derecha al llegar ----- */
-/* Con una máscara y no con clip-path: un elemento recortado entero no cuenta como "en pantalla" y nunca aparecería */
-@media (prefers-reduced-motion: no-preference) {
-  .h2.reveal, .h1.reveal {
-    opacity: 1;
-    transform: none;
-    -webkit-mask-image: linear-gradient(90deg, #000 50%, transparent 60%);
-    mask-image: linear-gradient(90deg, #000 50%, transparent 60%);
-    -webkit-mask-size: 220% 100%;
-    mask-size: 220% 100%;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    -webkit-mask-position: 100% 0;
-    mask-position: 100% 0;
-    transition: -webkit-mask-position 1.2s cubic-bezier(0.65, 0, 0.35, 1), mask-position 1.2s cubic-bezier(0.65, 0, 0.35, 1);
-  }
-  .h2.reveal.is-visible, .h1.reveal.is-visible { -webkit-mask-position: 0 0; mask-position: 0 0; }
-}
+@keyframes hero-hondo { to { transform: translateY(12%) scale(1.05); } }
+@keyframes hero-sube { to { transform: translateY(-8%); opacity: 0.2; } }
 
 /* ----- Constitución: una firma se traza sola mientras bajas ----- */
 .firma-trazo { display: block; width: 150px; height: auto; margin: -4px 0 20px; overflow: visible; }
@@ -3742,3 +3649,86 @@ a, button, label, summary, input { touch-action: manipulation; }
   }
 }
 @keyframes avance { to { transform: scaleX(1); } }
+
+/* =====================================================================
+   2026-10-25 · Movimiento que se entiende: cada animación muestra lo que pasa
+   (criterio de Emil Kowalski y Jakub Krehel: propósito, rapidez, nada que lata ni brille por adorno)
+   ===================================================================== */
+:root { --ease-firme: cubic-bezier(0.23, 1, 0.32, 1); }
+
+/* ----- El recibo dibuja la respuesta ----- */
+.recibo__cabeza { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
+.recibo__titulo { flex: 1 1 auto; min-width: 0; }
+.recibo__ilustra { flex: 0 0 auto; width: 92px; height: auto; margin-top: 4px; overflow: visible; }
+.recibo__ilustra--marca { width: 108px; }
+.recibo__ilustra .ilu { transform-box: fill-box; transform-origin: center; transition: transform 0.5s var(--ease-firme), opacity 0.3s ease; }
+.recibo__ilustra circle, .recibo__ilustra path { fill: none; stroke: var(--granate); stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.recibo__ilustra .ilu__suave { stroke: rgba(122,31,34,0.5); }
+.recibo__ilustra text { fill: var(--tinta); font-family: var(--display); font-size: 18px; font-weight: 600; letter-spacing: -0.01em; }
+/* Constitución: una persona (EIRL), dos (SRL) o dos con el "+" de que pueden entrar más (SAC) */
+.recibo[data-forma="EIRL"] .ilu--p1 { transform: translateX(28px); }
+.recibo[data-forma="EIRL"] .ilu--p2 { opacity: 0; transform: translateX(-14px) scale(0.85); }
+.recibo[data-forma="EIRL"] .ilu--mas, .recibo[data-forma="SRL"] .ilu--mas { opacity: 0; transform: scale(0.6); }
+.recibo[data-forma="SRL"] .ilu--p1, .recibo[data-forma="SRL"] .ilu--p2 { transform: translateX(12px); }
+/* Marca: la palabra, el símbolo o los dos */
+.recibo[data-protege="nombre"] .ilu--logo { opacity: 0; transform: scale(0.8); }
+.recibo[data-protege="nombre"] .ilu--nombre { transform: translateX(-20px); }
+.recibo[data-protege="logo"] .ilu--logo { transform: translateX(42px); }
+.recibo[data-protege="logo"] .ilu--nombre { opacity: 0; transform: translateX(10px); }
+@media (max-width: 899px) { .recibo__valor { font-size: 40px; } }
+@media (min-width: 900px) { .recibo__ilustra { width: 112px; } .recibo__ilustra--marca { width: 132px; } }
+
+/* ----- Celular: la barra del total sigue las respuestas ----- */
+.cotiza__barra[hidden] { display: none; }
+.cotiza__barra {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: max(12px, env(safe-area-inset-bottom));
+  z-index: 29;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 62px;
+  padding: 10px 18px;
+  border-radius: 18px;
+  background: var(--tinta);
+  color: var(--papel);
+  text-decoration: none;
+  box-shadow: 0 14px 34px -12px rgba(33,27,24,0.55);
+  transform: translateY(calc(100% + 24px));
+  transition: transform 0.22s cubic-bezier(0.4, 0, 1, 1);
+  -webkit-tap-highlight-color: transparent;
+}
+.cotiza__barra.is-visible { transform: none; transition: transform 0.42s var(--ease-firme); }
+.cotiza__barra-txt { display: grid; min-width: 0; line-height: 1.15; }
+.cotiza__barra-rotulo { font-family: var(--text); font-size: 12px; color: rgba(255,255,255,0.65); }
+.cotiza__barra-txt b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: var(--display); font-size: 19px; font-weight: 500; letter-spacing: -0.01em; }
+.cotiza__barra-total { display: grid; justify-items: end; line-height: 1.15; text-align: right; }
+.cotiza__barra-total b { font-family: var(--display); font-size: 19px; font-weight: 500; letter-spacing: -0.01em; white-space: nowrap; font-variant-numeric: lining-nums tabular-nums; }
+.cotiza__barra-ver { font-family: var(--text); font-size: 12px; color: rgba(255,255,255,0.65); }
+.cotiza__barra-ver::after { content: " \2193"; }
+.cotiza__barra.is-cambio b { animation: barra-cifra 0.38s var(--ease-firme); }
+@keyframes barra-cifra { from { opacity: 0; transform: translateY(45%); } }
+.cotiza__barra:active { transform: scale(0.98); }
+@media (min-width: 900px) { .cotiza__barra { display: none; } }
+
+/* ----- "Calcula tu total": la primera pregunta se ilumina al llegar ----- */
+.cotiza__q { position: relative; }
+.cotiza__q::before { content: ""; position: absolute; inset: 0 -14px; z-index: -1; border-radius: 16px; background: rgba(122,31,34,0.07); opacity: 0; pointer-events: none; }
+.cotiza-sec .container { position: relative; isolation: isolate; }
+.cotiza__q.is-llegada::before { animation: llegada 1.8s ease-out; }
+@keyframes llegada { 0%, 35% { opacity: 1; } 100% { opacity: 0; } }
+
+/* ----- "Qué incluye y qué va aparte" se abre deslizando, no de golpe ----- */
+@supports (interpolate-size: allow-keywords) {
+  .recibo__mas { interpolate-size: allow-keywords; }
+  .recibo__mas::details-content { height: 0; overflow: clip; transition: height 0.35s var(--ease-firme), content-visibility 0.35s allow-discrete; }
+  .recibo__mas[open]::details-content { height: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .recibo__ilustra .ilu, .cotiza__barra, .cotiza__barra.is-visible { transition: none; }
+  .cotiza__barra.is-cambio b, .cotiza__q.is-llegada::before { animation: none; }
+}
