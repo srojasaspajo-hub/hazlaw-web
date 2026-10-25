@@ -132,7 +132,8 @@
       return !!opts[k];
     });
     var BASE = "Hola, vengo de la web. ";
-    var HIDE = { cierre: true, "site-foot": true };
+    // También en el cotizador y en "¿Qué necesitas firmar?": ahí ya hay un botón que lleva el caso escrito
+    var HIDE = { cierre: true, "site-foot": true, cotiza: true, ruta: true };
     var heroEl = document.getElementById("hero");
     var current = "hero";
     var visible = false;
@@ -830,6 +831,24 @@
         if (!usado) { usado = true; hzTrack("cotizador_uso", { servicio: root.getAttribute("data-cotiza") }); }
       });
       pinta();
+
+      // La primera vez que se ve, el recibo se imprime y los montos cuentan desde cero
+      var recibo = root.querySelector(".recibo");
+      if (recibo && !reduce && "IntersectionObserver" in window) {
+        recibo.classList.add("is-pendiente");
+        var io = new IntersectionObserver(function (entries) {
+          if (!entries[0].isIntersecting) return;
+          io.disconnect();
+          recibo.querySelectorAll("td").forEach(function (td) {
+            if (/^S\/\s*[\d\s\u00a0]+(\.\d+)?$/.test(sinEspacios(td.textContent))) td.textContent = soles(0);
+          });
+          recibo.classList.remove("is-pendiente");
+          recibo.classList.add("is-impreso");
+          window.setTimeout(pinta, 250);
+        }, { threshold: 0.25 });
+        // Se observa el contenedor: el recibo recortado no tiene área visible que medir
+        io.observe(recibo.parentElement);
+      }
     });
   }
 
@@ -992,17 +1011,6 @@
     });
     select(0, false, false);
 
-    // Desde "Para quién es": un trámite típico lleva al expediente con ese trámite elegido
-    document.querySelectorAll("[data-ir-tramite]").forEach(function (a) {
-      a.addEventListener("click", function (e) {
-        var name = a.getAttribute("data-ir-tramite");
-        var i = tabs.map(function (t) { return t.querySelector(".expediente__name").textContent; }).indexOf(name);
-        if (i < 0) return;
-        e.preventDefault();
-        document.getElementById("tramites").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
-        window.setTimeout(function () { select(i, true, true); }, reduce ? 0 : 550);
-      });
-    });
   }
 
   // Gestión notarial: perfiles desplegables, uno abierto a la vez. Sin JavaScript se ven todos.

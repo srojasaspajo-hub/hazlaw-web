@@ -2251,7 +2251,6 @@ section[id] { scroll-margin-top: var(--header-h); }
 .has-header main { padding-top: var(--header-h); }
 
 /* Íconos y flecha de las tarjetas de servicios y preguntas */
-.services__faq-icon svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .site-menu__arrow {
   flex: 0 0 auto;
   width: 8px;
@@ -2289,31 +2288,6 @@ section[id] { scroll-margin-top: var(--header-h); }
 @media (min-width: 900px) {
   .services__head { margin-bottom: 36px; }
   
-}
-
-.services__faq {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-top: 8px;
-  padding: 14px 16px 14px 12px;
-  border-radius: 20px;
-  background: var(--tinta);
-  color: var(--papel);
-}
-.services__faq-icon { flex: 0 0 auto; display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 20px; background: rgba(255,255,255,0.1); }
-.services__faq-text { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
-.services__faq-label { font-family: var(--display); font-size: 18px; font-weight: 500; line-height: 1.2; }
-.services__faq-hint { font-family: var(--text); font-size: 14px; color: rgba(255,255,255,0.72); }
-.services__faq .site-menu__arrow { opacity: 0.7; }
-
-@media (hover: hover) and (pointer: fine) {
-  .services__faq:hover .site-menu__arrow { transform: translateX(3px) rotate(45deg); opacity: 1; }
-}
-.services__links { display: grid; gap: 10px; margin-top: 8px; }
-.services__links .services__faq { margin-top: 0; }
-@media (min-width: 700px) {
-  .services__links { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
 }
 
 /* ===== Gestión notarial: elija su trámite ===== */
@@ -2721,34 +2695,42 @@ select.field__control { appearance: none; background-image: url("data:image/svg+
   .hero__step { width: 40px; }
 }
 
-/* ===== Servicios del inicio: una lista clara, cada fila lleva a su página ===== */
-.menu-svc { display: grid; gap: 10px; margin: 26px 0 0; padding: 0; list-style: none; }
+/* ===== Servicios del inicio: una lista clara, cada fila lleva a su página =====
+   Rediseño 2026-10-24: sin cajas grises. Filas separadas por una línea fina, el nombre grande, la
+   pregunta que lo trae y el precio dicho completo. Al pasar el mouse, una franja suave entra desde la izquierda. */
+.menu-svc { margin: 22px 0 0; padding: 0; list-style: none; border-top: 1px solid rgba(33,27,24,0.12); }
+.menu-svc__item { border-bottom: 1px solid rgba(33,27,24,0.12); }
 .menu-svc__link {
+  position: relative;
+  isolation: isolate;
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 18px 20px;
-  border-radius: 20px;
-  background: var(--crema);
+  padding: 22px 4px;
   color: var(--tinta);
   text-decoration: none;
-  transition: background 0.25s ease, transform 0.25s ease;
+  -webkit-tap-highlight-color: transparent;
 }
+.menu-svc__link::before { content: ""; position: absolute; inset: 0 -14px; z-index: -1; border-radius: 16px; background: var(--crema); transform: scaleX(0); transform-origin: 0 50%; transition: transform 0.5s var(--ease-out); }
 .menu-svc__icon {
   flex: 0 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
-  border-radius: 20px;
-  background: var(--papel);
+  align-self: flex-start;
+  width: 44px;
+  height: 44px;
+  margin-top: 2px;
+  border-radius: 50%;
+  background: var(--crema);
   color: var(--granate);
+  transition: background-color 0.35s var(--ease-out), color 0.35s var(--ease-out);
 }
-.menu-svc__icon svg { width: 25px; height: 25px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
-.menu-svc__text { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
-.menu-svc__name { margin: 0; font-family: var(--display); font-size: 21px; font-weight: 500; line-height: 1.2; letter-spacing: -0.01em; }
-.menu-svc__hint { font-family: var(--text); font-size: 14px; line-height: 1.4; color: var(--grafito); }
+.menu-svc__icon svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.menu-svc__text { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.menu-svc__name { margin: 0; font-family: var(--display); font-size: 22px; font-weight: 500; line-height: 1.18; letter-spacing: -0.015em; text-wrap: balance; transition: transform 0.4s var(--ease-out); }
+.menu-svc__hint { font-family: var(--text); font-size: 15px; line-height: 1.4; color: var(--grafito); }
+.menu-svc__precio { margin-top: 4px; font-family: var(--text); font-size: 14px; font-weight: 600; color: var(--tinta); font-variant-numeric: lining-nums tabular-nums; }
 .menu-svc__arrow {
   flex: 0 0 auto;
   width: 9px;
@@ -2756,20 +2738,26 @@ select.field__control { appearance: none; background-image: url("data:image/svg+
   border-right: 2px solid var(--granate);
   border-bottom: 2px solid var(--granate);
   transform: rotate(-45deg);
-  transition: transform 0.25s ease;
+  transition: transform 0.35s var(--ease-out);
 }
-.menu-svc__link:active { transform: scale(0.995); }
+.menu-svc__link:active::before { transform: scaleX(1); }
 @media (hover: hover) and (pointer: fine) {
-  .menu-svc__link:hover { background: rgba(244,244,242,0.72); transform: translateX(3px); }
-  .menu-svc__link:hover .menu-svc__arrow { transform: rotate(-45deg) translate(2px, 2px); }
+  .menu-svc__link:hover::before { transform: scaleX(1); }
+  .menu-svc__link:hover .menu-svc__icon { background: var(--granate); color: var(--papel); }
+  .menu-svc__link:hover .menu-svc__name { transform: translateX(4px); }
+  .menu-svc__link:hover .menu-svc__arrow { transform: rotate(-45deg) translate(3px, 3px); }
 }
 @media (min-width: 900px) {
-  .menu-svc { gap: 12px; margin-top: 32px; }
-  .menu-svc__link { padding: 22px 26px; gap: 20px; }
-  .menu-svc__icon { width: 56px; height: 56px; }
-  .menu-svc__name { font-size: 21px; }
+  .menu-svc { margin-top: 30px; }
+  .menu-svc__link { padding: 28px 8px; gap: 24px; }
+  .menu-svc__icon { width: 52px; height: 52px; }
+  .menu-svc__name { font-size: 28px; }
   .menu-svc__hint { font-size: 16px; }
+  .menu-svc__precio { font-size: 15px; }
 }
+.services__mas { margin: 22px 0 0; font-family: var(--text); font-size: 15px; line-height: 1.55; color: var(--grafito); }
+.services__mas a { font-weight: 600; color: var(--tinta); text-decoration: underline; text-decoration-color: rgba(33,27,24,0.3); text-underline-offset: 4px; transition: text-decoration-color 0.25s var(--ease-out); }
+.services__mas a:hover { text-decoration-color: var(--tinta); }
 
 /* Los datos van dentro de la sección principal de cada servicio */
 .datos { margin-top: 26px; }
@@ -3149,28 +3137,14 @@ p, li { text-wrap: pretty; }
 .perfiles.is-ready .perfil:not(.is-open) .perfil__body { grid-template-rows: 0fr; }
 .perfil__inner { overflow: hidden; }
 .perfil__text { margin: 0 0 14px; max-width: 46ch; padding-top: 2px; font-family: var(--text); font-size: 17px; line-height: 1.55; color: rgba(33,27,24,0.82); }
-.perfil__label { margin: 0 0 10px; font-family: var(--text); font-size: 14px; color: var(--grafito); }
-.perfil__chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0 0 22px; list-style: none; }
-.perfil__chip {
-  display: inline-flex;
-  align-items: center;
-  min-height: 40px;
-  padding: 0 16px;
-  border: 1px solid rgba(33,27,24,0.14);
-  border-radius: 999px;
-  background: var(--papel);
-  font-family: var(--text);
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--tinta);
-  text-decoration: none;
-  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
-}
+/* Un solo enlace al expediente de trámites, en vez de repetir los siete en cada perfil */
+.perfil__ir { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin: 0 0 18px; font-family: var(--text); font-size: 15px; font-weight: 600; color: var(--tinta); text-decoration: underline; text-decoration-color: rgba(33,27,24,0.3); text-underline-offset: 4px; transition: text-decoration-color 0.25s var(--ease-out); }
+.perfil__ir::after { content: "\2193"; transition: transform 0.3s var(--ease-out); }
+@media (hover: hover) and (pointer: fine) { .perfil__ir:hover { text-decoration-color: var(--tinta); } .perfil__ir:hover::after { transform: translateY(2px); } }
 .perfiles:not(.is-ready) .perfil__toggle { display: none; }
 @media (hover: hover) and (pointer: fine) {
   .perfil__head:hover .perfil__name { transform: translateX(6px); }
   .perfil__head:hover .perfil__icon { background: var(--granate); color: var(--papel); }
-  .perfil__chip:hover { background: var(--tinta); border-color: var(--tinta); color: var(--papel); }
 }
 @media (min-width: 900px) {
   .para-quien { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(48px, 7vw, 112px); align-items: start; }
@@ -3205,11 +3179,9 @@ p, li { text-wrap: pretty; }
 .perfil.is-open .perfil__name { transform: translateX(6px); }
 .perfil__toggle { transition: transform 0.45s var(--ease-out); }
 .perfil.is-open .perfil__toggle { transform: rotate(180deg); }
-.perfiles.is-ready .perfil__text, .perfiles.is-ready .perfil__label { opacity: 0; transform: translateY(12px); transition: opacity 0.3s ease, transform 0.5s var(--ease-out); }
+.perfiles.is-ready .perfil__text, .perfiles.is-ready .perfil__ir { opacity: 0; transform: translateY(12px); transition: opacity 0.3s ease, transform 0.5s var(--ease-out); }
 .perfiles.is-ready .perfil.is-open .perfil__text { opacity: 1; transform: none; transition-delay: 0.12s; }
-.perfiles.is-ready .perfil.is-open .perfil__label { opacity: 1; transform: none; transition-delay: 0.2s; }
-.perfiles.is-ready .perfil__chips li { opacity: 0; transform: translateY(14px) scale(0.9); transition: opacity 0.3s ease, transform 0.55s cubic-bezier(0.3, 1.45, 0.5, 1); }
-.perfiles.is-ready .perfil.is-open .perfil__chips li { opacity: 1; transform: none; transition-delay: calc(0.24s + var(--i, 0) * 50ms); }
+.perfiles.is-ready .perfil.is-open .perfil__ir { opacity: 1; transform: none; transition-delay: 0.2s; }
 @media (prefers-reduced-motion: no-preference) {
   .perfil.is-open .perfil__icon { animation: perfil-late 0.65s cubic-bezier(0.3, 1.6, 0.5, 1) both; }
   .perfil.is-open .perfil__icon::after { animation: perfil-onda 0.95s var(--ease-out) 0.08s both; }
@@ -3219,8 +3191,8 @@ p, li { text-wrap: pretty; }
 @media (min-width: 900px) { .perfil::before { inset: 0 -20px; } }
 @media (prefers-reduced-motion: reduce) {
   .perfil__body, .perfil__icon, .perfil__name, .perfil__toggle, .perfil__toggle::before, .perfil__toggle::after, .perfil::before, .perfil__head,
-  .perfiles.is-ready .perfil__text, .perfiles.is-ready .perfil__label, .perfiles.is-ready .perfil__chips li { transition: none !important; }
-  .perfiles.is-ready .perfil__text, .perfiles.is-ready .perfil__label, .perfiles.is-ready .perfil__chips li { transform: none; }
+  .perfiles.is-ready .perfil__text, .perfiles.is-ready .perfil__ir { transition: none !important; }
+  .perfiles.is-ready .perfil__text, .perfiles.is-ready .perfil__ir { transform: none; }
 }
 
 /* ===== Gestión notarial: expediente de trámites (2026-10-05) ===== */
@@ -3645,3 +3617,43 @@ p, li { text-wrap: pretty; }
 }
 @keyframes vt-sale { to { opacity: 0; } }
 @keyframes vt-entra { from { opacity: 0; transform: translateY(10px); } }
+
+/* =====================================================================
+   2026-10-24 · Repaso: menos saturado en el celular y más vivo donde importa
+   ===================================================================== */
+
+/* Toques más rápidos (sin la espera del doble toque) y titulares sin palabras sueltas */
+a, button, label, summary, input { touch-action: manipulation; }
+.h1, .h2 { text-wrap: balance; }
+
+/* Pie de la portada: más corto en el celular, sin repetir datos */
+.site-foot__mail { margin: -6px 0 18px; font-family: var(--text); font-size: 15px; }
+.site-foot__mail a { color: rgba(255,255,255,0.82); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.3); text-underline-offset: 3px; transition: text-decoration-color 0.25s var(--ease-out); }
+.site-foot__mail a:hover { text-decoration-color: var(--papel); }
+/* En el celular, "Volver arriba" sobra: el encabezado está siempre a la vista */
+@media (max-width: 899px) {
+  .site-foot__photo { aspect-ratio: 2 / 1; }
+  .site-foot__up { display: none; }
+}
+
+/* Botón flotante del celular: una píldora a la derecha, no una barra de lado a lado que tape el contenido */
+@media (max-width: 899px) {
+  .quick-cta { align-items: flex-end; }
+  .quick-cta__btn { width: auto; min-height: 54px; padding-right: 20px; }
+  .quick-cta__nudge { align-self: flex-end; margin: 0 6px 10px 0; border-radius: 20px 16px 4px 16px; transform-origin: right bottom; }
+}
+
+/* Portada de cada servicio: el texto entra en cascada mientras la foto se asienta */
+@media (prefers-reduced-motion: no-preference) {
+  .photo-hero__content > * { animation: hero-entra 0.85s var(--ease-out) both; }
+  .photo-hero__content > :nth-child(2) { animation-delay: 0.08s; }
+  .photo-hero__content > :nth-child(3) { animation-delay: 0.16s; }
+  .photo-hero__content > :nth-child(4) { animation-delay: 0.24s; }
+  .photo-hero__content > :nth-child(5) { animation-delay: 0.32s; }
+}
+@keyframes hero-entra { from { opacity: 0.12; transform: translateY(18px); } }
+
+/* El recibo se imprime al llegar: sale de arriba hacia abajo y los montos cuentan desde cero */
+.recibo { transition: clip-path 1.1s cubic-bezier(0.65, 0, 0.35, 1); }
+.recibo.is-pendiente { clip-path: inset(0 0 100% 0); }
+.recibo.is-impreso { clip-path: inset(-2px -2px -14px -2px); }
