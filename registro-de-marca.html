@@ -29,7 +29,7 @@
 <!-- Jost servida desde la propia web (assets/fonts, licencia OFL); se pide desde el inicio -->
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/jost-latin.woff2" crossorigin>
 
-<link rel="stylesheet" href="assets/css/styles.css?v=156">
+<link rel="stylesheet" href="assets/css/styles.css?v=158">
 </head>
 <body class="page-marca" data-cta-main="marca">
 
@@ -72,90 +72,9 @@
     <p class="photo-hero__precio"><b>S/ 370</b> por nuestro servicio, hasta dos clases. La tasa de INDECOPI va aparte.</p>
     <div class="photo-hero__actions">
       <a class="btn btn--red" data-wa="Hola, vengo de la web. Quiero registrar mi marca." href="https://wa.me/51924021846"><svg class="btn__wa" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.3 20.7l4.4-1.1A8.8 8.8 0 1 0 12 3.2z"/></svg>Registrar mi marca<span class="sr-only"> por WhatsApp</span></a>
-      <a class="photo-hero__link" href="#cotiza" data-scroll>Calcula tu total</a>
+      <a class="photo-hero__link" href="#marca" data-scroll>Mira cómo funciona</a>
     </div>
     <p class="photo-hero__proof">RUC 20614415950, verificable en SUNAT</p>
-  </div>
-</section>
-
-<section class="block block--papel cotiza-sec" id="cotiza" aria-labelledby="cotiza-t">
-  <div class="container cotiza" data-cotiza="marca">
-    <div class="cotiza__form">
-      <h2 class="h2 cotiza__title" id="cotiza-t">Tu marca y tu total, en tres respuestas.</h2>
-      <p class="cotiza__bajada">Con las tasas oficiales de INDECOPI, para que no te lleves sorpresas.</p>
-      <fieldset class="cotiza__q">
-        <legend class="cotiza__legend">¿Qué quieres proteger?</legend>
-        <div class="cotiza__chips">
-          <label class="chip"><input type="radio" name="protege" value="nombre" checked><span>El nombre</span></label>
-          <label class="chip"><input type="radio" name="protege" value="logo"><span>El logo</span></label>
-          <label class="chip"><input type="radio" name="protege" value="ambos"><span>Nombre y logo</span></label>
-        </div>
-      </fieldset>
-      <fieldset class="cotiza__q">
-        <legend class="cotiza__legend">¿En cuántas clases?</legend>
-        <p class="cotiza__ayuda">La clase es el rubro. Si vendes productos y además das un servicio, pueden ser dos.</p>
-        <div class="cotiza__chips">
-          <label class="chip"><input type="radio" name="clases" value="1" checked><span>Una</span></label>
-          <label class="chip"><input type="radio" name="clases" value="2"><span>Dos</span></label>
-        </div>
-      </fieldset>
-      <fieldset class="cotiza__q">
-        <legend class="cotiza__legend">¿Tu negocio tiene RUC activo y está en el REMYPE?</legend>
-        <div class="cotiza__chips">
-          <label class="chip"><input type="radio" name="remype" value="no" checked><span>No, o no sé</span></label>
-          <label class="chip"><input type="radio" name="remype" value="si"><span>Sí</span></label>
-        </div>
-      </fieldset>
-    </div>
-    <div class="cotiza__recibo" id="cotiza-recibo">
-      <div class="recibo" data-protege="nombre">
-        <p class="sr-only" aria-live="polite" data-anuncio></p>
-        <div class="recibo__cabeza">
-          <div class="recibo__titulo">
-            <p class="recibo__rotulo">Vas a proteger</p>
-            <p class="recibo__valor" data-out="valor">El nombre</p>
-          </div>
-          <svg class="recibo__ilustra recibo__ilustra--marca" viewBox="0 0 132 56" aria-hidden="true" focusable="false">
-            <g class="ilu ilu--logo"><circle cx="24" cy="28" r="15"/><path d="M24 17.5l3.6 6.9 6.9 3.6-6.9 3.6-3.6 6.9-3.6-6.9-6.9-3.6 6.9-3.6z"/></g>
-            <text class="ilu ilu--nombre" x="48" y="33.5">Tu marca</text>
-          </svg>
-        </div>
-        <p class="recibo__porque" data-out="porque">La palabra, con cualquier tipo de letra.</p>
-        <table>
-          <caption class="sr-only">Detalle del total</caption>
-            <tr class="recibo__principal" data-fila="serv"><th scope="row">Nuestro servicio<small data-out="serv-det">Búsqueda previa, solicitud y seguimiento, hasta dos clases</small></th><td data-out="serv">S/ 370</td></tr>
-            <tr class="recibo__linea" data-fila="tasa1"><th scope="row">Tasa de INDECOPI, primera clase<small data-out="tasa1-det">Pago al Estado</small></th><td data-out="tasa1">S/ 534.90</td></tr>
-            <tr class="recibo__linea" data-fila="tasa2" hidden><th scope="row">Tasa de INDECOPI, segunda clase<small data-out="tasa2-det">Pago al Estado</small></th><td data-out="tasa2">S/ 533.30</td></tr>
-            <tr class="recibo__total" data-fila="total"><th scope="row">Total</th><td data-out="total">S/ 904.90</td></tr>
-        </table>
-        <p class="recibo__pie" data-out="pie">Tasas de gob.pe, consultadas el 24 de octubre de 2026. Las fija el Estado y pueden cambiar.</p>
-        <a class="btn btn--red recibo__cta" data-out-wa data-wa="Hola, vengo de la web. Quiero registrar el nombre de mi negocio en una clase." href="https://wa.me/51924021846"><svg class="btn__wa" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.3 20.7l4.4-1.1A8.8 8.8 0 1 0 12 3.2z"/></svg>Escribir por WhatsApp</a>
-        <p class="recibo__nota">Tus respuestas ya van escritas en el mensaje.</p>
-        <details class="recibo__mas">
-          <summary>Qué incluye y qué va aparte</summary>
-          <div class="recibo__mas-cuerpo">
-            <p class="recibo__mas-t">Incluye</p>
-            <ul class="recibo__si">
-            <li>Búsqueda previa: revisamos si tu nombre está libre antes de que pagues la tasa.</li>
-            <li>Orientación sobre la clase o clases que necesitas.</li>
-            <li>Presentación de la solicitud ante INDECOPI.</li>
-            <li>Seguimiento hasta que INDECOPI resuelva, con aviso si llega una oposición o una observación.</li>
-            <li>Todo a distancia, desde cualquier parte del Perú.</li>
-            </ul>
-            <p class="recibo__mas-t">Va aparte</p>
-            <ul class="recibo__no">
-            <li>La tasa de INDECOPI, que se paga al Estado por cada clase.</li>
-            <li>Más de dos clases: te confirmamos el total antes de pagar.</li>
-            <li>La decisión final, que es de INDECOPI: nadie puede asegurar que conceda el registro.</li>
-            </ul>
-          </div>
-        </details>
-      </div>
-    </div>
-    <a class="cotiza__barra" href="#cotiza-recibo" data-barra data-scroll hidden>
-      <span class="cotiza__barra-txt"><span class="cotiza__barra-rotulo">Vas a proteger</span><b data-barra-valor>El nombre</b></span>
-      <span class="cotiza__barra-total"><b data-barra-total>S/ 904.90</b><span class="cotiza__barra-ver">Ver el detalle</span></span>
-    </a>
   </div>
 </section>
 
@@ -200,6 +119,103 @@
       <p class="brand-steps__caption" id="brand-caption" aria-live="polite">Primero revisamos si ya existe una marca igual o parecida a la tuya.</p>
       <a class="btn btn--red brand-lab__cta" id="brand-cta" data-wa="Hola, vengo de la web. Quiero registrar mi marca." href="https://wa.me/51924021846"><svg class="btn__wa" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.3 20.7l4.4-1.1A8.8 8.8 0 1 0 12 3.2z"/></svg>Registrar mi marca<span class="sr-only"> por WhatsApp</span></a>
     </div>
+  </div>
+</section>
+
+<section class="block block--crema precio-sec" id="cotiza" aria-labelledby="cotiza-t">
+  <div class="container precio" data-cotiza="marca">
+    <div class="cotiza__form precio__form">
+      <h2 class="h2 precio__titulo" id="cotiza-t">Tu marca y tu total, sin sorpresas.</h2>
+      <p class="precio__bajada">Con las tasas oficiales de INDECOPI. Toca lo que quieres proteger y ves el total al instante.</p>
+      <fieldset class="cotiza__q precio__q">
+        <legend class="cotiza__legend">¿Qué quieres proteger?</legend>
+        <div class="fichas fichas--3">
+          <label class="ficha"><input type="radio" name="protege" value="nombre" checked><span class="ficha__cuerpo"><span class="ficha__icono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 18 8.5 6 13 18M5.6 14h5.8"/><path d="M15.5 12.5c0-1.4 1.1-2.2 2.5-2.2s2.5.8 2.5 2.2V18M20.5 14.2c-.8-.5-1.6-.6-2.4-.6-1.6 0-2.6.8-2.6 2.2s1 2.2 2.4 2.2c1.2 0 2.1-.6 2.6-1.4"/></svg></span><span class="ficha__texto">El nombre</span><span class="ficha__nota">La palabra</span></span></label>
+          <label class="ficha"><input type="radio" name="protege" value="logo"><span class="ficha__cuerpo"><span class="ficha__icono" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 6.8l1.6 3.6 3.6 1.6-3.6 1.6-1.6 3.6-1.6-3.6-3.6-1.6 3.6-1.6z"/></svg></span><span class="ficha__texto">El logo</span><span class="ficha__nota">El símbolo</span></span></label>
+          <label class="ficha"><input type="radio" name="protege" value="ambos"><span class="ficha__cuerpo"><span class="ficha__icono" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="7.5" cy="12" r="5"/><path d="M7.5 9.3l.9 1.8 1.8.9-1.8.9-.9 1.8-.9-1.8-1.8-.9 1.8-.9z"/><path d="M14.5 9h6M14.5 12h6M14.5 15h4"/></svg></span><span class="ficha__texto">Nombre y logo</span><span class="ficha__nota">Los dos juntos</span></span></label>
+        </div>
+      </fieldset>
+      <fieldset class="cotiza__q precio__q">
+        <legend class="cotiza__legend">¿En cuántas clases?</legend>
+        <p class="cotiza__ayuda">La clase es el rubro. Si vendes productos y además das un servicio, pueden ser dos.</p>
+        <div class="fichas fichas--2">
+          <label class="ficha"><input type="radio" name="clases" value="1" checked><span class="ficha__cuerpo"><span class="ficha__texto">Una clase</span><span class="ficha__nota">Un rubro</span></span></label>
+          <label class="ficha"><input type="radio" name="clases" value="2"><span class="ficha__cuerpo"><span class="ficha__texto">Dos clases</span><span class="ficha__nota">Mismo servicio, una tasa más</span></span></label>
+        </div>
+      </fieldset>
+      <fieldset class="cotiza__q precio__q">
+        <legend class="cotiza__legend">¿Tu negocio tiene RUC activo y está en el REMYPE?</legend>
+        <div class="fichas fichas--2">
+          <label class="ficha"><input type="radio" name="remype" value="no" checked><span class="ficha__cuerpo"><span class="ficha__texto">No, o no sé</span></span></label>
+          <label class="ficha"><input type="radio" name="remype" value="si"><span class="ficha__cuerpo"><span class="ficha__texto">Sí, los dos</span><span class="ficha__nota">25 % menos de tasa en la 1.ª clase, por beneficio del Estado</span></span></label>
+        </div>
+      </fieldset>
+    </div>
+    <div class="cotiza__recibo precio__lado" id="cotiza-recibo">
+      <article class="pase" data-protege="nombre" data-clases="1" aria-labelledby="cotiza-t">
+        <p class="sr-only" aria-live="polite" data-anuncio></p>
+        <div class="pase__cuerpo">
+          <div class="pase__principal">
+          <p class="pase__marca"><span class="plus-mark" aria-hidden="true"></span>Registro de marca</p>
+          <p class="pase__rotulo">Nuestro servicio, hasta dos clases</p>
+          <p class="pase__precio"><span class="pase__moneda">S/</span><span class="pase__cifra">370</span></p>
+          <p class="pase__con">Búsqueda previa, solicitud y seguimiento</p>
+          <div class="pase__barra" aria-hidden="true" style="--p-serv:41%"><span class="pase__seg pase__seg--serv"></span><span class="pase__seg pase__seg--reg"></span></div>
+          <p class="pase__leyenda" aria-hidden="true"><span class="pase__ley pase__ley--serv">Nuestro servicio</span><span class="pase__ley pase__ley--reg">Pago al Estado</span></p>
+          </div>
+          <div class="pase__detalle">
+          <dl class="pase__lineas">
+            <div class="pase__linea" data-fila="tasa1"><dt>Tasa de INDECOPI, 1.ª clase<small data-out="tasa1-det">Pago al Estado</small></dt><dd data-out="tasa1">S/ 534.90</dd></div>
+            <div class="pase__linea" data-fila="tasa2" hidden><dt>Tasa de INDECOPI, 2.ª clase<small>Pago al Estado</small></dt><dd data-out="tasa2">S/ 533.30</dd></div>
+            <div class="pase__linea pase__linea--total"><dt>Total</dt><dd data-out="total">S/ 904.90</dd></div>
+          </dl>
+          <ul class="pase__incluye" aria-label="Incluye">
+            <li style="--n:0">Búsqueda previa</li>
+            <li style="--n:1">Orientación de clases</li>
+            <li style="--n:2">Solicitud ante INDECOPI</li>
+            <li style="--n:3">Seguimiento y avisos</li>
+            <li style="--n:4">Todo a distancia</li>
+          </ul>
+          <details class="recibo__mas pase__mas">
+            <summary>Todo lo que incluye y lo que va aparte</summary>
+            <div class="recibo__mas-cuerpo">
+              <p class="recibo__mas-t">Incluye</p>
+              <ul class="recibo__si">
+            <li>Búsqueda previa: revisamos si tu nombre está libre antes de que pagues la tasa.</li>
+            <li>Orientación sobre la clase o clases que necesitas.</li>
+            <li>Presentación de la solicitud ante INDECOPI.</li>
+            <li>Seguimiento hasta que INDECOPI resuelva, con aviso si llega una oposición o una observación.</li>
+            <li>Todo a distancia, desde cualquier parte del Perú.</li>
+              </ul>
+              <p class="recibo__mas-t">Va aparte</p>
+              <ul class="recibo__no">
+            <li>La tasa de INDECOPI, que se paga al Estado por cada clase.</li>
+            <li>Más de dos clases: te confirmamos el total antes de pagar.</li>
+            <li>La decisión final, que es de INDECOPI: nadie puede asegurar que conceda el registro.</li>
+              </ul>
+            </div>
+          </details>
+          </div>
+        </div>
+        <div class="pase__talon">
+          <p class="pase__hoy">Vas a proteger</p>
+          <p class="pase__protege" data-out="valor">El nombre</p>
+          <div class="pase__muestra">
+          <svg class="recibo__ilustra recibo__ilustra--marca" viewBox="0 0 132 56" aria-hidden="true" focusable="false">
+            <g class="ilu ilu--logo"><circle cx="24" cy="28" r="15"/><path d="M24 17.5l3.6 6.9 6.9 3.6-6.9 3.6-3.6 6.9-3.6-6.9-6.9-3.6 6.9-3.6z"/></g>
+            <text class="ilu ilu--nombre" x="48" y="33.5">Tu marca</text>
+          </svg>
+          </div>
+          <p class="pase__resto" data-out="pie">Tasas de gob.pe, consultadas el 24 de octubre de 2026. Las fija el Estado y pueden cambiar.</p>
+          <a class="btn btn--red pase__cta" data-out-wa data-wa="Hola, vengo de la web. Quiero registrar el nombre de mi negocio en una clase." href="https://wa.me/51924021846"><svg class="btn__wa" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.3 20.7l4.4-1.1A8.8 8.8 0 1 0 12 3.2z"/></svg>Escribir por WhatsApp</a>
+          <p class="pase__nota">Tus respuestas ya van escritas en el mensaje.</p>
+        </div>
+      </article>
+    </div>
+    <a class="cotiza__barra" href="#cotiza-recibo" data-barra data-scroll hidden>
+      <span class="cotiza__barra-txt"><span class="cotiza__barra-rotulo" data-barra-valor>El nombre, en una clase</span><b data-barra-total>S/ 904.90</b></span>
+      <span class="cotiza__barra-ver">Ver el detalle</span>
+    </a>
   </div>
 </section>
 
@@ -358,6 +374,6 @@
 </script>
 
 <script src="assets/js/analytics.js?v=10"></script>
-<script src="assets/js/main.js?v=73"></script>
+<script src="assets/js/main.js?v=75"></script>
 </body>
 </html>

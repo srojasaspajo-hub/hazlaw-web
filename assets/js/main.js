@@ -688,54 +688,51 @@
   }
 
   var COTIZA = {
+    // Constitución (2026-10-25): solo lo que cambia el precio (el capital) y dónde firmar. El precio no cambia
+    // por tipo de empresa ni por número de socios; eso se conversa por WhatsApp.
     empresa: function (r) {
-      var varios = r.duenos === "varios", mas = r.capital === "mas";
-      var tipo = !varios ? "EIRL" : (r.crecer === "si" ? "SAC" : "SRL");
-      var porque = {
-        EIRL: "Para quien emprende solo y quiere separar su patrimonio del negocio.",
-        SAC: "Para socios que piensan sumar a otros o recibir inversión más adelante.",
-        SRL: "Para pocos socios, como familia o amigos, que quieren una empresa simple."
-      }[tipo];
-      var lugar = { casa: "casa", oficina: "oficina", negocio: "negocio" }[r.firma];
+      var mas = r.capital === "mas";
+      var lugar = { casa: "en tu casa", oficina: "en tu oficina", negocio: "en tu negocio", notaria: "en la notaría" }[r.firma];
+      var lugarYo = { casa: "en mi casa", oficina: "en mi oficina", negocio: "en mi negocio", notaria: "en la notaría" }[r.firma];
       return {
-        valor: tipo,
-        porque: porque,
-        estado: { forma: tipo },
+        barra: "Firmas " + lugar,
+        estado: { capital: r.capital, firma: r.firma },
         filas: {
-          serv: mas ? "Según tu capital" : 500,
-          "serv-det": mas ? "Te lo confirmamos antes de que pagues" : "Con derechos notariales y una toma de firmas",
+          "serv-n": mas ? "A tu medida" : "500",
+          "serv-det": mas ? "Según tu capital: te lo confirmamos antes de que pagues" : "Con derechos notariales y una toma de firmas",
           reg: mas ? "Según tu capital" : "S/ 100 a 200",
-          total: mas ? "Te lo enviamos por escrito" : "S/ 600 a 700"
+          total: mas ? "Te lo enviamos por escrito" : "S/ 600 a 700",
+          firma: lugar
         },
-        pie: "Firmas en tu " + lugar + ", en Lima Metropolitana y Callao. Adelanto de S/ 180 y el resto el día de la firma.",
-        wa: "Hola, vengo de la web. Quiero constituir una " + tipo + ", " + (varios ? "somos dos o más socios" : "solo yo como dueño") +
-            ", con capital de " + (mas ? "más de" : "hasta") + " S/ 20 000, y firmar en mi " + lugar + "."
+        wa: "Hola, vengo de la web. Quiero constituir mi empresa, con capital de " + (mas ? "más de" : "hasta") +
+            " S/ 20 000, y firmar " + lugarYo + "."
       };
     },
     marca: function (r) {
       var que = {
-        nombre: ["El nombre", "La palabra, con cualquier tipo de letra.", "el nombre"],
-        logo: ["El logo", "El dibujo o símbolo de tu negocio.", "el logo"],
-        ambos: ["Nombre y logo", "El nombre con su diseño, tal como lo ve tu cliente.", "el nombre y el logo"]
+        nombre: ["El nombre", "el nombre"],
+        logo: ["El logo", "el logo"],
+        ambos: ["Nombre y logo", "el nombre y el logo"]
       }[r.protege];
       var dos = r.clases === "2", remype = r.remype === "si";
       // Tasas de gob.pe (trámite 333), consultadas el 2026-10-24. El beneficio publicado baja solo la primera clase.
-      var t1 = remype ? 401.2 : 534.9, t2 = 533.3;
+      var t1 = remype ? 401.2 : 534.9, t2 = 533.3, total = 370 + t1 + (dos ? t2 : 0);
       return {
         valor: que[0],
-        porque: que[1],
-        estado: { protege: r.protege },
+        barra: que[0] + ", en " + (dos ? "dos clases" : "una clase"),
+        estado: { protege: r.protege, clases: r.clases },
+        // La barra del pase muestra cuánto es nuestro servicio y cuánto va al Estado
+        proporcion: Math.round(370 / total * 100),
         filas: {
-          serv: 370,
           tasa1: t1,
           "tasa1-det": remype ? "Pago al Estado, con el beneficio para mypes" : "Pago al Estado",
           tasa2: dos ? t2 : null,
-          total: 370 + t1 + (dos ? t2 : 0)
+          total: total
         },
         pie: remype && dos
           ? "El beneficio para mypes baja la tasa de la primera clase; la segunda te la confirmamos antes de que pagues. Tasas de gob.pe, consultadas el 24 de octubre de 2026."
           : "Tasas de gob.pe, consultadas el 24 de octubre de 2026. Las fija el Estado y pueden cambiar.",
-        wa: "Hola, vengo de la web. Quiero registrar " + que[2] + " de mi negocio en " + (dos ? "dos clases" : "una clase") +
+        wa: "Hola, vengo de la web. Quiero registrar " + que[1] + " de mi negocio en " + (dos ? "dos clases" : "una clase") +
             (remype ? ". Tengo RUC activo y REMYPE." : ".")
       };
     }
@@ -748,6 +745,7 @@
       if (!regla) return;
       var cta = root.querySelector("[data-out-wa]");
       var barra = root.querySelector("[data-barra]");
+      var pase = root.querySelector(".pase");
       var usado = false;
 
       function out(id) { return root.querySelector('[data-out="' + id + '"]'); }
@@ -761,9 +759,9 @@
         if (!el) return false;
         var nuevo = typeof valor === "number" ? soles(valor) : valor;
         if (sinEspacios(el.textContent) === sinEspacios(nuevo)) return false;
-        var m = /^S\/\s*([\d\s ]+(?:\.\d+)?)$/.exec(sinEspacios(el.textContent));
+        var m = /^S\/\s*([\d\s ]+(?:\.\d+)?)$/.exec(sinEspacios(el.textContent));
         var desde = m ? parseFloat(m[1].replace(/\s/g, "")) : null;
-        if (el.tagName === "TD") el.classList.toggle("is-texto", !/^S\//.test(nuevo));
+        if (el.tagName === "DD") el.classList.toggle("is-texto", !/^S\//.test(nuevo));
         var turno = el.hzTurno = {};
         if (typeof valor === "number" && desde !== null && !reduce) {
           var t0 = null;
@@ -783,54 +781,47 @@
       }
       function pinta(avisar) {
         var r = respuestas();
-        // Preguntas que dependen de otra respuesta (data-si="otra=valor")
-        root.querySelectorAll("[data-si]").forEach(function (q) {
-          var c = q.getAttribute("data-si").split("=");
-          var ver = r[c[0]] === c[1];
-          if (ver && q.hidden) {
-            q.hidden = false;
-            q.classList.remove("is-nueva");
-            void q.offsetWidth;
-            if (!reduce) q.classList.add("is-nueva");
-          } else if (!ver) {
-            q.hidden = true;
-          }
-        });
         var s = regla(r);
-        ["valor", "porque"].forEach(function (k) {
-          if (pon(out(k), s[k]) && !reduce) marcaCambio(out(k));
-        });
+        if (pon(out("valor"), s.valor) && !reduce) marcaCambio(out("valor"));
         Object.keys(s.filas).forEach(function (id) {
           var celda = out(id);
           if (!celda) return;
-          var fila = celda.closest("tr");
+          var fila = celda.closest(".pase__linea");
           if (s.filas[id] === null) { if (fila) fila.hidden = true; return; }
           var aparece = fila && fila.hidden;
           if (fila) fila.hidden = false;
           var cambio = pon(celda, s.filas[id]);
-          if (!reduce && fila && cambio && celda.tagName === "TD") {
-            if (aparece) { fila.classList.remove("is-nueva"); void fila.offsetWidth; fila.classList.add("is-nueva"); }
-            else marcaCambio(fila);
+          if (!reduce && cambio) {
+            if (fila && aparece) { fila.classList.remove("is-nueva"); void fila.offsetWidth; fila.classList.add("is-nueva"); }
+            else marcaCambio(fila || celda);
           }
         });
         pon(out("pie"), s.pie);
-        // El dibujo del recibo muestra la respuesta: quiénes son dueños o qué se protege
-        var recibo = root.querySelector(".recibo");
-        if (recibo && s.estado) Object.keys(s.estado).forEach(function (k) { recibo.setAttribute("data-" + k, s.estado[k]); });
+        if (pase) {
+          // El pase muestra la respuesta: el capital, dónde firmas o qué se protege
+          if (s.estado) Object.keys(s.estado).forEach(function (k) { pase.setAttribute("data-" + k, s.estado[k]); });
+          if (s.proporcion) pase.style.setProperty("--p-serv", s.proporcion + "%");
+          // Constitución: el ícono del lugar de la firma es el de la ficha elegida
+          var icono = pase.querySelector("[data-out-icono]");
+          var elegido = root.querySelector('input[name="firma"]:checked');
+          var fuente = elegido && elegido.parentElement.querySelector(".ficha__icono");
+          if (icono && fuente && icono.innerHTML !== fuente.innerHTML) {
+            icono.innerHTML = fuente.innerHTML;
+            if (!reduce && avisar) marcaCambio(icono);
+          }
+        }
         // La barra del celular repite lo esencial y marca el cambio, para ver el efecto de cada respuesta sin bajar
+        var nuevoTotal = typeof s.filas.total === "number" ? soles(s.filas.total) : s.filas.total;
         if (barra) {
           var bv = barra.querySelector("[data-barra-valor]"), bt = barra.querySelector("[data-barra-total]");
-          var nuevoTotal = typeof s.filas.total === "number" ? soles(s.filas.total) : s.filas.total;
-          var cambia = sinEspacios(bt.textContent) !== sinEspacios(nuevoTotal) || sinEspacios(bv.textContent) !== sinEspacios(s.valor);
-          bv.textContent = s.valor;
+          var cambia = sinEspacios(bt.textContent) !== sinEspacios(nuevoTotal) || sinEspacios(bv.textContent) !== sinEspacios(s.barra);
+          bv.textContent = s.barra;
           bt.textContent = nuevoTotal;
           if (cambia && avisar && !reduce) marcaCambio(barra);
         }
         // Lectores de pantalla: un solo aviso con el resultado, no cada cifra mientras cuenta
         var anuncio = root.querySelector("[data-anuncio]");
-        var total = root.querySelector(".recibo__total th");
-        if (anuncio && avisar) anuncio.textContent = s.valor + ". " + (total ? total.textContent + ": " : "") +
-          (typeof s.filas.total === "number" ? soles(s.filas.total) : s.filas.total) + ".";
+        if (anuncio && avisar) anuncio.textContent = s.barra + ". Total: " + nuevoTotal + ".";
         if (cta) {
           cta.setAttribute("data-wa", s.wa);
           cta.setAttribute("href", WA_BASE + encodeURIComponent(s.wa));
@@ -842,18 +833,18 @@
       });
       pinta();
 
-      // Barra del total en el celular: aparece mientras se responden las preguntas y el recibo no está a la vista
+      // Barra del total en el celular: aparece mientras se responden las preguntas y el pase no está a la vista
       if (barra && "IntersectionObserver" in window) {
         barra.hidden = false;
-        var verForm = false, verRecibo = false;
-        var refrescarBarra = function () { barra.classList.toggle("is-visible", verForm && !verRecibo); };
+        var verForm = false, verPase = false;
+        var refrescarBarra = function () { barra.classList.toggle("is-visible", verForm && !verPase); };
         new IntersectionObserver(function (es) { verForm = es[0].isIntersecting; refrescarBarra(); },
           { rootMargin: "-25% 0px -25% 0px" }).observe(root.querySelector(".cotiza__form"));
-        new IntersectionObserver(function (es) { verRecibo = es[0].isIntersecting; refrescarBarra(); },
+        new IntersectionObserver(function (es) { verPase = es[0].isIntersecting; refrescarBarra(); },
           { threshold: 0.15 }).observe(root.querySelector(".cotiza__recibo"));
       }
 
-      // "Calcula tu total": al llegar, la primera pregunta se ilumina un momento para decir "empieza aquí"
+      // Los enlaces al precio: al llegar, la primera pregunta se ilumina un momento para decir "empieza aquí"
       document.querySelectorAll('a[href="#' + root.parentElement.id + '"]').forEach(function (a) {
         a.addEventListener("click", function () {
           var q = root.querySelector(".cotiza__q");
@@ -862,117 +853,69 @@
         });
       });
 
-      // La primera vez que se ve, el recibo se imprime y los montos cuentan desde cero
-      var recibo = root.querySelector(".recibo");
-      if (recibo && !reduce && "IntersectionObserver" in window) {
-        recibo.classList.add("is-pendiente");
+      // La primera vez que se ve, el pase se imprime: los montos cuentan desde cero y lo incluido entra en orden
+      if (pase && !reduce && "IntersectionObserver" in window) {
+        pase.classList.add("is-pendiente");
         var io = new IntersectionObserver(function (entries) {
           if (!entries[0].isIntersecting) return;
           io.disconnect();
-          recibo.querySelectorAll("td").forEach(function (td) {
-            if (/^S\/\s*[\d\s\u00a0]+(\.\d+)?$/.test(sinEspacios(td.textContent))) td.textContent = soles(0);
+          pase.querySelectorAll("dd").forEach(function (dd) {
+            if (/^S\/\s*[\d\s ]+(\.\d+)?$/.test(sinEspacios(dd.textContent))) dd.textContent = soles(0);
           });
-          recibo.classList.remove("is-pendiente");
-          recibo.classList.add("is-impreso");
+          pase.classList.remove("is-pendiente");
+          pase.classList.add("is-impreso");
           window.setTimeout(pinta, 250);
         }, { threshold: 0.25 });
-        // Se observa el contenedor: el recibo recortado no tiene área visible que medir
-        io.observe(recibo.parentElement);
+        // Se observa el contenedor: el pase recortado no tiene área visible que medir
+        io.observe(pase.parentElement);
       }
     });
   }
 
-  // Trámites notariales: "¿Qué necesitas firmar?". El recorrido se dibuja como una línea del Metro
-  // (una parada tras otra) al entrar en pantalla, y cada respuesta reescribe las paradas que cambian.
-  var RUTA = {
-    p2: {
-      poder: ["Preparamos el poder", "Te decimos qué tipo de poder corresponde y lo preparamos: carta poder, fuera de registro o por escritura pública."],
-      compraventa: ["Preparamos la minuta", "Revisamos los papeles del inmueble y redactamos la compraventa a la medida del caso."],
-      anticipo: ["Preparamos la minuta", "Redactamos el anticipo de legítima: qué bien se entrega y a quién, a cuenta de la herencia."],
-      otro: ["Vemos tu caso", "Te explicamos cómo se hace y preparamos lo que haga falta firmar."]
-    },
-    lugar: {
-      yo: { casa: "a tu casa", oficina: "a tu oficina", negocio: "a tu negocio" },
-      familiar: { casa: "a su casa", oficina: "a su oficina", negocio: "a su negocio" },
-      varios: { casa: "a la casa", oficina: "a la oficina", negocio: "al negocio" }
-    },
-    p3: {
-      yo: "Verifica tu identidad con un lector biométrico y firmas ahí mismo.",
-      familiar: "Verifica su identidad con un lector biométrico y firma ahí mismo, con calma.",
-      varios: "Coordinamos una franja para que todos firmen ahí. Si están en distintos lugares, elegimos juntos un punto."
-    },
-    p4: {
-      poder: "Si el poder se inscribe en SUNARP, lo seguimos hasta que Registros Públicos responda.",
-      compraventa: "Llevamos la escritura a SUNARP y la seguimos hasta que Registros Públicos responda.",
-      anticipo: "Llevamos la escritura a SUNARP y la seguimos hasta que Registros Públicos responda.",
-      otro: "Te avisamos en cada etapa, hasta que el trámite termine."
-    },
-    wa: {
-      tramite: { poder: "un poder", compraventa: "una compraventa", anticipo: "un anticipo de legítima", otro: "un trámite notarial" },
-      quien: { yo: " y prefiero firmar en mi ", familiar: " para un familiar mayor, que firmaría en su ", varios: " en el que firmamos varias personas, de preferencia en " },
-      donde: {
-        yo: { casa: "casa", oficina: "oficina", negocio: "negocio" },
-        familiar: { casa: "casa", oficina: "oficina", negocio: "negocio" },
-        varios: { casa: "una casa", oficina: "una oficina", negocio: "un negocio" }
-      }
-    }
-  };
-
-  function initRuta() {
-    var root = document.querySelector("[data-ruta]");
-    if (!root) return;
+  // Escenas: cada beneficio tiene un dibujo que se anima la primera vez que se ve y se puede repetir.
+  // La ruta de la notaría mueve una moto por el camino y en cada vuelta cambia el destino (casa, oficina, negocio).
+  function initEscenas() {
+    var escenas = document.querySelectorAll("[data-escena]");
+    if (!escenas.length) return;
     var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var linea = root.querySelector(".linea");
-    var cta = root.querySelector("[data-out-wa]");
-    var usado = false;
-
-    function out(id) { return root.querySelector('[data-out="' + id + '"]'); }
-    function pon(id, texto) {
-      var el = out(id);
-      if (!el || sinEspacios(el.textContent) === sinEspacios(texto)) return false;
-      el.textContent = texto;
-      return true;
+    function juega(e) {
+      // Vuelve al inicio sin animar el regreso, y arranca otra vez
+      e.classList.add("is-reinicio");
+      e.classList.remove("is-viva");
+      void e.offsetWidth;
+      e.classList.remove("is-reinicio");
+      e.classList.add("is-viva");
+      var moto = e.querySelector(".v-ruta__moto animateMotion");
+      if (moto && moto.beginElement) moto.beginElement();
     }
-    function pinta(avisar) {
-      var r = {};
-      root.querySelectorAll("input[type=radio]:checked").forEach(function (i) { r[i.name] = i.value; });
-      var cambios = {
-        p2: [pon("p2-t", RUTA.p2[r.tramite][0]), pon("p2", RUTA.p2[r.tramite][1])],
-        p3: [pon("p3-t", "La notaría va " + RUTA.lugar[r.quien][r.donde]), pon("p3", RUTA.p3[r.quien])],
-        p4: [pon("p4", RUTA.p4[r.tramite])]
-      };
-      if (!reduce) {
-        Object.keys(cambios).forEach(function (id) {
-          if (cambios[id].some(Boolean)) marcaCambio(out(id).closest(".linea__parada"));
-        });
+    escenas.forEach(function (e) {
+      var destino = e.querySelector("[data-ruta-destinos]");
+      var vueltas = 0;
+      var repite = e.querySelector("[data-escena-repite]");
+      if (reduce) {
+        e.classList.add("is-quieta");
+        if (repite) repite.hidden = true;
+        return;
       }
-      var anuncio = root.querySelector("[data-anuncio]");
-      if (anuncio && avisar) anuncio.textContent = out("p2-t").textContent + ". " + out("p3-t").textContent + ".";
-      var msg = "Hola, vengo de la web. Necesito " + RUTA.wa.tramite[r.tramite] + RUTA.wa.quien[r.quien] +
-                RUTA.wa.donde[r.quien][r.donde] + ".";
-      if (cta) {
-        cta.setAttribute("data-wa", msg);
-        cta.setAttribute("href", WA_BASE + encodeURIComponent(msg));
-      }
-    }
-    root.addEventListener("change", function () {
-      pinta(true);
-      if (!usado) { usado = true; hzTrack("cotizador_uso", { servicio: "notarial" }); }
+      if (repite) repite.addEventListener("click", function () {
+        if (destino) {
+          var lista = destino.getAttribute("data-ruta-destinos").split("|");
+          vueltas = (vueltas + 1) % lista.length;
+          destino.textContent = lista[vueltas];
+        }
+        juega(e);
+      });
     });
-    pinta();
-
-    // La línea se llena parada por parada la primera vez que se ve
-    if (linea && !reduce && "IntersectionObserver" in window) {
-      linea.classList.add("is-pending");
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (en) {
-          if (!en.isIntersecting) return;
-          io.disconnect();
-          linea.classList.remove("is-pending");
-        });
-      }, { threshold: 0.45 });
-      io.observe(linea);
-    }
+    if (reduce) return;
+    if (!("IntersectionObserver" in window)) { escenas.forEach(function (e) { e.classList.add("is-quieta"); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        io.unobserve(en.target);
+        juega(en.target);
+      });
+    }, { threshold: 0.45 });
+    escenas.forEach(function (e) { io.observe(e); });
   }
 
   // Gestión notarial: la persona toca su trámite y la tarjeta le explica de qué se trata,
@@ -1555,12 +1498,36 @@
     });
   }
 
+  // Guías: el índice marca la sección que se está leyendo (en computadora queda fijo a la izquierda)
+  function initIndiceGuia() {
+    var nav = document.querySelector("[data-indice]");
+    if (!nav || !("IntersectionObserver" in window)) return;
+    var enlaces = {};
+    nav.querySelectorAll('a[href^="#"]').forEach(function (a) { enlaces[a.getAttribute("href").slice(1)] = a; });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        Object.keys(enlaces).forEach(function (id) {
+          var activo = id === en.target.id;
+          enlaces[id].classList.toggle("is-actual", activo);
+          if (activo) enlaces[id].setAttribute("aria-current", "true");
+          else enlaces[id].removeAttribute("aria-current");
+        });
+      });
+    }, { rootMargin: "-25% 0px -65% 0px" });
+    Object.keys(enlaces).forEach(function (id) {
+      var sec = document.getElementById(id);
+      if (sec) io.observe(sec);
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     initPreloader();
     upgradeWhatsAppLinks();
     initSiteHeader();
     initCotizador();
-    initRuta();
+    initEscenas();
+    initIndiceGuia();
     initLibro();
     initTramites();
     initPerfiles();

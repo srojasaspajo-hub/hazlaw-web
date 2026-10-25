@@ -29,7 +29,7 @@
 <!-- Jost servida desde la propia web (assets/fonts, licencia OFL); se pide desde el inicio -->
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/jost-latin.woff2" crossorigin>
 
-<link rel="stylesheet" href="assets/css/styles.css?v=156">
+<link rel="stylesheet" href="assets/css/styles.css?v=158">
 </head>
 <body class="page-constitucion" data-cta-main="empresa">
 
@@ -64,138 +64,182 @@
     <p class="photo-hero__precio"><b>S/ 500</b> con derechos notariales incluidos. Los derechos registrales van aparte.</p>
     <div class="photo-hero__actions">
       <a class="btn btn--red" data-wa="Hola, vengo de la web. Quiero constituir mi empresa." href="https://wa.me/51924021846"><svg class="btn__wa" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.3 20.7l4.4-1.1A8.8 8.8 0 1 0 12 3.2z"/></svg>Constituir mi empresa<span class="sr-only"> por WhatsApp</span></a>
-      <a class="photo-hero__link" href="#cotiza" data-scroll>Calcula tu total</a>
+      <a class="photo-hero__link" href="#incluye" data-scroll>Mira lo que te llevas</a>
     </div>
     <p class="photo-hero__proof">RUC 20614415950, verificable en SUNAT</p>
   </div>
 </section>
 
-<section class="block block--papel cotiza-sec" id="cotiza" aria-labelledby="cotiza-t">
-  <div class="container cotiza" data-cotiza="empresa">
-    <div class="cotiza__form">
-      <h2 class="h2 cotiza__title" id="cotiza-t">Tu empresa y tu total, en tres respuestas.</h2>
-      <p class="cotiza__bajada">Así sabes cuánto es antes de escribirnos. Te lo confirmamos por escrito.</p>
-      <fieldset class="cotiza__q">
-        <legend class="cotiza__legend">¿Cuántos dueños tendrá tu empresa?</legend>
-        <div class="cotiza__chips">
-          <label class="chip"><input type="radio" name="duenos" value="uno" checked><span>Solo yo</span></label>
-          <label class="chip"><input type="radio" name="duenos" value="varios"><span>Dos o más</span></label>
+<section class="block block--papel escenas-sec" id="incluye" aria-labelledby="incluye-t">
+  <div class="container">
+    <div class="escenas-sec__cabeza">
+      <h2 class="h2 reveal" id="incluye-t">Lo que no se ve en el papel, también cuenta.</h2>
+      <p class="escenas-sec__bajada reveal">Antes de ver el precio, mira lo que viene con tu empresa.</p>
+    </div>
+    <ul class="escenas">
+      <li class="escena escena--minuta" data-escena>
+        <div class="escena__texto">
+          <h3 class="escena__t">Tu minuta, a tu medida. Sin plantillas copiadas.</h3>
+          <p class="escena__x">La redactamos según tus socios, tus aportes y quién decide qué, con las hojas que haga falta. Así tu empresa aguanta el día que alguien quiera salir.</p>
+      <figure class="cita escena__cita">
+        <blockquote>«Yo quería SAC porque un amigo me dijo que era mejor. Me preguntaron si tenía socios y terminamos haciendo otra cosa. Me explicaron por qué.»</blockquote>
+        <figcaption><span class="plus-mark" aria-hidden="true"></span><b>Percy Huamán</b>, taller mecánico, Lima Este</figcaption>
+      </figure>
         </div>
-      </fieldset>
-      <fieldset class="cotiza__q" data-si="duenos=varios">
-        <legend class="cotiza__legend">¿Piensan sumar socios o inversionistas más adelante?</legend>
-        <div class="cotiza__chips">
-          <label class="chip"><input type="radio" name="crecer" value="si" checked><span>Sí, queremos crecer</span></label>
-          <label class="chip"><input type="radio" name="crecer" value="no"><span>No, algo simple</span></label>
+        <div class="escena__visual">
+          <div class="v-minuta" aria-hidden="true">
+            <div class="v-minuta__hoja">
+              <p class="v-minuta__cabeza"><b>Minuta de constitución</b><span>Ejemplo</span></p>
+              <p class="v-minuta__fila" style="--n:0"><span class="v-minuta__campo">Socios</span><span class="v-minuta__dato"><span class="v-minuta__molde"></span><span class="v-minuta__tuyo">Ana 60 % · Luis 40 %</span></span></p>
+              <p class="v-minuta__fila" style="--n:1"><span class="v-minuta__campo">Gerente</span><span class="v-minuta__dato"><span class="v-minuta__molde"></span><span class="v-minuta__tuyo">Ana, con firma ante el banco</span></span></p>
+              <p class="v-minuta__fila" style="--n:2"><span class="v-minuta__campo">Si un socio sale</span><span class="v-minuta__dato"><span class="v-minuta__molde"></span><span class="v-minuta__tuyo">Los demás compran primero</span></span></p>
+              <span class="v-minuta__sello"><span class="plus-mark"></span>A tu medida</span>
+            </div>
+          </div>
+          <button class="escena__repite" type="button" data-escena-repite>Ver otra vez</button>
         </div>
-      </fieldset>
-      <fieldset class="cotiza__q">
-        <legend class="cotiza__legend">¿Cuánto será el capital?</legend>
+      </li>
+      <li class="escena escena--notaria" data-escena>
+        <div class="escena__texto">
+          <h3 class="escena__t">Tú no vas a la notaría. La notaría va hacia ti.</h3>
+          <p class="escena__x">En Lima Metropolitana y Callao, el motorizado de la notaría llega a tu casa, tu oficina o tu negocio, de lunes a viernes y los sábados hasta el mediodía. Te ahorras la cola y el traslado.</p>
+      <figure class="cita escena__cita">
+        <blockquote>«Yo pensaba cerrar mi taller para ir a la notaría. Al final firmé en mi mismo taller: un motorizado de la notaría llegó y me hizo firmar la minuta y la escritura pública ahí.»</blockquote>
+        <figcaption><span class="plus-mark" aria-hidden="true"></span><b>Marisol Quispe</b>, confecciones, Lima Este</figcaption>
+      </figure>
+        </div>
+        <div class="escena__visual">
+          <div class="v-ruta" aria-hidden="true">
+            <svg viewBox="0 0 320 150" focusable="false">
+              <path class="v-ruta__base" d="M34 112 C 104 112 112 44 184 44 S 262 74 286 74"/>
+              <path class="v-ruta__hecho" pathLength="1" d="M34 112 C 104 112 112 44 184 44 S 262 74 286 74"/>
+              <circle class="v-ruta__a" cx="34" cy="112" r="6.5"/>
+              <circle class="v-ruta__b" cx="286" cy="74" r="9"/>
+              <g class="v-ruta__moto"><g transform="translate(-13 -30)"><circle cx="5" cy="21" r="4.2"/><circle cx="21" cy="21" r="4.2"/><path d="M5 21h4l5-8h5l2 8"/><path d="M14 13l-2-5h-3"/><path d="M19 13h3"/></g><animateMotion dur="2.6s" begin="indefinite" fill="freeze" rotate="0" calcMode="spline" keyPoints="0;1" keyTimes="0;1" keySplines="0.65 0 0.35 1" path="M34 112 C 104 112 112 44 184 44 S 262 74 286 74"/></g>
+            </svg>
+            <span class="v-ruta__et v-ruta__et--a">Notaría</span>
+            <span class="v-ruta__et v-ruta__et--b" data-ruta-destinos="Tu casa|Tu oficina|Tu negocio">Tu casa</span>
+            <p class="v-ruta__pie">Lima Metropolitana y Callao</p>
+          </div>
+          <button class="escena__repite" type="button" data-escena-repite>Ver otra vez</button>
+        </div>
+      </li>
+      <li class="escena escena--ruc" data-escena>
+        <div class="escena__texto">
+          <h3 class="escena__t">Tu RUC, activo. Un contador lo hace contigo.</h3>
+          <p class="escena__x">Cuando tu empresa queda inscrita, un contador aliado se reúne contigo 45 minutos: te ayuda a escoger tu régimen y tu Clave SOL, y activa tu RUC 20. Va incluido en el precio.</p>
+        </div>
+        <div class="escena__visual">
+          <div class="v-ruc" aria-hidden="true">
+            <div class="v-ruc__tarjeta">
+              <p class="v-ruc__empresa">Tu empresa S.A.C.</p>
+              <p class="v-ruc__num">RUC 20 &middot;&middot;&middot; &middot;&middot;&middot; &middot;&middot;&middot;</p>
+              <p class="v-ruc__estado"><span class="v-ruc__switch"><span></span></span><span class="v-ruc__off">Por activar</span><span class="v-ruc__on">Activo</span></p>
+            </div>
+            <ul class="v-ruc__pasos">
+              <li style="--n:0"><span class="v-ruc__check"></span>Escoges tu régimen</li>
+              <li style="--n:1"><span class="v-ruc__check"></span>Tu Clave SOL, lista</li>
+              <li style="--n:2"><span class="v-ruc__check"></span>Tu RUC 20, activo</li>
+            </ul>
+            <p class="v-ruc__quien"><span class="plus-mark"></span>Con un contador aliado · 45 minutos · incluido</p>
+          </div>
+          <button class="escena__repite" type="button" data-escena-repite>Ver otra vez</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="block block--crema precio-sec" id="cotiza" aria-labelledby="cotiza-t">
+  <div class="container precio" data-cotiza="empresa">
+    <div class="cotiza__form precio__form">
+      <h2 class="h2 precio__titulo" id="cotiza-t">Tu precio, completo y por escrito.</h2>
+      <p class="precio__bajada">Dos respuestas y ves el total, con lo que incluye y lo que va aparte. Te lo confirmamos por escrito antes de que pagues.</p>
+      <fieldset class="cotiza__q precio__q">
+        <legend class="cotiza__legend">¿Con cuánto capital empiezas?</legend>
         <p class="cotiza__ayuda">No hay un mínimo. Lo importante es que sea real.</p>
-        <div class="cotiza__chips">
-          <label class="chip"><input type="radio" name="capital" value="hasta" checked><span>Hasta S/ 20 000</span></label>
-          <label class="chip"><input type="radio" name="capital" value="mas"><span>Más de S/ 20 000</span></label>
+        <div class="fichas fichas--2">
+          <label class="ficha"><input type="radio" name="capital" value="hasta" checked><span class="ficha__cuerpo"><span class="ficha__icono" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="6.5" width="17" height="11" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6.5 9.5v.01M17.5 14.5v.01"/></svg></span><span class="ficha__texto">Hasta S/&nbsp;20&nbsp;000</span><span class="ficha__nota">Precio fijo</span></span></label>
+          <label class="ficha"><input type="radio" name="capital" value="mas"><span class="ficha__cuerpo"><span class="ficha__icono" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="8.5" width="14" height="10" rx="2"/><path d="M6.5 5.5h14v10"/><circle cx="10.5" cy="13.5" r="2.3"/></svg></span><span class="ficha__texto">Más de S/&nbsp;20&nbsp;000</span><span class="ficha__nota">Te lo cotizamos</span></span></label>
         </div>
       </fieldset>
-      <fieldset class="cotiza__q">
-        <legend class="cotiza__legend">¿Dónde prefieres firmar?</legend>
-        <div class="cotiza__chips">
-          <label class="chip"><input type="radio" name="firma" value="casa" checked><span>Mi casa</span></label>
-          <label class="chip"><input type="radio" name="firma" value="oficina"><span>Mi oficina</span></label>
-          <label class="chip"><input type="radio" name="firma" value="negocio"><span>Mi negocio</span></label>
+      <fieldset class="cotiza__q precio__q">
+        <legend class="cotiza__legend">¿Dónde quieres firmar?</legend>
+        <div class="fichas fichas--4">
+          <label class="ficha"><input type="radio" name="firma" value="casa" checked><span class="ficha__cuerpo"><span class="ficha__icono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5"/><path d="M6 10v10.5h12V10"/><path d="M10 20.5v-6h4v6"/></svg></span><span class="ficha__texto">En mi casa</span></span></label>
+          <label class="ficha"><input type="radio" name="firma" value="oficina"><span class="ficha__cuerpo"><span class="ficha__icono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 20.5h17"/><path d="M5.5 20.5v-15a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v15"/><path d="M14.5 9.5h3a1 1 0 0 1 1 1v10"/><path d="M8.5 8h3M8.5 11.5h3M8.5 15h3"/></svg></span><span class="ficha__texto">En mi oficina</span></span></label>
+          <label class="ficha"><input type="radio" name="firma" value="negocio"><span class="ficha__cuerpo"><span class="ficha__icono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 9.5 5.5 4.5h13L20 9.5"/><path d="M4 9.5c0 1.4 1.1 2.5 2.5 2.5S9 10.9 9 9.5c0 1.4 1.1 2.5 2.5 2.5S14 10.9 14 9.5c0 1.4 1.1 2.5 2.5 2.5S19 10.9 19 9.5"/><path d="M5.5 12v8.5h13V12"/><path d="M10 20.5v-5h4v5"/></svg></span><span class="ficha__texto">En mi negocio</span></span></label>
+          <label class="ficha"><input type="radio" name="firma" value="notaria"><span class="ficha__cuerpo"><span class="ficha__icono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 9 12 4l8.5 5"/><path d="M5 9.5h14"/><path d="M6.5 10v8M10 10v8M14 10v8M17.5 10v8"/><path d="M4 20.5h16"/></svg></span><span class="ficha__texto">En la notaría</span></span></label>
         </div>
       </fieldset>
     </div>
-    <div class="cotiza__recibo" id="cotiza-recibo">
-      <div class="recibo" data-forma="EIRL">
+    <div class="cotiza__recibo precio__lado" id="cotiza-recibo">
+      <article class="pase" data-capital="hasta" data-firma="casa" aria-labelledby="cotiza-t">
         <p class="sr-only" aria-live="polite" data-anuncio></p>
-        <div class="recibo__cabeza">
-          <div class="recibo__titulo">
-            <p class="recibo__rotulo">Te podría convenir</p>
-            <p class="recibo__valor" data-out="valor">EIRL</p>
+        <div class="pase__cuerpo">
+          <div class="pase__principal">
+          <p class="pase__marca"><span class="plus-mark" aria-hidden="true"></span>Constitución de empresa</p>
+          <p class="pase__rotulo">Nuestro servicio</p>
+          <p class="pase__precio"><span class="pase__moneda">S/</span><span class="pase__cifra" data-out="serv-n">500</span></p>
+          <p class="pase__con" data-out="serv-det">Con derechos notariales y una toma de firmas</p>
+          <div class="pase__barra" aria-hidden="true"><span class="pase__seg pase__seg--serv"></span><span class="pase__seg pase__seg--reg"></span></div>
+          <p class="pase__leyenda" aria-hidden="true"><span class="pase__ley pase__ley--serv">Nuestro servicio</span><span class="pase__ley pase__ley--reg">Pago al Estado</span></p>
           </div>
-          <svg class="recibo__ilustra recibo__ilustra--personas" viewBox="0 0 112 56" aria-hidden="true" focusable="false">
-            <g class="ilu ilu--p1"><circle cx="28" cy="16" r="8"/><path d="M12 50c0-9.4 7.2-16 16-16s16 6.6 16 16"/></g>
-            <g class="ilu ilu--p2"><circle cx="60" cy="16" r="8"/><path d="M44 50c0-9.4 7.2-16 16-16s16 6.6 16 16"/></g>
-            <g class="ilu ilu--mas"><path class="ilu__fuerte" d="M95 20v11h11"/><path class="ilu__suave" d="M95 31v11M95 31H84"/></g>
-          </svg>
-        </div>
-        <p class="recibo__porque" data-out="porque">Para quien emprende solo y quiere separar su patrimonio del negocio.</p>
-        <table>
-          <caption class="sr-only">Detalle del total</caption>
-            <tr class="recibo__principal" data-fila="serv"><th scope="row">Nuestro servicio<small data-out="serv-det">Con derechos notariales y una toma de firmas</small></th><td data-out="serv">S/ 500</td></tr>
-            <tr class="recibo__linea" data-fila="reg"><th scope="row">Derechos registrales<small data-out="reg-det">Pago al Estado, aproximado</small></th><td data-out="reg">S/ 100 a 200</td></tr>
-            <tr class="recibo__total" data-fila="total"><th scope="row">Total aproximado</th><td data-out="total">S/ 600 a 700</td></tr>
-        </table>
-        <p class="recibo__pie" data-out="pie">Firmas en tu casa, en Lima Metropolitana y Callao. Adelanto de S/ 180 y el resto el día de la firma.</p>
-        <a class="btn btn--red recibo__cta" data-out-wa data-wa="Hola, vengo de la web. Quiero constituir una EIRL, solo yo como dueño, con capital de hasta S/ 20 000, y firmar en mi casa." href="https://wa.me/51924021846"><svg class="btn__wa" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.3 20.7l4.4-1.1A8.8 8.8 0 1 0 12 3.2z"/></svg>Escribir por WhatsApp</a>
-        <p class="recibo__nota">Tus respuestas ya van escritas en el mensaje.</p>
-        <details class="recibo__mas">
-          <summary>Qué incluye y qué va aparte</summary>
-          <div class="recibo__mas-cuerpo">
-            <p class="recibo__mas-t">Incluye</p>
-            <ul class="recibo__si">
+          <div class="pase__detalle">
+          <dl class="pase__lineas">
+            <div class="pase__linea"><dt>Derechos registrales<small>Pago al Estado, aproximado</small></dt><dd data-out="reg">S/ 100 a 200</dd></div>
+            <div class="pase__linea pase__linea--total"><dt>Total aproximado</dt><dd data-out="total">S/ 600 a 700</dd></div>
+          </dl>
+          <ul class="pase__incluye" aria-label="Incluye">
+            <li style="--n:0">Minuta a tu medida</li>
+            <li style="--n:1">La notaría va a ti</li>
+            <li style="--n:2">Reserva del nombre</li>
+            <li style="--n:3">Inscripción en SUNARP</li>
+            <li style="--n:4">Contador y RUC activo</li>
+            <li style="--n:5">Testimonio en PDF</li>
+          </ul>
+          <details class="recibo__mas pase__mas">
+            <summary>Todo lo que incluye y lo que va aparte</summary>
+            <div class="recibo__mas-cuerpo">
+              <p class="recibo__mas-t">Incluye</p>
+              <ul class="recibo__si">
             <li>Minuta y estatuto redactados a la medida de tu caso, con las hojas que haga falta.</li>
-            <li>Derechos notariales y una toma de firmas donde estés, en Lima Metropolitana y Callao.</li>
+            <li>Derechos notariales y una toma de firmas donde estés, en Lima Metropolitana y Callao, o en la notaría.</li>
             <li>Reserva del nombre e inscripción en SUNARP, con aviso en cada etapa.</li>
             <li>Asesoría legal para elegir el tipo de empresa y repartir las acciones.</li>
             <li>Primera asesoría contable de 45 minutos, con la activación de tu RUC.</li>
             <li>Asiento de inscripción y testimonio, en PDF.</li>
-            </ul>
-            <p class="recibo__mas-t">Va aparte</p>
-            <ul class="recibo__no">
+              </ul>
+              <p class="recibo__mas-t">Va aparte</p>
+              <ul class="recibo__no">
             <li>Derechos registrales: se pagan al Estado y van dentro de tu total.</li>
             <li>Cada punto de firma adicional: S/ 45.</li>
             <li>Libros societarios y cambios posteriores en tu empresa.</li>
-            </ul>
+              </ul>
+            </div>
+          </details>
           </div>
-        </details>
-      </div>
+        </div>
+        <div class="pase__talon">
+          <p class="pase__hoy">Para empezar</p>
+          <p class="pase__adelanto">S/ 180</p>
+          <p class="pase__resto">de adelanto, por transferencia. El resto, el día de la firma.</p>
+          <p class="pase__firma"><span class="pase__firma-icono" aria-hidden="true" data-out-icono><svg viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5"/><path d="M6 10v10.5h12V10"/><path d="M10 20.5v-6h4v6"/></svg></span><span>Firmas <b data-out="firma">en tu casa</b></span></p>
+          <a class="btn btn--red pase__cta" data-out-wa data-wa="Hola, vengo de la web. Quiero constituir mi empresa, con capital de hasta S/ 20 000, y firmar en mi casa." href="https://wa.me/51924021846"><svg class="btn__wa" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.3 20.7l4.4-1.1A8.8 8.8 0 1 0 12 3.2z"/></svg>Escribir por WhatsApp</a>
+          <p class="pase__nota">Tus respuestas ya van escritas en el mensaje.</p>
+        </div>
+      </article>
     </div>
-      <figure class="cita cotiza__cita">
-        <blockquote>«Yo quería SAC porque un amigo me dijo que era mejor. Me preguntaron si tenía socios y terminamos haciendo otra cosa. Me explicaron por qué.»</blockquote>
-        <figcaption><span class="plus-mark" aria-hidden="true"></span><b>Percy Huamán</b>, taller mecánico, Lima Este</figcaption>
-      </figure>
     <a class="cotiza__barra" href="#cotiza-recibo" data-barra data-scroll hidden>
-      <span class="cotiza__barra-txt"><span class="cotiza__barra-rotulo">Te podría convenir</span><b data-barra-valor>EIRL</b></span>
-      <span class="cotiza__barra-total"><b data-barra-total>S/ 600 a 700</b><span class="cotiza__barra-ver">Ver el detalle</span></span>
+      <span class="cotiza__barra-txt"><span class="cotiza__barra-rotulo" data-barra-valor>Firmas en tu casa</span><b data-barra-total>S/ 600 a 700</b></span>
+      <span class="cotiza__barra-ver">Ver el detalle</span>
     </a>
   </div>
 </section>
 
-<section class="block block--crema" id="firma" aria-labelledby="firma-t">
-  <div class="container banda">
-    <div class="banda__foto reveal"><picture><source type="image/webp" srcset="assets/img/toma-firma-800.webp 800w" sizes="(min-width: 900px) 460px, calc(100vw - 40px)"><img src="assets/img/toma-firma-800.jpg" srcset="assets/img/toma-firma-800.jpg 800w" sizes="(min-width: 900px) 460px, calc(100vw - 40px)" width="800" height="1511" alt="Imagen ilustrativa: un cliente firma la escritura sobre el mostrador de su local mientras el mensajero de la notaría espera con el sobre" loading="lazy" decoding="async"></picture></div>
-    <div class="banda__texto">
-      <h2 class="h2 reveal" id="firma-t">Firmas donde estés.</h2>
-      <svg class="firma-trazo" viewBox="0 0 160 52" aria-hidden="true" focusable="false"><path pathLength="1" d="M6 36c8-20 16-27 17-14s-3 21 4 16 9-24 14-23-2 22 4 22 8-18 12-17-1 14 4 13 6-11 10-10 0 9 5 8 9-14 14-12-3 12 3 12 10-9 14-9M30 45c32-4 76-8 122-11"/></svg>
-      <p class="banda__lede reveal">El motorizado de la notaría va a tu casa, tu oficina o tu negocio, en Lima Metropolitana y Callao, de lunes a viernes y los sábados hasta el mediodía.</p>
-      <ul class="banda__lista reveal">
-        <li><b>Si atiendes tu negocio,</b> firmas ahí, mientras sigues atendiendo.</li>
-        <li><b>Si trabajas con horario,</b> en tu casa o tu oficina, en la franja que coordinemos.</li>
-        <li><b>Si tus socios están en distintos lugares,</b> elegimos juntos un punto.</li>
-      </ul>
-      <figure class="cita reveal">
-        <blockquote>«Yo pensaba cerrar mi taller para ir a la notaría. Al final firmé en mi mismo taller: un motorizado de la notaría llegó y me hizo firmar la minuta y la escritura pública ahí.»</blockquote>
-        <figcaption><span class="plus-mark" aria-hidden="true"></span><b>Marisol Quispe</b>, confecciones, Lima Este</figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<section class="block block--papel" id="incluye" aria-labelledby="incluye-t">
+<section class="block block--papel" id="cifras-empresa" aria-labelledby="cifras-empresa-t">
   <div class="container">
-    <h2 class="h2" id="incluye-t">Lo que no se ve en el papel, también cuenta.</h2>
-    <div class="pilares">
-      <div class="pilar">
-        <h3 class="pilar__t">Tu minuta, a la medida</h3>
-        <p class="pilar__x">La redactamos según tus socios, tus aportes y quién decide qué, con las hojas que haga falta. Así aguanta el día que alguien quiera salir.</p>
-      </div>
-      <div class="pilar">
-        <h3 class="pilar__t">Tu RUC, activo</h3>
-        <p class="pilar__x">Tras la inscripción, un contador aliado te acompaña 45 minutos para escoger tu régimen y activar tu RUC 20. Va incluido en el precio.</p>
-      </div>
-    </div>
+    <h2 class="h2" id="cifras-empresa-t">Formalizarte, en cifras.</h2>
     <div class="cifras cifras--3" role="group" aria-label="Formalizarse, en cifras">
     <ul class="cifras__list">
       <li class="cifra">
@@ -360,6 +404,6 @@
 </script>
 
 <script src="assets/js/analytics.js?v=10"></script>
-<script src="assets/js/main.js?v=73"></script>
+<script src="assets/js/main.js?v=75"></script>
 </body>
 </html>
