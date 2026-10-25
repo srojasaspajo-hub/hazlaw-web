@@ -29,7 +29,7 @@
 <!-- Jost servida desde la propia web (assets/fonts, licencia OFL); se pide desde el inicio -->
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/jost-latin.woff2" crossorigin>
 
-<link rel="stylesheet" href="assets/css/styles.css?v=161">
+<link rel="stylesheet" href="assets/css/styles.css?v=162">
 </head>
 <body class="page-constitucion" data-cta-main="empresa">
 
@@ -105,7 +105,7 @@
       <li class="escena escena--minuta" data-escena>
         <div class="escena__texto">
           <h3 class="escena__t">Tu minuta, a tu medida. Sin plantillas copiadas.</h3>
-          <p class="escena__x">La redactamos según tus socios, tus aportes y quién decide qué, con las hojas que haga falta. Así tu empresa aguanta el día que alguien quiera salir.</p>
+          <p class="escena__x">No hacemos minutas estándar. La tuya se redacta según tus socios, tus aportes y quién decide qué, y puede tener 8, 9 o 10 hojas: las que hagan falta para cuidar los intereses de tu empresa.</p>
       <figure class="cita escena__cita">
         <blockquote>«Yo quería SAC porque un amigo me dijo que era mejor. Me preguntaron si tenía socios y terminamos haciendo otra cosa. Me explicaron por qué.»</blockquote>
         <figcaption><span class="plus-mark" aria-hidden="true"></span><b>Percy Huamán</b>, taller mecánico, Lima Este</figcaption>
@@ -113,8 +113,9 @@
         </div>
         <div class="escena__visual">
           <div class="v-minuta" aria-hidden="true">
+            <span class="v-minuta__pila"></span><span class="v-minuta__pila"></span>
             <div class="v-minuta__hoja">
-              <p class="v-minuta__cabeza"><b>Minuta de constitución</b><span data-ciclo="Caso 1 de 3|Caso 2 de 3|Caso 3 de 3">Caso 1 de 3</span></p>
+              <p class="v-minuta__cabeza"><b>Minuta de constitución</b><span data-ciclo="Caso 1 · 8 hojas|Caso 2 · 10 hojas|Caso 3 · 9 hojas">Caso 1 · 8 hojas</span></p>
               <p class="v-minuta__fila" style="--n:0"><span class="v-minuta__campo" data-ciclo="Socios|Socios|Socios">Socios</span><span class="v-minuta__dato"><span class="v-minuta__molde"></span><span class="v-minuta__tuyo" data-ciclo="Ana 60 % · Luis 40 %|Tres hermanos, partes iguales|Pareja, 50 % y 50 %">Ana 60 % · Luis 40 %</span></span></p>
               <p class="v-minuta__fila" style="--n:1"><span class="v-minuta__campo" data-ciclo="Gerente|Gerente|Gerente">Gerente</span><span class="v-minuta__dato"><span class="v-minuta__molde"></span><span class="v-minuta__tuyo" data-ciclo="Ana, con firma ante el banco|Carlos, por dos años|Los dos, con firma conjunta">Ana, con firma ante el banco</span></span></p>
               <p class="v-minuta__fila" style="--n:2"><span class="v-minuta__campo" data-ciclo="Si un socio sale|Si un socio sale|Si hay empate">Si un socio sale</span><span class="v-minuta__dato"><span class="v-minuta__molde"></span><span class="v-minuta__tuyo" data-ciclo="Los demás compran primero|Su parte se paga en cuotas|Decide un árbitro pactado">Los demás compran primero</span></span></p>
@@ -201,8 +202,16 @@
       <article class="pase" data-capital="hasta" data-firma="casa" aria-labelledby="cotiza-t">
         <p class="sr-only" aria-live="polite" data-anuncio></p>
         <div class="pase__cuerpo">
-          <div class="pase__principal">
+          <div class="pase__difs">
           <p class="pase__marca"><span class="plus-mark" aria-hidden="true"></span>Constitución de empresa</p>
+          <p class="pase__difs-t">Lo que nos diferencia va incluido</p>
+          <ul>
+            <li style="--n:0"><b>Minuta a tu medida</b><span>No es estándar: 8, 9 o 10 hojas, las que tu empresa necesite.</span></li>
+            <li style="--n:1"><b>La notaría va a ti</b><span>Firmas en tu casa, tu oficina o tu negocio, en Lima Metropolitana y Callao.</span></li>
+            <li style="--n:2"><b>Contador y RUC activo</b><span>45 minutos con un contador aliado que activa tu RUC 20.</span></li>
+          </ul>
+          </div>
+          <div class="pase__principal">
           <p class="pase__rotulo">Nuestro servicio</p>
           <p class="pase__precio"><span class="pase__moneda">S/</span><span class="pase__cifra" data-out="serv-n">500</span></p>
           <p class="pase__con" data-out="serv-det">Con derechos notariales y una toma de firmas</p>
@@ -214,14 +223,12 @@
             <div class="pase__linea"><dt>Derechos registrales<small>Pago al Estado, aproximado</small></dt><dd data-out="reg">S/ 100 a 200</dd></div>
             <div class="pase__linea pase__linea--total"><dt>Total aproximado</dt><dd data-out="total">S/ 600 a 700</dd></div>
           </dl>
-          <p class="pase__dif">Lo que nos diferencia va incluido:</p>
-          <ul class="pase__incluye" aria-label="Incluye">
-            <li class="es-dif" style="--n:0">Minuta a tu medida</li>
-            <li class="es-dif" style="--n:1">La notaría va a ti</li>
-            <li class="es-dif" style="--n:2">Contador y RUC activo</li>
-            <li style="--n:3">Reserva del nombre</li>
-            <li style="--n:4">Inscripción en SUNARP</li>
-            <li style="--n:5">Testimonio en PDF</li>
+          <p class="pase__dif">También incluye:</p>
+          <ul class="pase__incluye" aria-label="También incluye">
+            <li style="--n:0">Asesoría legal</li>
+            <li style="--n:1">Reserva del nombre</li>
+            <li style="--n:2">Inscripción en SUNARP</li>
+            <li style="--n:3">Testimonio en PDF</li>
           </ul>
           <details class="recibo__mas pase__mas">
             <summary>Lo que va aparte</summary>
