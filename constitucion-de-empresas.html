@@ -29,7 +29,7 @@
 <!-- Jost servida desde la propia web (assets/fonts, licencia OFL); se pide desde el inicio -->
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/jost-latin.woff2" crossorigin>
 
-<link rel="stylesheet" href="assets/css/styles.css?v=158">
+<link rel="stylesheet" href="assets/css/styles.css?v=160">
 </head>
 <body class="page-constitucion" data-cta-main="empresa">
 
@@ -60,7 +60,6 @@
   </div>
   <div class="photo-hero__content">
     <h1 class="h1 photo-hero__title"><span class="w"><span style="--i:0">Constitución</span></span> <span class="w"><span style="--i:1">de</span></span> <span class="w"><span style="--i:2">empresas</span></span> <span class="w"><span style="--i:3">en</span></span> <span class="w"><span style="--i:4">Lima,</span></span> <span class="w"><span style="--i:5">sin</span></span> <span class="w"><span style="--i:6">ir</span></span> <span class="w"><span style="--i:7">a</span></span> <span class="w"><span style="--i:8">la</span></span> <span class="w"><span style="--i:9">notaría.</span></span></h1>
-    <p class="photo-hero__lede">La notaría va a tu casa, tu oficina o tu negocio, en Lima Metropolitana y Callao, y tu minuta se redacta a la medida de tu caso.</p>
     <p class="photo-hero__precio"><b>S/ 500</b> con derechos notariales incluidos. Los derechos registrales van aparte.</p>
     <div class="photo-hero__actions">
       <a class="btn btn--red" data-wa="Hola, vengo de la web. Quiero constituir mi empresa." href="https://wa.me/51924021846"><svg class="btn__wa" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.3 20.7l4.4-1.1A8.8 8.8 0 1 0 12 3.2z"/></svg>Constituir mi empresa<span class="sr-only"> por WhatsApp</span></a>
@@ -89,20 +88,20 @@
         <div class="escena__visual">
           <div class="v-minuta" aria-hidden="true">
             <div class="v-minuta__hoja">
-              <p class="v-minuta__cabeza"><b>Minuta de constitución</b><span>Ejemplo</span></p>
-              <p class="v-minuta__fila" style="--n:0"><span class="v-minuta__campo">Socios</span><span class="v-minuta__dato"><span class="v-minuta__molde"></span><span class="v-minuta__tuyo">Ana 60 % · Luis 40 %</span></span></p>
-              <p class="v-minuta__fila" style="--n:1"><span class="v-minuta__campo">Gerente</span><span class="v-minuta__dato"><span class="v-minuta__molde"></span><span class="v-minuta__tuyo">Ana, con firma ante el banco</span></span></p>
-              <p class="v-minuta__fila" style="--n:2"><span class="v-minuta__campo">Si un socio sale</span><span class="v-minuta__dato"><span class="v-minuta__molde"></span><span class="v-minuta__tuyo">Los demás compran primero</span></span></p>
+              <p class="v-minuta__cabeza"><b>Minuta de constitución</b><span data-ciclo="Caso 1 de 3|Caso 2 de 3|Caso 3 de 3">Caso 1 de 3</span></p>
+              <p class="v-minuta__fila" style="--n:0"><span class="v-minuta__campo" data-ciclo="Socios|Socios|Socios">Socios</span><span class="v-minuta__dato"><span class="v-minuta__molde"></span><span class="v-minuta__tuyo" data-ciclo="Ana 60 % · Luis 40 %|Tres hermanos, partes iguales|Pareja, 50 % y 50 %">Ana 60 % · Luis 40 %</span></span></p>
+              <p class="v-minuta__fila" style="--n:1"><span class="v-minuta__campo" data-ciclo="Gerente|Gerente|Gerente">Gerente</span><span class="v-minuta__dato"><span class="v-minuta__molde"></span><span class="v-minuta__tuyo" data-ciclo="Ana, con firma ante el banco|Carlos, por dos años|Los dos, con firma conjunta">Ana, con firma ante el banco</span></span></p>
+              <p class="v-minuta__fila" style="--n:2"><span class="v-minuta__campo" data-ciclo="Si un socio sale|Si un socio sale|Si hay empate">Si un socio sale</span><span class="v-minuta__dato"><span class="v-minuta__molde"></span><span class="v-minuta__tuyo" data-ciclo="Los demás compran primero|Su parte se paga en cuotas|Decide un árbitro pactado">Los demás compran primero</span></span></p>
               <span class="v-minuta__sello"><span class="plus-mark"></span>A tu medida</span>
             </div>
           </div>
-          <button class="escena__repite" type="button" data-escena-repite>Ver otra vez</button>
+          <button class="escena__repite" type="button" data-escena-repite>Otro caso</button>
         </div>
       </li>
       <li class="escena escena--notaria" data-escena>
         <div class="escena__texto">
           <h3 class="escena__t">Tú no vas a la notaría. La notaría va hacia ti.</h3>
-          <p class="escena__x">En Lima Metropolitana y Callao, el motorizado de la notaría llega a tu casa, tu oficina o tu negocio, de lunes a viernes y los sábados hasta el mediodía. Te ahorras la cola y el traslado.</p>
+          <p class="escena__x">El motorizado de la notaría llega a tu casa, tu oficina o tu negocio, en Lima Metropolitana y Callao, de lunes a viernes y los sábados hasta el mediodía. Te ahorras la cola y el traslado.</p>
       <figure class="cita escena__cita">
         <blockquote>«Yo pensaba cerrar mi taller para ir a la notaría. Al final firmé en mi mismo taller: un motorizado de la notaría llegó y me hizo firmar la minuta y la escritura pública ahí.»</blockquote>
         <figcaption><span class="plus-mark" aria-hidden="true"></span><b>Marisol Quispe</b>, confecciones, Lima Este</figcaption>
@@ -118,16 +117,15 @@
               <g class="v-ruta__moto"><g transform="translate(-13 -30)"><circle cx="5" cy="21" r="4.2"/><circle cx="21" cy="21" r="4.2"/><path d="M5 21h4l5-8h5l2 8"/><path d="M14 13l-2-5h-3"/><path d="M19 13h3"/></g><animateMotion dur="2.6s" begin="indefinite" fill="freeze" rotate="0" calcMode="spline" keyPoints="0;1" keyTimes="0;1" keySplines="0.65 0 0.35 1" path="M34 112 C 104 112 112 44 184 44 S 262 74 286 74"/></g>
             </svg>
             <span class="v-ruta__et v-ruta__et--a">Notaría</span>
-            <span class="v-ruta__et v-ruta__et--b" data-ruta-destinos="Tu casa|Tu oficina|Tu negocio">Tu casa</span>
-            <p class="v-ruta__pie">Lima Metropolitana y Callao</p>
+            <span class="v-ruta__et v-ruta__et--b" data-ciclo="Tu casa|Tu oficina|Tu negocio">Tu casa</span>
           </div>
-          <button class="escena__repite" type="button" data-escena-repite>Ver otra vez</button>
+          <button class="escena__repite" type="button" data-escena-repite>Otro destino</button>
         </div>
       </li>
       <li class="escena escena--ruc" data-escena>
         <div class="escena__texto">
           <h3 class="escena__t">Tu RUC, activo. Un contador lo hace contigo.</h3>
-          <p class="escena__x">Cuando tu empresa queda inscrita, un contador aliado se reúne contigo 45 minutos: te ayuda a escoger tu régimen y tu Clave SOL, y activa tu RUC 20. Va incluido en el precio.</p>
+          <p class="escena__x">Con tu empresa inscrita, un contador aliado se reúne contigo 45 minutos: te ayuda a escoger tu régimen y tu Clave SOL, y activa tu RUC 20. Va incluido.</p>
         </div>
         <div class="escena__visual">
           <div class="v-ruc" aria-hidden="true">
@@ -147,6 +145,33 @@
         </div>
       </li>
     </ul>
+  </div>
+</section>
+
+<section class="block block--papel" id="cifras-empresa" aria-labelledby="cifras-empresa-t">
+  <div class="container">
+    <h2 class="h2" id="cifras-empresa-t">Formalizarte, en cifras.</h2>
+    <div class="cifras cifras--3" role="group" aria-label="Formalizarse, en cifras">
+    <ul class="cifras__list">
+      <li class="cifra">
+        <p class="cifra__num"><span class="cifra__n" data-cifra="10 a 13">10 a 13</span><span class="cifra__unit">&nbsp;d&iacute;as</span></p>
+        <p class="cifra__txt">h&aacute;biles, en promedio, desde la reserva del nombre hasta que tu empresa queda inscrita. Por lo general, 7 desde que firmas.</p>
+        <p class="cifra__src">Plazo promedio de nuestros tr&aacute;mites</p>
+      </li>
+      <li class="cifra cifra--pct">
+        <p class="cifra__num"><span class="cifra__n" data-cifra="86,8">86,8</span><span class="cifra__unit">%</span></p>
+        <span class="cifra__bar" aria-hidden="true" style="--p:86.8%"><span></span></span>
+        <p class="cifra__txt">de los negocios peque&ntilde;os del Per&uacute; no estaba registrado en SUNAT en 2024. Formalizarte te saca de ese grupo.</p>
+        <p class="cifra__src">Fuente: ComexPer&uacute;, 2024</p>
+      </li>
+      <li class="cifra cifra--pct">
+        <p class="cifra__num"><span class="cifra__n" data-cifra="99,7">99,7</span><span class="cifra__unit">%</span></p>
+        <span class="cifra__bar" aria-hidden="true" style="--p:99.7%"><span></span></span>
+        <p class="cifra__txt">de las empresas del Per&uacute; eran micro y peque&ntilde;as en 2024, como la tuya.</p>
+        <p class="cifra__src">Fuente: ComexPer&uacute;, 2024</p>
+      </li>
+    </ul>
+    </div>
   </div>
 </section>
 
@@ -199,18 +224,8 @@
             <li style="--n:5">Testimonio en PDF</li>
           </ul>
           <details class="recibo__mas pase__mas">
-            <summary>Todo lo que incluye y lo que va aparte</summary>
+            <summary>Lo que va aparte</summary>
             <div class="recibo__mas-cuerpo">
-              <p class="recibo__mas-t">Incluye</p>
-              <ul class="recibo__si">
-            <li>Minuta y estatuto redactados a la medida de tu caso, con las hojas que haga falta.</li>
-            <li>Derechos notariales y una toma de firmas donde estés, en Lima Metropolitana y Callao, o en la notaría.</li>
-            <li>Reserva del nombre e inscripción en SUNARP, con aviso en cada etapa.</li>
-            <li>Asesoría legal para elegir el tipo de empresa y repartir las acciones.</li>
-            <li>Primera asesoría contable de 45 minutos, con la activación de tu RUC.</li>
-            <li>Asiento de inscripción y testimonio, en PDF.</li>
-              </ul>
-              <p class="recibo__mas-t">Va aparte</p>
               <ul class="recibo__no">
             <li>Derechos registrales: se pagan al Estado y van dentro de tu total.</li>
             <li>Cada punto de firma adicional: S/ 45.</li>
@@ -221,9 +236,10 @@
           </div>
         </div>
         <div class="pase__talon">
-          <p class="pase__hoy">Para empezar</p>
-          <p class="pase__adelanto">S/ 180</p>
-          <p class="pase__resto">de adelanto, por transferencia. El resto, el día de la firma.</p>
+          <ol class="pase__pagos" aria-label="Cuándo pagas">
+            <li><span class="pase__pagos-cuando">Para empezar</span><b class="pase__adelanto">S/ 180</b><span class="pase__pagos-que">de adelanto</span></li>
+            <li><span class="pase__pagos-cuando">El día de la firma</span><b class="pase__pagos-resto">El resto</b><span class="pase__pagos-que">por transferencia</span></li>
+          </ol>
           <p class="pase__firma"><span class="pase__firma-icono" aria-hidden="true" data-out-icono><svg viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5"/><path d="M6 10v10.5h12V10"/><path d="M10 20.5v-6h4v6"/></svg></span><span>Firmas <b data-out="firma">en tu casa</b></span></p>
           <a class="btn btn--red pase__cta" data-out-wa data-wa="Hola, vengo de la web. Quiero constituir mi empresa, con capital de hasta S/ 20 000, y firmar en mi casa." href="https://wa.me/51924021846"><svg class="btn__wa" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.3 20.7l4.4-1.1A8.8 8.8 0 1 0 12 3.2z"/></svg>Escribir por WhatsApp</a>
           <p class="pase__nota">Tus respuestas ya van escritas en el mensaje.</p>
@@ -234,42 +250,6 @@
       <span class="cotiza__barra-txt"><span class="cotiza__barra-rotulo" data-barra-valor>Firmas en tu casa</span><b data-barra-total>S/ 600 a 700</b></span>
       <span class="cotiza__barra-ver">Ver el detalle</span>
     </a>
-  </div>
-</section>
-
-<section class="block block--papel" id="cifras-empresa" aria-labelledby="cifras-empresa-t">
-  <div class="container">
-    <h2 class="h2" id="cifras-empresa-t">Formalizarte, en cifras.</h2>
-    <div class="cifras cifras--3" role="group" aria-label="Formalizarse, en cifras">
-    <ul class="cifras__list">
-      <li class="cifra">
-        <p class="cifra__num"><span class="cifra__n" data-cifra="10 a 13">10 a 13</span><span class="cifra__unit">&nbsp;d&iacute;as</span></p>
-        <p class="cifra__txt">h&aacute;biles, en promedio, desde la reserva del nombre hasta que tu empresa queda inscrita. Por lo general, 7 desde que firmas.</p>
-        <p class="cifra__src">Plazo promedio de nuestros tr&aacute;mites</p>
-      </li>
-      <li class="cifra cifra--pct">
-        <p class="cifra__num"><span class="cifra__n" data-cifra="86,8">86,8</span><span class="cifra__unit">%</span></p>
-        <span class="cifra__bar" aria-hidden="true" style="--p:86.8%"><span></span></span>
-        <p class="cifra__txt">de los negocios peque&ntilde;os del Per&uacute; no estaba registrado en SUNAT en 2024. Formalizarte te saca de ese grupo.</p>
-        <p class="cifra__src">Fuente: ComexPer&uacute;, 2024</p>
-      </li>
-      <li class="cifra cifra--pct">
-        <p class="cifra__num"><span class="cifra__n" data-cifra="99,7">99,7</span><span class="cifra__unit">%</span></p>
-        <span class="cifra__bar" aria-hidden="true" style="--p:99.7%"><span></span></span>
-        <p class="cifra__txt">de las empresas del Per&uacute; eran micro y peque&ntilde;as en 2024, como la tuya.</p>
-        <p class="cifra__src">Fuente: ComexPer&uacute;, 2024</p>
-      </li>
-    </ul>
-    </div>
-  </div>
-</section>
-
-<section class="block block--tinta faq-end" id="cierre">
-  <div class="container container--narrow faq-end__inner">
-    <h2 class="h2 h2--light">¿Empezamos con tu empresa?</h2>
-    <p class="lede lede--light">Te hacemos tres preguntas por WhatsApp y te enviamos el total por escrito.</p>
-    <a class="btn btn--red" data-wa="Hola, vengo de la web. Quiero constituir mi empresa." href="https://wa.me/51924021846"><svg class="btn__wa" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.3 20.7l4.4-1.1A8.8 8.8 0 1 0 12 3.2z"/></svg>Constituir mi empresa<span class="sr-only"> por WhatsApp</span></a>
-    <p class="faq-end__guias">Para leer antes: <a href="cuanto-cuesta-constituir-una-empresa-en-lima.html">cuánto cuesta constituir</a>, <a href="sac-srl-o-eirl.html">SAC, SRL o EIRL</a> y <a href="preguntas-frecuentes.html#faq-empresa">preguntas frecuentes</a>.</p>
   </div>
 </section>
 
@@ -404,6 +384,6 @@
 </script>
 
 <script src="assets/js/analytics.js?v=10"></script>
-<script src="assets/js/main.js?v=75"></script>
+<script src="assets/js/main.js?v=77"></script>
 </body>
 </html>

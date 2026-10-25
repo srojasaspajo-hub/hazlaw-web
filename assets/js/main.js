@@ -381,7 +381,6 @@
     var text = document.getElementById("brand-card-text");
     var status = document.getElementById("brand-card-status");
     var caption = document.getElementById("brand-caption");
-    var cta = document.getElementById("brand-cta");
     var steps = Array.prototype.slice.call(document.querySelectorAll(".brand-steps__labels button"));
     var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     var stage = -1;
@@ -422,11 +421,8 @@
       text.textContent = shown;
       card.classList.toggle("brand-card--m", shown.length > 10 && shown.length <= 16);
       card.classList.toggle("brand-card--s", shown.length > 16);
-      var msg = name
-        ? "Hola, vengo de la web. Quiero registrar mi marca «" + name + "»."
-        : "Hola, vengo de la web. Quiero registrar mi marca.";
-      cta.setAttribute("data-wa", msg);
-      cta.setAttribute("href", WA_BASE + encodeURIComponent(msg));
+      // El nombre viaja al precio: aparece en el dibujo de lo que proteges y en el mensaje de WhatsApp
+      document.dispatchEvent(new CustomEvent("hz:marca-nombre", { detail: name }));
     }
 
     function takeOver() {
@@ -715,6 +711,7 @@
         ambos: ["Nombre y logo", "el nombre y el logo"]
       }[r.protege];
       var dos = r.clases === "2", remype = r.remype === "si";
+      var nombre = r.nombre ? " «" + r.nombre + "»" : "";
       // Tasas de gob.pe (trámite 333), consultadas el 2026-10-24. El beneficio publicado baja solo la primera clase.
       var t1 = remype ? 401.2 : 534.9, t2 = 533.3, total = 370 + t1 + (dos ? t2 : 0);
       return {
@@ -732,7 +729,7 @@
         pie: remype && dos
           ? "El beneficio para mypes baja la tasa de la primera clase; la segunda te la confirmamos antes de que pagues. Tasas de gob.pe, consultadas el 24 de octubre de 2026."
           : "Tasas de gob.pe, consultadas el 24 de octubre de 2026. Las fija el Estado y pueden cambiar.",
-        wa: "Hola, vengo de la web. Quiero registrar " + que[1] + " de mi negocio en " + (dos ? "dos clases" : "una clase") +
+        wa: "Hola, vengo de la web. Quiero registrar " + que[1] + " de mi negocio" + nombre + " en " + (dos ? "dos clases" : "una clase") +
             (remype ? ". Tengo RUC activo y REMYPE." : ".")
       };
     }
@@ -781,7 +778,16 @@
       }
       function pinta(avisar) {
         var r = respuestas();
+        r.nombre = root.hzNombre || "";
         var s = regla(r);
+        // Marca: el nombre que escribiste en el laboratorio se ve en el dibujo de lo que proteges
+        var muestra = root.querySelector(".pase__muestra .ilu--nombre");
+        if (muestra) {
+          var visible = r.nombre ? (r.nombre.length > 18 ? r.nombre.slice(0, 17) + "…" : r.nombre) : "Tu marca";
+          muestra.textContent = visible;
+          // Un nombre largo se achica para caber, sin apretar las letras
+          muestra.style.fontSize = visible.length > 8 ? Math.max(10, Math.min(18, 84 / (visible.length * 0.56))).toFixed(1) + "px" : "";
+        }
         if (pon(out("valor"), s.valor) && !reduce) marcaCambio(out("valor"));
         Object.keys(s.filas).forEach(function (id) {
           var celda = out(id);
@@ -831,6 +837,10 @@
         pinta(true);
         if (!usado) { usado = true; hzTrack("cotizador_uso", { servicio: root.getAttribute("data-cotiza") }); }
       });
+      document.addEventListener("hz:marca-nombre", function (e) {
+        root.hzNombre = e.detail || "";
+        pinta(false);
+      });
       pinta();
 
       // Barra del total en el celular: aparece mientras se responden las preguntas y el pase no está a la vista
@@ -873,7 +883,8 @@
   }
 
   // Escenas: cada beneficio tiene un dibujo que se anima la primera vez que se ve y se puede repetir.
-  // La ruta de la notaría mueve una moto por el camino y en cada vuelta cambia el destino (casa, oficina, negocio).
+  // La ruta de la notaría mueve una moto por el camino y en cada vuelta cambia el destino (casa, oficina, negocio);
+  // la minuta cambia de caso. Lo que cambia lleva data-ciclo="a|b|c".
   function initEscenas() {
     var escenas = document.querySelectorAll("[data-escena]");
     if (!escenas.length) return;
@@ -889,7 +900,7 @@
       if (moto && moto.beginElement) moto.beginElement();
     }
     escenas.forEach(function (e) {
-      var destino = e.querySelector("[data-ruta-destinos]");
+      var ciclos = e.querySelectorAll("[data-ciclo]");
       var vueltas = 0;
       var repite = e.querySelector("[data-escena-repite]");
       if (reduce) {
@@ -898,11 +909,11 @@
         return;
       }
       if (repite) repite.addEventListener("click", function () {
-        if (destino) {
-          var lista = destino.getAttribute("data-ruta-destinos").split("|");
-          vueltas = (vueltas + 1) % lista.length;
-          destino.textContent = lista[vueltas];
-        }
+        vueltas++;
+        ciclos.forEach(function (c) {
+          var lista = c.getAttribute("data-ciclo").split("|");
+          c.textContent = lista[vueltas % lista.length];
+        });
         juega(e);
       });
     });
@@ -986,41 +997,6 @@
 
   }
 
-  // Gestión notarial: perfiles desplegables, uno abierto a la vez. Sin JavaScript se ven todos.
-  function initPerfiles() {
-    var list = document.getElementById("perfiles");
-    if (!list) return;
-    var heads = Array.prototype.slice.call(list.querySelectorAll(".perfil__head"));
-    function open(i) {
-      heads.forEach(function (h, k) {
-        var on = k === i;
-        h.setAttribute("aria-expanded", on ? "true" : "false");
-        h.closest(".perfil").classList.toggle("is-open", on);
-      });
-      list.classList.toggle("has-open", i > -1);
-    }
-    heads.forEach(function (h, i) {
-      h.addEventListener("click", function () {
-        var abierto = h.getAttribute("aria-expanded") === "true";
-        open(abierto ? -1 : i);
-        if (abierto) return;
-        hzTrack("perfil_convenio", { perfil: h.querySelector(".perfil__name").textContent });
-        // Si los trámites que se abren quedan debajo de la pantalla (y de la barra de WhatsApp),
-        // el perfil sube hasta quedar bajo el encabezado
-        var perfil = h.closest(".perfil");
-        setTimeout(function () {
-          var r = perfil.getBoundingClientRect();
-          if (r.bottom > window.innerHeight - 110) {
-            var cab = document.querySelector(".site-header");
-            var tope = (cab ? cab.getBoundingClientRect().bottom : 0) + 16;
-            window.scrollBy({ top: r.top - tope, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
-          }
-        }, 380);
-      });
-    });
-    list.classList.add("is-ready");
-    open(-1);
-  }
 
   // Enlaces a una sección de la misma página: bajan con suavidad
   function initSmoothLinks() {
@@ -1498,6 +1474,54 @@
     });
   }
 
+  // Preguntas frecuentes: un buscador que filtra las preguntas mientras escribes (sin tildes ni mayúsculas)
+  function initFaqBuscar() {
+    var campo = document.querySelector("[data-faq-buscar]");
+    if (!campo) return;
+    var res = document.querySelector("[data-faq-res]");
+    var plano = function (s) { return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); };
+    var items = Array.prototype.slice.call(document.querySelectorAll(".faq-tree__q")).map(function (q) {
+      var panel = document.getElementById(q.getAttribute("aria-controls"));
+      return { q: q, panel: panel, texto: plano(q.textContent + " " + (panel ? panel.textContent : "")), grupo: q.closest("section") };
+    });
+    var buscado = false;
+    campo.parentElement.hidden = false;
+    campo.addEventListener("input", function () {
+      var palabras = plano(campo.value).split(/\s+/).filter(function (w) { return w.length > 1; });
+      var cuenta = 0, grupos = new Map();
+      items.forEach(function (it) {
+        var ok = palabras.every(function (w) { return it.texto.indexOf(w) >= 0; });
+        it.q.hidden = !ok;
+        if (it.panel) it.panel.hidden = !ok;
+        if (ok) { cuenta++; grupos.set(it.grupo, (grupos.get(it.grupo) || []).concat(it)); }
+      });
+      items.forEach(function (it) { if (it.grupo) it.grupo.hidden = !grupos.has(it.grupo); });
+      // En cada grupo queda abierta la primera respuesta que coincide
+      grupos.forEach(function (lista) {
+        var arbol = lista[0].q.closest(".faq-tree");
+        if (arbol && arbol.hzOpen) arbol.hzOpen(arbol.hzIndex(lista[0].q.id));
+      });
+      res.textContent = "";
+      if (palabras.length) {
+        res.appendChild(document.createTextNode(cuenta ? (cuenta === 1 ? "1 pregunta. " : cuenta + " preguntas. ") : "Ninguna coincide. Escríbenos por WhatsApp y te respondemos."));
+        var primera = items.filter(function (it) { return !it.q.hidden; })[0];
+        if (primera) {
+          // Un enlace a la primera respuesta: en el celular queda más abajo, después de la foto
+          var ver = document.createElement("button");
+          ver.type = "button";
+          ver.className = "faq-buscar__ver";
+          ver.textContent = cuenta === 1 ? "Ver la respuesta" : "Ver las respuestas";
+          ver.addEventListener("click", function () {
+            primera.q.scrollIntoView({ block: "start", behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+            primera.q.focus({ preventScroll: true });
+          });
+          res.appendChild(ver);
+        }
+      }
+      if (palabras.length && !buscado) { buscado = true; hzTrack("faq_buscar", {}); }
+    });
+  }
+
   // Guías: el índice marca la sección que se está leyendo (en computadora queda fijo a la izquierda)
   function initIndiceGuia() {
     var nav = document.querySelector("[data-indice]");
@@ -1528,9 +1552,9 @@
     initCotizador();
     initEscenas();
     initIndiceGuia();
+    initFaqBuscar();
     initLibro();
     initTramites();
-    initPerfiles();
     initSmoothLinks();
     initButtonPress();
     initWhatsAppToast();

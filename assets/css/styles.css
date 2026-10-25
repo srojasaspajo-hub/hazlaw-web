@@ -1615,20 +1615,6 @@ body.is-hidden .faq-bubble { animation-play-state: paused; }
 }
 
 /* Oficina con estado en vivo */
-.site-foot__photo {
-  position: relative;
-  display: block;
-  overflow: hidden;
-  margin-bottom: 20px;
-  border-radius: 20px;
-  aspect-ratio: 16 / 10;
-  background: #000;
-}
-.site-foot__photo picture, .site-foot__photo img { display: block; width: 100%; height: 100%; }
-.site-foot__photo img { object-fit: cover; transition: transform 1.2s var(--ease-out); }
-@media (hover: hover) and (pointer: fine) {
-  .site-foot__photo:hover img { transform: scale(1.05); }
-}
 .site-foot__status {
   position: absolute;
   left: 12px;
@@ -2202,17 +2188,6 @@ section[id] { scroll-margin-top: var(--header-h); }
 .has-header main { padding-top: var(--header-h); }
 
 /* Íconos y flecha de las tarjetas de servicios y preguntas */
-.site-menu__arrow {
-  flex: 0 0 auto;
-  width: 8px;
-  height: 8px;
-  margin-right: 4px;
-  border-top: 1.6px solid currentColor;
-  border-right: 1.6px solid currentColor;
-  transform: rotate(45deg);
-  opacity: 0.45;
-  transition: transform 0.25s var(--ease-out), opacity 0.2s ease;
-}
 
 /* ===== Servicios de la portada: uno abierto a la vez ===== */
 .services__head { max-width: 640px; margin-bottom: 28px; }
@@ -2582,9 +2557,6 @@ select.field__control { appearance: none; background-image: url("data:image/svg+
 
 /* ===== Las dudas de siempre, respondidas cortito ===== */
 
-.qa__more { margin: 20px 0 0; font-family: var(--text); font-size: 16px; }
-.qa__more a { color: var(--granate); text-underline-offset: 3px; }
-
 .cards .card.reveal { transition-delay: calc(var(--i, 0) * 110ms); }
 .datos { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; margin: 14px 0 0; padding: 0; list-style: none; }
 .dato { padding: 18px 20px; border-radius: 20px; background: var(--papel); }
@@ -2823,9 +2795,9 @@ p, li { text-wrap: pretty; }
 /* ===== Áreas táctiles de al menos 44 px (R6) =====
    Los enlaces de texto dibujan su subrayado con un fondo pegado al borde inferior: en vez de
    agrandar la caja (que movería la línea), se amplía la zona de toque con una capa invisible. */
-.band__link, .photo-hero__link, .service-hero__link, .faq-end__back, .svc__more, .site-foot__col a, .qa__more a, .site-foot__links a { position: relative; }
+.band__link, .photo-hero__link, .service-hero__link, .faq-end__back, .svc__more, .site-foot__col a, .site-foot__links a { position: relative; }
 .band__link::before, .photo-hero__link::before, .service-hero__link::before, .faq-end__back::before,
-.svc__more::before, .site-foot__col a::before, .qa__more a::before, .site-foot__links a::before { content: ""; position: absolute; inset: -11px -6px; }
+.svc__more::before, .site-foot__col a::before, .site-foot__links a::before { content: ""; position: absolute; inset: -11px -6px; }
 .site-foot__col ul { gap: 22px; }
 .faq-bubble { min-height: 44px; }
 .site-header__link { padding-block: 11px; }
@@ -3036,107 +3008,6 @@ p, li { text-wrap: pretty; }
   .cifra__num { font-size: clamp(56px, 5.4vw, 80px); }
 }
 @media (prefers-reduced-motion: reduce) { .cifra__bar span { transition: none; } }
-
-/* ===== Gestión notarial: perfiles desplegables (2026-10-05) ===== */
-.para-quien { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; }
-.para-quien__intro .h2 { margin-bottom: 14px; }
-
-.perfiles { margin: 0; padding: 0; list-style: none; border-top: 1px solid rgba(33,27,24,0.14); }
-.perfil { border-bottom: 1px solid rgba(33,27,24,0.14); }
-.perfil__h { margin: 0; font: inherit; }
-.perfil__head {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  width: 100%;
-  min-height: 76px;
-  padding: 16px 0;
-  border: 0;
-  background: none;
-  text-align: left;
-  color: var(--tinta);
-  cursor: pointer;
-}
-.perfil__icon {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: var(--papel);
-  color: var(--granate);
-  transition: background-color 0.35s ease, color 0.35s ease, transform 0.35s var(--ease-out);
-}
-.perfil__icon svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
-.perfil__name { flex: 1 1 auto; font-family: var(--display); font-size: 23px; font-weight: 500; line-height: 1.15; letter-spacing: -0.02em; transition: transform 0.35s var(--ease-out); }
-.perfil__toggle { position: relative; flex: 0 0 auto; width: 18px; height: 18px; }
-.perfil__toggle::before, .perfil__toggle::after { content: ""; position: absolute; left: 0; top: 50%; width: 18px; height: 1.6px; margin-top: -0.8px; border-radius: 2px; background: var(--tinta); transition: transform 0.35s var(--ease-out); }
-.perfil__toggle::after { transform: rotate(90deg); }
-.perfil.is-open .perfil__toggle::after { transform: rotate(0deg); }
-.perfil.is-open .perfil__icon { background: var(--granate); color: var(--papel); transform: scale(1.04); }
-.perfil__body { display: grid; grid-template-rows: 1fr; transition: grid-template-rows 0.45s var(--ease-out); }
-.perfiles.is-ready .perfil:not(.is-open) .perfil__body { grid-template-rows: 0fr; }
-.perfil__inner { overflow: hidden; }
-.perfil__text { margin: 0 0 14px; max-width: 46ch; padding-top: 2px; font-family: var(--text); font-size: 17px; line-height: 1.55; color: rgba(33,27,24,0.82); }
-/* Un solo enlace al expediente de trámites, en vez de repetir los siete en cada perfil */
-.perfil__ir { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin: 0 0 18px; font-family: var(--text); font-size: 15px; font-weight: 600; color: var(--tinta); text-decoration: underline; text-decoration-color: rgba(33,27,24,0.3); text-underline-offset: 4px; transition: text-decoration-color 0.25s var(--ease-out); }
-.perfil__ir::after { content: "\2193"; transition: transform 0.3s var(--ease-out); }
-@media (hover: hover) and (pointer: fine) { .perfil__ir:hover { text-decoration-color: var(--tinta); } .perfil__ir:hover::after { transform: translateY(2px); } }
-.perfiles:not(.is-ready) .perfil__toggle { display: none; }
-@media (hover: hover) and (pointer: fine) {
-  .perfil__head:hover .perfil__name { transform: translateX(6px); }
-  .perfil__head:hover .perfil__icon { background: var(--granate); color: var(--papel); }
-}
-@media (min-width: 900px) {
-  .para-quien { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(48px, 7vw, 112px); align-items: start; }
-  .para-quien__intro { position: sticky; top: 120px; }
-  .perfil__head { gap: 22px; min-height: 96px; }
-  .perfil__icon { width: 60px; height: 60px; }
-  .perfil__name { font-size: 30px; }
-  .perfil__inner { padding-left: 82px; }
-}
-/* Al elegir un perfil (2026-10-20): una franja granate barre la fila, el ícono late y deja una onda,
-   los otros perfiles se atenúan y los trámites caen en cascada. Solo transform y opacity: fluido en
-   celulares de gama media. */
-.perfiles .perfil.reveal { transition-delay: calc(var(--n, 0) * 90ms); }
-.perfil { position: relative; isolation: isolate; }
-.perfil::before {
-  content: "";
-  position: absolute;
-  inset: 0 -14px;
-  z-index: -1;
-  border-radius: 18px;
-  background: linear-gradient(100deg, rgba(122,31,34,0.09), rgba(122,31,34,0.035) 62%, rgba(122,31,34,0));
-  transform: scaleX(0);
-  transform-origin: 0 50%;
-  transition: transform 0.75s var(--ease-out);
-}
-.perfil.is-open::before { transform: scaleX(1); }
-.perfil__head { transition: opacity 0.4s ease; }
-.perfiles.has-open .perfil:not(.is-open) .perfil__head { opacity: 0.66; }
-.perfiles.has-open .perfil:not(.is-open) .perfil__head:hover, .perfiles.has-open .perfil:not(.is-open) .perfil__head:focus-visible { opacity: 1; }
-.perfil__icon { position: relative; }
-.perfil__icon::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 1.5px solid var(--granate); opacity: 0; pointer-events: none; }
-.perfil.is-open .perfil__name { transform: translateX(6px); }
-.perfil__toggle { transition: transform 0.45s var(--ease-out); }
-.perfil.is-open .perfil__toggle { transform: rotate(180deg); }
-.perfiles.is-ready .perfil__text, .perfiles.is-ready .perfil__ir { opacity: 0; transform: translateY(12px); transition: opacity 0.3s ease, transform 0.5s var(--ease-out); }
-.perfiles.is-ready .perfil.is-open .perfil__text { opacity: 1; transform: none; transition-delay: 0.12s; }
-.perfiles.is-ready .perfil.is-open .perfil__ir { opacity: 1; transform: none; transition-delay: 0.2s; }
-@media (prefers-reduced-motion: no-preference) {
-  .perfil.is-open .perfil__icon { animation: perfil-late 0.65s cubic-bezier(0.3, 1.6, 0.5, 1) both; }
-  .perfil.is-open .perfil__icon::after { animation: perfil-onda 0.95s var(--ease-out) 0.08s both; }
-}
-@keyframes perfil-late { 0% { transform: scale(1) rotate(0); } 40% { transform: scale(1.2) rotate(-9deg); } 100% { transform: scale(1.04) rotate(0); } }
-@keyframes perfil-onda { from { opacity: 0.7; transform: scale(1); } to { opacity: 0; transform: scale(2.2); } }
-@media (min-width: 900px) { .perfil::before { inset: 0 -20px; } }
-@media (prefers-reduced-motion: reduce) {
-  .perfil__body, .perfil__icon, .perfil__name, .perfil__toggle, .perfil__toggle::before, .perfil__toggle::after, .perfil::before, .perfil__head,
-  .perfiles.is-ready .perfil__text, .perfiles.is-ready .perfil__ir { transition: none !important; }
-  .perfiles.is-ready .perfil__text, .perfiles.is-ready .perfil__ir { transform: none; }
-}
 
 /* ===== Gestión notarial: expediente de trámites (2026-10-05) ===== */
 .tramites-head .h2 { margin-bottom: 10px; }
@@ -3404,10 +3275,8 @@ p, li { text-wrap: pretty; }
 .recibo__mas[open] summary::after { transform: rotate(45deg); }
 .recibo__mas[open] .recibo__mas-cuerpo { animation: valor-entra 0.45s var(--ease-out) both; }
 .recibo__mas-cuerpo { padding: 0 0 4px; }
-.recibo__mas-t { margin: 12px 0 8px; font-family: var(--display); font-size: 16px; font-weight: 500; color: var(--tinta); }
-.recibo__si, .recibo__no { display: grid; gap: 8px; }
-.recibo__si li, .recibo__no li { position: relative; padding-left: 24px; font-family: var(--text); font-size: 15px; line-height: 1.5; color: rgba(33,27,24,0.84); text-wrap: pretty; }
-.recibo__si li::before { content: ""; position: absolute; left: 2px; top: 0.42em; width: 11px; height: 6px; border-left: 1.6px solid var(--granate); border-bottom: 1.6px solid var(--granate); transform: rotate(-45deg); }
+.recibo__no { display: grid; gap: 8px; }
+.recibo__no li { position: relative; padding-left: 24px; font-family: var(--text); font-size: 15px; line-height: 1.5; color: rgba(33,27,24,0.84); text-wrap: pretty; }
 .recibo__no li::before { content: ""; position: absolute; left: 2px; top: 0.75em; width: 11px; height: 1.5px; background: rgba(33,27,24,0.45); }
 
 /* Testimonio real, tal cual: el texto no se toca */
@@ -3476,7 +3345,6 @@ a, button, label, summary, input { touch-action: manipulation; }
 .site-foot__mail a:hover { text-decoration-color: var(--papel); }
 /* En el celular, "Volver arriba" sobra: el encabezado está siempre a la vista */
 @media (max-width: 899px) {
-  .site-foot__photo { aspect-ratio: 2 / 1; }
   .site-foot__up { display: none; }
 }
 
@@ -3646,7 +3514,7 @@ a, button, label, summary, input { touch-action: manipulation; }
 .site-foot__disclaimer { max-width: 72ch; }
  .cotiza__ayuda { font-size: 15px; }
 .cotiza__barra-rotulo, .cotiza__barra-ver { font-size: 13px; }
- .perfil__text, .menu-svc__hint { color: rgba(33,27,24,0.88); }
+ .menu-svc__hint { color: rgba(33,27,24,0.88); }
 
 /* Portada de cada servicio: más ancho para el título, que así cabe en tres líneas */
 @media (min-width: 900px) {
@@ -3680,7 +3548,7 @@ a, button, label, summary, input { touch-action: manipulation; }
 .escena__cita blockquote { font-size: 18px; }
 .escena__visual { position: relative; display: grid; place-items: center; min-height: 300px; padding: 30px 20px 60px; border-radius: 24px; background: var(--crema); overflow: hidden; overflow: clip; }
 .block--crema .escena__visual { background: var(--papel); }
-.escena__repite { position: absolute; right: 12px; bottom: 12px; display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 14px; border: 1px solid rgba(33,27,24,0.16); border-radius: 999px; background: var(--papel); font-family: var(--text); font-size: 14px; font-weight: 600; color: var(--tinta); cursor: pointer; transition: border-color 0.2s ease; }
+.escena__repite { position: absolute; left: 12px; bottom: 12px; display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 14px; border: 1px solid rgba(33,27,24,0.16); border-radius: 999px; background: var(--papel); font-family: var(--text); font-size: 14px; font-weight: 600; color: var(--tinta); cursor: pointer; transition: border-color 0.2s ease; }
 .escena__repite::before { content: "\21BB"; font-size: 15px; line-height: 1; }
 .escena__repite:hover { border-color: var(--tinta); }
 .escena__repite:active { transform: scale(0.97); }
@@ -3731,7 +3599,6 @@ a, button, label, summary, input { touch-action: manipulation; }
 .v-ruta__et { position: absolute; font-family: var(--text); font-size: 14px; font-weight: 600; color: var(--tinta); white-space: nowrap; }
 .v-ruta__et--a { left: 10.6%; top: calc(74.7% + 14px); transform: translateX(-30%); }
 .v-ruta__et--b { left: 89.4%; top: calc(49.3% + 16px); transform: translateX(-60%); color: var(--granate); }
-.v-ruta__pie { position: absolute; left: 0; right: 0; bottom: -30px; margin: 0; text-align: center; font-family: var(--text); font-size: 13px; color: var(--grafito); }
 
 /* RUC: el contador completa tres pasos y el interruptor pasa a "Activo" */
 .v-ruc { display: grid; gap: 18px; width: min(100%, 360px); }
@@ -3844,9 +3711,8 @@ a, button, label, summary, input { touch-action: manipulation; }
 .pase__incluye li { display: inline-flex; align-items: center; gap: 7px; padding: 6px 11px 6px 7px; border-radius: 999px; background: rgba(255,255,255,0.08); font-family: var(--text); font-size: 13px; font-weight: 500; color: var(--papel); transition: opacity 0.35s ease calc(0.9s + var(--n) * 70ms), transform 0.45s var(--ease-firme) calc(0.9s + var(--n) * 70ms); }
 .pase__incluye li::before { content: ""; flex: 0 0 auto; width: 15px; height: 15px; border-radius: 50%; background: var(--papel) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6.5 12.5l3.5 3.5 7.5-8' fill='none' stroke='%23211B18' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 10px no-repeat; }
 .pase__mas { margin-top: 14px; border-top-color: rgba(255,255,255,0.12); }
-.pase__mas summary, .pase__mas .recibo__mas-t { color: var(--papel); }
-.pase__mas .recibo__si li, .pase__mas .recibo__no li { color: rgba(255,255,255,0.86); }
-.pase__mas .recibo__si li::before { border-color: var(--papel); }
+.pase__mas summary { color: var(--papel); }
+.pase__mas .recibo__no li { color: rgba(255,255,255,0.86); }
 .pase__mas .recibo__no li::before { background: rgba(255,255,255,0.5); }
 .pase__hoy { margin: 0; font-family: var(--text); font-size: 14px; color: var(--grafito); }
 .pase__adelanto { margin: 0; font-family: var(--display); font-size: 48px; font-weight: 500; line-height: 1; letter-spacing: -0.035em; font-variant-numeric: lining-nums tabular-nums; }
@@ -3859,7 +3725,7 @@ a, button, label, summary, input { touch-action: manipulation; }
 .pase__protege { margin: 0 0 12px; font-family: var(--display); font-size: 34px; font-weight: 500; line-height: 1.05; letter-spacing: -0.02em; }
 .pase__protege.is-cambio { animation: valor-entra 0.45s var(--ease-firme) both; }
 .pase__muestra { display: flex; justify-content: center; margin: 0 0 14px; padding: 18px 14px; border-radius: 14px; background: var(--crema); }
-.pase__muestra .recibo__ilustra { width: 170px; margin: 0; }
+.pase__muestra .recibo__ilustra { width: min(100%, 220px); margin: 0; }
 .pase__cta { width: 100%; }
 .pase__nota { margin: 10px 0 0; text-align: center; font-family: var(--text); font-size: 13px; color: var(--grafito); }
 /* Se imprime al llegar: de arriba abajo, con lo incluido entrando en orden */
@@ -3896,7 +3762,6 @@ a, button, label, summary, input { touch-action: manipulation; }
 .cotiza__barra-rotulo { font-size: 13px; }
 
 /* Notarial: la entrada del convenio */
-.para-quien__lede { margin: 0 0 24px; max-width: 42ch; font-family: var(--text); font-size: 17px; line-height: 1.55; color: rgba(33,27,24,0.84); }
 
 @media (prefers-reduced-motion: reduce) {
   .escena *, .pase, .pase * { transition: none !important; animation: none !important; }
@@ -3925,3 +3790,46 @@ a, button, label, summary, input { touch-action: manipulation; }
   .legal--guia .legal__indice a.is-actual { color: var(--granate); }
   .legal--guia .legal__indice a.is-actual::before { content: ""; position: absolute; left: -19px; top: 50%; width: 5px; height: 5px; margin-top: -2.5px; border-radius: 50%; background: var(--granate); }
 }
+
+/* =====================================================================
+   2026-10-25 · Repaso sin repetir: menos texto, más movimiento con sentido
+   ===================================================================== */
+
+/* El texto aparece de una vez: solo se mueven los dibujos, las fotos y los bloques (no todo lo que entra) */
+@media (scripting: enabled) {
+  :is(h1, h2, h3, p, blockquote, figure).reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* Talón: cuándo pagas, en dos paradas unidas por una línea */
+.pase__pagos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin: 0 0 18px; padding: 0; list-style: none; }
+.pase__pagos li { position: relative; display: grid; align-content: start; gap: 3px; padding-top: 26px; }
+.pase__pagos li::before { content: ""; position: absolute; left: 0; top: 0; width: 16px; height: 16px; border-radius: 50%; background: var(--tinta); }
+.pase__pagos li + li::before { background: var(--papel); box-shadow: inset 0 0 0 2px var(--tinta); }
+.pase__pagos li:first-child::after { content: ""; position: absolute; left: 20px; right: -12px; top: 7px; height: 2px; background: repeating-linear-gradient(90deg, rgba(33,27,24,0.55) 0 6px, transparent 6px 11px); }
+.pase__pagos-cuando { font-family: var(--text); font-size: 13px; color: var(--grafito); }
+.pase__pagos .pase__adelanto { font-size: 40px; }
+.pase__pagos-resto { font-family: var(--display); font-size: 26px; font-weight: 500; line-height: 1.25; letter-spacing: -0.02em; }
+.pase__pagos-que { font-family: var(--text); font-size: 13px; color: var(--grafito); }
+@media (min-width: 900px) { .pase__pagos .pase__adelanto { font-size: 40px; } }
+
+/* Laboratorio de marca: sigue hacia el precio, sin repetir el botón de WhatsApp */
+.brand-lab__siguiente { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-top: 18px; font-family: var(--text); font-size: 16px; font-weight: 600; color: var(--papel); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.4); text-underline-offset: 4px; transition: text-decoration-color 0.2s ease; }
+.brand-lab__siguiente::after { content: "\2193"; transition: transform 0.3s var(--ease-firme); }
+.brand-lab__siguiente:hover { text-decoration-color: var(--papel); }
+.brand-lab__siguiente:hover::after { transform: translateY(3px); }
+
+/* Pie de la portada: el estado de la oficina, sin la foto (ya está en "No nos creas") */
+.site-foot__estado { margin: 0 0 14px; }
+.site-foot__estado .site-foot__status { position: static; background: rgba(255,255,255,0.08); -webkit-backdrop-filter: none; backdrop-filter: none; }
+
+/* Preguntas frecuentes: buscador */
+.faq-buscar { margin: 0 0 18px; max-width: 480px; }
+.faq-buscar[hidden] { display: none; }
+.faq-buscar__campo { width: 100%; min-height: 52px; padding: 0 18px 0 48px; border: 1.5px solid rgba(33,27,24,0.2); border-radius: 999px; background: var(--papel) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5' fill='none' stroke='%23675D55' stroke-width='1.8'/%3E%3Cpath d='M15.5 15.5 20 20' stroke='%23675D55' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E") 17px center / 20px no-repeat; font-family: var(--text); font-size: 16px; color: var(--tinta); transition: border-color 0.2s ease; -webkit-appearance: none; appearance: none; }
+.faq-buscar__campo::placeholder { color: var(--grafito); }
+.faq-buscar__campo:hover { border-color: rgba(33,27,24,0.4); }
+.faq-buscar__campo:focus { border-color: var(--tinta); }
+.faq-buscar__res { min-height: 1.4em; margin: 8px 6px 0; font-family: var(--text); font-size: 14px; color: var(--grafito); }
+.faq-tree__q[hidden], .faq-tree__panel[hidden], main section[hidden] { display: none !important; }
+.faq-buscar__ver { min-height: 32px; padding: 0; border: 0; background: none; font-family: var(--text); font-size: 14px; font-weight: 600; color: var(--tinta); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.faq-buscar__ver::after { content: " \2193"; }

@@ -29,7 +29,7 @@
 <!-- Jost servida desde la propia web (assets/fonts, licencia OFL); se pide desde el inicio -->
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/jost-latin.woff2" crossorigin>
 
-<link rel="stylesheet" href="assets/css/styles.css?v=158">
+<link rel="stylesheet" href="assets/css/styles.css?v=160">
 </head>
 <body class="has-header page-faq">
 
@@ -59,6 +59,11 @@
     <div class="faq-hero__text">
       <h1 class="h1 faq-hero__title reveal">Lo que todos preguntan antes de empezar.</h1>
       <p class="lede reveal">39 respuestas simples, sin letra chica: tu empresa, tu marca y tus trámites.</p>
+      <div class="faq-buscar" hidden>
+        <label class="sr-only" for="faq-buscar">Busca tu pregunta</label>
+        <input class="faq-buscar__campo" id="faq-buscar" type="search" placeholder="Busca: precio, socios, marca…" autocomplete="off" spellcheck="false" data-faq-buscar>
+        <p class="faq-buscar__res" aria-live="polite" data-faq-res></p>
+      </div>
       <p class="faq-topics reveal">Temas: <a href="#faq-empresa">Constituir tu empresa (13)</a> · <a href="#faq-marca">Registrar tu marca (14)</a> · <a href="#faq-tramites">Trámites y confianza (12)</a></p>
     </div>
 
@@ -762,6 +767,6 @@
 </script>
 
 <script src="assets/js/analytics.js?v=10"></script>
-<script src="assets/js/main.js?v=75"></script>
+<script src="assets/js/main.js?v=77"></script>
 </body>
 </html>
