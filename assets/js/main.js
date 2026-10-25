@@ -884,7 +884,8 @@
 
   // Escenas: cada beneficio tiene un dibujo que se anima la primera vez que se ve y se puede repetir.
   // La ruta de la notaría mueve una moto por el camino y en cada vuelta cambia el destino (casa, oficina, negocio);
-  // la minuta cambia de caso. Lo que cambia lleva data-ciclo="a|b|c".
+  // la minuta cambia de caso y las clases de marca, de rubro. Lo que cambia lleva data-ciclo="a|b|c"; las celdas
+  // que se encienden, data-encender="25,35|30,43".
   function initEscenas() {
     var escenas = document.querySelectorAll("[data-escena]");
     if (!escenas.length) return;
@@ -901,6 +902,7 @@
     }
     escenas.forEach(function (e) {
       var ciclos = e.querySelectorAll("[data-ciclo]");
+      var encender = e.querySelector("[data-encender]");
       var vueltas = 0;
       var repite = e.querySelector("[data-escena-repite]");
       if (reduce) {
@@ -914,6 +916,13 @@
           var lista = c.getAttribute("data-ciclo").split("|");
           c.textContent = lista[vueltas % lista.length];
         });
+        if (encender) {
+          var grupos = encender.getAttribute("data-encender").split("|");
+          var prenden = grupos[vueltas % grupos.length].split(",");
+          encender.querySelectorAll("[data-c]").forEach(function (c) {
+            c.classList.toggle("is-on", prenden.indexOf(c.getAttribute("data-c")) > -1);
+          });
+        }
         juega(e);
       });
     });
