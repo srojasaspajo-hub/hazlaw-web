@@ -1125,6 +1125,20 @@
     var startX = 0;
     var startOff = 0;
     var pointerId = null;
+    var pausado = false;
+
+    // Botón de pausa: con el dedo no hay "pasar el mouse", así que se puede detener con un toque
+    var pausa = document.querySelector(".voice-pausa");
+    if (pausa) {
+      pausa.hidden = false;
+      pausa.addEventListener("click", function () {
+        pausado = !pausado;
+        pausa.setAttribute("aria-pressed", pausado ? "true" : "false");
+        pausa.querySelector(".voice-pausa__txt").textContent = pausado ? "Reanudar" : "Pausar";
+        pausa.classList.toggle("is-pausado", pausado);
+        if (!pausado) start();
+      });
+    }
 
     function measure() {
       loopW = cards[originals.length].offsetLeft - cards[0].offsetLeft;
@@ -1148,7 +1162,7 @@
       rafId = null;
       var dt = Math.min(64, now - (last || now));
       last = now;
-      if (!dragging && !hovered && !focused && now > resumeAt) x -= SPEED * dt / 1000;
+      if (!dragging && !hovered && !focused && !pausado && now > resumeAt) x -= SPEED * dt / 1000;
       wrap();
       paint();
       if (now - lastCenter > 200) {

@@ -126,10 +126,13 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
 .block { padding: var(--gap-block) 0; }
 
 /* ===== Scroll reveal general ===== */
-.reveal {
-  opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1), transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+/* Solo se oculta si el navegador ejecuta JavaScript: sin él (o para un lector que no lo corre) todo se ve */
+@media (scripting: enabled) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1), transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  }
 }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
 .block--papel { background: var(--papel); }
@@ -1544,7 +1547,7 @@ body.is-hidden .faq-bubble { animation-play-state: paused; }
 .site-foot__wa, .site-foot__call { flex: 1 1 auto; justify-content: center; }
 @media (min-width: 900px) { .site-foot__wa, .site-foot__call { flex: 0 0 auto; } }
 .site-foot__wa:active, .site-foot__call:active { transform: scale(0.97); }
-.site-foot__wa { background: var(--rojo); color: var(--papel); box-shadow: 0 2px 8px rgba(33,27,24,0.06); }
+.site-foot__wa { background: var(--rojo); color: var(--papel); }
 .site-foot__call { border: 1px solid rgba(255,255,255,0.3); color: var(--papel); }
 .site-foot__wa svg, .site-foot__call svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linejoin: round; }
 @media (hover: hover) and (pointer: fine) {
@@ -2122,7 +2125,6 @@ section[id] { scroll-margin-top: var(--header-h); }
   font-family: var(--text);
   font-size: 14px;
   font-weight: 600;
-  box-shadow: 0 8px 22px rgba(122,31,34,0.35);
   transition: transform 0.2s var(--ease-out), box-shadow 0.25s ease;
 }
 .site-header__wa:active { transform: scale(0.96); }
@@ -2843,8 +2845,6 @@ p, li { text-wrap: pretty; }
 /* ===== Respuesta al pasar el mouse en los botones de WhatsApp (P2 de la crítica del 2026-10-04) =====
    La consolidación del 18-09 dejó el reposo y el hover con la misma sombra (o casi invisible):
    el botón principal no respondía al mouse. Se restauran los valores originales. */
-.site-header__wa { box-shadow: 0 6px 16px rgba(122,31,34,0.3); }
-.site-foot__wa { box-shadow: 0 12px 30px rgba(214,53,58,0.28); }
 @media (hover: hover) and (pointer: fine) {
   .btn--red:hover { box-shadow: 0 4px 14px rgba(214,53,58,0.35); }
   .site-header__wa:hover { box-shadow: 0 8px 22px rgba(122,31,34,0.42); }
@@ -2994,14 +2994,9 @@ p, li { text-wrap: pretty; }
   margin: 28px 0 0;
   padding: 26px 22px 10px;
   border-radius: 24px;
-  background:
-    radial-gradient(ellipse 70% 60% at 100% 0%, rgba(122,31,34,0.42) 0%, rgba(122,31,34,0) 70%),
-    radial-gradient(ellipse 50% 50% at 0% 100%, rgba(122,31,34,0.18) 0%, rgba(122,31,34,0) 70%),
-    var(--tinta);
+  background: var(--tinta);
   color: var(--papel);
-  box-shadow: 0 40px 80px -50px rgba(33,27,24,0.7);
 }
-.cifras__kicker { margin: 0 0 6px; font-family: var(--text); font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.62); }
 .cifras__list { display: grid; grid-template-columns: minmax(0, 1fr); margin: 0; padding: 0; list-style: none; }
 .cifra { padding: 22px 0 20px; border-top: 1px solid rgba(255,255,255,0.12); }
 .cifra:first-child { border-top: 0; }
@@ -3035,7 +3030,6 @@ p, li { text-wrap: pretty; }
 }
 @media (min-width: 900px) {
   .cifras { margin-top: 40px; padding: 38px 44px 30px; border-radius: 28px; }
-  .cifras__kicker { margin-bottom: 18px; }
   .cifras__list { grid-template-columns: repeat(6, minmax(0, 1fr)); column-gap: 0; }
   .cifra { grid-column: span 2; padding: 4px 32px 8px; border-top: 0; border-left: 1px solid rgba(255,255,255,0.12); }
   .cifra:first-child { padding-left: 0; border-left: 0; }
@@ -3732,3 +3726,56 @@ a, button, label, summary, input { touch-action: manipulation; }
   .recibo__ilustra .ilu, .cotiza__barra, .cotiza__barra.is-visible { transition: none; }
   .cotiza__barra.is-cambio b, .cotiza__q.is-llegada::before { animation: none; }
 }
+
+/* =====================================================================
+   2026-10-25 · Repaso con UI/UX Pro Max y el inspector de Taste (ejecutados sobre la web)
+   ===================================================================== */
+
+/* Aviso de cookies compacto en el celular; mientras está abierto, se apartan el botón flotante y la barra del total */
+@media (max-width: 899px) {
+  .consent { left: 10px; right: 10px; bottom: max(10px, env(safe-area-inset-bottom)); gap: 8px; padding: 12px 14px 10px; border-radius: 16px; }
+  .consent__text { font-size: 13.5px; line-height: 1.4; }
+  .consent__actions { flex-wrap: nowrap; gap: 6px; }
+  .consent__btn { padding: 0 14px; }
+  .consent__link { padding: 0 2px; }
+  html.hay-aviso .quick-cta, html.hay-aviso .cotiza__barra { opacity: 0; pointer-events: none; }
+}
+
+/* Testimonios: botón de pausa junto al título */
+.testimonials__head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 8px 20px; }
+.testimonials__head .h2 { margin-bottom: 0; }
+.voice-pausa[hidden] { display: none; }
+.voice-pausa { display: inline-flex; align-items: center; gap: 9px; min-height: 44px; padding: 0 16px 0 14px; margin-bottom: 4px; border: 1px solid rgba(33,27,24,0.22); border-radius: 999px; background: none; font-family: var(--text); font-size: 15px; font-weight: 600; color: var(--tinta); cursor: pointer; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
+.voice-pausa:hover { border-color: var(--tinta); }
+.voice-pausa:active { transform: scale(0.97); }
+.voice-pausa__icono { position: relative; width: 10px; height: 12px; }
+.voice-pausa__icono::before, .voice-pausa__icono::after { content: ""; position: absolute; top: 0; bottom: 0; width: 3px; border-radius: 1px; background: currentColor; }
+.voice-pausa__icono::before { left: 0; }
+.voice-pausa__icono::after { right: 0; }
+.voice-pausa.is-pausado .voice-pausa__icono::before { width: 0; height: 0; border-radius: 0; background: none; border-style: solid; border-width: 6px 0 6px 10px; border-color: transparent transparent transparent currentColor; }
+.voice-pausa.is-pausado .voice-pausa__icono::after { display: none; }
+.testimonials .h2 + .voice-pausa { margin-top: 4px; }
+
+/* Lectura: letra pequeña un poco más grande y líneas de largo cómodo */
+.page-foot p { font-size: 15px; }
+.page-foot__note { max-width: 64ch; }
+.site-foot__disclaimer { max-width: 72ch; }
+.recibo__pie, .recibo th small, .cotiza__ayuda { font-size: 15px; }
+.cotiza__barra-rotulo, .cotiza__barra-ver { font-size: 13px; }
+.cotiza__bajada, .banda__lede, .banda__lista li, .pilar__x, .linea__x, .recibo__porque, .perfil__text, .para-quien__beneficios li, .menu-svc__hint { color: rgba(33,27,24,0.88); }
+.cotiza__bajada, .banda__lede, .pilar__x { max-width: 52ch; }
+
+/* Portada de cada servicio: más ancho para el título, que así cabe en tres líneas */
+@media (min-width: 900px) {
+  .photo-hero { grid-template-columns: minmax(0, 0.53fr) minmax(0, 0.47fr); }
+  .photo-hero__title { max-width: 17ch; font-size: clamp(44px, 4.2vw, 58px); }
+  .photo-hero__lede { max-width: 44ch; font-size: 19px; }
+}
+
+/* Trámites del celular: la fila se desliza; el borde se desvanece para que se note que hay más */
+@media (max-width: 899px) {
+  .expediente__index { scroll-padding-inline: var(--margin-side); -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); }
+}
+
+/* Botones y textos planos: sin sombra en reposo ni sombra de texto donde el fondo ya es oscuro */
+.photo-hero__proof { text-shadow: none; }

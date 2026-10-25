@@ -29,7 +29,7 @@
 <!-- Jost servida desde la propia web (assets/fonts, licencia OFL); se pide desde el inicio -->
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/jost-latin.woff2" crossorigin>
 
-<link rel="stylesheet" href="assets/css/styles.css?v=155">
+<link rel="stylesheet" href="assets/css/styles.css?v=156">
 </head>
 <body class="has-header page-nosotros" data-cta-main="empresa">
 
@@ -117,10 +117,12 @@
   </div>
 </section>
 
-<!-- Testimonios: se mueven solos; se pueden arrastrar y se detienen al pasar el mouse -->
+<!-- Testimonios: se mueven solos; se pueden arrastrar, se detienen al pasar el mouse y tienen botón de pausa
+     (WCAG 2.2.2: todo lo que se mueve solo más de 5 segundos se puede pausar, también en el celular) -->
 <section class="block block--crema testimonials" id="testimonios" aria-labelledby="testimonios-title">
-  <div class="container">
+  <div class="container testimonials__head">
     <h2 class="h2" id="testimonios-title">Lo que dicen nuestros clientes</h2>
+    <button class="voice-pausa" type="button" aria-controls="voice-marquee" aria-pressed="false" hidden><span class="voice-pausa__icono" aria-hidden="true"></span><span class="voice-pausa__txt">Pausar</span></button>
   </div>
   <div class="voice-marquee" id="voice-marquee" role="region" aria-label="Testimonios de clientes" tabindex="0">
     <ul class="voice-marquee__track">
@@ -268,7 +270,7 @@
 }
 </script>
 
-<script src="assets/js/analytics.js?v=9"></script>
-<script src="assets/js/main.js?v=72"></script>
+<script src="assets/js/analytics.js?v=10"></script>
+<script src="assets/js/main.js?v=73"></script>
 </body>
 </html>

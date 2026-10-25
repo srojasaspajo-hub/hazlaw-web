@@ -167,6 +167,8 @@
       '<button class="consent__btn" type="button" data-choice="aceptar">Aceptar</button>' +
       "</div>";
     document.body.appendChild(bar);
+    // Mientras el aviso está abierto, en el celular se apartan el botón flotante y la barra del total
+    document.documentElement.classList.add("hay-aviso");
     requestAnimationFrame(function () { bar.classList.add("is-in"); });
     bar.addEventListener("click", function (e) {
       var c = e.target.getAttribute && e.target.getAttribute("data-choice");
@@ -190,6 +192,7 @@
   function close() {
     if (!bar) return;
     var b = bar; bar = null;
+    document.documentElement.classList.remove("hay-aviso");
     b.classList.remove("is-in");
     setTimeout(function () { b.remove(); }, 400);
   }
