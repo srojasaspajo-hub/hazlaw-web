@@ -363,121 +363,6 @@
     window.addEventListener("resize", function () { if (openBtn) position(openBtn); });
   }
 
-  // Registro de marca: el nombre que escribe el visitante recorre las etapas del trámite.
-  // Al entrar en vista avanza solo una vez, hasta el registro; si la persona toca algo, manda ella.
-  var BRAND_STAGES = [
-    { label: "Búsqueda", status: "Buscando nombres iguales o parecidos", caption: "Primero revisamos si ya existe una marca igual o parecida a la tuya." },
-    { label: "Solicitud", status: "Solicitud presentada", caption: "Presentamos la solicitud ante INDECOPI, en la clase que corresponde a lo que vendes." },
-    { label: "Publicación", status: "Publicada en la Gaceta de INDECOPI", caption: "Tu marca se publica para que cualquiera pueda conocerla." },
-    { label: "Oposición", status: "30 días hábiles para oposiciones", caption: "Durante 30 días hábiles, otros pueden oponerse. Si alguien lo hace, lo vemos juntos." },
-    { label: "Registro", status: "Marca registrada · 10 años, renovables", caption: "Si todo está en orden, INDECOPI otorga el registro por 10 años, y se puede renovar." }
-  ];
-
-  function initBrandLab() {
-    var card = document.getElementById("brand-card");
-    if (!card) return;
-    var input = document.getElementById("brand-name");
-    var range = document.getElementById("brand-range");
-    var text = document.getElementById("brand-card-text");
-    var status = document.getElementById("brand-card-status");
-    var caption = document.getElementById("brand-caption");
-    var steps = Array.prototype.slice.call(document.querySelectorAll(".brand-steps__labels button"));
-    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var stage = -1;
-    var touched = false;
-    var autoTimer = null;
-    var swapTimer = null;
-
-    // Mientras avanza solo, no se anuncia cada etapa al lector de pantalla
-    caption.setAttribute("aria-live", "off");
-
-    function setStage(n) {
-      n = Math.max(0, Math.min(BRAND_STAGES.length - 1, n));
-      if (n === stage) return;
-      stage = n;
-      var st = BRAND_STAGES[n];
-      card.setAttribute("data-stage", String(n));
-      range.value = String(n);
-      range.setAttribute("aria-valuetext", st.label);
-      range.style.setProperty("--pct", (n / (BRAND_STAGES.length - 1)) * 100 + "%");
-      steps.forEach(function (b, i) {
-        b.classList.toggle("is-active", i === n);
-        b.classList.toggle("is-past", i < n);
-      });
-      clearTimeout(swapTimer);
-      status.classList.add("is-swapping");
-      caption.classList.add("is-swapping");
-      swapTimer = setTimeout(function () {
-        status.textContent = st.status;
-        caption.textContent = st.caption;
-        status.classList.remove("is-swapping");
-        caption.classList.remove("is-swapping");
-      }, reduce ? 0 : 200);
-    }
-
-    function updateName() {
-      var name = input.value.replace(/\s+/g, " ").trim();
-      var shown = name || "Tu marca";
-      text.textContent = shown;
-      card.classList.toggle("brand-card--m", shown.length > 10 && shown.length <= 16);
-      card.classList.toggle("brand-card--s", shown.length > 16);
-      // El nombre viaja al precio: aparece en el dibujo de lo que proteges y en el mensaje de WhatsApp
-      document.dispatchEvent(new CustomEvent("hz:marca-nombre", { detail: name }));
-    }
-
-    function takeOver() {
-      if (touched) return;
-      touched = true;
-      clearTimeout(autoTimer);
-      caption.setAttribute("aria-live", "polite");
-      hzTrack("marca_simulador_uso", {});
-    }
-
-    input.addEventListener("input", function () {
-      takeOver();
-      updateName();
-    });
-    input.addEventListener("keydown", function (e) {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        range.focus();
-      }
-    });
-    range.addEventListener("pointerdown", takeOver);
-    range.addEventListener("keydown", takeOver);
-    range.addEventListener("input", function () {
-      takeOver();
-      setStage(parseInt(range.value, 10));
-    });
-    steps.forEach(function (b) {
-      b.addEventListener("click", function () {
-        takeOver();
-        setStage(parseInt(b.getAttribute("data-step"), 10));
-      });
-    });
-
-    function advance() {
-      if (touched || stage >= BRAND_STAGES.length - 1) return;
-      autoTimer = setTimeout(function () {
-        if (touched) return;
-        setStage(stage + 1);
-        advance();
-      }, 1900);
-    }
-
-    setStage(0);
-    updateName();
-
-    if (!reduce && "IntersectionObserver" in window) {
-      var io = new IntersectionObserver(function (entries) {
-        if (!entries[0].isIntersecting) return;
-        io.disconnect();
-        advance();
-      }, { threshold: 0.55 });
-      io.observe(card);
-    }
-  }
-
   // Preguntas frecuentes como árbol: el tronco se llena hasta la pregunta elegida y
   // una rama la une con su respuesta. Puede haber varios grupos en la misma página.
   function initFaqTree() {
@@ -694,10 +579,13 @@
         barra: "Firmas " + lugar,
         estado: { capital: r.capital, firma: r.firma },
         filas: {
-          "serv-n": mas ? "A tu medida" : "500",
+          "serv-n": mas ? "A tu medida" : "480",
           "serv-det": mas ? "Según tu capital: te lo confirmamos antes de que pagues" : "Con derechos notariales y una toma de firmas",
           reg: mas ? "Según tu capital" : "S/ 100 a 200",
-          total: mas ? "Te lo enviamos por escrito" : "S/ 600 a 700",
+          total: mas ? "Te lo enviamos por escrito" : "S/ 580 a 680",
+          // El adelanto es parte del total: el resto se paga el día de la firma
+          adelanto: 180,
+          resto: mas ? "El resto" : "S/ 400 a 500",
           firma: lugar
         },
         wa: "Hola, vengo de la web. Quiero constituir mi empresa, con capital de " + (mas ? "más de" : "hasta") +
@@ -710,10 +598,10 @@
         logo: ["El logo", "el logo"],
         ambos: ["Nombre y logo", "el nombre y el logo"]
       }[r.protege];
-      var dos = r.clases === "2", remype = r.remype === "si";
+      var dos = r.clases === "2";
       var nombre = r.nombre ? " «" + r.nombre + "»" : "";
-      // Tasas de gob.pe (trámite 333), consultadas el 2026-10-24. El beneficio publicado baja solo la primera clase.
-      var t1 = remype ? 401.2 : 534.9, t2 = 533.3, total = 370 + t1 + (dos ? t2 : 0);
+      // Tasas de gob.pe (trámite 333), consultadas el 2026-10-24
+      var t1 = 534.9, t2 = 533.3, total = 370 + t1 + (dos ? t2 : 0);
       return {
         valor: que[0],
         barra: que[0] + ", en " + (dos ? "dos clases" : "una clase"),
@@ -722,15 +610,10 @@
         proporcion: Math.round(370 / total * 100),
         filas: {
           tasa1: t1,
-          "tasa1-det": remype ? "Pago al Estado, con el beneficio para mypes" : "Pago al Estado",
           tasa2: dos ? t2 : null,
           total: total
         },
-        pie: remype && dos
-          ? "El beneficio para mypes baja la tasa de la primera clase; la segunda te la confirmamos antes de que pagues. Tasas de gob.pe, consultadas el 24 de octubre de 2026."
-          : "Tasas de gob.pe, consultadas el 24 de octubre de 2026. Las fija el Estado y pueden cambiar.",
-        wa: "Hola, vengo de la web. Quiero registrar " + que[1] + " de mi negocio" + nombre + " en " + (dos ? "dos clases" : "una clase") +
-            (remype ? ". Tengo RUC activo y REMYPE." : ".")
+        wa: "Hola, vengo de la web. Quiero registrar " + que[1] + " de mi negocio" + nombre + " en " + (dos ? "dos clases" : "una clase") + "."
       };
     }
   };
@@ -780,7 +663,7 @@
         var r = respuestas();
         r.nombre = root.hzNombre || "";
         var s = regla(r);
-        // Marca: el nombre que escribiste en el laboratorio se ve en el dibujo de lo que proteges
+        // Marca: el nombre que escribes se ve en el dibujo de lo que proteges
         var muestra = root.querySelector(".pase__muestra .ilu--nombre");
         if (muestra) {
           var visible = r.nombre ? (r.nombre.length > 18 ? r.nombre.slice(0, 17) + "…" : r.nombre) : "Tu marca";
@@ -802,7 +685,6 @@
             else marcaCambio(fila || celda);
           }
         });
-        pon(out("pie"), s.pie);
         if (pase) {
           // El pase muestra la respuesta: el capital, dónde firmas o qué se protege
           if (s.estado) Object.keys(s.estado).forEach(function (k) { pase.setAttribute("data-" + k, s.estado[k]); });
@@ -837,8 +719,9 @@
         pinta(true);
         if (!usado) { usado = true; hzTrack("cotizador_uso", { servicio: root.getAttribute("data-cotiza") }); }
       });
-      document.addEventListener("hz:marca-nombre", function (e) {
-        root.hzNombre = e.detail || "";
+      var campoNombre = root.querySelector("[data-marca-nombre]");
+      if (campoNombre) campoNombre.addEventListener("input", function () {
+        root.hzNombre = campoNombre.value.replace(/\s+/g, " ").trim();
         pinta(false);
       });
       pinta();
@@ -869,7 +752,7 @@
         var io = new IntersectionObserver(function (entries) {
           if (!entries[0].isIntersecting) return;
           io.disconnect();
-          pase.querySelectorAll("dd").forEach(function (dd) {
+          pase.querySelectorAll("dd, .pase__adelanto").forEach(function (dd) {
             if (/^S\/\s*[\d\s ]+(\.\d+)?$/.test(sinEspacios(dd.textContent))) dd.textContent = soles(0);
           });
           pase.classList.remove("is-pendiente");
@@ -885,15 +768,81 @@
   // Escenas: cada beneficio tiene un dibujo que se anima la primera vez que se ve y se puede repetir.
   // La ruta de la notaría mueve una moto por el camino y en cada vuelta cambia el destino (casa, oficina, negocio);
   // la minuta cambia de caso y las clases de marca, de rubro. Lo que cambia lleva data-ciclo="a|b|c"; las celdas
-  // que se encienden, data-encender="25,35|30,43".
+  // que se encienden, data-encender="25,35|30,43"; el contador de hojas, data-cuenta-fin="8|10|9".
   function initEscenas() {
     var escenas = document.querySelectorAll("[data-escena]");
     if (!escenas.length) return;
     var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // Minuta: las hojas suben de una en una mientras entran las decisiones de tu empresa
+    // modo: "fin" deja el total sin animar, "base" deja las hojas básicas; sin modo, cuenta hasta el total
+    function hojas(e, modo) {
+      var cuenta = e.querySelector("[data-cuenta]");
+      if (!cuenta) return;
+      var base = parseInt(cuenta.getAttribute("data-cuenta"), 10);
+      var fin = parseInt(cuenta.hzFin || cuenta.getAttribute("data-cuenta-fin").split("|")[0], 10);
+      var pila = e.querySelectorAll(".v-hojas__h");
+      (e.hzRelojes || []).forEach(clearTimeout);
+      e.hzRelojes = [];
+      function pon(n) {
+        cuenta.textContent = n;
+        pila.forEach(function (h, i) { h.classList.toggle("is-on", i < n); });
+      }
+      if (modo === "fin") { pon(fin); return; }
+      pon(base);
+      if (modo === "base") return;
+      var pasos = fin - base;
+      for (var k = 1; k <= pasos; k++) {
+        e.hzRelojes.push(setTimeout(pon.bind(null, base + k), 550 + (k - 1) * Math.round(1700 / pasos)));
+      }
+    }
+
+    // Balanza: los trámites pasan del lado de tu estudio al de Hazlaw+ y la balanza se inclina con cada uno
+    function balanza(e, alFinal) {
+      var v = e.querySelector("[data-balanza]");
+      if (!v) return;
+      var a = v.querySelector('[data-pila="a"]'), b = v.querySelector('[data-pila="b"]');
+      if (!v.hzBloques) v.hzBloques = Array.prototype.slice.call(a.children);
+      (v.hzRelojes || []).forEach(clearTimeout);
+      v.hzRelojes = [];
+      v.getAnimations({ subtree: true }).forEach(function (an) { an.cancel(); });
+      if (alFinal) {
+        v.hzBloques.slice().reverse().forEach(function (bl) { b.appendChild(bl); });
+        v.style.setProperty("--inclina", "1");
+        v.classList.add("is-libre");
+        return;
+      }
+      v.hzBloques.forEach(function (bl) { a.appendChild(bl); });
+      v.style.setProperty("--inclina", "-1");
+      v.classList.remove("is-libre");
+      var total = v.hzBloques.length;
+      v.hzBloques.slice().reverse().forEach(function (bl, k) {
+        v.hzRelojes.push(setTimeout(function () {
+          var antes = bl.getBoundingClientRect();
+          b.appendChild(bl);
+          var despues = bl.getBoundingClientRect();
+          var dx = antes.left - despues.left, dy = antes.top - despues.top;
+          if (bl.animate) {
+            bl.animate([
+              { transform: "translate(" + dx + "px," + dy + "px)" },
+              { transform: "translate(" + dx / 2 + "px," + (dy / 2 - 34) + "px)", offset: 0.5 },
+              { transform: "none" }
+            ], { duration: 620, easing: "cubic-bezier(0.65, 0, 0.35, 1)" });
+          }
+          v.hzRelojes.push(setTimeout(function () {
+            v.style.setProperty("--inclina", String(-1 + 2 * (k + 1) / total));
+            if (k === total - 1) v.classList.add("is-libre");
+          }, 560));
+        }, 600 + k * 820));
+      });
+    }
+
     function juega(e) {
       // Vuelve al inicio sin animar el regreso, y arranca otra vez
       e.classList.add("is-reinicio");
       e.classList.remove("is-viva");
+      hojas(e);
+      balanza(e);
       void e.offsetWidth;
       e.classList.remove("is-reinicio");
       e.classList.add("is-viva");
@@ -903,19 +852,28 @@
     escenas.forEach(function (e) {
       var ciclos = e.querySelectorAll("[data-ciclo]");
       var encender = e.querySelector("[data-encender]");
+      var cuenta = e.querySelector("[data-cuenta]");
       var vueltas = 0;
       var repite = e.querySelector("[data-escena-repite]");
       if (reduce) {
         e.classList.add("is-quieta");
+        hojas(e, "fin");
+        balanza(e, true);
         if (repite) repite.hidden = true;
         return;
       }
+      // Antes de verse, la minuta parte de las hojas básicas
+      if (cuenta) hojas(e, "base");
       if (repite) repite.addEventListener("click", function () {
         vueltas++;
         ciclos.forEach(function (c) {
           var lista = c.getAttribute("data-ciclo").split("|");
           c.textContent = lista[vueltas % lista.length];
         });
+        if (cuenta) {
+          var fines = cuenta.getAttribute("data-cuenta-fin").split("|");
+          cuenta.hzFin = fines[vueltas % fines.length];
+        }
         if (encender) {
           var grupos = encender.getAttribute("data-encender").split("|");
           var prenden = grupos[vueltas % grupos.length].split(",");
@@ -927,7 +885,10 @@
       });
     });
     if (reduce) return;
-    if (!("IntersectionObserver" in window)) { escenas.forEach(function (e) { e.classList.add("is-quieta"); }); return; }
+    if (!("IntersectionObserver" in window)) {
+      escenas.forEach(function (e) { e.classList.add("is-quieta"); hojas(e, "fin"); balanza(e, true); });
+      return;
+    }
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (!en.isIntersecting) return;
@@ -952,6 +913,8 @@
     var text = document.getElementById("tramite-text");
     var num = document.getElementById("tramite-num");
     var cta = document.getElementById("tramite-cta");
+    var paso = document.getElementById("tramite-paso");
+    var pasoComun = paso ? paso.textContent : "";
     var wide = window.matchMedia("(min-width: 900px)");
     var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     var total = tabs.length;
@@ -969,6 +932,7 @@
       sheet.setAttribute("aria-labelledby", tab.id);
       title.textContent = tab.querySelector(".expediente__name").textContent;
       text.textContent = tab.getAttribute("data-text");
+      if (paso) paso.textContent = tab.getAttribute("data-paso") || pasoComun;
       num.textContent = two(i + 1) + " de " + two(total);
       var msg = "Hola, vengo de la web. " + tab.getAttribute("data-msg");
       cta.setAttribute("data-wa", msg);
@@ -1568,7 +1532,6 @@
     initButtonPress();
     initWhatsAppToast();
     initGlossary();
-    initBrandLab();
     initVoiceMarquee();
     initFaqTree();
     initProofCopy();

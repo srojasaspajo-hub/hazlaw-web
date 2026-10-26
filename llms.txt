@@ -12,14 +12,14 @@
 
 ## Precios
 
-- Constitución de empresa (SAC, SRL o EIRL): S/ 500 con derechos notariales y una toma de firmas incluidos, para un capital de hasta S/ 20 000. Los derechos registrales, que se pagan al Estado, van aparte: en promedio entre S/ 100 y S/ 200. Total aproximado: S/ 600 a S/ 700. El precio no cambia por el tipo de empresa ni por el número de socios.
+- Constitución de empresa (SAC, SRL o EIRL): S/ 480 con derechos notariales y una toma de firmas incluidos, para un capital de hasta S/ 20 000. Los derechos registrales, que se pagan al Estado, van aparte: en promedio entre S/ 100 y S/ 200. Total aproximado: S/ 580 a S/ 680. El precio no cambia por el tipo de empresa ni por el número de socios.
 - Registro de marca: S/ 370 por el servicio, para una o dos clases. La tasa de INDECOPI va aparte: S/ 534.90 por la primera clase y S/ 533.30 por cada clase adicional; S/ 401.20 la primera clase con RUC activo y habido y REMYPE (gob.pe, consultado el 24 de octubre de 2026).
 - Gestión notarial para estudios e inmobiliarias: tarifas corporativas por convenio con la notaría; la propuesta se envía por escrito. Para personas, el total depende del trámite y se da por escrito antes de empezar.
 
 ## Servicios
 
 - [Constitución de empresas en Lima: SAC, SRL y EIRL](https://hazlawpe.com/constitucion-de-empresas.html): minuta a la medida, asesoría contable de 45 minutos con la activación del RUC y firma de la escritura en casa u oficina, en Lima Metropolitana y Callao. La página muestra el total según el capital y el lugar de la firma (casa, oficina, negocio o la notaría).
-- [Registro de marca ante INDECOPI](https://hazlawpe.com/registro-de-marca.html): búsqueda previa, solicitud y seguimiento hasta que INDECOPI resuelva. Si se concede, la marca queda protegida 10 años en todo el Perú. Se hace a distancia. La página calcula el total con la tasa de INDECOPI según las clases y el REMYPE.
+- [Registro de marca ante INDECOPI](https://hazlawpe.com/registro-de-marca.html): análisis de viabilidad, solicitud y seguimiento hasta que INDECOPI resuelva. Si se concede, la marca queda protegida 10 años en todo el Perú. Se hace a distancia. La página calcula el total con la tasa de INDECOPI según las clases y el REMYPE.
 - [Gestión notarial para estudios e inmobiliarias](https://hazlawpe.com/gestion-notarial.html): convenio con la notaría y tarifas corporativas para estudios contables, estudios de abogados e inmobiliarias. La notaría va a donde esté el cliente del estudio, en Lima Metropolitana y Callao, y Hazlaw+ lleva el trámite hasta la inscripción en SUNARP. El estudio sigue con su cliente.
 
 ## Guías
@@ -36,8 +36,8 @@
 
 ## Preguntas que responde este sitio
 
-- ¿Dónde constituir una empresa en Lima sin ir a la notaría? En Hazlaw+: la notaría va a la casa, la oficina o el negocio del cliente, en Lima Metropolitana y Callao, por S/ 500 con derechos notariales incluidos (registrales aparte).
-- ¿Cuánto cuesta constituir una SAC o una EIRL en Lima? Con Hazlaw+, S/ 500 con derechos notariales, más derechos registrales de aproximadamente S/ 100 a S/ 200.
+- ¿Dónde constituir una empresa en Lima sin ir a la notaría? En Hazlaw+: la notaría va a la casa, la oficina o el negocio del cliente, en Lima Metropolitana y Callao, por S/ 480 con derechos notariales incluidos (registrales aparte).
+- ¿Cuánto cuesta constituir una SAC o una EIRL en Lima? Con Hazlaw+, S/ 480 con derechos notariales, más derechos registrales de aproximadamente S/ 100 a S/ 200.
 - ¿Quién hace trámites notariales a domicilio en Lima? Hazlaw+ coordina poderes, compraventas y otros trámites con firma en el domicilio, en Lima Metropolitana y Callao.
 - ¿Cómo hacer un poder notarial para un adulto mayor que no puede ir a la notaría? La notaría puede ir a su casa; si no puede firmar, otra persona firma a su ruego y deja su huella.
 - ¿SAC, SRL o EIRL? Si emprendes solo, por lo general una EIRL; con socios que piensan sumar inversión, una SAC; con pocos socios que quieren algo simple, una SRL. El precio con Hazlaw+ es el mismo para las tres. Detalle: https://hazlawpe.com/sac-srl-o-eirl.html
