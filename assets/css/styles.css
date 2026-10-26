@@ -2735,143 +2735,8 @@ p, li { text-wrap: pretty; }
 }
 @media (prefers-reduced-motion: reduce) { .cifra__bar span { transition: none; } }
 
-/* ===== Gestión notarial: expediente de trámites (2026-10-05) ===== */
-.tramites-head .h2 { margin-bottom: 10px; }
-.tramites-head .lede { margin-bottom: 28px; }
-.expediente { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
-.expediente__index {
-  display: flex;
-  gap: 8px;
-  margin: 0 calc(-1 * var(--margin-side));
-  padding: 4px var(--margin-side) 10px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-}
-.expediente__index::-webkit-scrollbar { display: none; }
-.expediente__tab {
-  flex: 0 0 auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 48px;
-  padding: 0 18px 0 14px;
-  border: 1px solid rgba(33,27,24,0.12);
-  border-radius: 999px;
-  background: var(--papel);
-  font-family: var(--text);
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--tinta);
-  text-align: left;
-  scroll-snap-align: start;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-}
-.expediente__num { font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--grafito); transition: color 0.3s ease; }
-.expediente__tab.is-active { background: var(--tinta); border-color: var(--tinta); color: var(--papel); }
-.expediente__tab.is-active .expediente__num { color: rgba(255,255,255,0.6); }
-
-/* La hoja: papel sobre una pila de papeles */
-.expediente__desk { position: relative; }
-.expediente__sheet {
-  position: relative;
-  padding: 26px 22px 24px;
-  border-radius: 18px;
-  background: #FFFFFF;
-  box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset, 0 30px 60px -40px rgba(33,27,24,0.45), 0 2px 6px rgba(33,27,24,0.06);
-  isolation: isolate;
-}
-.expediente__sheet::before, .expediente__sheet::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  border-radius: inherit;
-  background: #F1F1EF;
-  box-shadow: 0 2px 6px rgba(33,27,24,0.06);
-}
-.expediente__sheet::before { transform: rotate(-2deg) translate(-4px, 6px); }
-.expediente__sheet::after { transform: rotate(1.4deg) translate(6px, 4px); background: #E9E9E6; }
-.expediente__sheet:focus-visible { outline: 2px solid var(--tinta); outline-offset: 4px; }
-.expediente__meta { display: flex; justify-content: space-between; gap: 12px; margin: 0 0 18px; padding-bottom: 14px; border-bottom: 1px dashed rgba(33,27,24,0.18); font-family: var(--text); font-size: 14px; color: var(--grafito); font-variant-numeric: tabular-nums; }
-.expediente__title { margin: 0 0 10px; padding-right: 72px; font-family: var(--display); font-size: 30px; font-weight: 500; line-height: 1.1; letter-spacing: -0.025em; color: var(--tinta); }
-.expediente__text { margin: 0 0 22px; max-width: 52ch; min-height: 3.1em; font-family: var(--text); font-size: 17px; line-height: 1.55; color: rgba(33,27,24,0.84); }
-.expediente__steps { position: relative; display: grid; gap: 14px; margin: 0 0 24px; padding: 0; list-style: none; counter-reset: paso; }
-.expediente__step { position: relative; display: flex; align-items: center; gap: 12px; font-family: var(--text); font-size: 15px; line-height: 1.35; color: var(--tinta); }
-.expediente__dot { position: relative; flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: var(--granate); box-shadow: 0 0 0 4px rgba(122,31,34,0.1); }
-.expediente__dot::after { content: ""; position: absolute; left: 7px; top: 5px; width: 5px; height: 9px; border: solid var(--papel); border-width: 0 1.8px 1.8px 0; transform: rotate(45deg); }
-.expediente__sheet .btn { width: 100%; }
-.expediente__sello {
-  position: absolute;
-  top: 66px;
-  right: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 64px;
-  height: 64px;
-  border: 1.5px solid rgba(122,31,34,0.55);
-  border-radius: 50%;
-  box-shadow: inset 0 0 0 4px #FFFFFF, inset 0 0 0 5px rgba(122,31,34,0.35);
-  transform: rotate(-14deg);
-}
-.expediente__sello-plus { position: relative; width: 22px; height: 22px; }
-.expediente__sello-plus::before, .expediente__sello-plus::after { content: ""; position: absolute; left: 50%; top: 50%; background: var(--granate); border-radius: 1px; }
-.expediente__sello-plus::before { width: 22px; height: 4px; margin: -2px 0 0 -11px; }
-.expediente__sello-plus::after { width: 4px; height: 22px; margin: -11px 0 0 -2px; }
+/* Gestión notarial: nota bajo los trámites */
 .tramites__note { margin: 26px 0 0; font-family: var(--text); font-size: 14px; color: var(--grafito); }
-
-/* La dinámica: la hoja se renueva, los pasos se encienden uno por uno y cae el sello */
-.expediente__sheet.is-playing { animation: hoja-entra 0.55s var(--ease-out) both; }
-.expediente__sheet.is-playing .expediente__title,
-.expediente__sheet.is-playing .expediente__text { animation: hoja-texto 0.5s var(--ease-out) both; }
-.expediente__sheet.is-playing .expediente__text { animation-delay: 0.06s; }
-.expediente__sheet.is-playing .expediente__dot { animation: paso-enciende 0.4s var(--ease-out) both; }
-.expediente__sheet.is-playing .expediente__step:nth-child(1) .expediente__dot { animation-delay: 0.25s; }
-.expediente__sheet.is-playing .expediente__step:nth-child(2) .expediente__dot { animation-delay: 0.5s; }
-.expediente__sheet.is-playing .expediente__step:nth-child(3) .expediente__dot { animation-delay: 0.75s; }
-.expediente__sheet.is-playing .expediente__step:nth-child(4) .expediente__dot { animation-delay: 1s; }
-.expediente__sheet.is-playing .expediente__sello { animation: sello-cae 0.5s cubic-bezier(0.3, 1.5, 0.5, 1) 1.25s both; }
-@keyframes hoja-entra { from { transform: translateY(14px) rotate(-0.6deg); opacity: 0.4; } to { transform: none; opacity: 1; } }
-@keyframes hoja-texto { from { transform: translateY(8px); opacity: 0; } to { transform: none; opacity: 1; } }
-@keyframes paso-enciende { from { background: transparent; box-shadow: inset 0 0 0 1.5px rgba(33,27,24,0.25), 0 0 0 0 rgba(122,31,34,0); } 60% { box-shadow: 0 0 0 8px rgba(122,31,34,0.18); } to { background: var(--granate); box-shadow: 0 0 0 4px rgba(122,31,34,0.1); } }
-@keyframes sello-cae { from { transform: rotate(-30deg) scale(1.9); opacity: 0; } to { transform: rotate(-14deg) scale(1); opacity: 1; } }
-
-@media (hover: hover) and (pointer: fine) {
-  .expediente__tab:not(.is-active):hover { border-color: var(--tinta); }
-}
-@media (min-width: 900px) {
-  .expediente { grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: clamp(40px, 5vw, 72px); align-items: start; }
-  .expediente__index { flex-direction: column; gap: 0; margin: 0; padding: 0; overflow: visible; border-top: 1px solid rgba(33,27,24,0.12); }
-  .expediente__tab {
-    width: 100%;
-    min-height: 58px;
-    padding: 0 16px 0 14px;
-    border: 0;
-    border-bottom: 1px solid rgba(33,27,24,0.12);
-    border-radius: 0;
-    background: none;
-    font-size: 18px;
-    gap: 16px;
-    transition: background-color 0.3s ease, color 0.3s ease, padding 0.3s var(--ease-out);
-  }
-  .expediente__tab.is-active { background: none; color: var(--tinta); padding-left: 24px; box-shadow: inset 3px 0 0 var(--granate); font-weight: 600; }
-  .expediente__tab.is-active .expediente__num { color: var(--granate); }
-  .expediente__sheet { padding: 34px 38px 32px; border-radius: 22px; }
-  .expediente__title { font-size: 40px; padding-right: 0; }
-  .expediente__sello { top: auto; bottom: 26px; right: 34px; width: 84px; height: 84px; }
-  .expediente__steps { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
-  .expediente__step { flex-direction: column; align-items: flex-start; gap: 10px; font-size: 14px; }
-  .expediente__steps::before { content: ""; position: absolute; left: 11px; right: 12%; top: 10px; height: 1.5px; background: rgba(122,31,34,0.22); }
-  .expediente__sheet .btn { width: auto; }
-}
-@media (hover: hover) and (pointer: fine) and (min-width: 900px) {
-  .expediente__tab:not(.is-active):hover { background: rgba(255,255,255,0.6); padding-left: 20px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .expediente__sheet.is-playing, .expediente__sheet.is-playing * { animation: none !important; }
-}
 
 /* Datos que solo el dueño puede confirmar: se ven a propósito, y bloquean la publicación */
 .pendiente { padding: 1px 4px; border-radius: 4px; background: #FFE58F; color: #3A2E00; font-style: normal; }
@@ -3248,9 +3113,6 @@ a, button, label, summary, input { touch-action: manipulation; }
 }
 
 /* Trámites del celular: la fila se desliza; el borde se desvanece para que se note que hay más */
-@media (max-width: 899px) {
-  .expediente__index { scroll-padding-inline: var(--margin-side); -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); }
-}
 
 /* Botones y textos planos: sin sombra en reposo ni sombra de texto donde el fondo ya es oscuro */
 .photo-hero__proof { text-shadow: none; }
@@ -3581,26 +3443,6 @@ a, button, label, summary, input { touch-action: manipulation; }
 .is-viva .v-hojas__lista li::after, .is-quieta .v-hojas__lista li::after { transform: rotate(45deg) scale(1); }
 
 /* Viabilidad: la aguja recorre el medidor y se detiene en "alta" */
-.v-viable { width: 100%; display: grid; place-items: center; }
-.v-viable__tarjeta { position: relative; width: min(100%, 340px); padding: 20px 20px 22px; border-radius: 18px; background: var(--papel); box-shadow: 0 1px 2px rgba(33,27,24,0.08), 0 22px 44px -26px rgba(33,27,24,0.4); }
-.v-viable__cabeza { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin: 0 0 8px; font-family: var(--text); font-size: 14px; color: var(--tinta); }
-.v-viable__cabeza span { font-size: 13px; color: var(--grafito); }
-.v-viable__medidor { display: block; width: 100%; height: auto; overflow: visible; }
-.v-viable__pista, .v-viable__lleno { fill: none; stroke-width: 14; stroke-linecap: round; }
-.v-viable__pista { stroke: rgba(33,27,24,0.08); }
-.v-viable__lleno { stroke: var(--granate); stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.4s cubic-bezier(0.65, 0, 0.35, 1) 0.3s; }
-.v-viable__aguja { transform-box: view-box; transform-origin: 110px 112px; transform: rotate(-88deg); transition: transform 1.4s cubic-bezier(0.34, 1.3, 0.5, 1) 0.3s; }
-.v-viable__aguja path { stroke: var(--tinta); stroke-width: 4; stroke-linecap: round; }
-.v-viable__aguja circle { fill: var(--tinta); }
-.v-viable__ejes { display: flex; justify-content: space-between; margin: 2px 6px 10px; font-family: var(--text); font-size: 13px; color: var(--grafito); }
-.v-viable__lectura { margin: 0 0 8px; text-align: center; font-family: var(--display); font-size: 22px; font-weight: 500; color: var(--tinta); opacity: 0; transform: translateY(6px); transition: opacity 0.3s ease 1.6s, transform 0.4s var(--ease-firme) 1.6s; }
-.v-viable__lectura b { font-weight: 600; color: var(--granate); }
-.v-viable__nota { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 0; font-family: var(--text); font-size: 14px; color: var(--grafito); opacity: 0; transition: opacity 0.3s ease 1.9s; }
-.v-viable__nota .plus-mark { width: 11px; height: 11px; --t: 1.6px; }
-.is-viva .v-viable__lleno, .is-quieta .v-viable__lleno { stroke-dashoffset: 0.2; }
-.is-viva .v-viable__aguja, .is-quieta .v-viable__aguja { transform: rotate(54deg); }
-.is-viva .v-viable__lectura, .is-quieta .v-viable__lectura { opacity: 1; transform: none; }
-.is-viva .v-viable__nota, .is-quieta .v-viable__nota { opacity: 1; }
 
 /* Avisos: llegan uno tras otro, como en el celular */
 .v-avisos { width: min(100%, 360px); }
@@ -3682,3 +3524,56 @@ a, button, label, summary, input { touch-action: manipulation; }
 .v-balanza__quien--a { left: 1cqw; }
 .v-balanza__quien--b { left: 67cqw; }
 @media (min-width: 900px) { .v-balanza__bloque, .v-balanza__libre span { font-size: 13px; } }
+
+/* Viabilidad con INDECOPI, como un semáforo: primero "poco probable", se ajusta la marca y queda en verde */
+.v-semaforo { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 22px; width: min(100%, 360px); padding-top: 18px; }
+.v-semaforo__caja { display: grid; gap: 10px; padding: 12px; border-radius: 24px; background: var(--tinta); box-shadow: 0 18px 36px -20px rgba(33,27,24,0.6); }
+.v-semaforo__luz { width: 40px; height: 40px; border-radius: 50%; background: var(--luz-off); }
+.v-semaforo__luz--no { --luz-off: rgba(194,69,61,0.24); }
+.v-semaforo__luz--poco { --luz-off: rgba(226,169,59,0.24); --luz: #E2A93B; }
+.v-semaforo__luz--si { --luz-off: rgba(63,164,106,0.26); --luz: #3FA46A; }
+.is-viva .v-semaforo__luz--poco { animation: luz-poco 4s linear both; }
+.is-viva .v-semaforo__luz--si { animation: luz-si 4s linear both; }
+.is-quieta .v-semaforo__luz--si { background: var(--luz); box-shadow: 0 0 18px var(--luz); }
+@keyframes luz-poco { 0%, 14% { background: var(--luz-off); box-shadow: none; } 16%, 52% { background: var(--luz); box-shadow: 0 0 18px var(--luz); } 55%, 100% { background: var(--luz-off); box-shadow: none; } }
+@keyframes luz-si { 0%, 55% { background: var(--luz-off); box-shadow: none; } 58%, 100% { background: var(--luz); box-shadow: 0 0 18px var(--luz); } }
+.v-semaforo__pasos { display: grid; gap: 12px; }
+.v-semaforo__pasos li { display: grid; gap: 2px; opacity: 0; transform: translateX(-6px); transition: opacity 0.3s ease calc(0.65s + var(--n) * 0.83s), transform 0.4s var(--ease-firme) calc(0.65s + var(--n) * 0.83s); }
+.v-semaforo__pasos small { font-family: var(--text); font-size: 13px; color: var(--grafito); }
+.v-semaforo__pasos b { display: flex; align-items: center; gap: 8px; font-family: var(--text); font-size: 15px; font-weight: 600; color: var(--tinta); }
+.v-semaforo__punto { flex: 0 0 auto; width: 10px; height: 10px; border-radius: 50%; }
+.v-semaforo__punto--poco { background: #E2A93B; }
+.v-semaforo__punto--si { background: #3FA46A; }
+.v-semaforo__ejemplo { position: absolute; top: 0; right: 0; margin: 0; font-family: var(--text); font-size: 13px; color: var(--grafito); }
+.is-viva .v-semaforo__pasos li, .is-quieta .v-semaforo__pasos li { opacity: 1; transform: none; }
+
+/* ¿Qué trámite necesita tu cliente? Un chat: el estudio pide y los avisos llegan uno por uno */
+.chat-tramites { display: grid; gap: 32px; }
+.chat-tramites__ops { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 18px; }
+.chat-tramites__op { min-height: 44px; padding: 0 16px; border: 1.5px solid rgba(33,27,24,0.18); border-radius: 999px; background: var(--papel); font-family: var(--text); font-size: 15px; font-weight: 500; color: var(--tinta); cursor: pointer; transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.16s ease; }
+.chat-tramites__op:hover { border-color: var(--tinta); }
+.chat-tramites__op:active { transform: scale(0.97); }
+.chat-tramites__op[aria-selected="true"] { border-color: var(--tinta); background: var(--tinta); color: var(--papel); }
+.chat-tramites__op:focus-visible { outline: 2px solid var(--granate); outline-offset: 2px; }
+.chat-tramites__lado { display: grid; justify-items: center; gap: 16px; }
+.chat-tramites__tel { display: grid; grid-template-rows: auto 1fr auto; width: min(100%, 380px); min-height: 430px; border: 8px solid var(--tinta); border-radius: 36px; overflow: hidden; overflow: clip; background: var(--crema); box-shadow: 0 30px 60px -30px rgba(33,27,24,0.6); }
+.chat-tramites__tel:focus-visible { outline: 2px solid var(--granate); outline-offset: 3px; }
+.chat-tramites__cabeza { display: flex; align-items: center; gap: 10px; margin: 0; padding: 14px 16px; background: var(--papel); font-family: var(--text); color: var(--tinta); }
+.chat-tramites__cabeza b { font-size: 15px; font-weight: 600; }
+.chat-tramites__cabeza small { margin-left: auto; font-size: 13px; color: var(--grafito); }
+.chat-tramites__ava { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--tinta); }
+.chat-tramites__ava .plus-mark { --plus-solid: var(--papel); --plus-soft: rgba(255,255,255,0.45); width: 13px; height: 13px; --t: 2px; }
+.chat-tramites__hilo { display: flex; flex-direction: column; gap: 8px; margin: 0; padding: 16px 14px; list-style: none; }
+.chat-tramites__msg { align-self: flex-start; max-width: 84%; padding: 10px 13px; border-radius: 16px 16px 16px 4px; background: var(--papel); font-family: var(--text); font-size: 14px; line-height: 1.45; color: var(--tinta); box-shadow: 0 1px 1px rgba(33,27,24,0.06); transform-origin: left bottom; }
+.chat-tramites__msg--tu { align-self: flex-end; border-radius: 16px 16px 4px 16px; background: var(--tinta); color: var(--papel); transform-origin: right bottom; }
+.chat-tramites__msg.is-nueva { animation: msg-llega 0.38s cubic-bezier(0.2, 0.9, 0.25, 1.1) both; }
+@keyframes msg-llega { from { opacity: 0; transform: translateY(8px) scale(0.96); } to { opacity: 1; transform: none; } }
+.chat-tramites__escribe { margin: 0; padding: 0 16px 14px; font-family: var(--text); font-size: 13px; font-style: italic; color: var(--grafito); opacity: 0; transition: opacity 0.2s ease; }
+.chat-tramites__escribe.is-visible { opacity: 1; }
+.chat-tramites__cta { width: min(100%, 380px); justify-content: center; }
+.chat-tramites .tramites__note { margin: 0; }
+@media (min-width: 900px) {
+  .chat-tramites { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(48px, 6vw, 104px); align-items: center; }
+  .chat-tramites__msg { font-size: 15px; }
+}
+@media (prefers-reduced-motion: reduce) { .chat-tramites__msg.is-nueva { animation: none; } }

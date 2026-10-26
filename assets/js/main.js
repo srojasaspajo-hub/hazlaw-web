@@ -132,8 +132,8 @@
       return !!opts[k];
     });
     var BASE = "Hola, vengo de la web. ";
-    // También en el cotizador y en "¿Qué necesitas firmar?": ahí ya hay un botón que lleva el caso escrito
-    var HIDE = { cierre: true, "site-foot": true, cotiza: true, ruta: true };
+    // También en el cotizador y en el chat de trámites: ahí ya hay un botón que lleva el caso escrito
+    var HIDE = { cierre: true, "site-foot": true, cotiza: true, tramites: true };
     var heroEl = document.getElementById("hero");
     var current = "hero";
     var visible = false;
@@ -166,15 +166,11 @@
       var notarial = BASE + "Necesito un trámite notarial.";
       // Cada página puede indicar qué opción va primero (en la de marca, "Registrar mi marca")
       var main = document.body.getAttribute("data-cta-main") || "empresa";
-      if (current === "tramites") {
-        var chip = document.querySelector(".expediente__tab.is-active");
-        if (chip) notarial = BASE + chip.getAttribute("data-msg");
-      } else if (current === "marca") {
-        main = "marca";
-        var input = document.getElementById("brand-name");
-        var name = input ? input.value.replace(/\s+/g, " ").trim() : "";
-        if (name) marca = BASE + "Quiero registrar mi marca «" + name + "».";
-      } else if (current === "existimos" || current === "nosotros") {
+      // En la página de marca, si ya escribió el nombre en el cotizador, va en el mensaje
+      var input = document.getElementById("marca-nombre");
+      var name = input ? input.value.replace(/\s+/g, " ").trim() : "";
+      if (name) marca = BASE + "Quiero registrar mi marca «" + name + "».";
+      if (current === "existimos" || current === "nosotros") {
         empresa = BASE + "Quiero constituir mi empresa con asesoría contable.";
       }
       setOpt("empresa", empresa);
@@ -899,57 +895,67 @@
     escenas.forEach(function (e) { io.observe(e); });
   }
 
-  // Gestión notarial: la persona toca su trámite y la tarjeta le explica de qué se trata,
-  // con el mensaje de WhatsApp ya escrito para ese caso.
-  // Gestión notarial: expediente de trámites. Pestañas con teclado (flechas, Inicio, Fin); al elegir,
-  // la hoja se renueva, los pasos se encienden uno por uno y cae el sello. Con "reducir
-  // movimiento" solo cambia el contenido.
+  // Gestión notarial: "¿Qué trámite necesita tu cliente?" es un chat. El estudio toca un trámite, su pedido sale y
+  // nuestros avisos llegan uno por uno, con "escribiendo…" entre ellos. Pestañas con teclado (flechas, Inicio, Fin).
+  // Con "reducir movimiento" la conversación aparece completa.
   function initTramites() {
-    var root = document.getElementById("tramites-picker");
+    var root = document.getElementById("tramites-chat");
     if (!root) return;
-    var tabs = Array.prototype.slice.call(root.querySelectorAll(".expediente__tab"));
-    var sheet = root.querySelector(".expediente__sheet");
-    var title = document.getElementById("tramite-title");
-    var text = document.getElementById("tramite-text");
-    var num = document.getElementById("tramite-num");
+    var tabs = Array.prototype.slice.call(root.querySelectorAll(".chat-tramites__op"));
+    var panel = document.getElementById("tramites-panel");
+    var hilo = root.querySelector(".chat-tramites__hilo");
+    var escribe = root.querySelector(".chat-tramites__escribe");
     var cta = document.getElementById("tramite-cta");
-    var paso = document.getElementById("tramite-paso");
-    var pasoComun = paso ? paso.textContent : "";
-    var wide = window.matchMedia("(min-width: 900px)");
     var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     var total = tabs.length;
-    function two(n) { return (n < 10 ? "0" : "") + n; }
+    var relojes = [];
 
+    function burbuja(texto, tuya) {
+      var li = document.createElement("li");
+      li.className = "chat-tramites__msg" + (tuya ? " chat-tramites__msg--tu" : "");
+      li.textContent = texto;
+      return li;
+    }
+    function conversa(tab, animar) {
+      relojes.forEach(clearTimeout);
+      relojes = [];
+      hilo.textContent = "";
+      escribe.classList.remove("is-visible");
+      var avisos = tab.getAttribute("data-avisos").split("|");
+      var pide = burbuja(tab.getAttribute("data-pide"), true);
+      hilo.appendChild(pide);
+      var msgs = avisos.map(function (a) { return burbuja(a, false); });
+      if (!animar) { msgs.forEach(function (m) { hilo.appendChild(m); }); return; }
+      pide.classList.add("is-nueva");
+      msgs.forEach(function (m, k) {
+        var t0 = 500 + k * 1500;
+        relojes.push(setTimeout(function () { escribe.classList.add("is-visible"); }, t0));
+        relojes.push(setTimeout(function () {
+          escribe.classList.remove("is-visible");
+          m.classList.add("is-nueva");
+          hilo.appendChild(m);
+        }, t0 + 900));
+      });
+    }
     function select(i, byUser, focus) {
       tabs.forEach(function (t, k) {
         var on = k === i;
         t.setAttribute("aria-selected", on ? "true" : "false");
         t.tabIndex = on ? 0 : -1;
-        t.classList.toggle("is-active", on);
       });
       var tab = tabs[i];
       if (focus) tab.focus();
-      sheet.setAttribute("aria-labelledby", tab.id);
-      title.textContent = tab.querySelector(".expediente__name").textContent;
-      text.textContent = tab.getAttribute("data-text");
-      if (paso) paso.textContent = tab.getAttribute("data-paso") || pasoComun;
-      num.textContent = two(i + 1) + " de " + two(total);
+      panel.setAttribute("aria-labelledby", tab.id);
       var msg = "Hola, vengo de la web. " + tab.getAttribute("data-msg");
       cta.setAttribute("data-wa", msg);
       cta.setAttribute("href", WA_BASE + encodeURIComponent(msg));
+      conversa(tab, byUser && !reduce);
       if (!byUser) return;
-      if (!reduce) {
-        sheet.classList.remove("is-playing");
-        void sheet.offsetWidth;
-        sheet.classList.add("is-playing");
-      }
-      hzTrack("tramite_elegido", { tramite: title.textContent });
-      // En el celular la hoja está debajo de las pestañas: que se vea
-      if (!wide.matches && !focus) {
-        var r = sheet.getBoundingClientRect();
-        if (r.top > window.innerHeight * 0.6) {
-          window.scrollBy({ top: r.top - 120, behavior: reduce ? "auto" : "smooth" });
-        }
+      hzTrack("tramite_elegido", { tramite: tab.textContent });
+      // En el celular el chat está debajo de los trámites: que se vea la conversación
+      var r = panel.getBoundingClientRect();
+      if (!focus && r.top > window.innerHeight * 0.55) {
+        window.scrollBy({ top: r.top - 110, behavior: reduce ? "auto" : "smooth" });
       }
     }
 
@@ -967,7 +973,16 @@
       });
     });
     select(0, false, false);
-
+    // La primera vez que se ve, la conversación del primer trámite se escribe sola
+    if (!reduce && "IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) return;
+        io.disconnect();
+        var activa = tabs.filter(function (t) { return t.getAttribute("aria-selected") === "true"; })[0];
+        conversa(activa, true);
+      }, { threshold: 0.4 });
+      io.observe(panel);
+    }
   }
 
 
