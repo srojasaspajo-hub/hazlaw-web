@@ -3352,13 +3352,15 @@ a, button, label, summary, input { touch-action: manipulation; }
 .pase__split { display: flex; height: 34px; margin: 0 0 16px; border-radius: 10px; overflow: hidden; overflow: clip; font-family: var(--text); font-size: 13px; font-weight: 600; }
 .pase__split span { display: flex; align-items: center; padding: 0 10px; white-space: nowrap; transform-origin: left center; transition: transform 0.7s var(--ease-firme) 0.9s, opacity 0.3s ease 0.9s; }
 .pase__split-a { flex: 0 0 29%; background: var(--granate); color: var(--papel); }
-.pase__split-b { flex: 1 1 auto; justify-content: flex-end; background: var(--tinta); color: var(--papel); transition-delay: 1.3s !important; }
+.pase__split-b { flex: 0 0 47%; background: var(--tinta); color: var(--papel); transition-delay: 1.2s !important; }
+.pase__split-c { flex: 1 1 auto; justify-content: center; background: repeating-linear-gradient(135deg, rgba(33,27,24,0.16) 0 6px, rgba(33,27,24,0.06) 6px 12px); color: var(--tinta); transition-delay: 1.5s !important; }
 .pase.is-pendiente .pase__split span { transform: scaleX(0); opacity: 0; }
 .pase__pagos { display: grid; gap: 14px; margin: 0 0 18px; padding: 0; list-style: none; }
 .pase__pagos li { display: grid; grid-template-columns: 1fr auto; align-items: baseline; column-gap: 12px; row-gap: 2px; }
 .pase__pagos-cuando { font-family: var(--text); font-size: 14px; font-weight: 600; color: var(--tinta); }
 .pase__pagos-cuando::before { content: ""; display: inline-block; width: 9px; height: 9px; margin-right: 8px; border-radius: 2px; background: var(--granate); vertical-align: 0; }
-.pase__pagos li + li .pase__pagos-cuando::before { background: var(--tinta); }
+.pase__pagos li:nth-child(2) .pase__pagos-cuando::before { background: var(--tinta); }
+.pase__pagos li:nth-child(3) .pase__pagos-cuando::before { background: repeating-linear-gradient(135deg, rgba(33,27,24,0.45) 0 2px, transparent 2px 4px); box-shadow: inset 0 0 0 1px rgba(33,27,24,0.35); }
 .pase__pagos .pase__adelanto { font-size: 34px; }
 .pase__pagos-resto { font-family: var(--display); font-size: 22px; font-weight: 500; line-height: 1.2; letter-spacing: -0.02em; text-align: right; font-variant-numeric: lining-nums tabular-nums; }
 .pase__pagos-que { grid-column: 1 / -1; padding-left: 17px; font-family: var(--text); font-size: 13px; line-height: 1.45; color: var(--grafito); }

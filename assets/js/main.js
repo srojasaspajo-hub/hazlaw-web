@@ -579,9 +579,10 @@
           "serv-det": mas ? "Según tu capital: te lo confirmamos antes de que pagues" : "Con derechos notariales y una toma de firmas",
           reg: mas ? "Según tu capital" : "S/ 100 a 200",
           total: mas ? "Te lo enviamos por escrito" : "S/ 580 a 680",
-          // El adelanto es parte del total: el resto se paga el día de la firma
+          // Los S/ 480 en dos partes: S/ 180 para empezar y S/ 300 el día de la firma; los registrales, aparte
           adelanto: 180,
-          resto: mas ? "El resto" : "S/ 400 a 500",
+          resto: mas ? "El resto" : 300,
+          "reg-pago": mas ? "Según tu capital" : "S/ 100 a 200",
           firma: lugar
         },
         wa: "Hola, vengo de la web. Quiero constituir mi empresa, con capital de " + (mas ? "más de" : "hasta") +
