@@ -3351,8 +3351,8 @@ a, button, label, summary, input { touch-action: manipulation; }
 .pase__pagos-t { margin: 0 0 10px; font-family: var(--display); font-size: 20px; font-weight: 500; letter-spacing: -0.01em; color: var(--tinta); }
 .pase__split { display: flex; height: 34px; margin: 0 0 16px; border-radius: 10px; overflow: hidden; overflow: clip; font-family: var(--text); font-size: 13px; font-weight: 600; }
 .pase__split span { display: flex; align-items: center; padding: 0 10px; white-space: nowrap; transform-origin: left center; transition: transform 0.7s var(--ease-firme) 0.9s, opacity 0.3s ease 0.9s; }
-.pase__split-a { flex: 0 0 29%; background: var(--granate); color: var(--papel); }
-.pase__split-b { flex: 0 0 47%; background: var(--tinta); color: var(--papel); transition-delay: 1.2s !important; }
+.pase__split-a { flex: 0 0 28%; background: var(--granate); color: var(--papel); }
+.pase__split-b { flex: 0 0 49%; background: var(--tinta); color: var(--papel); transition-delay: 1.2s !important; }
 .pase__split-c { flex: 1 1 auto; justify-content: center; background: repeating-linear-gradient(135deg, rgba(33,27,24,0.16) 0 6px, rgba(33,27,24,0.06) 6px 12px); color: var(--tinta); transition-delay: 1.5s !important; }
 .pase.is-pendiente .pase__split span { transform: scaleX(0); opacity: 0; }
 .pase__pagos { display: grid; gap: 14px; margin: 0 0 18px; padding: 0; list-style: none; }

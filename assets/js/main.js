@@ -575,13 +575,13 @@
         barra: "Firmas " + lugar,
         estado: { capital: r.capital, firma: r.firma },
         filas: {
-          "serv-n": mas ? "A tu medida" : "480",
+          "serv-n": mas ? "A tu medida" : "500",
           "serv-det": mas ? "Según tu capital: te lo confirmamos antes de que pagues" : "Con derechos notariales y una toma de firmas",
           reg: mas ? "Según tu capital" : "S/ 100 a 200",
-          total: mas ? "Te lo enviamos por escrito" : "S/ 580 a 680",
-          // Los S/ 480 en dos partes: S/ 180 para empezar y S/ 300 el día de la firma; los registrales, aparte
+          total: mas ? "Te lo enviamos por escrito" : "S/ 600 a 700",
+          // Los S/ 500 en dos partes: S/ 180 para empezar y S/ 320 el día de la firma; los registrales, aparte
           adelanto: 180,
-          resto: mas ? "El resto" : 300,
+          resto: mas ? "El resto" : 320,
           "reg-pago": mas ? "Según tu capital" : "S/ 100 a 200",
           firma: lugar
         },
