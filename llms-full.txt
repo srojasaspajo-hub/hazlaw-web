@@ -2,7 +2,7 @@
 
 > Hazlaw+ (Hazlaw S.R.L., RUC 20614415950) es un estudio legal corporativo para negocios en Lima, Perú. Constituye empresas (SAC, SRL y EIRL), presenta solicitudes de registro de marca ante INDECOPI y coordina trámites notariales a domicilio para personas, familias, estudios contables, estudios de abogados e inmobiliarias. La notaría va a firmar a la casa, la oficina o el negocio del cliente, en Lima Metropolitana y Callao.
 
-Última actualización: 26 de octubre de 2026.
+Última actualización: 2 de noviembre de 2026.
 
 - Oficina: Av. Próceres de la Independencia 1625, San Juan de Lurigancho, Lima, frente a la Línea 1 (estaciones Los Jardines y Hacienda).
 - Atención: lunes a viernes de 9:00 a 18:00 y sábados de 9:00 a 13:00. Las firmas a domicilio se coordinan de lunes a viernes y los sábados hasta el mediodía.
@@ -54,6 +54,77 @@ Cuando SUNARP inscribe la empresa, se genera su RUC, el que empieza con 20. Lueg
 ### ¿Puedo ser socio si soy extranjero?
 Sí. Puedes ser socio o titular con tu carné de extranjería. Si solo tienes pasaporte, te confirmamos antes qué pide la notaría en tu caso.
 
+### ¿Qué es una SAC?
+Una Sociedad Anónima Cerrada: la forma de empresa más usada por los negocios en el Perú. Tiene de 2 a 20 accionistas, su capital está en acciones y, si un socio quiere vender, los demás tienen preferencia para comprar. No puede cotizar en bolsa. Es la que suele convenir cuando hay socios y piensas crecer.
+
+### ¿Qué es el RUC 20 y cómo lo saco para mi empresa?
+Es el RUC de una persona jurídica: empieza con 20, mientras que el de una persona natural empieza con 10. Se genera cuando SUNARP inscribe la empresa y se activa en SUNAT con la clave SOL. No se puede «sacar» un RUC 20 sin constituir la empresa.
+
+### ¿Se puede constituir una empresa en línea, sin notaría?
+Existe la SAC Simplificada (SACS), que se constituye en el SID-SUNARP sin escritura pública, solo con aportes en dinero y socios que son personas naturales. Es una vía rápida, pero con un estatuto estándar que no se adapta a tu caso. Si tus socios, aportes o planes necesitan reglas propias, conviene la SAC con minuta a la medida. Te decimos cuál te conviene antes de empezar.
+
+### ¿Necesito abrir una cuenta en el banco antes de constituir?
+Si el aporte es en dinero, sí: se deposita en una cuenta a nombre de la empresa en formación y el comprobante va con la escritura. Los bancos abren esa cuenta con la minuta y la reserva de nombre. Te explicamos cuándo hacerlo para no detener el trámite.
+
+### ¿La constitución incluye la licencia de funcionamiento?
+No. La licencia la da la municipalidad del distrito donde está tu local, después de constituir la empresa, y depende de la zonificación y del tipo de negocio. Te orientamos sobre qué te van a pedir.
+
+### ¿Qué régimen tributario elijo para mi empresa?
+Depende de cuánto vas a facturar, qué vendes y a quién. Lo decides en la primera asesoría contable que incluimos con la constitución: nuestro contador aliado te explica las opciones y activa tu RUC en el régimen que te conviene.
+
+### Vivo en provincia. ¿Puedo constituir mi empresa con ustedes?
+Sí, pero la toma de firmas es en Lima Metropolitana o Callao: tendrías que venir a firmar, o dar un poder a alguien en Lima. El registro de marca, en cambio, lo hacemos para todo el Perú y a distancia.
+
+### ¿Qué hago después de constituir mi empresa?
+Activar el RUC y elegir el régimen (incluido en la asesoría contable), legalizar los libros societarios, sacar la licencia de funcionamiento si tienes local, registrar a tus trabajadores en planilla y, si vendes con un nombre propio, registrar tu marca en INDECOPI. Mira las guías para cada paso.
+
+### ¿Dónde constituir una empresa en Lima sin ir a la notaría?
+Con Hazlaw+: la notaría va a tu casa, tu oficina o tu negocio en cualquier distrito de Lima Metropolitana y Callao, de lunes a viernes y los sábados hasta el mediodía. Nuestra oficina está en San Juan de Lurigancho, pero atendemos toda Lima.
+
+## Cambios en tu empresa
+
+### ¿Cómo se hace un aumento de capital?
+La junta general lo acuerda con quórum y mayoría calificados, se firma la escritura pública y se inscribe en SUNARP. Puede ser con dinero o bienes nuevos, capitalizando una deuda con un socio o capitalizando utilidades. Si entra dinero nuevo, los socios tienen preferencia para suscribir. Mira la guía de aumento de capital.
+
+### ¿Qué es una modificación de estatuto?
+Cambiar cualquier artículo del reglamento interno de la empresa: el objeto social, el nombre, el domicilio, el capital, cómo se transfieren las acciones o quién administra. Se acuerda en junta con quórum calificado, se eleva a escritura pública y se inscribe en SUNARP.
+
+### ¿Puedo cambiar el nombre de mi empresa?
+Sí. Es una modificación de estatuto: se reserva el nombre nuevo en SUNARP, la junta lo acuerda, se firma la escritura y se inscribe. Después se actualiza la ficha RUC. Antes revisa que el nombre esté libre como marca en INDECOPI.
+
+### ¿Cómo cambio de gerente general?
+La junta o el directorio lo acuerda en acta, un notario certifica la copia y se inscribe en SUNARP. No hace falta escritura pública, salvo que el estatuto lo exija. Después se actualiza el representante legal en SUNAT y en los bancos.
+
+### ¿La transferencia de acciones de una SAC se inscribe en SUNARP?
+No. Se anota en el libro de matrícula de acciones de la empresa, después de ofrecerlas a los demás socios, que tienen 30 días de preferencia. En una SRL, la transferencia de participaciones sí se hace por escritura pública y se inscribe en SUNARP.
+
+### ¿Cómo sale un socio de mi empresa?
+Vendiendo su parte a los demás socios o a un tercero, separándose cuando la ley lo permite (por ejemplo, si cambia el objeto social y votó en contra) o, si el estatuto lo prevé, por exclusión. Si era gerente, además se nombra al reemplazo. Mira la guía de entrada o salida de un socio.
+
+### ¿Cómo entra un socio nuevo?
+Comprando acciones a un socio actual (transferencia) o aportando dinero nuevo (aumento de capital). Son caminos distintos: en el primero el capital no cambia; en el segundo, sí y se inscribe en SUNARP. Es buen momento para revisar el estatuto.
+
+### ¿Qué pasa si mi SAC se queda con un solo socio?
+La ley da seis meses para que entre otro socio. Si no, la sociedad incurre en causal de disolución. La alternativa es transformarla en EIRL.
+
+### ¿Puedo convertir mi EIRL en SAC?
+Sí. Es una transformación: se acuerda, se firma la escritura pública con el nuevo estatuto y se inscribe en SUNARP. La empresa sigue siendo la misma, con el mismo RUC, pero ahora con socios.
+
+### ¿Qué libros societarios debe tener mi empresa?
+Un libro de actas de junta siempre; la SAC, además, el libro de matrícula de acciones; si hay directorio, su libro de actas; la EIRL, el libro de actas del titular. Se legalizan ante notario antes de usarse. Los libros contables son otra cosa y los lleva el contador.
+
+### ¿Se puede hacer una junta de socios virtual?
+En la SAC, sí: los acuerdos pueden tomarse por medios escritos o electrónicos que garanticen su autenticidad, salvo que socios con el 20 % pidan sesión presencial. Igual quedan en el acta.
+
+### ¿Cómo cierro mi empresa?
+Con la disolución y liquidación: la junta acuerda disolver, nombra a un liquidador, se publica el acuerdo, el liquidador paga las deudas y reparte lo que queda, y al final se inscribe la extinción en SUNARP y se da de baja el RUC. Dejar la empresa abandonada no la cierra: sigue generando obligaciones ante SUNAT.
+
+### ¿Puedo abrir una sucursal de mi empresa?
+Sí. La sucursal es un establecimiento secundario en otro lugar, sin personería propia. Se acuerda, se eleva a escritura pública y se inscribe en SUNARP, también en el registro del lugar donde funcionará.
+
+### ¿Cuánto cuestan estos trámites?
+Depende del acto, del monto y de los derechos registrales que cobra SUNARP, que se pueden estimar en su calculadora registral. Te damos un solo total por escrito antes de empezar. Si eres un estudio contable o de abogados, podemos llevar los de tus clientes con tarifas corporativas por convenio.
+
 ## Registrar tu marca
 
 ### ¿Cuánto cuesta registrar una marca?
@@ -98,6 +169,68 @@ Si pasan tres años seguidos sin usarla, cualquiera puede pedir que se cancele. 
 ### ¿Cada cuánto se renueva el registro?
 El registro dura 10 años. Se renueva dentro de los seis meses antes de que venza y, si se te pasa, hay seis meses más de gracia.
 
+### ¿La marca se registra en SUNARP o en INDECOPI?
+En INDECOPI. En SUNARP se inscribe la empresa (su razón social), no la marca. Tener la empresa inscrita no te da la marca: son dos registros distintos.
+
+### ¿Qué diferencia hay entre marca, nombre comercial y razón social?
+La razón social es el nombre legal de la empresa, inscrito en SUNARP. El nombre comercial identifica tu negocio o local y el derecho nace con el uso. La marca identifica tus productos o servicios y el derecho nace con el registro en INDECOPI: es la que te protege de imitadores. Mira la guía.
+
+### ¿Qué nombres no se pueden registrar como marca?
+Los genéricos («Cerveza» para cervezas), los descriptivos («Fresco» para verduras), los engañosos, un color suelto, las banderas y escudos, y los iguales o parecidos a una marca ya registrada en el mismo rubro, a un nombre comercial en uso o al nombre o la imagen de otra persona. Mira la guía con ejemplos.
+
+### ¿Puedo registrar mi marca en línea?
+Sí. INDECOPI tiene un registro virtual de marcas y la tasa se paga en Pagalo.pe o en el Banco de la Nación. Nosotros lo hacemos por ti, a distancia y para todo el Perú, y te avisamos en cada etapa.
+
+### ¿Cómo consulto en qué va mi solicitud de marca?
+En el servicio «Consulta tu trámite» de INDECOPI, con el número de expediente, y en la Gaceta Electrónica cuando se publica. Si la registras con nosotros, te avisamos nosotros.
+
+### ¿Cuántas clases necesito?
+Las de lo que vendes hoy y lo que vas a vender pronto. Una tienda de ropa suele necesitar la clase 25 (prendas) y, si vende en línea con marca propia, también la 35 (venta al por menor). Nuestro servicio cubre hasta dos clases; cada clase paga su tasa a INDECOPI.
+
+### ¿Puedo vender o prestar mi marca?
+Sí. La marca se puede transferir o licenciar por escrito, y el contrato se inscribe en INDECOPI para que valga frente a terceros. Si constituyes tu empresa después de registrar la marca, se la transfieres.
+
+### ¿Registran marcas fuera de Lima?
+Sí. El registro de marca es nacional, se hace a distancia y vale en todo el Perú. Solo la constitución de empresas y los trámites notariales exigen la firma en Lima Metropolitana o Callao.
+
+## Contratos, poderes y notaría
+
+### ¿Cuánto es el impuesto de alcabala en Lima?
+El 3 % del valor de venta (nunca menor al autovalúo), descontando las primeras 10 UIT, que en 2026 son S/ 55 000. Lo paga el comprador hasta el último día hábil del mes siguiente a la transferencia. La primera venta de una constructora y los anticipos de legítima no pagan. Fuente: SAT de Lima, junio de 2026.
+
+### ¿Qué documentos pide la notaría para una compraventa de inmueble?
+DNI de las partes, copia literal o CRI del inmueble, recibos del predial y constancia de no adeudo, minuta autorizada por abogado, constancia del pago por medio bancario y el pago del alcabala. Si vende un apoderado, su vigencia de poder. Te enviamos la lista exacta antes de la firma.
+
+### ¿Qué poder necesito para que alguien venda mi inmueble?
+Un poder por escritura pública que diga de forma expresa que puede vender ese bien, inscrito en SUNARP. Un poder general o uno fuera de registro no sirven para vender.
+
+### ¿Qué es un poder fuera de registro?
+Un poder otorgado ante notario que no se inscribe en SUNARP. Sirve para gestiones y actos de administración: trámites, cobros, representación. No sirve para vender, hipotecar o donar bienes.
+
+### ¿Cuánto cuesta inscribir un poder en SUNARP?
+S/ 25.60 por apoderado, y el registro tiene hasta 7 días hábiles para inscribirlo (gob.pe, febrero de 2025). Los honorarios de la notaría y los nuestros van aparte y te los damos por escrito.
+
+### ¿Qué es el anticipo de legítima?
+La donación en vida que un padre o una madre hace a un hijo de parte de lo que le tocaría heredar. Se hace por escritura pública, se inscribe en SUNARP y no paga alcabala. Los padres pueden reservarse el usufructo y seguir viviendo en la casa.
+
+### ¿Escritura pública y minuta es lo mismo?
+No. La minuta es el contrato privado, autorizado por abogado, que firman las partes. La escritura pública es esa minuta elevada por el notario e incorporada a su registro: tiene fecha cierta y es la que se inscribe en SUNARP.
+
+### ¿Qué es el testimonio de una escritura?
+La copia completa de la escritura pública, firmada y sellada por el notario, que te entregan a ti. El original se queda en la notaría. Si lo pierdes, pides otro.
+
+### ¿Qué es legalizar una firma?
+Que el notario certifique que la firma de un documento es de quien dice ser. No revisa ni garantiza el contenido. Sirve para contratos privados, cartas poder y declaraciones.
+
+### ¿La sucesión intestada se hace ante notario?
+Sí, cuando no hay testamento y los herederos están de acuerdo: se tramita ante notario, se publica, se declara a los herederos y se inscribe en SUNARP. Después, los bienes del fallecido pueden pasar a nombre de los herederos.
+
+### ¿Se puede reconocer una unión de hecho ante notario?
+Sí. Si han convivido al menos dos años, sin impedimento para casarse y de común acuerdo, el notario la declara y se inscribe en el Registro Personal de SUNARP. Da derechos parecidos a los de la sociedad de gananciales.
+
+### ¿La notaría puede ir a mi casa?
+En Lima Metropolitana y Callao, sí: el motorizado de la notaría toma la firma donde estés, de lunes a viernes y los sábados hasta el mediodía. Sirve si eres adulto mayor, tienes poca movilidad o no puedes dejar tu negocio.
+
 ## Trámites y confianza
 
 ### ¿Tengo que ir a la notaría?
@@ -135,3 +268,9 @@ Por transferencia bancaria a la cuenta de Hazlaw S.R.L., que te indicamos en la 
 
 ### Si desisto, ¿me devuelven el dinero?
 Si desistes antes de que empecemos, te devolvemos el 100 % de los honorarios. Si ya empezamos pero el trámite no se presentó, el 50 %. Las tasas ya pagadas a las entidades solo se recuperan si la entidad las devuelve. El detalle está en nuestra política de reembolsos.
+
+### ¿En qué distritos de Lima atienden?
+En todos los de Lima Metropolitana y el Callao: Lima Norte (Los Olivos, Comas, San Martín de Porres, Independencia), Lima Este (San Juan de Lurigancho, Ate, Santa Anita, El Agustino), Lima Sur (Villa El Salvador, San Juan de Miraflores, Chorrillos), Lima Centro y Moderna (Cercado, Miraflores, San Isidro, Surco, La Molina) y el Callao. La notaría va a donde estés; la oficina está en San Juan de Lurigancho.
+
+### ¿Son un estudio de abogados?
+Somos un estudio legal corporativo: un equipo de profesionales que constituye empresas, registra marcas y gestiona trámites notariales y registrales. Trabajamos con una notaría y con contadores aliados. No llevamos juicios ni temas penales o laborales.

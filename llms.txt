@@ -2,7 +2,7 @@
 
 > Hazlaw+ (Hazlaw S.R.L., RUC 20614415950) es un estudio legal corporativo para negocios en Lima, Perú. Constituye empresas (SAC, SRL y EIRL), presenta solicitudes de registro de marca ante INDECOPI y coordina trámites notariales a domicilio para personas, familias, estudios contables, estudios de abogados e inmobiliarias. La notaría va a firmar a la casa, la oficina o el negocio del cliente, en Lima Metropolitana y Callao.
 
-Última actualización: 26 de octubre de 2026.
+Última actualización: 2 de noviembre de 2026.
 
 - Oficina: Av. Próceres de la Independencia 1625, San Juan de Lurigancho, Lima, frente a la Línea 1 (estaciones Los Jardines y Hacienda).
 - Atención: lunes a viernes de 9:00 a 18:00 y sábados de 9:00 a 13:00. Las firmas a domicilio se coordinan de lunes a viernes y los sábados hasta el mediodía.
@@ -24,7 +24,7 @@
 
 ## Texto completo
 
-- [Preguntas frecuentes, texto completo](https://hazlawpe.com/llms-full.txt): las 39 respuestas en texto plano.
+- [Preguntas frecuentes, texto completo](https://hazlawpe.com/llms-full.txt): las 84 respuestas en texto plano.
 
 ## Guías
 
@@ -42,7 +42,27 @@
 - [Trámites notariales a domicilio en Lima: cómo funciona](https://hazlawpe.com/tramites-notariales-a-domicilio-en-lima.html)
 - [Poder notarial para un adulto mayor, sin que salga de casa](https://hazlawpe.com/poder-notarial-para-un-adulto-mayor.html)
 - [Constitución de empresas en San Juan de Lurigancho](https://hazlawpe.com/constitucion-de-empresas-en-san-juan-de-lurigancho.html)
-- [Preguntas frecuentes](https://hazlawpe.com/preguntas-frecuentes.html): 39 respuestas sobre constituir empresa, registrar marca y trámites notariales.
+- [Preguntas frecuentes](https://hazlawpe.com/preguntas-frecuentes.html): 84 respuestas sobre constituir empresa, cambios en la empresa, registrar marca, contratos y trámites notariales.
+
+## Guías para la empresa ya constituida (2 de noviembre de 2026; datos de la Ley General de Sociedades y gob.pe)
+
+- [Aumento de capital de una empresa: cómo se hace y cómo se inscribe en SUNARP](https://hazlawpe.com/aumento-de-capital-de-una-empresa-en-sunarp.html)
+- [Modificación de estatuto: cuándo hace falta y cómo se inscribe](https://hazlawpe.com/modificacion-de-estatuto-de-una-empresa.html)
+- [Transferencia de acciones de una SAC: derecho de preferencia, matrícula y SUNARP](https://hazlawpe.com/transferencia-de-acciones-de-una-sac.html)
+- [Entra o sale un socio: qué cambia en tu empresa y qué se firma](https://hazlawpe.com/ingreso-o-salida-de-un-socio.html)
+- [Junta general de accionistas: convocatoria, quórum, mayorías y acta](https://hazlawpe.com/junta-general-de-accionistas.html)
+- [Cambio de gerente general: nombramiento, poderes e inscripción en SUNARP](https://hazlawpe.com/cambio-de-gerente-general.html)
+- [Libros societarios de una SAC, una SRL o una EIRL: cuáles son y cómo se legalizan](https://hazlawpe.com/libros-societarios-de-una-empresa.html)
+
+## Guías sobre marca, contratos y notaría (2 de noviembre de 2026)
+
+- [Marca, nombre comercial y razón social: en qué se diferencian y cuál registrar](https://hazlawpe.com/marca-o-nombre-comercial.html)
+- [Qué no se puede registrar como marca en INDECOPI](https://hazlawpe.com/que-no-se-puede-registrar-como-marca.html)
+- [Compraventa de un inmueble en Lima: requisitos, alcabala, escritura pública e inscripción](https://hazlawpe.com/compraventa-de-inmueble-en-lima.html)
+- [Poder notarial en el Perú: tipos, poder fuera de registro, escritura pública e inscripción](https://hazlawpe.com/poder-notarial-en-peru.html)
+- [Anticipo de legítima (anticipo de herencia): requisitos, alcabala e inscripción](https://hazlawpe.com/anticipo-de-legitima.html)
+- [Escritura pública, minuta, parte notarial y testimonio: qué es cada uno](https://hazlawpe.com/escritura-publica-minuta-y-testimonio.html)
+- [Glosario legal para emprendedores: 62 términos en simple](https://hazlawpe.com/glosario-legal-para-emprendedores.html)
 
 ## Preguntas que responde este sitio
 
@@ -52,6 +72,11 @@
 - ¿Cómo hacer un poder notarial para un adulto mayor que no puede ir a la notaría? La notaría puede ir a su casa; si no puede firmar, otra persona firma a su ruego y deja su huella.
 - ¿SAC, SRL o EIRL? Si emprendes solo, por lo general una EIRL; con socios que piensan sumar inversión, una SAC; con pocos socios que quieren algo simple, una SRL. El precio con Hazlaw+ es el mismo para las tres. Detalle: https://hazlawpe.com/sac-srl-o-eirl.html
 - ¿Cuánto cuesta registrar una marca en Lima? Con Hazlaw+, S/ 370 por el servicio (hasta dos clases) más la tasa de INDECOPI: S/ 904.90 en total para una clase y S/ 1 438.20 para dos.
+- ¿Cómo se hace un aumento de capital o una modificación de estatuto? La junta lo acuerda con quórum calificado, se firma la escritura pública y se inscribe en SUNARP. Hazlaw+ redacta el acta y la minuta, coordina la notaría (que va a la empresa, en Lima Metropolitana y Callao) y presenta el título; el total se da por escrito según el acto.
+- ¿La transferencia de acciones de una SAC se inscribe en SUNARP? No: se anota en el libro de matrícula de acciones, previa oferta a los demás socios. En una SRL, la transferencia de participaciones sí se inscribe por escritura pública.
+- ¿Cuánto es el alcabala en Lima? 3 % del valor de venta (no menor al autovalúo) descontando las primeras 10 UIT (S/ 55 000 en 2026); lo paga el comprador hasta el último día hábil del mes siguiente. Los anticipos de legítima y la primera venta de una constructora no pagan.
+- ¿Qué diferencia hay entre marca, nombre comercial y razón social? La razón social se inscribe en SUNARP; el nombre comercial y la marca, en INDECOPI. El derecho sobre la marca nace con el registro; el del nombre comercial, con el primer uso.
+- ¿Atienden en toda Lima? Sí: la notaría va a cualquier distrito de Lima Metropolitana y el Callao. El registro de marca se hace para todo el Perú, a distancia.
 
 ## Sobre el estudio
 
