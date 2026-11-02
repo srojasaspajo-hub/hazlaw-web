@@ -24,7 +24,7 @@
 
 ## Texto completo
 
-- [Preguntas frecuentes, texto completo](https://hazlawpe.com/llms-full.txt): las 96 respuestas en texto plano.
+- [Preguntas frecuentes, texto completo](https://hazlawpe.com/llms-full.txt): las 100 respuestas en texto plano.
 
 ## Guías
 
@@ -42,7 +42,7 @@
 - [Trámites notariales a domicilio en Lima: cómo funciona](https://hazlawpe.com/tramites-notariales-a-domicilio-en-lima.html)
 - [Poder notarial para un adulto mayor, sin que salga de casa](https://hazlawpe.com/poder-notarial-para-un-adulto-mayor.html)
 - [Constitución de empresas en San Juan de Lurigancho](https://hazlawpe.com/constitucion-de-empresas-en-san-juan-de-lurigancho.html)
-- [Preguntas frecuentes](https://hazlawpe.com/preguntas-frecuentes.html): 96 respuestas sobre constituir empresa, cambios en la empresa, registrar marca, contratos y trámites notariales.
+- [Preguntas frecuentes](https://hazlawpe.com/preguntas-frecuentes.html): 100 respuestas sobre constituir empresa, cambios en la empresa, registrar marca, contratos y trámites notariales.
 
 ## Guías para la empresa ya constituida (2 de noviembre de 2026; datos de la Ley General de Sociedades y gob.pe)
 
@@ -80,6 +80,13 @@
 - [Vigencia de poder, copia literal y certificados de SUNARP: cuál pedir, cuánto cuesta y cuánto demora](https://hazlawpe.com/vigencia-de-poder-y-copia-literal-sunarp.html)
 - [Regímenes tributarios en el Perú: Nuevo RUS, RER, MYPE Tributario y Régimen General](https://hazlawpe.com/regimenes-tributarios-para-tu-empresa.html)
 
+## Guías sobre vehículos, partidas, cartas y certificaciones notariales (2 de noviembre de 2026)
+
+- [Transferencia vehicular en Lima: requisitos, notaría, tasa de SUNARP y qué revisar antes de comprar](https://hazlawpe.com/transferencia-vehicular-notarial.html)
+- [Rectificación de partida ante notario: errores en nombre, fecha o apellidos, requisitos y pasos](https://hazlawpe.com/rectificacion-de-partida-notarial.html)
+- [Carta notarial en el Perú: qué es, para qué sirve, cómo se envía y qué efecto tiene](https://hazlawpe.com/carta-notarial-en-peru.html)
+- [Legalización de firma, copia certificada y declaración jurada: qué es cada certificación notarial](https://hazlawpe.com/legalizacion-de-firma-y-certificaciones-notariales.html)
+
 ## Preguntas que responde este sitio
 
 - ¿Dónde constituir una empresa en Lima sin ir a la notaría? En Hazlaw+: la notaría va a la casa, la oficina o el negocio del cliente, en Lima Metropolitana y Callao, por S/ 500 con derechos notariales incluidos (registrales aparte).
@@ -104,6 +111,11 @@
 - ¿Cómo hacerse dueño de un predio urbano que se posee hace años? Ante el notario de la provincia del predio: diez años de posesión (cinco con justo título y buena fe), tres a seis testigos, tres publicaciones, inspección del notario y 25 días hábiles sin oposición (Ley 27333). Si hay oposición, va al Poder Judicial. Detalle: https://hazlawpe.com/prescripcion-adquisitiva-notarial.html
 - ¿Cuánto cuesta la vigencia de poder en SUNARP y cuánto demora? S/ 32.10; hasta 3 días calendario en línea. La copia literal de una partida se pide en línea y llega en un máximo de 3 días hábiles. Detalle: https://hazlawpe.com/vigencia-de-poder-y-copia-literal-sunarp.html
 - ¿Qué régimen tributario le toca a una SAC o una EIRL? No pueden estar en el Nuevo RUS (solo personas naturales): eligen entre RER (hasta S/ 525 000 al año), Régimen MYPE Tributario (hasta 1 700 UIT) y Régimen General (sin límite). Cuál conviene lo ve el contador. Detalle: https://hazlawpe.com/regimenes-tributarios-para-tu-empresa.html
+
+- ¿Cuánto cuesta transferir un vehículo en Lima? La tasa registral de SUNARP es de S/ 96.20, sin los gastos notariales; la calificación puede tomar hasta 7 días hábiles. Comprador y vendedor firman el acta ante la notaría y esta la envía a SUNARP. Detalle: https://hazlawpe.com/transferencia-vehicular-notarial.html
+- ¿Se puede corregir un error en una partida de nacimiento ante notario? Sí, si es un error evidente: publicación de un extracto, diez días útiles y escritura pública (Ley 26662). No sirve para cambiar nombre, apellidos ni sexo. Detalle: https://hazlawpe.com/rectificacion-de-partida-notarial.html
+- ¿Para qué sirve una carta notarial? Prueba que se entregó una carta con ese texto en esa dirección; el notario no responde por el contenido. Sirve para exigir un cumplimiento o resolver un contrato, pero no obliga a pagar por sí sola. Detalle: https://hazlawpe.com/carta-notarial-en-peru.html
+- ¿Qué es legalizar una firma? Que el notario certifique que la firma es de quien dice ser, verificando su identidad; no prueba que el contenido sea verdadero. Una copia certificada confirma conformidad con el original. Detalle: https://hazlawpe.com/legalizacion-de-firma-y-certificaciones-notariales.html
 
 ## Sobre el estudio
 
