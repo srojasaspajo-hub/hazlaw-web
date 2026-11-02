@@ -24,7 +24,7 @@
 
 ## Texto completo
 
-- [Preguntas frecuentes, texto completo](https://hazlawpe.com/llms-full.txt): las 84 respuestas en texto plano.
+- [Preguntas frecuentes, texto completo](https://hazlawpe.com/llms-full.txt): las 91 respuestas en texto plano.
 
 ## Guías
 
@@ -42,7 +42,7 @@
 - [Trámites notariales a domicilio en Lima: cómo funciona](https://hazlawpe.com/tramites-notariales-a-domicilio-en-lima.html)
 - [Poder notarial para un adulto mayor, sin que salga de casa](https://hazlawpe.com/poder-notarial-para-un-adulto-mayor.html)
 - [Constitución de empresas en San Juan de Lurigancho](https://hazlawpe.com/constitucion-de-empresas-en-san-juan-de-lurigancho.html)
-- [Preguntas frecuentes](https://hazlawpe.com/preguntas-frecuentes.html): 84 respuestas sobre constituir empresa, cambios en la empresa, registrar marca, contratos y trámites notariales.
+- [Preguntas frecuentes](https://hazlawpe.com/preguntas-frecuentes.html): 91 respuestas sobre constituir empresa, cambios en la empresa, registrar marca, contratos y trámites notariales.
 
 ## Guías para la empresa ya constituida (2 de noviembre de 2026; datos de la Ley General de Sociedades y gob.pe)
 
@@ -64,6 +64,14 @@
 - [Escritura pública, minuta, parte notarial y testimonio: qué es cada uno](https://hazlawpe.com/escritura-publica-minuta-y-testimonio.html)
 - [Glosario legal para emprendedores: 62 términos en simple](https://hazlawpe.com/glosario-legal-para-emprendedores.html)
 
+## Guías sobre herencia, convivencia, licencia, SACS y cierre de empresa (2 de noviembre de 2026)
+
+- [Sucesión intestada ante notario: requisitos, pasos, costo y cuánto demora](https://hazlawpe.com/sucesion-intestada-notarial.html)
+- [Unión de hecho ante notario: requisitos, pasos, costo y qué derechos te da](https://hazlawpe.com/union-de-hecho-notarial.html)
+- [Licencia de funcionamiento en Lima: requisitos, nivel de riesgo, ITSE y cuánto demora](https://hazlawpe.com/licencia-de-funcionamiento-en-lima.html)
+- [SACS (Sociedad por Acciones Cerrada Simplificada): qué es, cómo se constituye en línea y cuándo conviene](https://hazlawpe.com/sacs-sociedad-por-acciones-cerrada-simplificada.html)
+- [Cómo cerrar una empresa en el Perú: disolución, liquidación, extinción y baja del RUC](https://hazlawpe.com/como-cerrar-una-empresa-en-peru.html)
+
 ## Preguntas que responde este sitio
 
 - ¿Dónde constituir una empresa en Lima sin ir a la notaría? En Hazlaw+: la notaría va a la casa, la oficina o el negocio del cliente, en Lima Metropolitana y Callao, por S/ 500 con derechos notariales incluidos (registrales aparte).
@@ -77,6 +85,11 @@
 - ¿Cuánto es el alcabala en Lima? 3 % del valor de venta (no menor al autovalúo) descontando las primeras 10 UIT (S/ 55 000 en 2026); lo paga el comprador hasta el último día hábil del mes siguiente. Los anticipos de legítima y la primera venta de una constructora no pagan.
 - ¿Qué diferencia hay entre marca, nombre comercial y razón social? La razón social se inscribe en SUNARP; el nombre comercial y la marca, en INDECOPI. El derecho sobre la marca nace con el registro; el del nombre comercial, con el primer uso.
 - ¿Atienden en toda Lima? Sí: la notaría va a cualquier distrito de Lima Metropolitana y el Callao. El registro de marca se hace para todo el Perú, a distancia.
+- ¿Sucesión intestada y declaratoria de herederos es lo mismo? Sí: el notario (si los herederos están de acuerdo) o el juez declara quiénes heredan a quien falleció sin testamento. Requisitos: partida de defunción, partidas de los herederos, relación de bienes y certificados negativos de SUNARP; publicación y 15 días útiles sin oposición (Ley 26662). Inscripción en SUNARP: S/ 20.00; traslado de cada inmueble: S/ 46.00. Hazlaw+ lo lleva con la notaría que va a donde estén los herederos, en Lima Metropolitana y Callao. Detalle: https://hazlawpe.com/sucesion-intestada-notarial.html
+- ¿Cuáles son los requisitos de la unión de hecho ante notario? Dos años de convivencia continua, estar libres de impedimento matrimonial, solicitud firmada por los dos, certificado domiciliario y certificado negativo de unión de hecho de cada uno, y dos testigos (Ley 26662, art. 46). Inscripción en SUNARP: S/ 20.00. Da derechos de bienes, herencia (Ley 30007), pensión de viudez y EsSalud. Detalle: https://hazlawpe.com/union-de-hecho-notarial.html
+- ¿Qué pide la licencia de funcionamiento? Una declaración jurada con el RUC y el DNI, la vigencia del poder del representante (si es empresa) y la declaración de condiciones de seguridad (riesgo bajo o medio) o el certificado ITSE (riesgo alto o muy alto). No exige tener empresa: una persona natural con RUC también puede. Hazlaw+ no tramita licencias; deja lista la empresa y los poderes. Detalle: https://hazlawpe.com/licencia-de-funcionamiento-en-lima.html
+- ¿Qué es una SACS? La Sociedad por Acciones Cerrada Simplificada (D. Leg. 1409): se constituye en línea en el SID-SUNARP, sin notario, entre 2 y 20 personas naturales con firma digital, con aportes solo en dinero o bienes muebles no registrables; cuesta S/ 18.70 más la tasa de inscripción. Encaja mejor una SAC con minuta propia cuando hay inmuebles que aportar, una empresa como socia o reglas a la medida entre socios. Detalle: https://hazlawpe.com/sacs-sociedad-por-acciones-cerrada-simplificada.html
+- ¿Cómo se cierra una empresa en el Perú? Disolución (junta y liquidador; el acuerdo se publica tres veces y se inscribe), liquidación (se pagan deudas y se reparte el remanente; balance final publicado una vez) y extinción en SUNARP (S/ 25.60, hasta 7 días hábiles); después, baja del RUC en SUNAT (sin costo, hasta 45 días hábiles). Dejar la empresa abandonada no la cierra. Detalle: https://hazlawpe.com/como-cerrar-una-empresa-en-peru.html
 
 ## Sobre el estudio
 

@@ -81,6 +81,12 @@ Activar el RUC y elegir el régimen (incluido en la asesoría contable), legaliz
 ### ¿Dónde constituir una empresa en Lima sin ir a la notaría?
 Con Hazlaw+: la notaría va a tu casa, tu oficina o tu negocio en cualquier distrito de Lima Metropolitana y Callao, de lunes a viernes y los sábados hasta el mediodía. Nuestra oficina está en San Juan de Lurigancho, pero atendemos toda Lima.
 
+### ¿Qué es una SACS y me conviene?
+La Sociedad por Acciones Cerrada Simplificada se constituye en línea en el SID-SUNARP, sin notario, entre 2 y 20 personas naturales que firman con DNI electrónico o certificado digital y aportan solo dinero o bienes muebles no registrables. Es válida y económica. Si quieren aportar un inmueble, tener una empresa como socia o fijar reglas a la medida entre socios, una SAC con minuta propia encaja mejor. Mira la guía de la SACS.
+
+### ¿Necesito la empresa para sacar la licencia de funcionamiento?
+No: una persona natural con RUC también puede pedirla. La licencia se solicita a la municipalidad del distrito con una declaración jurada; si la pide una empresa, declara que el poder del representante está vigente con su partida de SUNARP. Nosotros no tramitamos licencias, pero te dejamos la empresa y los poderes listos para pedirla. Mira la guía de licencia de funcionamiento.
+
 ## Cambios en tu empresa
 
 ### ¿Cómo se hace un aumento de capital?
@@ -124,6 +130,12 @@ Sí. La sucursal es un establecimiento secundario en otro lugar, sin personería
 
 ### ¿Cuánto cuestan estos trámites?
 Depende del acto, del monto y de los derechos registrales que cobra SUNARP, que se pueden estimar en su calculadora registral. Te damos un solo total por escrito antes de empezar. Si eres un estudio contable o de abogados, podemos llevar los de tus clientes con tarifas corporativas por convenio.
+
+### ¿Cuánto demora cerrar una empresa?
+Una empresa sin deudas ni bienes suele cerrarse en unos meses: tres publicaciones del acuerdo de disolución, su inscripción, el balance final, la extinción en SUNARP (hasta 7 días hábiles) y la baja del RUC en SUNAT (hasta 45 días hábiles). Con deudas, trabajadores o bienes por vender, lo que tome liquidarlos. Mira la guía de cómo cerrar una empresa.
+
+### ¿Puedo dejar mi empresa sin actividad en vez de cerrarla?
+Puedes comunicar a SUNAT una suspensión temporal de actividades de hasta doce meses, si piensas retomar. No es un cierre: la empresa sigue inscrita y, si pasan doce meses sin comunicar el reinicio, SUNAT puede dar de baja el RUC de oficio. Para que deje de existir hay que inscribir la extinción en SUNARP.
 
 ## Registrar tu marca
 
@@ -230,6 +242,15 @@ Sí. Si han convivido al menos dos años, sin impedimento para casarse y de com�
 
 ### ¿La notaría puede ir a mi casa?
 En Lima Metropolitana y Callao, sí: el motorizado de la notaría toma la firma donde estés, de lunes a viernes y los sábados hasta el mediodía. Sirve si eres adulto mayor, tienes poca movilidad o no puedes dejar tu negocio.
+
+### ¿Qué es la sucesión intestada o declaratoria de herederos?
+Es el trámite con el que un notario o un juez declara quiénes son los herederos de alguien que falleció sin testamento. Ante notario se hace cuando los herederos están de acuerdo: se presentan las partidas y los certificados de SUNARP, se publica un aviso, pasan 15 días útiles sin oposición y el notario extiende el acta, que se inscribe en SUNARP. Recién entonces los bienes pueden pasar a nombre de los herederos. Mira la guía de sucesión intestada.
+
+### ¿Cuánto cuesta una sucesión intestada?
+Las tasas de SUNARP son S/ 20.00 por inscribir la sucesión y S/ 46.00 por cada inmueble que pasa a los herederos. Aparte van los certificados, la publicación en los diarios y los honorarios de la notaría, que dependen del número de herederos y de bienes. Te damos un solo total por escrito antes de empezar.
+
+### ¿Qué derechos da la unión de hecho reconocida?
+Los bienes adquiridos durante la convivencia se tratan como en la sociedad de gananciales, el conviviente hereda como un cónyuge (Ley 30007), puede pedir pensión de viudez y afiliarse a EsSalud como derechohabiente. Para reconocerla ante notario hacen falta dos años de convivencia continua, estar libres de impedimento matrimonial y que los dos la pidan. Mira la guía de unión de hecho.
 
 ## Trámites y confianza
 
