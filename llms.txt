@@ -24,7 +24,7 @@
 
 ## Texto completo
 
-- [Preguntas frecuentes, texto completo](https://hazlawpe.com/llms-full.txt): las 91 respuestas en texto plano.
+- [Preguntas frecuentes, texto completo](https://hazlawpe.com/llms-full.txt): las 96 respuestas en texto plano.
 
 ## Guías
 
@@ -42,7 +42,7 @@
 - [Trámites notariales a domicilio en Lima: cómo funciona](https://hazlawpe.com/tramites-notariales-a-domicilio-en-lima.html)
 - [Poder notarial para un adulto mayor, sin que salga de casa](https://hazlawpe.com/poder-notarial-para-un-adulto-mayor.html)
 - [Constitución de empresas en San Juan de Lurigancho](https://hazlawpe.com/constitucion-de-empresas-en-san-juan-de-lurigancho.html)
-- [Preguntas frecuentes](https://hazlawpe.com/preguntas-frecuentes.html): 91 respuestas sobre constituir empresa, cambios en la empresa, registrar marca, contratos y trámites notariales.
+- [Preguntas frecuentes](https://hazlawpe.com/preguntas-frecuentes.html): 96 respuestas sobre constituir empresa, cambios en la empresa, registrar marca, contratos y trámites notariales.
 
 ## Guías para la empresa ya constituida (2 de noviembre de 2026; datos de la Ley General de Sociedades y gob.pe)
 
@@ -72,6 +72,14 @@
 - [SACS (Sociedad por Acciones Cerrada Simplificada): qué es, cómo se constituye en línea y cuándo conviene](https://hazlawpe.com/sacs-sociedad-por-acciones-cerrada-simplificada.html)
 - [Cómo cerrar una empresa en el Perú: disolución, liquidación, extinción y baja del RUC](https://hazlawpe.com/como-cerrar-una-empresa-en-peru.html)
 
+## Guías sobre testamento, divorcio, prescripción, certificados de SUNARP y regímenes tributarios (2 de noviembre de 2026)
+
+- [Testamento en el Perú: tipos, requisitos, cuánto puedes dejar a quien quieras y cómo se inscribe](https://hazlawpe.com/testamento-notarial-en-peru.html)
+- [Divorcio notarial en el Perú: separación convencional y divorcio ulterior, requisitos y pasos](https://hazlawpe.com/divorcio-notarial-en-peru.html)
+- [Prescripción adquisitiva de dominio ante notario: requisitos, pasos, plazos y oposición](https://hazlawpe.com/prescripcion-adquisitiva-notarial.html)
+- [Vigencia de poder, copia literal y certificados de SUNARP: cuál pedir, cuánto cuesta y cuánto demora](https://hazlawpe.com/vigencia-de-poder-y-copia-literal-sunarp.html)
+- [Regímenes tributarios en el Perú: Nuevo RUS, RER, MYPE Tributario y Régimen General](https://hazlawpe.com/regimenes-tributarios-para-tu-empresa.html)
+
 ## Preguntas que responde este sitio
 
 - ¿Dónde constituir una empresa en Lima sin ir a la notaría? En Hazlaw+: la notaría va a la casa, la oficina o el negocio del cliente, en Lima Metropolitana y Callao, por S/ 500 con derechos notariales incluidos (registrales aparte).
@@ -90,6 +98,12 @@
 - ¿Qué pide la licencia de funcionamiento? Una declaración jurada con el RUC y el DNI, la vigencia del poder del representante (si es empresa) y la declaración de condiciones de seguridad (riesgo bajo o medio) o el certificado ITSE (riesgo alto o muy alto). No exige tener empresa: una persona natural con RUC también puede. Hazlaw+ no tramita licencias; deja lista la empresa y los poderes. Detalle: https://hazlawpe.com/licencia-de-funcionamiento-en-lima.html
 - ¿Qué es una SACS? La Sociedad por Acciones Cerrada Simplificada (D. Leg. 1409): se constituye en línea en el SID-SUNARP, sin notario, entre 2 y 20 personas naturales con firma digital, con aportes solo en dinero o bienes muebles no registrables; cuesta S/ 18.70 más la tasa de inscripción. Encaja mejor una SAC con minuta propia cuando hay inmuebles que aportar, una empresa como socia o reglas a la medida entre socios. Detalle: https://hazlawpe.com/sacs-sociedad-por-acciones-cerrada-simplificada.html
 - ¿Cómo se cierra una empresa en el Perú? Disolución (junta y liquidador; el acuerdo se publica tres veces y se inscribe), liquidación (se pagan deudas y se reparte el remanente; balance final publicado una vez) y extinción en SUNARP (S/ 25.60, hasta 7 días hábiles); después, baja del RUC en SUNAT (sin costo, hasta 45 días hábiles). Dejar la empresa abandonada no la cierra. Detalle: https://hazlawpe.com/como-cerrar-una-empresa-en-peru.html
+
+- ¿Qué tipos de testamento hay y cuánto puedo dejar a quien quiera? Tres: por escritura pública, cerrado y ológrafo. Con hijos, descendientes o cónyuge se dispone libremente de un tercio; solo con padres o ascendientes, de la mitad; sin ellos, de todo (Código Civil, arts. 725 a 727). Inscribirlo en SUNARP cuesta S/ 20.00. Detalle: https://hazlawpe.com/testamento-notarial-en-peru.html
+- ¿Se puede divorciar ante notario? Sí, con dos años de matrimonio, acuerdo, sin hijos menores (o con sentencia o acta sobre su cuidado) y sin bienes en sociedad de gananciales o ya liquidados (Ley 29227): audiencia, separación convencional, dos meses de espera y divorcio. Detalle: https://hazlawpe.com/divorcio-notarial-en-peru.html
+- ¿Cómo hacerse dueño de un predio urbano que se posee hace años? Ante el notario de la provincia del predio: diez años de posesión (cinco con justo título y buena fe), tres a seis testigos, tres publicaciones, inspección del notario y 25 días hábiles sin oposición (Ley 27333). Si hay oposición, va al Poder Judicial. Detalle: https://hazlawpe.com/prescripcion-adquisitiva-notarial.html
+- ¿Cuánto cuesta la vigencia de poder en SUNARP y cuánto demora? S/ 32.10; hasta 3 días calendario en línea. La copia literal de una partida se pide en línea y llega en un máximo de 3 días hábiles. Detalle: https://hazlawpe.com/vigencia-de-poder-y-copia-literal-sunarp.html
+- ¿Qué régimen tributario le toca a una SAC o una EIRL? No pueden estar en el Nuevo RUS (solo personas naturales): eligen entre RER (hasta S/ 525 000 al año), Régimen MYPE Tributario (hasta 1 700 UIT) y Régimen General (sin límite). Cuál conviene lo ve el contador. Detalle: https://hazlawpe.com/regimenes-tributarios-para-tu-empresa.html
 
 ## Sobre el estudio
 
