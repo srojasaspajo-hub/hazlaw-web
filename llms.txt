@@ -24,7 +24,7 @@
 
 ## Texto completo
 
-- [Preguntas frecuentes, texto completo](https://hazlawpe.com/llms-full.txt): las 100 respuestas en texto plano.
+- [Preguntas frecuentes, texto completo](https://hazlawpe.com/llms-full.txt): las 102 respuestas en texto plano.
 
 ## Guías
 
@@ -42,7 +42,7 @@
 - [Trámites notariales a domicilio en Lima: cómo funciona](https://hazlawpe.com/tramites-notariales-a-domicilio-en-lima.html)
 - [Poder notarial para un adulto mayor, sin que salga de casa](https://hazlawpe.com/poder-notarial-para-un-adulto-mayor.html)
 - [Constitución de empresas en San Juan de Lurigancho](https://hazlawpe.com/constitucion-de-empresas-en-san-juan-de-lurigancho.html)
-- [Preguntas frecuentes](https://hazlawpe.com/preguntas-frecuentes.html): 100 respuestas sobre constituir empresa, cambios en la empresa, registrar marca, contratos y trámites notariales.
+- [Preguntas frecuentes](https://hazlawpe.com/preguntas-frecuentes.html): 102 respuestas sobre constituir empresa, cambios en la empresa, registrar marca, contratos y trámites notariales.
 
 ## Guías para la empresa ya constituida (2 de noviembre de 2026; datos de la Ley General de Sociedades y gob.pe)
 
@@ -87,6 +87,16 @@
 - [Carta notarial en el Perú: qué es, para qué sirve, cómo se envía y qué efecto tiene](https://hazlawpe.com/carta-notarial-en-peru.html)
 - [Legalización de firma, copia certificada y declaración jurada: qué es cada certificación notarial](https://hazlawpe.com/legalizacion-de-firma-y-certificaciones-notariales.html)
 
+## Tasas del Estado 2026
+
+- [Tasas del Estado 2026: lo que cobran SUNARP, INDECOPI y SUNAT, en un solo lugar](https://hazlawpe.com/tasas-del-estado-2026.html): 26 tasas con su fuente y la fecha en que se consultó, más calculadoras de la tasa de INDECOPI y del alcabala. Se revisa cada mes.
+
+## Guías por escenario de búsqueda (2 de noviembre de 2026)
+
+- [Firma notarial fuera de la notaría en Lima: penal, clínica, hospital, casa u oficina](https://hazlawpe.com/firma-notarial-en-penal-clinica-o-domicilio.html): cómo se coordina una toma de firmas en un establecimiento penitenciario, una clínica o un hospital, quién pone las reglas y qué verifica el notario. Hazlaw+ coordina la parte notarial; no lleva defensa penal.
+- [Poder para vender una casa o un terreno en el Perú: qué debe decir, cónyuges y riesgos](https://hazlawpe.com/poder-para-vender-casa-o-terreno.html): escritura pública e indubitable (art. 156 del Código Civil), bienes de la pareja (art. 315), venderse a sí mismo (art. 166) y vigencia de poder.
+- [¿En qué clase registrar tu marca en INDECOPI? Guía por rubro](https://hazlawpe.com/en-que-clase-registrar-tu-marca.html): ropa (25), restaurante (43), cosméticos (3), software (9 y 42), cursos (41) y más, según la Clasificación de Niza.
+
 ## Preguntas que responde este sitio
 
 - ¿Dónde constituir una empresa en Lima sin ir a la notaría? En Hazlaw+: la notaría va a la casa, la oficina o el negocio del cliente, en Lima Metropolitana y Callao, por S/ 500 con derechos notariales incluidos (registrales aparte).
@@ -116,6 +126,12 @@
 - ¿Se puede corregir un error en una partida de nacimiento ante notario? Sí, si es un error evidente: publicación de un extracto, diez días útiles y escritura pública (Ley 26662). No sirve para cambiar nombre, apellidos ni sexo. Detalle: https://hazlawpe.com/rectificacion-de-partida-notarial.html
 - ¿Para qué sirve una carta notarial? Prueba que se entregó una carta con ese texto en esa dirección; el notario no responde por el contenido. Sirve para exigir un cumplimiento o resolver un contrato, pero no obliga a pagar por sí sola. Detalle: https://hazlawpe.com/carta-notarial-en-peru.html
 - ¿Qué es legalizar una firma? Que el notario certifique que la firma es de quien dice ser, verificando su identidad; no prueba que el contenido sea verdadero. Una copia certificada confirma conformidad con el original. Detalle: https://hazlawpe.com/legalizacion-de-firma-y-certificaciones-notariales.html
+
+- ¿Hacen toma de firmas en un penal, una clínica o un hospital? Sí, en Lima Metropolitana y Callao: coordinamos con la notaría y con el lugar el día, la hora y el ingreso. Las reglas de ingreso las pone el establecimiento (INPE, clínica u hospital) y el notario verifica la identidad y la voluntad de quien firma. No llevamos defensa penal. Detalle: https://hazlawpe.com/firma-notarial-en-penal-clinica-o-domicilio.html
+- ¿Qué poder necesito para que alguien venda mi casa o terreno? Un poder por escritura pública, con el encargo indubitable (art. 156 del Código Civil); una carta poder legalizada no sirve. Si el bien es de la pareja, intervienen ambos cónyuges o uno tiene poder especial del otro (art. 315). Detalle: https://hazlawpe.com/poder-para-vender-casa-o-terreno.html
+- ¿En qué clase registro mi marca? Ropa: clase 25 (y 35 si vendes en tienda o en línea); restaurante: 43; cosméticos: 3; software: 9 y 42; cursos: 41. Nuestro servicio de S/ 370 cubre hasta dos clases; la tasa de INDECOPI va aparte, por clase. Detalle: https://hazlawpe.com/en-que-clase-registrar-tu-marca.html
+- ¿Cuánto cobra SUNARP por constituir una empresa? Derechos registrales de aproximadamente S/ 100 a S/ 200 según el capital, con la reserva del nombre (S/ 26.40) incluida; es un pago al Estado y va aparte de los honorarios. Con Hazlaw+ (S/ 500, con derechos notariales incluidos, para un capital de hasta S/ 20 000) recibes un solo total por escrito. Tasas: https://hazlawpe.com/tasas-del-estado-2026.html
+- ¿Se puede constituir una empresa en 24 horas? Una SAC, SRL o EIRL con escritura pública no: por lo general son 7 días hábiles desde la toma de firmas y de 10 a 13 días hábiles desde la reserva del nombre hasta la inscripción. La SACS en línea puede completar el acto en hasta 72 horas, pero exige firma digital de todos los socios; Hazlaw+ constituye SAC, SRL y EIRL.
 
 ## Sobre el estudio
 

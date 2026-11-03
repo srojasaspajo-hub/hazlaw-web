@@ -87,6 +87,12 @@ La Sociedad por Acciones Cerrada Simplificada se constituye en línea en el SID-
 ### ¿Necesito la empresa para sacar la licencia de funcionamiento?
 No: una persona natural con RUC también puede pedirla. La licencia se solicita a la municipalidad del distrito con una declaración jurada; si la pide una empresa, declara que el poder del representante está vigente con su partida de SUNARP. Nosotros no tramitamos licencias, pero te dejamos la empresa y los poderes listos para pedirla. Mira la guía de licencia de funcionamiento.
 
+### ¿Cuánto cobra SUNARP por constituir una empresa?
+SUNARP cobra derechos registrales por inscribir la empresa, que dependen del capital social: en promedio, entre S/ 100 y S/ 200, con la reserva del nombre (S/ 26.40) incluida. Es un pago al Estado y va aparte de nuestros honorarios. Con nosotros recibes un solo total por escrito antes de empezar. Los montos vigentes se pueden estimar en la calculadora registral de SUNARP; mira también las tasas del Estado 2026.
+
+### ¿Se puede constituir una empresa en 24 horas?
+Una SAC, SRL o EIRL con escritura pública no: por lo general son 7 días hábiles desde la toma de firmas y, en promedio, de 10 a 13 días hábiles desde la reserva del nombre hasta la inscripción; depende de la notaría y del registrador. La SACS en línea puede completar el acto constitutivo en hasta 72 horas, pero exige firma digital de todos los socios y otras reglas, y no es el servicio que hacemos: nosotros constituimos SAC, SRL y EIRL con minuta a la medida. Mira la guía de la SACS si quieres compararlas.
+
 ### ¿Qué régimen tributario le toca a mi empresa?
 Una SAC, una SRL o una EIRL es persona jurídica, así que no puede estar en el Nuevo RUS (es solo para personas naturales). Se ubica en el Régimen Especial de Renta (hasta S/ 525 000 al año), el Régimen MYPE Tributario (hasta 1 700 UIT) o el Régimen General (sin límite). Cuál te conviene lo ve tu contador: la primera asesoría contable de 45 minutos, incluida al constituir con nosotros, te ayuda a escoger. Mira la guía de regímenes tributarios.
 
@@ -205,6 +211,9 @@ Las de lo que vendes hoy y lo que vas a vender pronto. Una tienda de ropa suele 
 ### ¿Puedo vender o prestar mi marca?
 Sí. La marca se puede transferir o licenciar por escrito, y el contrato se inscribe en INDECOPI para que valga frente a terceros. Si constituyes tu empresa después de registrar la marca, se la transfieres.
 
+### ¿En qué clase registro mi marca de ropa, mi restaurante o mi aplicación?
+Ropa y calzado: clase 25, y la 35 si vendes en tienda o en línea con tu marca. Restaurante o cafetería: clase 43. Cosméticos: clase 3. Software que se descarga: clase 9; servicios tecnológicos: clase 42. En la guía «En qué clase registrar tu marca» están los demás rubros.
+
 ### ¿Registran marcas fuera de Lima?
 Sí. El registro de marca es nacional, se hace a distancia y vale en todo el Perú. Solo la constitución de empresas y los trámites notariales exigen la firma en Lima Metropolitana o Callao.
 
@@ -217,7 +226,7 @@ El 3 % del valor de venta (nunca menor al autovalúo), descontando las primeras 
 DNI de las partes, copia literal o CRI del inmueble, recibos del predial y constancia de no adeudo, minuta autorizada por abogado, constancia del pago por medio bancario y el pago del alcabala. Si vende un apoderado, su vigencia de poder. Te enviamos la lista exacta antes de la firma.
 
 ### ¿Qué poder necesito para que alguien venda mi inmueble?
-Un poder por escritura pública que diga de forma expresa que puede vender ese bien, inscrito en SUNARP. Un poder general o uno fuera de registro no sirven para vender.
+Un poder por escritura pública que deje claro, sin dudas, que puede vender ese bien, inscrito en SUNARP. Un poder que solo habla de administrar, o uno fuera de registro, no sirve para vender.
 
 ### ¿Qué es un poder fuera de registro?
 Un poder otorgado ante notario que no se inscribe en SUNARP. Sirve para gestiones y actos de administración: trámites, cobros, representación. No sirve para vender, hipotecar o donar bienes.
@@ -276,6 +285,15 @@ Sí, si el error es evidente de la propia partida o de otros documentos que lo p
 ### ¿Para qué sirve una carta notarial?
 Para dejar constancia de que exigiste un cumplimiento, resolviste un contrato o comunicaste algo importante: la notaría certifica la entrega y te devuelve el duplicado con la constancia. Prueba que se entregó y qué decía, no que el contenido sea cierto, y no obliga a pagar por sí sola. Mira la guía de carta notarial.
 
+### ¿Hacen toma de firmas en un penal?
+Sí. Coordinamos con la notaría y con el establecimiento penitenciario el día, la hora y el ingreso. Las reglas de ingreso las pone el establecimiento. No llevamos defensa penal: coordinamos la parte notarial.
+
+### ¿Una persona presa puede dar un poder?
+Sí. Conserva sus derechos civiles, salvo las limitaciones de la ley y de la sentencia. El poder se firma ante notario como cualquier otro, y el notario verifica su identidad y su voluntad.
+
+### ¿La notaría puede ir a una clínica o a un hospital a tomar una firma?
+Sí, se coordina con el lugar. La condición es que la persona pueda entender y expresar su voluntad el día de la firma: si no puede, el notario no puede autorizar el acto.
+
 ### ¿Qué diferencia hay entre legalizar una firma y certificar una copia?
 Legalizar una firma es que el notario certifique que una firma es de quien dice ser, verificando su identidad. Certificar una copia es que el notario declare que guarda absoluta conformidad con el original. Ninguna prueba que el contenido del documento sea verdadero. Mira la guía de legalización de firma y certificaciones.
 
@@ -321,4 +339,4 @@ Si desistes antes de que empecemos, te devolvemos el 100 % de los honorarios. Si
 En todos los de Lima Metropolitana y el Callao: Lima Norte (Los Olivos, Comas, San Martín de Porres, Independencia), Lima Este (San Juan de Lurigancho, Ate, Santa Anita, El Agustino), Lima Sur (Villa El Salvador, San Juan de Miraflores, Chorrillos), Lima Centro y Moderna (Cercado, Miraflores, San Isidro, Surco, La Molina) y el Callao. La notaría va a donde estés; la oficina está en San Juan de Lurigancho.
 
 ### ¿Son un estudio de abogados?
-Somos un estudio legal corporativo: un equipo de profesionales que constituye empresas, registra marcas y gestiona trámites notariales y registrales. Trabajamos con una notaría y con contadores aliados. No llevamos juicios ni temas penales o laborales.
+Somos un estudio legal corporativo: un equipo de profesionales que constituye empresas, registra marcas y gestiona trámites notariales y registrales. Trabajamos con una notaría y con contadores aliados. No llevamos juicios ni defensa penal o laboral; sí coordinamos firmas notariales, también dentro de un penal.

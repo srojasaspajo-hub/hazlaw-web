@@ -1512,6 +1512,110 @@
   }
 
   // Guías: el índice marca la sección que se está leyendo (en computadora queda fijo a la izquierda)
+  // ----- Tasas del Estado 2026 (2026-11-02): filtro por entidad, buscador y dos calculadoras.
+  // Todo es mejora: sin JavaScript la tabla se ve completa y los resultados de ejemplo quedan escritos.
+  function initTasas() {
+    var barra = document.querySelector("[data-tasas-filtros]");
+    if (barra) {
+      var filas = Array.prototype.slice.call(document.querySelectorAll("[data-tasas-fila]"));
+      var chips = Array.prototype.slice.call(barra.querySelectorAll("[data-filtro]"));
+      var campo = barra.querySelector("[data-tasas-buscar]");
+      var res = barra.querySelector("[data-tasas-res]");
+      var vacio = document.querySelector("[data-tasas-vacio]");
+      var filtro = "todas";
+      var plano = function (t) { return String(t).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); };
+      var aplicar = function () {
+        var q = plano(campo.value).trim(), n = 0;
+        filas.forEach(function (f) {
+          var ok = (filtro === "todas" || f.getAttribute("data-entidad") === filtro) && (!q || plano(f.textContent).indexOf(q) !== -1);
+          f.hidden = !ok;
+          if (ok) n++;
+        });
+        res.textContent = n === filas.length ? filas.length + " tasas" : n + " de " + filas.length + " tasas";
+        if (vacio) vacio.hidden = n !== 0;
+      };
+      chips.forEach(function (c) {
+        c.addEventListener("click", function () {
+          filtro = c.getAttribute("data-filtro");
+          chips.forEach(function (o) { o.setAttribute("aria-pressed", o === c ? "true" : "false"); });
+          aplicar();
+          hzTrack("tasas_filtro", { entidad: filtro });
+        });
+      });
+      campo.addEventListener("input", aplicar);
+      barra.hidden = false;
+      aplicar();
+    }
+
+    var vaciar = function (el) { while (el.firstChild) el.removeChild(el.firstChild); };
+    var linea = function (a, b) {
+      var e = document.createElement("li"), x = document.createElement("span"), y = document.createElement("span");
+      x.textContent = a;
+      y.textContent = b;
+      e.appendChild(x);
+      e.appendChild(y);
+      return e;
+    };
+    var ponerWa = function (a, msg) { a.setAttribute("data-wa", msg); a.setAttribute("href", WA_BASE + encodeURIComponent(msg)); };
+
+    // Tasa de INDECOPI: S/ 534.90 la primera clase (S/ 401.20 con RUC activo y habido y REMYPE) y S/ 533.30 cada clase adicional
+    var ind = document.querySelector('[data-calc="indecopi"]');
+    if (ind) {
+      var remype = ind.querySelector("[data-calc-remype]");
+      var totI = ind.querySelector("[data-calc-total]");
+      var detI = ind.querySelector("[data-calc-detalle]");
+      var servI = ind.querySelector("[data-calc-serv]");
+      var waI = ind.querySelector("[data-calc-wa]");
+      var calcI = function () {
+        var n = Number(ind.querySelector('input[name="clases"]:checked').value), rem = remype.checked;
+        var t1 = rem ? 401.2 : 534.9, ad = 533.3, total = t1 + (n - 1) * ad;
+        totI.textContent = soles(total);
+        marcaCambio(totI);
+        vaciar(detI);
+        detI.appendChild(linea(rem ? "Primera clase, con REMYPE" : "Primera clase", soles(t1)));
+        if (n > 1) detI.appendChild(linea(n === 2 ? "1 clase adicional" : (n - 1) + " clases adicionales", soles((n - 1) * ad)));
+        servI.textContent = n <= 2
+          ? "Con Hazlaw+, el servicio cuesta S/" + NBSP + "370 (hasta dos clases). Total con la tasa: " + soles(370 + total) + "."
+          : "Con más de dos clases te confirmamos el valor del servicio antes de que pagues.";
+        ponerWa(waI, "Hola, vengo de la página de tasas. Quiero registrar mi marca en " + n + (n === 1 ? " clase" : " clases") + (rem ? ", con RUC activo y REMYPE" : "") + ".");
+      };
+      ind.addEventListener("change", function () { calcI(); hzTrack("tasas_calculadora", { calc: "indecopi" }); });
+      calcI();
+    }
+
+    // Alcabala: 3 % del valor de venta que pasa de 10 UIT (UIT 2026 = S/ 5 500, o sea S/ 55 000)
+    var alc = document.querySelector('[data-calc="alcabala"]');
+    if (alc) {
+      var campoV = alc.querySelector("[data-calc-valor]");
+      var totA = alc.querySelector("[data-calc-total]");
+      var subA = alc.querySelector("[data-calc-sub]");
+      var detA = alc.querySelector("[data-calc-detalle]");
+      var waA = alc.querySelector("[data-calc-wa]");
+      var EXENTO = 55000;
+      var calcA = function () {
+        var digitos = campoV.value.replace(/\D/g, "").slice(0, 10);
+        campoV.value = digitos.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+        var v = Number(digitos), ejemplo = !v;
+        if (ejemplo) v = 300000;
+        var base = Math.max(0, v - EXENTO), imp = Math.round(base * 3) / 100;
+        totA.textContent = soles(imp);
+        marcaCambio(totA);
+        subA.textContent = "de alcabala, para un inmueble de " + soles(v) + (ejemplo ? " (ejemplo)" : "");
+        vaciar(detA);
+        detA.appendChild(linea("Valor de venta", soles(v)));
+        detA.appendChild(linea("No pagan las primeras 10 UIT", "− " + soles(Math.min(v, EXENTO))));
+        detA.appendChild(linea("Base del impuesto", soles(base)));
+        detA.appendChild(linea("Alcabala (3 %)", soles(imp)));
+        ponerWa(waA, ejemplo
+          ? "Hola, vengo de la página de tasas. Voy a comprar o vender un inmueble y quiero que me ayuden con la escritura."
+          : "Hola, vengo de la página de tasas. Voy a comprar o vender un inmueble de " + sinEspacios(soles(v)) + " y quiero que me ayuden con la escritura.");
+      };
+      campoV.addEventListener("input", calcA);
+      campoV.addEventListener("change", function () { hzTrack("tasas_calculadora", { calc: "alcabala" }); });
+      calcA();
+    }
+  }
+
   function initIndiceGuia() {
     var nav = document.querySelector("[data-indice]");
     if (!nav || !("IntersectionObserver" in window)) return;
@@ -1541,6 +1645,7 @@
     initCotizador();
     initEscenas();
     initIndiceGuia();
+    initTasas();
     initFaqBuscar();
     initLibro();
     initTramites();
