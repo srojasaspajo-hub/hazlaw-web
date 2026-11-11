@@ -592,17 +592,21 @@
       var lugarYo = { casa: "en mi casa", oficina: "en mi oficina", negocio: "en mi negocio", notaria: "en la notaría" }[r.firma];
       return {
         barra: "Firmas " + lugar,
+        // En la barra del celular el número va con su nombre: en el recorrido también se ven los pagos parciales
+        rotulo: mas ? "Tu total" : "Total aproximado",
         estado: { capital: r.capital, firma: r.firma },
         filas: {
-          "serv-n": mas ? "A tu medida" : "500",
+          "serv-n": mas ? "A tu medida" : 500,
           "serv-det": mas ? "Según tu capital: te lo confirmamos antes de que pagues" : "Con derechos notariales y una toma de firmas",
           reg: mas ? "Según tu capital" : rango(100, 200),
           total: mas ? "Te lo enviamos por escrito" : rango(600, 700),
           // Los S/ 500 en dos partes: S/ 180 para empezar y S/ 320 el día de la firma; los registrales, aparte
           adelanto: 180,
           resto: mas ? "El resto" : 320,
-          "reg-pago": mas ? "Según tu capital" : rango(100, 200),
-          firma: lugar
+          completa: mas ? "Así completas nuestro servicio." : "Así completas los S/" + NBSP + "500.",
+          // La parada de la firma dice a dónde va la notaría (o que firmas en la notaría)
+          "va-a": r.firma === "notaria" ? "Firmas en" : "La notaría va a",
+          "va-b": { casa: "tu casa", oficina: "tu oficina", negocio: "tu negocio", notaria: "la notaría" }[r.firma]
         },
         wa: "Hola, vengo de la web. Quiero constituir mi empresa, con capital de " + (mas ? "más de" : "hasta") +
             " S/ 20 000, y firmar " + lugarYo + "."
@@ -642,7 +646,8 @@
       var cta = root.querySelector("[data-out-wa]");
       var barra = root.querySelector("[data-barra]");
       var pase = root.querySelector(".pase");
-      var usado = false;
+      var esRuta = !!pase && pase.classList.contains("pase--ruta");
+      var usado = false, ultimo = null;
 
       function out(id) { return root.querySelector('[data-out="' + id + '"]'); }
       function respuestas() {
@@ -650,14 +655,17 @@
         root.querySelectorAll("input[type=radio]:checked").forEach(function (i) { r[i.name] = i.value; });
         return r;
       }
-      // Escribe un monto o un texto; los montos cuentan desde el valor anterior
+      // Escribe un monto o un texto; los montos cuentan desde el valor anterior.
+      // Con data-plano el número va sin "S/" (el precio grande del talón lleva la moneda aparte).
       function pon(el, valor) {
         if (!el) return false;
-        var nuevo = typeof valor === "number" ? soles(valor) : valor;
+        var plano = el.hasAttribute("data-plano");
+        var fmt = function (n) { return plano ? String(n) : soles(n); };
+        var nuevo = typeof valor === "number" ? fmt(valor) : valor;
         if (sinEspacios(el.textContent) === sinEspacios(nuevo)) return false;
-        var m = /^S\/\s*([\d\s ]+(?:\.\d+)?)$/.exec(sinEspacios(el.textContent));
+        var m = /^(?:S\/\s*)?(\d[\d\s]*(?:\.\d+)?)$/.exec(sinEspacios(el.textContent));
         var desde = m ? parseFloat(m[1].replace(/\s/g, "")) : null;
-        if (el.tagName === "DD") el.classList.toggle("is-texto", !/^S\//.test(nuevo));
+        if (el.tagName === "DD" || el.hasAttribute("data-monto")) el.classList.toggle("is-texto", !/^S\//.test(nuevo));
         var turno = el.hzTurno = {};
         if (typeof valor === "number" && desde !== null && !reduce) {
           var t0 = null;
@@ -665,7 +673,7 @@
             if (el.hzTurno !== turno) return;
             if (!t0) t0 = ts;
             var k = Math.min((ts - t0) / 560, 1), e = 1 - Math.pow(1 - k, 4);
-            el.textContent = k < 1 ? soles(Math.round(desde + (valor - desde) * e)) : nuevo;
+            el.textContent = k < 1 ? fmt(Math.round(desde + (valor - desde) * e)) : nuevo;
             if (k < 1) requestAnimationFrame(paso);
           });
           // Si el navegador pausa los cuadros (pestaña en segundo plano), el monto final llega igual
@@ -679,6 +687,7 @@
         var r = respuestas();
         r.nombre = root.hzNombre || "";
         var s = regla(r);
+        ultimo = s;
         // Marca: el nombre que escribes se ve en el dibujo de lo que proteges
         var muestra = root.querySelector(".pase__muestra .ilu--nombre");
         if (muestra) {
@@ -708,18 +717,24 @@
           // Constitución: el ícono del lugar de la firma es el de la ficha elegida
           var icono = pase.querySelector("[data-out-icono]");
           var elegido = root.querySelector('input[name="firma"]:checked');
-          var fuente = elegido && elegido.parentElement.querySelector(".ficha__icono");
+          var fuente = elegido && elegido.parentElement.querySelector(".ficha__icono, .lugar__icono");
           if (icono && fuente && icono.innerHTML !== fuente.innerHTML) {
             icono.innerHTML = fuente.innerHTML;
-            if (!reduce && avisar) marcaCambio(icono);
+            if (!reduce && avisar) {
+              marcaCambio(icono);
+              // El recorrido: la moto de la notaría vuelve a salir hacia el lugar recién elegido
+              var viaje = pase.querySelector("[data-viaje]");
+              if (viaje) marcaCambio(viaje);
+            }
           }
         }
         // La barra del celular repite lo esencial y marca el cambio, para ver el efecto de cada respuesta sin bajar
         var nuevoTotal = typeof s.filas.total === "number" ? soles(s.filas.total) : s.filas.total;
         if (barra) {
           var bv = barra.querySelector("[data-barra-valor]"), bt = barra.querySelector("[data-barra-total]");
-          var cambia = sinEspacios(bt.textContent) !== sinEspacios(nuevoTotal) || sinEspacios(bv.textContent) !== sinEspacios(s.barra);
-          bv.textContent = s.barra;
+          var rotulo = s.rotulo || s.barra;
+          var cambia = sinEspacios(bt.textContent) !== sinEspacios(nuevoTotal) || sinEspacios(bv.textContent) !== sinEspacios(rotulo);
+          bv.textContent = rotulo;
           bt.textContent = nuevoTotal;
           if (cambia && avisar && !reduce) marcaCambio(barra);
         }
@@ -747,10 +762,13 @@
         barra.hidden = false;
         var verForm = false, verPase = false;
         var refrescarBarra = function () { barra.classList.toggle("is-visible", verForm && !verPase); };
+        // En el recorrido las preguntas están dentro del pase: la barra acompaña mientras se leen las paradas
+        // y se retira cuando el talón, con el precio y el botón, ya está a la vista
         new IntersectionObserver(function (es) { verForm = es[0].isIntersecting; refrescarBarra(); },
-          { rootMargin: "-25% 0px -25% 0px" }).observe(root.querySelector(".cotiza__form"));
+          { rootMargin: esRuta ? "-18% 0px -32% 0px" : "-25% 0px -25% 0px" })
+          .observe(root.querySelector(esRuta ? ".pase__cuerpo" : ".cotiza__form"));
         new IntersectionObserver(function (es) { verPase = es[0].isIntersecting; refrescarBarra(); },
-          { threshold: 0.15 }).observe(root.querySelector(".cotiza__recibo"));
+          { threshold: esRuta ? 0.12 : 0.15 }).observe(root.querySelector(esRuta ? ".pase__talon" : ".cotiza__recibo"));
       }
 
       // Los enlaces al precio: al llegar, la primera pregunta se ilumina un momento para decir "empieza aquí"
@@ -765,16 +783,71 @@
       // La primera vez que se ve, el pase se imprime: los montos cuentan desde cero y lo incluido entra en orden
       if (pase && !reduce && "IntersectionObserver" in window) {
         pase.classList.add("is-pendiente");
+        // El recorrido (constitución): las paradas esperan apagadas hasta que llegan a la pantalla
+        var pasos = esRuta ? Array.prototype.slice.call(pase.querySelectorAll(".paso")) : [];
+        pasos.forEach(function (p) { p.classList.add("is-espera"); });
+        // Los montos de una zona (una parada o el talón) cuentan desde cero
+        var desdeCero = function (zona) {
+          zona.querySelectorAll("[data-out]").forEach(function (el) {
+            var v = ultimo && ultimo.filas[el.getAttribute("data-out")];
+            if (typeof v !== "number") return;
+            el.textContent = el.hasAttribute("data-plano") ? "0" : soles(0);
+            pon(el, v);
+          });
+        };
+        // Enciende una parada: su monto cuenta desde cero y, en la de la firma, la moto sale hacia el lugar elegido
+        var encender = function (p, espera) {
+          window.setTimeout(function () {
+            p.classList.remove("is-espera");
+            desdeCero(p);
+            var viaje = p.querySelector("[data-viaje]");
+            if (viaje) {
+              marcaCambio(viaje);
+              var destino = viaje.querySelector("[data-out-icono]");
+              if (destino) marcaCambio(destino);
+            }
+          }, espera);
+        };
+        var recorrer = function () {
+          // Cada parada se enciende al llegar a la pantalla; las que llegan juntas, una tras otra
+          var ioPasos = new IntersectionObserver(function (es) {
+            es.filter(function (e) { return e.isIntersecting; }).map(function (e) { return e.target; })
+              .sort(function (a, b) { return pasos.indexOf(a) - pasos.indexOf(b); })
+              .forEach(function (p, k) { ioPasos.unobserve(p); encender(p, k * 260); });
+          }, { threshold: 0.3, rootMargin: "0px 0px -8% 0px" });
+          // Las que ya están en pantalla se encienden mientras el pase se imprime: el observador no las ve
+          // hasta que termina el recorte del pase, y llegarían tarde
+          var alto = window.innerHeight, orden = 0;
+          pasos.forEach(function (p) {
+            var r = p.getBoundingClientRect();
+            if (r.top < alto * 0.85 && r.bottom > 0) encender(p, orden++ * 260);
+            else ioPasos.observe(p);
+          });
+          // El precio del talón cuenta cuando se ve
+          var talon = pase.querySelector(".pase__talon");
+          if (!talon) return;
+          if (talon.getBoundingClientRect().top < alto * 0.7) { window.setTimeout(function () { desdeCero(talon); }, 420); return; }
+          var ioTalon = new IntersectionObserver(function (es) {
+            if (!es[0].isIntersecting) return;
+            ioTalon.disconnect();
+            desdeCero(talon);
+          }, { threshold: 0.3 });
+          ioTalon.observe(talon);
+        };
+        // Se imprime cuando el pase ya ocupa parte de la pantalla. Antes se pedía ver la cuarta parte del pase
+        // entero, y en pantallas bajas (el celular echado) ese cuarto no cabía: el pase no llegaba a salir.
         var io = new IntersectionObserver(function (entries) {
           if (!entries[0].isIntersecting) return;
           io.disconnect();
-          pase.querySelectorAll("dd, .pase__adelanto").forEach(function (dd) {
-            if (/^S\/\s*[\d\s ]+(\.\d+)?$/.test(sinEspacios(dd.textContent))) dd.textContent = soles(0);
-          });
+          if (!esRuta) {
+            pase.querySelectorAll("dd").forEach(function (dd) {
+              if (/^S\/\s*[\d\s]+(\.\d+)?$/.test(sinEspacios(dd.textContent))) dd.textContent = soles(0);
+            });
+          }
           pase.classList.remove("is-pendiente");
           pase.classList.add("is-impreso");
-          window.setTimeout(pinta, 250);
-        }, { threshold: 0.25 });
+          window.setTimeout(esRuta ? recorrer : pinta, 250);
+        }, { rootMargin: "0px 0px -22% 0px" });
         // Se observa el contenedor: el pase recortado no tiene área visible que medir
         io.observe(pase.parentElement);
       }

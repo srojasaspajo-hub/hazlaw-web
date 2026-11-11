@@ -3261,12 +3261,7 @@ a, button, label, summary, input { touch-action: manipulation; }
 .pase__mas .recibo__no li { color: rgba(255,255,255,0.86); }
 .pase__mas .recibo__no li::before { background: rgba(255,255,255,0.5); }
 .pase__hoy { margin: 0; font-family: var(--text); font-size: 14px; color: var(--grafito); }
-.pase__adelanto { margin: 0; font-family: var(--display); font-size: 48px; font-weight: 500; line-height: 1; letter-spacing: -0.035em; font-variant-numeric: lining-nums tabular-nums; }
 .pase__resto { margin: 6px 0 16px; font-family: var(--text); font-size: 15px; line-height: 1.45; color: rgba(33,27,24,0.84); text-wrap: pretty; }
-.pase__firma { display: flex; align-items: center; gap: 12px; margin: 0 0 18px; padding: 10px 14px 10px 10px; border-radius: 14px; background: var(--crema); font-family: var(--text); font-size: 15px; color: var(--tinta); }
-.pase__firma-icono { display: flex; flex: 0 0 auto; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 11px; background: var(--tinta); color: var(--papel); }
-.pase__firma-icono svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
-.pase__firma-icono.is-cambio svg { animation: icono-cambia 0.42s var(--ease-firme) both; }
 @keyframes icono-cambia { from { opacity: 0; transform: scale(0.6) rotate(-14deg); } }
 .pase__protege { margin: 0 0 12px; font-family: var(--display); font-size: 34px; font-weight: 500; line-height: 1.05; letter-spacing: -0.02em; }
 .pase__protege.is-cambio { animation: valor-entra 0.45s var(--ease-firme) both; }
@@ -3299,7 +3294,6 @@ a, button, label, summary, input { touch-action: manipulation; }
   .pase__cta { padding: 12px 18px; font-size: 16px; }
   .pase__talon::before { top: -14px; left: -14px; }
   .pase__talon::after { top: auto; bottom: -14px; left: -14px; right: auto; }
-  .pase__adelanto { font-size: 56px; }
   .pase__precio { font-size: clamp(88px, 8vw, 116px); }
 }
 
@@ -3345,23 +3339,6 @@ a, button, label, summary, input { touch-action: manipulation; }
   :is(h1, h2, h3, p, blockquote, figure).reveal { opacity: 1; transform: none; transition: none; }
 }
 
-/* Talón: cuándo pagas, en dos paradas unidas por una línea */
-.pase__pagos-t { margin: 0 0 10px; font-family: var(--display); font-size: 20px; font-weight: 500; letter-spacing: -0.01em; color: var(--tinta); }
-.pase__split { display: flex; height: 34px; margin: 0 0 16px; border-radius: 10px; overflow: hidden; overflow: clip; font-family: var(--text); font-size: 13px; font-weight: 600; }
-.pase__split span { display: flex; align-items: center; padding: 0 10px; white-space: nowrap; transform-origin: left center; transition: transform 0.7s var(--ease-firme) 0.9s, opacity 0.3s ease 0.9s; }
-.pase__split-a { flex: 0 0 28%; background: var(--granate); color: var(--papel); }
-.pase__split-b { flex: 0 0 49%; background: var(--tinta); color: var(--papel); transition-delay: 1.2s !important; }
-.pase__split-c { flex: 1 1 auto; justify-content: center; background: repeating-linear-gradient(135deg, rgba(33,27,24,0.16) 0 6px, rgba(33,27,24,0.06) 6px 12px); color: var(--tinta); transition-delay: 1.5s !important; }
-.pase.is-pendiente .pase__split span { transform: scaleX(0); opacity: 0; }
-.pase__pagos { display: grid; gap: 14px; margin: 0 0 18px; padding: 0; list-style: none; }
-.pase__pagos li { display: grid; grid-template-columns: 1fr auto; align-items: baseline; column-gap: 12px; row-gap: 2px; }
-.pase__pagos-cuando { font-family: var(--text); font-size: 14px; font-weight: 600; color: var(--tinta); }
-.pase__pagos-cuando::before { content: ""; display: inline-block; width: 9px; height: 9px; margin-right: 8px; border-radius: 2px; background: var(--granate); vertical-align: 0; }
-.pase__pagos li:nth-child(2) .pase__pagos-cuando::before { background: var(--tinta); }
-.pase__pagos li:nth-child(3) .pase__pagos-cuando::before { background: repeating-linear-gradient(135deg, rgba(33,27,24,0.45) 0 2px, transparent 2px 4px); box-shadow: inset 0 0 0 1px rgba(33,27,24,0.35); }
-.pase__pagos .pase__adelanto { font-size: 34px; }
-.pase__pagos-resto { font-family: var(--display); font-size: 22px; font-weight: 500; line-height: 1.2; letter-spacing: -0.02em; text-align: right; font-variant-numeric: lining-nums tabular-nums; }
-.pase__pagos-que { grid-column: 1 / -1; padding-left: 17px; font-family: var(--text); font-size: 13px; line-height: 1.45; color: var(--grafito); }
 
 /* Laboratorio de marca: sigue hacia el precio, sin repetir el botón de WhatsApp */
 
@@ -3719,21 +3696,178 @@ a, button, label, summary, input { touch-action: manipulation; }
 @keyframes firma-sube { from { transform: translateY(108%); } }
 @keyframes firma-mas { from { transform: rotate(-90deg) scale(0); } }
 
-/* ----- Constitución: cuánto demora (en el cuerpo oscuro del pase) y qué tener a mano (en el talón), 2026-11-11 -----
-   Las tres etapas en una línea vertical, como las paradas del Metro: la línea crece y cada parada se enciende
-   cuando el pase termina de imprimirse. Sin JavaScript o con "reducir movimiento" se ven encendidas. */
-.pase__tiempo-t { margin-top: 22px; }
-.pase__tiempo { position: relative; display: grid; gap: 12px; margin: 0 0 8px; padding: 0 0 0 26px; list-style: none; }
-.pase__tiempo::before { content: ""; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 2px; border-radius: 2px; background: rgba(255,255,255,0.35); transform-origin: top; transition: transform 0.9s var(--ease-firme) 1.7s; }
-.pase__tiempo li { position: relative; display: grid; gap: 1px; font-family: var(--text); }
-.pase__tiempo li::before { content: ""; position: absolute; left: -26px; top: 4px; width: 14px; height: 14px; border-radius: 50%; background: var(--papel); box-shadow: 0 0 0 3px var(--tinta); transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.25, 1.3) calc(1.8s + var(--n) * 0.3s); }
-.pase__tiempo b { font-size: 15px; font-weight: 600; color: var(--papel); }
-.pase__tiempo span { font-size: 13.5px; line-height: 1.45; color: rgba(255,255,255,0.74); }
-.pase.is-pendiente .pase__tiempo::before { transform: scaleY(0); }
-.pase.is-pendiente .pase__tiempo li::before { transform: scale(0); }
-.pase__tiempo-nota { margin: 0 0 6px; padding-left: 26px; font-family: var(--text); font-size: 12.5px; color: rgba(255,255,255,0.7); }
+/* ----- Constitución: qué tener a mano, junto al botón de WhatsApp (2026-11-11) ----- */
 .pase__amano { margin: 0 0 18px; padding: 12px 14px; border-radius: 14px; background: var(--crema); font-family: var(--text); font-size: 14px; line-height: 1.5; color: var(--tinta); text-wrap: pretty; }
 .pase__amano b { font-weight: 600; }
-@media (prefers-reduced-motion: reduce) {
-  .pase__tiempo::before, .pase__tiempo li::before { transition: none; }
+
+/* =====================================================================
+   2026-11-11 · Constitución: el precio como un solo recorrido
+   El dueño: "más dinámico, menos complicado para el cliente". Un solo camino de cuatro paradas dice qué pasa,
+   cuánto demora y cuánto se paga en cada una; el precio y el botón quedan al final, en el talón. Las dos
+   preguntas viven dentro del pase: el capital, como un interruptor (arriba en el celular; encima del precio
+   en computadora), y dónde firmas, en la parada de la firma: la moto de la notaría va al lugar elegido.
+   Sin JavaScript se ve todo encendido.
+   ===================================================================== */
+.precio--ruta { gap: 28px; }
+.precio__cabeza { max-width: 680px; }
+.precio--ruta .precio__titulo { margin-bottom: 12px; }
+.precio--ruta .precio__bajada { margin: 0; max-width: 48ch; font-size: 18px; }
+#cotiza-total { scroll-margin-top: calc(var(--header-h) + 14px); }
+.pase--ruta .pase__cuerpo { padding: 24px 20px 22px; }
+
+/* El capital, como un interruptor de dos posiciones: la ficha se desliza a la opción elegida.
+   Los colores van en variables porque en el celular está sobre el cuerpo oscuro y en computadora sobre el talón claro. */
+.ruta__capital { --cap-t: var(--papel); --cap-x: rgba(255,255,255,0.72); --seg-bg: rgba(255,255,255,0.09); --seg-thumb: var(--papel); --seg-off: rgba(255,255,255,0.84); --seg-on: var(--tinta); position: relative; margin: 0 0 24px; padding: 0 0 22px; border-bottom: 1px solid rgba(255,255,255,0.12); }
+.ruta__legend { margin: 0 0 10px; font-family: var(--display); font-size: 19px; font-weight: 500; line-height: 1.3; letter-spacing: -0.01em; color: var(--cap-t); text-wrap: balance; }
+.ruta__ayuda { margin: 9px 0 0; font-family: var(--text); font-size: 13.5px; line-height: 1.45; color: var(--cap-x); }
+.segmento { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 4px; border-radius: 18px; background: var(--seg-bg); }
+.segmento::before { content: ""; position: absolute; top: 4px; bottom: 4px; left: 4px; width: calc(50% - 4px); border-radius: 14px; background: var(--seg-thumb); transition: transform 0.38s var(--ease-firme); }
+.segmento:has(.segmento__op:nth-child(2) input:checked)::before { transform: translateX(100%); }
+.segmento__op { position: relative; display: block; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.segmento__op input { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.segmento__cuerpo { position: relative; z-index: 1; display: grid; align-content: center; justify-items: center; gap: 1px; min-height: 54px; padding: 6px; border-radius: 14px; text-align: center; font-family: var(--text); color: var(--seg-off); transition: color 0.25s ease, background-color 0s; }
+.segmento__t { font-size: 14.5px; font-weight: 600; line-height: 1.25; letter-spacing: -0.005em; }
+.segmento__cuerpo small { font-size: 12.5px; line-height: 1.3; opacity: 0.82; }
+/* La opción elegida lleva su propio fondo, que llega cuando la ficha termina de deslizarse: así el contraste
+   del texto no depende de un adorno */
+.segmento__op input:checked + .segmento__cuerpo { background-color: var(--seg-thumb); color: var(--seg-on); transition: color 0.25s ease, background-color 0s linear 0.36s; }
+.segmento__op input:focus-visible + .segmento__cuerpo { outline: 2px solid var(--cap-t); outline-offset: 3px; }
+@media (hover: hover) and (pointer: fine) { .segmento__op:hover input:not(:checked) + .segmento__cuerpo { color: var(--cap-t); } }
+@supports not selector(:has(a)) {
+  .segmento::before { display: none; }
+  .segmento__op input:checked + .segmento__cuerpo { transition: color 0.25s ease; }
+}
+
+/* Las paradas: un punto, el tramo hasta la siguiente y, a la derecha, lo que se paga ahí */
+.ruta { display: grid; grid-template-columns: minmax(0, 1fr); margin: 0; padding: 0; list-style: none; }
+.paso { position: relative; padding: 0 0 26px 34px; }
+.paso:last-child { padding-bottom: 0; }
+.paso::before, .paso::after { content: ""; position: absolute; left: 8px; top: 27px; bottom: 2px; width: 2px; border-radius: 2px; }
+.paso::before { background: rgba(255,255,255,0.16); }
+.paso::after { background: rgba(255,255,255,0.75); transform-origin: top; transition: transform 0.7s var(--ease-firme) 0.18s; }
+.paso:last-child::before, .paso:last-child::after { display: none; }
+.paso__punto { position: absolute; left: 0; top: 4px; width: 18px; height: 18px; border-radius: 50%; background: var(--papel); transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.25, 1.3); }
+/* Lo que va al Estado lleva la misma trama rayada en todo el sitio */
+.paso--estado .paso__punto { background: repeating-linear-gradient(-45deg, rgba(255,255,255,0.9) 0 3px, rgba(255,255,255,0.32) 3px 6px); }
+.paso--fin .paso__punto { left: -2px; top: 2px; width: 22px; height: 22px; background: var(--papel) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6.5 12.5l3.5 3.5 7.5-8' fill='none' stroke='%237A1F22' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 14px no-repeat; }
+.paso > :not(.paso__punto) { transition: opacity 0.45s ease; }
+.paso__fila { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin: 0 0 4px; }
+.paso__t { margin: 0; font-family: var(--display); font-size: 19px; font-weight: 500; line-height: 1.3; letter-spacing: -0.01em; color: var(--papel); text-wrap: balance; }
+.paso__monto { flex: 0 0 auto; white-space: nowrap; text-align: right; font-family: var(--display); font-size: 22px; font-weight: 500; line-height: 1.2; letter-spacing: -0.02em; font-variant-numeric: lining-nums tabular-nums; color: var(--papel); }
+.paso__monto.is-texto { white-space: normal; max-width: 11ch; font-family: var(--text); font-size: 14.5px; font-weight: 600; line-height: 1.3; letter-spacing: 0; }
+.paso__monto-grupo { display: grid; flex: 0 0 auto; justify-items: end; gap: 1px; text-align: right; }
+.paso__monto-grupo small { font-family: var(--text); font-size: 12.5px; line-height: 1.3; color: rgba(255,255,255,0.76); }
+.paso__monto.paso__monto--incluido { display: inline-flex; align-items: center; gap: 7px; padding: 5px 12px 5px 6px; border-radius: 999px; background: rgba(255,255,255,0.1); font-family: var(--text); font-size: 13.5px; font-weight: 600; letter-spacing: 0; }
+.paso__monto--incluido::before { content: ""; flex: 0 0 auto; width: 16px; height: 16px; border-radius: 50%; background: var(--papel) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6.5 12.5l3.5 3.5 7.5-8' fill='none' stroke='%23211B18' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 10px no-repeat; }
+.paso__x { margin: 0 0 7px; max-width: 56ch; font-family: var(--text); font-size: 15px; line-height: 1.5; color: rgba(255,255,255,0.82); text-wrap: pretty; }
+.paso__x b { font-weight: 600; color: var(--papel); }
+.paso__plazo { display: flex; align-items: flex-start; gap: 7px; margin: 0; max-width: 56ch; font-family: var(--text); font-size: 13.5px; line-height: 1.45; color: rgba(255,255,255,0.74); }
+.paso__plazo::before { content: ""; flex: 0 0 auto; width: 14px; height: 14px; margin-top: 3px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-opacity='.78' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 7.5V12l3 2'/%3E%3C/svg%3E") center / contain no-repeat; }
+.paso__monto.is-cambio, .paso__x.is-cambio, .viaje__frase b.is-cambio, .viaje__frase span.is-cambio { animation: valor-entra 0.5s var(--ease-firme) both; }
+.viaje__frase b, .viaje__frase span { display: inline-block; }
+.ruta__nota { margin: 18px 0 0; padding-left: 34px; font-family: var(--text); font-size: 12.5px; line-height: 1.45; color: rgba(255,255,255,0.68); }
+/* En espera (solo con JavaScript): la parada se enciende cuando llega a la pantalla. Mientras espera se ve más
+   tenue, pero se puede leer: con 0.64 el texto más suave conserva un contraste de 4.5:1 sobre el fondo oscuro */
+.paso.is-espera::after { transform: scaleY(0); }
+.paso.is-espera .paso__punto { transform: scale(0); }
+.paso.is-espera > :not(.paso__punto) { opacity: 0.64; }
+
+/* La firma: la moto de la notaría va al lugar que elijas; si firmas en la notaría, no hay viaje */
+/* La tira de la moto y las fichas del lugar van lado a lado solo si caben; si no, una debajo de la otra */
+.paso__firma { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 14px 22px; margin: 10px 0 12px; }
+.paso__firma .viaje { flex: 1 1 200px; }
+.paso__firma .lugares { flex: 1.35 1 260px; }
+.viaje { display: grid; gap: 10px; overflow: hidden; padding: 14px 14px 12px; border-radius: 16px; background: rgba(255,255,255,0.07); }
+.viaje__pista { display: flex; align-items: center; }
+.viaje__punto { display: flex; flex: 0 0 auto; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; }
+.viaje__punto svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.viaje__punto--a { background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.88); }
+.viaje__punto--b { background: var(--papel); color: var(--granate); }
+.viaje__via { position: relative; flex: 1 1 auto; height: 2px; margin: 0 8px; background: linear-gradient(90deg, rgba(255,255,255,0.42) 50%, transparent 0) 0 0 / 8px 2px repeat-x; }
+.viaje__via::after { content: ""; position: absolute; inset: 0; border-radius: 2px; background: var(--papel); transform-origin: left; }
+.viaje__carro { position: absolute; left: 0; right: 0; bottom: 1px; height: 23px; transform: translateX(calc(100% - 30px)); pointer-events: none; }
+.viaje__moto { display: block; width: 30px; height: 23px; color: var(--papel); }
+.viaje__moto svg { display: block; width: 30px; height: 23px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.viaje__frase { margin: 0; font-family: var(--text); font-size: 15px; line-height: 1.4; color: rgba(255,255,255,0.86); }
+.viaje__frase b { font-weight: 600; color: var(--papel); }
+.viaje.is-cambio .viaje__carro { animation: viaje-va 1.05s cubic-bezier(0.65, 0, 0.35, 1) both; }
+.viaje.is-cambio .viaje__via::after { animation: viaje-linea 1.05s cubic-bezier(0.65, 0, 0.35, 1) both; }
+.viaje.is-cambio .viaje__punto--b { animation: viaje-llega 0.5s cubic-bezier(0.2, 0.9, 0.25, 1.3) 0.82s both; }
+.viaje__punto--b.is-cambio svg { animation: icono-cambia 0.42s var(--ease-firme) 0.86s both; }
+@keyframes viaje-va { from { transform: translateX(0); } }
+@keyframes viaje-linea { from { transform: scaleX(0); } }
+@keyframes viaje-llega { from { transform: scale(0.62); background-color: rgba(255,255,255,0.14); } }
+.pase[data-firma="notaria"] .viaje { grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 12px; }
+.pase[data-firma="notaria"] .viaje__punto--a, .pase[data-firma="notaria"] .viaje__via { display: none; }
+.pase[data-firma="notaria"] .viaje.is-cambio .viaje__punto--b { animation-delay: 0s; }
+.pase[data-firma="notaria"] .viaje__punto--b.is-cambio svg { animation-delay: 0.06s; }
+
+.lugares { min-width: 0; margin: 0; padding: 0; border: 0; }
+.lugares__legend { float: left; width: 100%; margin: 0 0 8px; padding: 0; font-family: var(--text); font-size: 14px; font-weight: 600; line-height: 1.35; color: rgba(255,255,255,0.88); }
+.lugares__ops { clear: both; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.lugar { position: relative; display: block; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.lugar input { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.lugar__cuerpo { display: flex; align-items: center; gap: 7px; min-height: 46px; padding: 6px 10px 6px 7px; border-radius: 999px; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.26); font-family: var(--text); font-size: 14.5px; font-weight: 600; line-height: 1.2; color: rgba(255,255,255,0.9); transition: background-color 0.22s ease, color 0.22s ease, box-shadow 0.22s ease, transform 0.16s var(--ease-firme); }
+.lugar__icono { display: flex; flex: 0 0 auto; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,0.1); transition: background-color 0.22s ease, color 0.22s ease; }
+.lugar__icono svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.lugar input:checked + .lugar__cuerpo { background: var(--papel); box-shadow: none; color: var(--tinta); }
+.lugar input:checked + .lugar__cuerpo .lugar__icono { background: var(--granate); color: var(--papel); }
+.lugar input:focus-visible + .lugar__cuerpo { outline: 2px solid var(--papel); outline-offset: 3px; }
+.lugar:active .lugar__cuerpo { transform: scale(0.97); }
+@media (hover: hover) and (pointer: fine) { .lugar:hover input:not(:checked) + .lugar__cuerpo { box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.62); } }
+
+/* El talón: el precio en grande, el total y el botón */
+.pase--ruta .pase__talon { padding: 26px 20px 22px; }
+.talon__rotulo { margin: 0; font-family: var(--text); font-size: 15px; color: var(--grafito); }
+.talon__precio { display: flex; align-items: flex-start; gap: 6px; margin: 4px 0 10px; font-family: var(--display); font-size: clamp(88px, 26vw, 112px); font-weight: 500; line-height: 0.86; letter-spacing: -0.055em; font-variant-numeric: lining-nums tabular-nums; color: var(--tinta); }
+.talon__moneda { margin-top: 0.1em; font-size: 0.32em; letter-spacing: -0.01em; color: var(--grafito); }
+.talon__cifra.is-cambio, .talon__con.is-cambio, .talon__linea dd.is-cambio { animation: valor-entra 0.5s var(--ease-firme) both; }
+.pase[data-capital="mas"] .talon__moneda { display: none; }
+.pase[data-capital="mas"] .talon__precio { font-size: clamp(42px, 12vw, 54px); line-height: 1.02; letter-spacing: -0.035em; }
+.talon__con { margin: 0 0 18px; font-family: var(--text); font-size: 15px; line-height: 1.45; color: rgba(33,27,24,0.84); text-wrap: pretty; }
+.talon__lineas { margin: 0 0 14px; }
+.talon__linea { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; padding: 14px 0; border-top: 1px solid rgba(33,27,24,0.12); border-bottom: 1px solid rgba(33,27,24,0.12); }
+.talon__linea dt { font-family: var(--text); font-size: 15px; font-weight: 600; line-height: 1.35; color: var(--tinta); }
+.talon__linea dt small { display: block; margin-top: 2px; font-size: 13px; font-weight: 400; color: var(--grafito); }
+.talon__linea dd { margin: 0; white-space: nowrap; font-family: var(--display); font-size: 26px; font-weight: 500; letter-spacing: -0.02em; font-variant-numeric: lining-nums tabular-nums; color: var(--tinta); }
+.talon__linea dd.is-texto { white-space: normal; max-width: 13ch; text-align: right; font-family: var(--text); font-size: 15px; font-weight: 600; letter-spacing: 0; line-height: 1.35; }
+.talon__aparte { margin: 0 0 16px; font-family: var(--text); font-size: 13.5px; line-height: 1.5; color: var(--grafito); text-wrap: pretty; }
+.talon__aparte b { font-weight: 600; color: var(--tinta); }
+
+/* Celulares muy angostos (320 px): menos margen y letra un punto menor, para que el monto no se salga */
+@media (max-width: 359px) {
+  .pase--ruta .pase__cuerpo, .pase--ruta .pase__talon { padding-left: 16px; padding-right: 16px; }
+  .paso { padding-left: 28px; }
+  .paso__t { font-size: 17px; }
+  .paso__monto { font-size: 19px; }
+  .paso__monto-grupo small { font-size: 12px; }
+  .ruta__nota { padding-left: 28px; }
+  .talon__linea dd { font-size: 23px; }
+}
+
+/* Computadora: las paradas a la izquierda; a la derecha, el talón con el capital, el precio y el botón.
+   El cuerpo no tiene caja propia (display: contents): el fondo oscuro es del pase y el talón son dos celdas claras. */
+@media (min-width: 900px) {
+  .precio--ruta { gap: 44px; }
+  .precio--ruta .precio__bajada { font-size: 20px; }
+  .pase--ruta { grid-template-columns: minmax(0, 1fr) 384px; grid-template-rows: auto 1fr; background: var(--tinta); }
+  /* La línea troquelada, de una sola pieza, entre las paradas y el talón */
+  .pase--ruta::before { content: ""; grid-column: 2; grid-row: 1 / span 2; justify-self: start; position: relative; z-index: 1; width: 2px; margin: 26px 0; background: linear-gradient(180deg, rgba(33,27,24,0.22) 50%, transparent 0) 0 0 / 2px 12px repeat-y; pointer-events: none; }
+  /* Si el talón es más alto, las paradas se reparten el espacio: los tramos se alargan y no queda un hueco al final */
+  .ruta__camino { display: flex; flex-direction: column; grid-column: 1; grid-row: 1 / span 2; padding: 36px 38px 30px; }
+  .ruta { flex: 1 1 auto; }
+  .ruta__capital { --cap-t: var(--tinta); --cap-x: var(--grafito); --seg-bg: var(--crema); --seg-thumb: var(--tinta); --seg-off: rgba(33,27,24,0.82); --seg-on: var(--papel); grid-column: 2; grid-row: 1; margin: 0; padding: 28px 30px 20px; border-bottom: 0; border-radius: 0 28px 0 0; background: var(--papel); }
+  .ruta__capital::before { content: ""; position: absolute; top: -14px; left: -14px; width: 28px; height: 28px; border-radius: 50%; background: var(--crema); }
+  .ruta__capital::after { content: ""; position: absolute; left: 30px; right: 30px; bottom: 0; height: 1px; background: rgba(33,27,24,0.12); }
+  .pase--ruta .pase__talon { display: flex; flex-direction: column; grid-column: 2; grid-row: 2; padding: 22px 30px 28px; border-radius: 0 0 28px 0; background: var(--papel); }
+  .pase--ruta .pase__talon::before { display: none; }
+  .pase--ruta .pase__amano { margin-top: auto; }
+  .paso { padding-left: 40px; padding-bottom: 28px; }
+  .paso__t { font-size: 21px; }
+  .paso__monto { font-size: 24px; }
+  .paso__firma { margin: 12px 0 14px; }
+  .ruta__nota { padding-left: 40px; }
+  .talon__precio { font-size: 96px; }
+  .segmento__t { font-size: 15px; }
+  .pase[data-capital="mas"] .talon__precio { font-size: 46px; }
 }

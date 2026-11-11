@@ -36,7 +36,7 @@
 <!-- Jost servida desde la propia web (assets/fonts, licencia OFL); se pide desde el inicio -->
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/jost-latin.woff2" crossorigin>
 
-<link rel="stylesheet" href="assets/css/styles.css?v=171">
+<link rel="stylesheet" href="assets/css/styles.css?v=172">
 </head>
 <body class="page-constitucion" data-cta-main="empresa">
 
@@ -190,88 +190,79 @@
 </section>
 
 <section class="block block--crema precio-sec" id="cotiza" aria-labelledby="cotiza-t">
-  <div class="container precio" data-cotiza="empresa">
-    <div class="cotiza__form precio__form">
-      <h2 class="h2 precio__titulo" id="cotiza-t">Todo esto, en un solo precio.</h2>
-      <p class="precio__bajada">Dos respuestas y ves tu total, con lo que incluye y lo que va aparte. Te lo confirmamos por escrito antes de que pagues.</p>
-      <fieldset class="cotiza__q precio__q">
-        <legend class="cotiza__legend">¿Con cuánto capital empiezas?</legend>
-        <p class="cotiza__ayuda">No hay un mínimo. Lo importante es que sea real.</p>
-        <div class="fichas fichas--2">
-          <label class="ficha"><input type="radio" name="capital" value="hasta" checked><span class="ficha__cuerpo"><span class="ficha__icono" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="6.5" width="17" height="11" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6.5 9.5v.01M17.5 14.5v.01"/></svg></span><span class="ficha__texto">Hasta S/&nbsp;20&nbsp;000</span><span class="ficha__nota">Precio fijo</span></span></label>
-          <label class="ficha"><input type="radio" name="capital" value="mas"><span class="ficha__cuerpo"><span class="ficha__icono" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="8.5" width="14" height="10" rx="2"/><path d="M6.5 5.5h14v10"/><circle cx="10.5" cy="13.5" r="2.3"/></svg></span><span class="ficha__texto">Más de S/&nbsp;20&nbsp;000</span><span class="ficha__nota">Te lo cotizamos</span></span></label>
-        </div>
-      </fieldset>
-      <fieldset class="cotiza__q precio__q">
-        <legend class="cotiza__legend">¿Dónde quieres firmar?</legend>
-        <div class="fichas fichas--4">
-          <label class="ficha"><input type="radio" name="firma" value="casa" checked><span class="ficha__cuerpo"><span class="ficha__icono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5"/><path d="M6 10v10.5h12V10"/><path d="M10 20.5v-6h4v6"/></svg></span><span class="ficha__texto">En mi casa</span></span></label>
-          <label class="ficha"><input type="radio" name="firma" value="oficina"><span class="ficha__cuerpo"><span class="ficha__icono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 20.5h17"/><path d="M5.5 20.5v-15a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v15"/><path d="M14.5 9.5h3a1 1 0 0 1 1 1v10"/><path d="M8.5 8h3M8.5 11.5h3M8.5 15h3"/></svg></span><span class="ficha__texto">En mi oficina</span></span></label>
-          <label class="ficha"><input type="radio" name="firma" value="negocio"><span class="ficha__cuerpo"><span class="ficha__icono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 9.5 5.5 4.5h13L20 9.5"/><path d="M4 9.5c0 1.4 1.1 2.5 2.5 2.5S9 10.9 9 9.5c0 1.4 1.1 2.5 2.5 2.5S14 10.9 14 9.5c0 1.4 1.1 2.5 2.5 2.5S19 10.9 19 9.5"/><path d="M5.5 12v8.5h13V12"/><path d="M10 20.5v-5h4v5"/></svg></span><span class="ficha__texto">En mi negocio</span></span></label>
-          <label class="ficha"><input type="radio" name="firma" value="notaria"><span class="ficha__cuerpo"><span class="ficha__icono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 9 12 4l8.5 5"/><path d="M5 9.5h14"/><path d="M6.5 10v8M10 10v8M14 10v8M17.5 10v8"/><path d="M4 20.5h16"/></svg></span><span class="ficha__texto">En la notaría</span></span></label>
-        </div>
-      </fieldset>
+  <div class="container precio precio--ruta" data-cotiza="empresa">
+    <div class="cotiza__form precio__cabeza">
+      <h2 class="h2 h2--xl precio__titulo" id="cotiza-t">Todo esto, en un solo precio.</h2>
+      <p class="precio__bajada">Mira qué pasa y qué pagas en cada paso; al final, tu total. Te lo confirmamos por escrito antes de que pagues.</p>
     </div>
     <div class="cotiza__recibo precio__lado" id="cotiza-recibo">
-      <article class="pase" data-capital="hasta" data-firma="casa" aria-labelledby="cotiza-t">
+      <article class="pase pase--ruta" data-capital="hasta" data-firma="casa" aria-labelledby="cotiza-t">
         <p class="sr-only" aria-live="polite" data-anuncio></p>
         <div class="pase__cuerpo">
-          <div class="pase__difs">
-          <p class="pase__marca"><span class="plus-mark" aria-hidden="true"></span>Constitución de empresa</p>
-          <p class="pase__difs-t">Lo que nos diferencia va incluido</p>
-          <ul>
-            <li style="--n:0"><b>Minuta a tu medida</b><span>No es estándar: 8, 9 o 10 hojas, las que tu empresa necesite.</span></li>
-            <li style="--n:1"><b>La notaría va a ti</b><span>Firmas en tu casa, tu oficina o tu negocio, en Lima Metropolitana y Callao.</span></li>
-            <li style="--n:2"><b>Contador y RUC activo</b><span>45 minutos con un contador aliado que activa tu RUC&nbsp;20.</span></li>
-          </ul>
-          </div>
-          <div class="pase__principal">
-          <p class="pase__rotulo">Nuestro servicio</p>
-          <p class="pase__precio"><span class="pase__moneda">S/</span><span class="pase__cifra" data-out="serv-n">500</span></p>
-          <p class="pase__con" data-out="serv-det">Con derechos notariales y una toma de firmas</p>
-          <div class="pase__barra" aria-hidden="true"><span class="pase__seg pase__seg--serv"></span><span class="pase__seg pase__seg--reg"></span></div>
-          <p class="pase__leyenda" aria-hidden="true"><span class="pase__ley pase__ley--serv">Nuestro servicio</span><span class="pase__ley pase__ley--reg">Pago al Estado</span></p>
-          </div>
-          <div class="pase__detalle">
-          <dl class="pase__lineas">
-            <div class="pase__linea"><dt>Derechos registrales<small>Pago al Estado, aproximado</small></dt><dd data-out="reg">S/&nbsp;100&nbsp;a&nbsp;200</dd></div>
-            <div class="pase__linea pase__linea--total"><dt>Total aproximado</dt><dd data-out="total">S/&nbsp;600&nbsp;a&nbsp;700</dd></div>
-          </dl>
-          <p class="pase__dif">También incluye:</p>
-          <ul class="pase__incluye" aria-label="También incluye">
-            <li style="--n:0">Asesoría legal</li>
-            <li style="--n:1">Reserva del nombre</li>
-            <li style="--n:2">Inscripción en SUNARP</li>
-            <li style="--n:3">Asiento y testimonio en PDF</li>
-          </ul>
-          <p class="pase__dif pase__tiempo-t">Cuánto demora</p>
-          <ol class="pase__tiempo" aria-label="Cuánto demora">
-            <li style="--n:0"><b>Reserva del nombre</b><span>De 1 a 2 días hábiles.</span></li>
-            <li style="--n:1"><b>Firma</b><span>El día y la hora que coordinemos contigo.</span></li>
-            <li style="--n:2"><b>Inscripción en SUNARP</b><span>Por lo general, 7 días hábiles desde la firma.</span></li>
-          </ol>
-          <p class="pase__tiempo-nota">Los plazos dependen de la notaría y de SUNARP.</p>
-          <details class="recibo__mas pase__mas">
-            <summary>Lo que va aparte</summary>
-            <div class="recibo__mas-cuerpo">
-              <ul class="recibo__no">
-            <li>Derechos registrales: son del Estado y ya están sumados en tu total aproximado.</li>
-            <li>Cada punto de firma adicional: S/&nbsp;45.</li>
-            <li>Libros societarios y cambios posteriores en tu empresa.</li>
-              </ul>
+          <div class="ruta__capital" role="radiogroup" aria-labelledby="cotiza-capital-t">
+            <p class="ruta__legend" id="cotiza-capital-t">¿Con cuánto capital empiezas?</p>
+            <div class="segmento">
+              <label class="segmento__op"><input type="radio" name="capital" value="hasta" checked><span class="segmento__cuerpo"><span class="segmento__t">Hasta S/&nbsp;20&nbsp;000</span><small>Precio fijo</small></span></label>
+              <label class="segmento__op"><input type="radio" name="capital" value="mas"><span class="segmento__cuerpo"><span class="segmento__t">Más de S/&nbsp;20&nbsp;000</span><small>Te lo cotizamos</small></span></label>
             </div>
-          </details>
+            <p class="ruta__ayuda">No hay un mínimo. Lo importante es que sea real.</p>
+          </div>
+          <div class="ruta__camino">
+          <ol class="ruta" aria-label="Los pasos de tu empresa y lo que pagas en cada uno">
+            <li class="paso paso--inicio" style="--n:0">
+              <span class="paso__punto" aria-hidden="true"></span>
+              <div class="paso__fila"><h3 class="paso__t">Para empezar</h3><span class="paso__monto" data-monto data-out="adelanto">S/&nbsp;180</span></div>
+              <p class="paso__x">Te asesoramos, reservamos el nombre y redactamos tu <b>minuta a tu medida</b>.</p>
+              <p class="paso__plazo">Reserva del nombre: de 1 a 2 días hábiles.</p>
+            </li>
+            <li class="paso paso--firma" style="--n:1">
+              <span class="paso__punto" aria-hidden="true"></span>
+              <div class="paso__fila"><h3 class="paso__t">El día de la firma</h3><span class="paso__monto" data-monto data-out="resto">S/&nbsp;320</span></div>
+              <p class="paso__x" data-out="completa">Así completas los S/&nbsp;500.</p>
+              <div class="paso__firma">
+                <div class="viaje" data-viaje>
+                  <div class="viaje__pista" aria-hidden="true">
+                    <span class="viaje__punto viaje__punto--a"><svg viewBox="0 0 24 24"><path d="M3.5 9 12 4l8.5 5"/><path d="M5 9.5h14"/><path d="M6.5 10v8M10 10v8M14 10v8M17.5 10v8"/><path d="M4 20.5h16"/></svg></span>
+                    <span class="viaje__via"><span class="viaje__carro"><span class="viaje__moto"><svg viewBox="0 6 26 20"><circle cx="5" cy="21" r="4.2"/><circle cx="21" cy="21" r="4.2"/><path d="M5 21h4l5-8h5l2 8"/><path d="M14 13l-2-5h-3"/><path d="M19 13h3"/></svg></span></span></span>
+                    <span class="viaje__punto viaje__punto--b" data-out-icono><svg viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5"/><path d="M6 10v10.5h12V10"/><path d="M10 20.5v-6h4v6"/></svg></span>
+                  </div>
+                  <p class="viaje__frase"><span data-out="va-a">La notaría va a</span> <b data-out="va-b">tu casa</b>.</p>
+                </div>
+                <fieldset class="lugares">
+                  <legend class="lugares__legend">¿Dónde quieres firmar?</legend>
+                  <div class="lugares__ops">
+                    <label class="lugar"><input type="radio" name="firma" value="casa" checked><span class="lugar__cuerpo"><span class="lugar__icono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5"/><path d="M6 10v10.5h12V10"/><path d="M10 20.5v-6h4v6"/></svg></span>Mi casa</span></label>
+                    <label class="lugar"><input type="radio" name="firma" value="oficina"><span class="lugar__cuerpo"><span class="lugar__icono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 20.5h17"/><path d="M5.5 20.5v-15a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v15"/><path d="M14.5 9.5h3a1 1 0 0 1 1 1v10"/><path d="M8.5 8h3M8.5 11.5h3M8.5 15h3"/></svg></span>Mi oficina</span></label>
+                    <label class="lugar"><input type="radio" name="firma" value="negocio"><span class="lugar__cuerpo"><span class="lugar__icono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 9.5 5.5 4.5h13L20 9.5"/><path d="M4 9.5c0 1.4 1.1 2.5 2.5 2.5S9 10.9 9 9.5c0 1.4 1.1 2.5 2.5 2.5S14 10.9 14 9.5c0 1.4 1.1 2.5 2.5 2.5S19 10.9 19 9.5"/><path d="M5.5 12v8.5h13V12"/><path d="M10 20.5v-5h4v5"/></svg></span>Mi negocio</span></label>
+                    <label class="lugar"><input type="radio" name="firma" value="notaria"><span class="lugar__cuerpo"><span class="lugar__icono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 9 12 4l8.5 5"/><path d="M5 9.5h14"/><path d="M6.5 10v8M10 10v8M14 10v8M17.5 10v8"/><path d="M4 20.5h16"/></svg></span>La notaría</span></label>
+                  </div>
+                </fieldset>
+              </div>
+              <p class="paso__plazo">En Lima Metropolitana y Callao, el día y la hora que coordinemos contigo.</p>
+            </li>
+            <li class="paso paso--estado" style="--n:2">
+              <span class="paso__punto" aria-hidden="true"></span>
+              <div class="paso__fila"><h3 class="paso__t">Inscripción en SUNARP</h3><span class="paso__monto-grupo"><span class="paso__monto" data-monto data-out="reg">S/&nbsp;100&nbsp;a&nbsp;200</span><small>Al Estado, aproximado</small></span></div>
+              <p class="paso__x">Presentamos tu empresa y te avisamos en cada etapa. Los derechos registrales <b>van al Estado</b>, aparte.</p>
+              <p class="paso__plazo">Por lo general, 7 días hábiles desde la firma.</p>
+            </li>
+            <li class="paso paso--fin" style="--n:3">
+              <span class="paso__punto" aria-hidden="true"></span>
+              <div class="paso__fila"><h3 class="paso__t">Tu RUC, activo</h3><span class="paso__monto paso__monto--incluido">Incluido</span></div>
+              <p class="paso__x">Con tu empresa inscrita, recibes el asiento y el testimonio en PDF, y te reúnes 45 minutos con un <b>contador aliado</b>, que activa tu RUC&nbsp;20.</p>
+            </li>
+          </ol>
+          <p class="ruta__nota">Los plazos dependen de la notaría y de SUNARP.</p>
           </div>
         </div>
-        <div class="pase__talon">
-          <p class="pase__pagos-t">Así pagas</p>
-          <div class="pase__split" aria-hidden="true"><span class="pase__split-a">S/&nbsp;180</span><span class="pase__split-b">S/&nbsp;320</span><span class="pase__split-c">Estado</span></div>
-          <ol class="pase__pagos" aria-label="Cuándo pagas">
-            <li><span class="pase__pagos-cuando">Para empezar</span><b class="pase__adelanto" data-out="adelanto">S/&nbsp;180</b><span class="pase__pagos-que">Con eso empezamos tu minuta y la reserva del nombre.</span></li>
-            <li><span class="pase__pagos-cuando">El día de la firma</span><b class="pase__pagos-resto" data-out="resto">S/&nbsp;320</b><span class="pase__pagos-que">Lo que falta de nuestro servicio. Así completas los S/&nbsp;500.</span></li>
-            <li><span class="pase__pagos-cuando">Derechos registrales</span><b class="pase__pagos-resto" data-out="reg-pago">S/&nbsp;100&nbsp;a&nbsp;200</b><span class="pase__pagos-que">Se pagan al Estado, aparte, para inscribir tu empresa.</span></li>
-          </ol>
-          <p class="pase__firma"><span class="pase__firma-icono" aria-hidden="true" data-out-icono><svg viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5"/><path d="M6 10v10.5h12V10"/><path d="M10 20.5v-6h4v6"/></svg></span><span>Firmas <b data-out="firma">en tu casa</b></span></p>
+        <div class="pase__talon" id="cotiza-total">
+          <p class="talon__rotulo">Nuestro servicio</p>
+          <p class="talon__precio"><span class="talon__moneda">S/</span><span class="talon__cifra" data-plano data-out="serv-n">500</span></p>
+          <p class="talon__con" data-out="serv-det">Con derechos notariales y una toma de firmas</p>
+          <dl class="talon__lineas">
+            <div class="talon__linea"><dt>Total aproximado<small>Con los derechos registrales</small></dt><dd data-out="total">S/&nbsp;600&nbsp;a&nbsp;700</dd></div>
+          </dl>
+          <p class="talon__aparte"><b>Va aparte:</b> cada punto de firma adicional (S/&nbsp;45), los libros societarios y los cambios posteriores en tu empresa.</p>
           <p class="pase__amano"><b>Ten a mano:</b> el DNI de los socios y del gerente, el porcentaje de cada socio, a qué se dedicará tu empresa y el capital.</p>
           <a class="btn btn--red pase__cta" data-out-wa data-wa="Hola, vengo de la web. Quiero constituir mi empresa, con capital de hasta S/ 20 000, y firmar en mi casa." href="https://wa.me/51924021846"><svg class="btn__wa" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.3 20.7l4.4-1.1A8.8 8.8 0 1 0 12 3.2z"/></svg>Escribir por WhatsApp</a>
           <p class="pase__nota">Tus respuestas ya van escritas en el mensaje.</p>
@@ -279,8 +270,8 @@
         </div>
       </article>
     </div>
-    <a class="cotiza__barra" href="#cotiza-recibo" data-barra data-scroll hidden>
-      <span class="cotiza__barra-txt"><span class="cotiza__barra-rotulo" data-barra-valor>Firmas en tu casa</span><b data-barra-total>S/&nbsp;600&nbsp;a&nbsp;700</b></span>
+    <a class="cotiza__barra" href="#cotiza-total" data-barra data-scroll hidden>
+      <span class="cotiza__barra-txt"><span class="cotiza__barra-rotulo" data-barra-valor>Total aproximado</span><b data-barra-total>S/&nbsp;600&nbsp;a&nbsp;700</b></span>
       <span class="cotiza__barra-ver">Ver el detalle</span>
     </a>
   </div>
@@ -471,6 +462,6 @@
 </script>
 
 <script src="assets/js/analytics.js?v=11"></script>
-<script src="assets/js/main.js?v=86"></script>
+<script src="assets/js/main.js?v=87"></script>
 </body>
 </html>
