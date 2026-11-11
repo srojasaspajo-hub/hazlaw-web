@@ -225,15 +225,32 @@
     refreshStatus();
     window.setInterval(refreshStatus, 60000);
 
-    // Invitación: un globo al aparecer, una sola vez
+    // Invitación: un globo breve, una sola vez por visita y nunca encima de un título, un enlace o un botón:
+    // si en ese momento taparía alguno, espera a la siguiente sección. "Una vez por visita" sin guardar nada
+    // en el navegador: si la persona llega desde otra página de esta misma web, ya lo vio y no se repite.
+    var nudgeEl = root.querySelector(".quick-cta__nudge");
+    if (document.referrer && document.referrer.indexOf(window.location.origin + "/") === 0) nudged = true;
+    function nudgeTapa() {
+      if (!nudgeEl || !document.elementsFromPoint) return false;
+      // Dónde quedará el globo, sin contar la animación de entrada (offset* no mira las transformaciones)
+      var x0 = root.offsetLeft + nudgeEl.offsetLeft;
+      var w = nudgeEl.offsetWidth;
+      var y = root.offsetTop + nudgeEl.offsetTop + nudgeEl.offsetHeight / 2;
+      return [x0 + 10, x0 + w / 2, x0 + w - 10].some(function (x) {
+        return document.elementsFromPoint(x, y).some(function (el) {
+          return !root.contains(el) && /^(H1|H2|H3|A|BUTTON|INPUT|LABEL|SUMMARY)$/.test(el.tagName);
+        });
+      });
+    }
     function nudgeOnce() {
       // Espera a que la persona haya bajado un poco: nada salta apenas se abre la página
       if (nudged || current === "hero" || window.scrollY < window.innerHeight * 0.6) return;
       nudged = true;
       window.setTimeout(function () {
         if (opened || !visible) return;
+        if (nudgeTapa()) { nudged = false; return; }
         root.classList.add("show-nudge");
-        window.setTimeout(function () { root.classList.remove("show-nudge"); }, 5000);
+        window.setTimeout(function () { root.classList.remove("show-nudge"); }, 4000);
       }, 1400);
     }
 
@@ -861,7 +878,8 @@
       }
       // Antes de verse, la minuta parte de las hojas básicas
       if (cuenta) hojas(e, "base");
-      if (repite) repite.addEventListener("click", function () {
+      // Otra vuelta con el ejemplo siguiente (otro destino, otro caso, otro rubro)
+      function otra() {
         vueltas++;
         ciclos.forEach(function (c) {
           var lista = c.getAttribute("data-ciclo").split("|");
@@ -879,7 +897,23 @@
           });
         }
         juega(e);
-      });
+      }
+      if (repite) repite.addEventListener("click", otra);
+      // Filas de servicio de la portada: no llevan botón (toda la fila es un enlace). En computadora, pasar el
+      // cursor o llegar con el teclado vuelve a jugar el dibujo con otro ejemplo; en el celular basta con verlo.
+      if (e.hasAttribute("data-escena-cursor") && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+        var enlace = e.querySelector("a") || e;
+        var ultima = 0;
+        var otraSiToca = function () {
+          var ahora = Date.now();
+          // Solo después de la primera vez, y no más de una vuelta cada segundo y medio
+          if (!e.classList.contains("is-viva") || ahora - ultima < 1500) return;
+          ultima = ahora;
+          otra();
+        };
+        enlace.addEventListener("pointerenter", otraSiToca);
+        enlace.addEventListener("focus", function () { if (enlace.matches(":focus-visible")) otraSiToca(); });
+      }
     });
     if (reduce) return;
     if (!("IntersectionObserver" in window)) {
@@ -887,13 +921,58 @@
       return;
     }
     var io = new IntersectionObserver(function (entries) {
+      var turno = 0;
       entries.forEach(function (en) {
         if (!en.isIntersecting) return;
         io.unobserve(en.target);
-        juega(en.target);
+        // Si varias entran a la vez (las tres filas de la portada en computadora), arrancan una tras otra
+        if (turno === 0) juega(en.target);
+        else window.setTimeout(juega.bind(null, en.target), 380 * turno);
+        turno++;
       });
     }, { threshold: 0.45 });
     escenas.forEach(function (e) { io.observe(e); });
+  }
+
+  // El nombre del servicio viaja entre la fila de la portada y el título de su página (transición entre documentos,
+  // ver styles.css). El título de la página de servicio lleva el nombre de transición desde el CSS; aquí se le pone
+  // a la fila de la portada justo antes de salir hacia su servicio (pageswap) o al volver de él (pagereveal), y solo
+  // si está a la vista. Al terminar se quita: una fila que quedó fuera de la pantalla no debe viajar.
+  // En navegadores sin transiciones entre documentos estos avisos no existen y la página cambia como siempre.
+  function initViaje() {
+    var titulo = document.querySelector(".photo-hero__title");
+    var filas = Array.prototype.slice.call(document.querySelectorAll(".menu-svc__link"));
+    if (!titulo && !filas.length) return;
+    function limpia(u) { return String(u || "").split("#")[0].split("?")[0].replace(/\.html$/, ""); }
+    function aLaVista(el) {
+      var r = el.getBoundingClientRect();
+      return r.bottom > 0 && r.top < window.innerHeight;
+    }
+    function alTerminar(vt, fn) { vt.finished.then(fn, fn); }
+    // otra: la página a la que se va o de la que se viene
+    function viaja(otra, vt) {
+      if (!vt) return;
+      if (titulo) {
+        // Página de servicio: si el título ya no está a la vista (se bajó), no participa
+        if (aLaVista(titulo)) return;
+        titulo.classList.add("sin-viaje");
+        alTerminar(vt, function () { titulo.classList.remove("sin-viaje"); });
+        return;
+      }
+      filas.forEach(function (a) {
+        var nombre = a.querySelector(".menu-svc__name");
+        if (!nombre || limpia(a.href) !== limpia(otra) || !aLaVista(nombre)) return;
+        nombre.classList.add("is-viaje");
+        alTerminar(vt, function () { nombre.classList.remove("is-viaje"); });
+      });
+    }
+    window.addEventListener("pageswap", function (e) {
+      viaja(e.activation && e.activation.entry && e.activation.entry.url, e.viewTransition);
+    });
+    window.addEventListener("pagereveal", function (e) {
+      var act = window.navigation && window.navigation.activation;
+      if (!titulo) viaja(act && act.from && act.from.url, e.viewTransition);
+    });
   }
 
   // Gestión notarial: "¿Qué trámite necesita tu cliente?" es un chat. El estudio toca un trámite, su pedido sale y
@@ -1644,6 +1723,7 @@
     initSiteHeader();
     initCotizador();
     initEscenas();
+    initViaje();
     initIndiceGuia();
     initTasas();
     initFaqBuscar();

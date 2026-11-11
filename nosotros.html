@@ -2,7 +2,7 @@
 <html lang="es-PE">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-4zd2smDdcAUaJ7gzkxrkyD/owwoLFxcWP8NtZjfyz54=' https://www.googletagmanager.com https://*.clarity.ms https://c.bing.com https://connect.facebook.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://*.clarity.ms https://c.bing.com https://www.facebook.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.clarity.ms https://c.bing.com https://www.facebook.com https://connect.facebook.net https://script.google.com https://script.googleusercontent.com; media-src 'self' blob:; frame-src https://www.youtube-nocookie.com https://www.facebook.com; object-src 'none'; base-uri 'self'; form-action 'self' https://www.facebook.com; manifest-src 'self'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-4zd2smDdcAUaJ7gzkxrkyD/owwoLFxcWP8NtZjfyz54=' https://www.googletagmanager.com https://*.clarity.ms https://c.bing.com https://connect.facebook.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://*.clarity.ms https://c.bing.com https://www.facebook.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.googletagmanager.com https://*.clarity.ms https://c.bing.com https://www.facebook.com https://connect.facebook.net https://script.google.com https://script.googleusercontent.com; media-src 'self' blob:; frame-src https://www.youtube-nocookie.com https://www.facebook.com; object-src 'none'; base-uri 'self'; form-action 'self' https://www.facebook.com; manifest-src 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <script>if(self!==top){document.documentElement.style.display="none";try{top.location=self.location}catch(e){}}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,7 +36,7 @@
 <!-- Jost servida desde la propia web (assets/fonts, licencia OFL); se pide desde el inicio -->
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/jost-latin.woff2" crossorigin>
 
-<link rel="stylesheet" href="assets/css/styles.css?v=169">
+<link rel="stylesheet" href="assets/css/styles.css?v=171">
 </head>
 <body class="has-header page-nosotros" data-cta-main="empresa">
 
@@ -152,7 +152,7 @@
      (WCAG 2.2.2: todo lo que se mueve solo más de 5 segundos se puede pausar, también en el celular) -->
 <section class="block block--crema testimonials" id="testimonios" aria-labelledby="testimonios-title">
   <div class="container testimonials__head">
-    <h2 class="h2" id="testimonios-title">Lo que dicen nuestros clientes</h2>
+    <h2 class="h2 h2--xl" id="testimonios-title">Lo que dicen nuestros clientes</h2>
     <button class="voice-pausa" type="button" aria-controls="voice-marquee" aria-pressed="false" hidden><span class="voice-pausa__icono" aria-hidden="true"></span><span class="voice-pausa__txt">Pausar</span></button>
   </div>
   <div class="voice-marquee" id="voice-marquee" role="region" aria-label="Testimonios de clientes" tabindex="0">
@@ -272,6 +272,45 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "LegalService",
+      "@id": "https://hazlawpe.com/#empresa",
+      "name": "Hazlaw+",
+      "legalName": "Hazlaw S.R.L.",
+      "taxID": "20614415950",
+      "url": "https://hazlawpe.com/",
+      "logo": "https://hazlawpe.com/assets/logo/favicon-512.png",
+      "telephone": "+51924021846",
+      "email": "contacto@hazlawpe.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av. Próceres de la Independencia 1625",
+        "addressLocality": "San Juan de Lurigancho",
+        "addressRegion": "Lima",
+        "postalCode": "15419",
+        "addressCountry": "PE"
+      },
+      "areaServed": [
+        {
+          "@type": "AdministrativeArea",
+          "name": "Lima Metropolitana"
+        },
+        {
+          "@type": "City",
+          "name": "Lima"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Callao"
+        }
+      ],
+      "sameAs": [
+        "https://www.instagram.com/hazlawpe/",
+        "https://www.facebook.com/hazlaw.pe",
+        "https://www.tiktok.com/@hazlawpe",
+        "https://www.linkedin.com/company/hazlaw"
+      ]
+    },
+    {
       "@type": "Person",
       "@id": "https://hazlawpe.com/#sebastian-rojas",
       "name": "Sebastián Rojas Aspajo",
@@ -312,6 +351,6 @@
 </script>
 
 <script src="assets/js/analytics.js?v=11"></script>
-<script src="assets/js/main.js?v=84"></script>
+<script src="assets/js/main.js?v=85"></script>
 </body>
 </html>

@@ -3631,3 +3631,109 @@ a, button, label, summary, input { touch-action: manipulation; }
 .legal__sec .btn, .legal__sec .btn:hover { color: var(--papel); text-decoration: none; }
 /* Grupos de más de seis preguntas: la tarjeta de respuesta queda fija arriba, así que la rama que la une a la pregunta no se dibuja */
 .faq-tree.faq-tree--larga.is-ready .faq-tree__branch { display: none; }
+
+/* =====================================================================
+   2026-11-10 · Experiencia: títulos con más escala, cada servicio con su dibujo vivo,
+   el nombre que viaja entre páginas y la firma del pie que sube con el scroll
+   ===================================================================== */
+
+/* Títulos de sección: un escalón más de tamaño para que la página tenga ritmo (misma letra) */
+.h2--xl { font-size: clamp(30px, 5.4vw + 9px, 36px); line-height: 1.08; letter-spacing: -0.028em; }
+@media (min-width: 900px) { .h2--xl { font-size: clamp(42px, 3.5vw, 52px); line-height: 1.04; letter-spacing: -0.032em; } }
+
+/* ----- Portada: cada servicio con su dibujo vivo -----
+   La tira va debajo del texto en el celular y a la derecha en computadora. El dibujo es decorativo
+   (aria-hidden): el texto de la fila dice lo mismo. Estado final por defecto; solo parte "apagado"
+   si el navegador ejecuta scripts (initEscenas pone .is-viva al entrar en pantalla y .is-quieta con
+   "reducir movimiento"). */
+.menu-svc__link { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 0 16px; }
+.menu-svc__tira { grid-column: 2 / -1; grid-row: 2; display: block; width: 100%; max-width: 330px; margin-top: 14px; }
+.tira svg { display: block; width: 100%; height: auto; overflow: visible; }
+.tira__et { font-family: var(--text); font-size: 12.5px; font-weight: 500; fill: var(--grafito); }
+.tira__et--fin { font-weight: 600; fill: var(--granate); }
+.tira__et--marca { font-weight: 600; fill: var(--tinta); }
+.tira__mas { fill: var(--granate); }
+.tira .v-ruta__moto circle { fill: var(--papel); }
+.tira__bandeja { fill: none; stroke: rgba(33,27,24,0.28); stroke-width: 2; stroke-linecap: round; }
+/* Las 45 clases: una pasada las recorre y quedan encendidas las del rubro */
+.tira__c { fill: rgba(33,27,24,0.09); transform-box: fill-box; transform-origin: center; }
+.tira__c.is-on { fill: var(--granate); }
+/* Los trámites: pasan en arco de la bandeja del estudio a la de Hazlaw+ y toman su color */
+.tira__doc { transform: translateX(196px); }
+.tira__doc rect { fill: var(--papel); stroke: var(--granate); stroke-width: 1.7; }
+.tira__doc path { fill: none; stroke: rgba(33,27,24,0.45); stroke-width: 1.5; stroke-linecap: round; }
+@media (scripting: enabled) {
+  .menu-svc__item:not(.is-viva):not(.is-quieta) .tira__c.is-on { fill: rgba(33,27,24,0.09); }
+  .menu-svc__item:not(.is-viva):not(.is-quieta) .tira__doc { transform: none; }
+  .menu-svc__item:not(.is-viva):not(.is-quieta) .tira__doc rect { stroke: var(--tinta); }
+}
+/* Sin JavaScript nadie pondría .is-viva: el camino de la notaría se ve ya recorrido */
+@media (scripting: none) {
+  .tira .v-ruta__hecho { stroke-dashoffset: 0; }
+  .tira .v-ruta__b { fill: var(--granate); }
+}
+.is-viva .tira__c { animation: tira-barre 0.5s ease-out calc(var(--n) * 13ms) both; }
+.is-viva .tira__c.is-on { animation: tira-prende 0.55s cubic-bezier(0.2, 0.9, 0.25, 1.3) 1s both; }
+.is-viva .tira__doc { animation: tira-avanza 0.85s cubic-bezier(0.65, 0, 0.35, 1) calc(0.15s + var(--n) * 0.42s) both; }
+.is-viva .tira__doc > g { animation: tira-arco 0.85s linear calc(0.15s + var(--n) * 0.42s) both; }
+.is-viva .tira__doc rect { animation: tira-recibe 0.3s ease calc(0.95s + var(--n) * 0.42s) both; }
+.menu-svc__item.is-reinicio .tira * { transition: none !important; animation: none !important; }
+@keyframes tira-barre { from { fill: rgba(33,27,24,0.34); transform: scale(0.72); } }
+@keyframes tira-prende { 0% { fill: rgba(33,27,24,0.09); transform: scale(1); } 55% { transform: scale(1.4); } }
+@keyframes tira-avanza { from { transform: none; } }
+@keyframes tira-arco { 0% { animation-timing-function: ease-out; } 50% { transform: translateY(-17px); animation-timing-function: ease-in; } }
+@keyframes tira-recibe { from { stroke: var(--tinta); } }
+@media (min-width: 900px) {
+  .menu-svc__link { grid-template-columns: auto minmax(0, 1fr) 300px auto; gap: 0 24px; }
+  .menu-svc__tira { grid-column: 3; grid-row: 1; width: 300px; max-width: none; margin-top: 0; }
+}
+
+/* ----- Entre páginas: el nombre del servicio viaja entre la fila de la portada y el título de su página -----
+   Los dos extremos comparten un nombre de transición. El título de la página de servicio lo lleva siempre; la fila
+   de la portada, solo en el momento del viaje y si está a la vista (initViaje en main.js le pone .is-viaje), para
+   que nada salga volando desde fuera de la pantalla. El nombre sale rápido mientras se desplaza y el título entra
+   cuando ya llegó. Si no hay pareja (se llega desde otra página), el título entra y sale igual que el resto.
+   Solo donde el navegador tiene transiciones entre documentos; en los demás, la página cambia como siempre. */
+@media (prefers-reduced-motion: no-preference) {
+  .photo-hero__title, .menu-svc__name.is-viaje { view-transition-name: servicio; }
+  .photo-hero__title.sin-viaje { view-transition-name: none; }
+  ::view-transition-group(servicio) { animation-duration: 0.62s; animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
+  ::view-transition-old(servicio) { animation: vt-sale 0.26s ease both; }
+  ::view-transition-new(servicio) { animation: vt-llega 0.42s ease 0.12s both; }
+  ::view-transition-old(servicio):only-child { animation: vt-sale 0.16s var(--ease-soft) both; }
+  ::view-transition-new(servicio):only-child { animation: vt-entra 0.42s var(--ease-out) both; }
+}
+@keyframes vt-llega { from { opacity: 0; } }
+
+/* ----- Pie de la portada: la firma «Hazlo. Estamos contigo+» sube con tu scroll -----
+   Donde el navegador enlaza animaciones al scroll, la firma depende de cuánto bajaste (ya no de un reloj):
+   nunca llega tarde ni deja un hueco. En los demás sigue la entrada de siempre (initSiteFoot).
+   overflow: clip (y no hidden) para que el pie y la línea no cuenten como zonas de scroll propias. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .site-foot, .site-foot__line { overflow: clip; }
+    .site-foot__word { transform: none; transition: none; animation: firma-sube linear both; animation-timeline: view(); animation-range: entry 0% cover 32%; }
+    .site-foot__sign-plus { transform: none; transition: none; animation: firma-mas linear both; animation-timeline: view(); animation-range: cover 18% cover 42%; }
+  }
+}
+@keyframes firma-sube { from { transform: translateY(108%); } }
+@keyframes firma-mas { from { transform: rotate(-90deg) scale(0); } }
+
+/* ----- Constitución: cuánto demora (en el cuerpo oscuro del pase) y qué tener a mano (en el talón), 2026-11-11 -----
+   Las tres etapas en una línea vertical, como las paradas del Metro: la línea crece y cada parada se enciende
+   cuando el pase termina de imprimirse. Sin JavaScript o con "reducir movimiento" se ven encendidas. */
+.pase__tiempo-t { margin-top: 22px; }
+.pase__tiempo { position: relative; display: grid; gap: 12px; margin: 0 0 8px; padding: 0 0 0 26px; list-style: none; }
+.pase__tiempo::before { content: ""; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 2px; border-radius: 2px; background: rgba(255,255,255,0.35); transform-origin: top; transition: transform 0.9s var(--ease-firme) 1.7s; }
+.pase__tiempo li { position: relative; display: grid; gap: 1px; font-family: var(--text); }
+.pase__tiempo li::before { content: ""; position: absolute; left: -26px; top: 4px; width: 14px; height: 14px; border-radius: 50%; background: var(--papel); box-shadow: 0 0 0 3px var(--tinta); transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.25, 1.3) calc(1.8s + var(--n) * 0.3s); }
+.pase__tiempo b { font-size: 15px; font-weight: 600; color: var(--papel); }
+.pase__tiempo span { font-size: 13.5px; line-height: 1.45; color: rgba(255,255,255,0.74); }
+.pase.is-pendiente .pase__tiempo::before { transform: scaleY(0); }
+.pase.is-pendiente .pase__tiempo li::before { transform: scale(0); }
+.pase__tiempo-nota { margin: 0 0 6px; padding-left: 26px; font-family: var(--text); font-size: 12.5px; color: rgba(255,255,255,0.7); }
+.pase__amano { margin: 0 0 18px; padding: 12px 14px; border-radius: 14px; background: var(--crema); font-family: var(--text); font-size: 14px; line-height: 1.5; color: var(--tinta); text-wrap: pretty; }
+.pase__amano b { font-weight: 600; }
+@media (prefers-reduced-motion: reduce) {
+  .pase__tiempo::before, .pase__tiempo li::before { transition: none; }
+}

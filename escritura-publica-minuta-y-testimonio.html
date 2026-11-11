@@ -2,7 +2,7 @@
 <html lang="es-PE">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-4zd2smDdcAUaJ7gzkxrkyD/owwoLFxcWP8NtZjfyz54=' https://www.googletagmanager.com https://*.clarity.ms https://c.bing.com https://connect.facebook.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://*.clarity.ms https://c.bing.com https://www.facebook.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.clarity.ms https://c.bing.com https://www.facebook.com https://connect.facebook.net https://script.google.com https://script.googleusercontent.com; media-src 'self' blob:; frame-src https://www.youtube-nocookie.com https://www.facebook.com; object-src 'none'; base-uri 'self'; form-action 'self' https://www.facebook.com; manifest-src 'self'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-4zd2smDdcAUaJ7gzkxrkyD/owwoLFxcWP8NtZjfyz54=' https://www.googletagmanager.com https://*.clarity.ms https://c.bing.com https://connect.facebook.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://*.clarity.ms https://c.bing.com https://www.facebook.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.googletagmanager.com https://*.clarity.ms https://c.bing.com https://www.facebook.com https://connect.facebook.net https://script.google.com https://script.googleusercontent.com; media-src 'self' blob:; frame-src https://www.youtube-nocookie.com https://www.facebook.com; object-src 'none'; base-uri 'self'; form-action 'self' https://www.facebook.com; manifest-src 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <script>if(self!==top){document.documentElement.style.display="none";try{top.location=self.location}catch(e){}}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,7 +36,7 @@
 <!-- Jost servida desde la propia web (assets/fonts, licencia OFL); se pide desde el inicio -->
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/jost-latin.woff2" crossorigin>
 
-<link rel="stylesheet" href="assets/css/styles.css?v=169">
+<link rel="stylesheet" href="assets/css/styles.css?v=171">
 </head>
 <body class="has-header page-legal">
 
@@ -237,6 +237,45 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "LegalService",
+      "@id": "https://hazlawpe.com/#empresa",
+      "name": "Hazlaw+",
+      "legalName": "Hazlaw S.R.L.",
+      "taxID": "20614415950",
+      "url": "https://hazlawpe.com/",
+      "logo": "https://hazlawpe.com/assets/logo/favicon-512.png",
+      "telephone": "+51924021846",
+      "email": "contacto@hazlawpe.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av. Próceres de la Independencia 1625",
+        "addressLocality": "San Juan de Lurigancho",
+        "addressRegion": "Lima",
+        "postalCode": "15419",
+        "addressCountry": "PE"
+      },
+      "areaServed": [
+        {
+          "@type": "AdministrativeArea",
+          "name": "Lima Metropolitana"
+        },
+        {
+          "@type": "City",
+          "name": "Lima"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Callao"
+        }
+      ],
+      "sameAs": [
+        "https://www.instagram.com/hazlawpe/",
+        "https://www.facebook.com/hazlaw.pe",
+        "https://www.tiktok.com/@hazlawpe",
+        "https://www.linkedin.com/company/hazlaw"
+      ]
+    },
+    {
       "@type": "Article",
       "@id": "https://hazlawpe.com/escritura-publica-minuta-y-testimonio.html#guia",
       "headline": "Escritura pública, minuta, parte notarial y testimonio: qué es cada uno y para qué sirve",
@@ -327,6 +366,6 @@
 </script>
 
 <script src="assets/js/analytics.js?v=11"></script>
-<script src="assets/js/main.js?v=84"></script>
+<script src="assets/js/main.js?v=85"></script>
 </body>
 </html>
