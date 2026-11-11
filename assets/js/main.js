@@ -565,8 +565,9 @@
     }
   }
 
-  // Cotizador (constitución y marca): tres respuestas arman el tipo de empresa o de marca, el total
-  // y el mensaje de WhatsApp. Sin JavaScript se ve el caso por defecto, que ya viene en el HTML.
+  // El precio (constitución y marca): un pase con un recorrido de paradas y un talón con el total.
+  // Las respuestas (el capital y dónde firmas; las clases, el nombre y qué proteges) cambian los montos, lo que
+  // dice cada parada y el mensaje de WhatsApp. Sin JavaScript se ve el caso por defecto, que ya viene en el HTML.
   // Los montos cuentan del valor anterior al nuevo; con "reducir movimiento" cambian de golpe.
   var NBSP = " ";
   function soles(n) {
@@ -574,15 +575,18 @@
     t[0] = t[0].replace(/\B(?=(\d{3})+(?!\d))/g, NBSP);
     return "S/" + NBSP + t.join(".");
   }
-  function sinEspacios(s) { return String(s).replace(/[\s ]+/g, " ").trim(); }
   // Un rango de montos que no se parte entre dos líneas: "S/ 100 a 200"
   function rango(a, b) { return "S/" + NBSP + a + NBSP + "a" + NBSP + b; }
+  function sinEspacios(s) { return String(s).replace(/\s+/g, " ").trim(); }
   function marcaCambio(el) {
     el.classList.remove("is-cambio");
     void el.offsetWidth;
     el.classList.add("is-cambio");
   }
 
+  // Cada regla recibe las respuestas y devuelve: filas (lo que se escribe en cada [data-out]), estado (atributos
+  // data-* del pase, para los estilos), barra (el resumen que se anuncia a lectores de pantalla), rotulo (el nombre
+  // del total en la barra del celular) y wa (el mensaje de WhatsApp).
   var COTIZA = {
     // Constitución (2026-10-25): solo lo que cambia el precio (el capital) y dónde firmar. El precio no cambia
     // por tipo de empresa ni por número de socios; eso se conversa por WhatsApp.
@@ -612,6 +616,7 @@
             " S/ 20 000, y firmar " + lugarYo + "."
       };
     },
+    // Marca: las clases cambian la tasa (y el total); el nombre y lo que se protege van al dibujo y al mensaje
     marca: function (r) {
       var que = {
         nombre: ["El nombre", "el nombre"],
@@ -621,17 +626,18 @@
       var dos = r.clases === "2";
       var nombre = r.nombre ? " «" + r.nombre + "»" : "";
       // Tasas de gob.pe (trámite 333), consultadas el 2026-10-24
-      var t1 = 534.9, t2 = 533.3, total = 370 + t1 + (dos ? t2 : 0);
+      var t1 = 534.9, t2 = 533.3, tasa = t1 + (dos ? t2 : 0);
       return {
-        valor: que[0],
         barra: que[0] + ", en " + (dos ? "dos clases" : "una clase"),
+        rotulo: "Tu total",
         estado: { protege: r.protege, clases: r.clases },
-        // La barra del pase muestra cuánto es nuestro servicio y cuánto va al Estado
-        proporcion: Math.round(370 / total * 100),
         filas: {
-          tasa1: t1,
-          tasa2: dos ? t2 : null,
-          total: total
+          "serv-n": 370,
+          // La tasa se paga al inicio; con dos clases se dice cuánto es cada una
+          tasa: tasa,
+          "tasa-nota": dos ? "Al Estado: " + soles(t1) + " + " + soles(t2) : "Al Estado, al inicio",
+          protege: que[1],
+          total: 370 + tasa
         },
         wa: "Hola, vengo de la web. Quiero registrar " + que[1] + " de mi negocio" + nombre + " en " + (dos ? "dos clases" : "una clase") + "."
       };
@@ -642,11 +648,10 @@
     var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     document.querySelectorAll("[data-cotiza]").forEach(function (root) {
       var regla = COTIZA[root.getAttribute("data-cotiza")];
-      if (!regla) return;
+      var pase = root.querySelector(".pase");
+      if (!regla || !pase) return;
       var cta = root.querySelector("[data-out-wa]");
       var barra = root.querySelector("[data-barra]");
-      var pase = root.querySelector(".pase");
-      var esRuta = !!pase && pase.classList.contains("pase--ruta");
       var usado = false, ultimo = null;
 
       function out(id) { return root.querySelector('[data-out="' + id + '"]'); }
@@ -665,6 +670,7 @@
         if (sinEspacios(el.textContent) === sinEspacios(nuevo)) return false;
         var m = /^(?:S\/\s*)?(\d[\d\s]*(?:\.\d+)?)$/.exec(sinEspacios(el.textContent));
         var desde = m ? parseFloat(m[1].replace(/\s/g, "")) : null;
+        // Un monto que pasa a ser texto ("El resto", "Según tu capital") se escribe con letra de texto
         if (el.tagName === "DD" || el.hasAttribute("data-monto")) el.classList.toggle("is-texto", !/^S\//.test(nuevo));
         var turno = el.hzTurno = {};
         if (typeof valor === "number" && desde !== null && !reduce) {
@@ -686,55 +692,39 @@
       function pinta(avisar) {
         var r = respuestas();
         r.nombre = root.hzNombre || "";
-        var s = regla(r);
-        ultimo = s;
+        var s = ultimo = regla(r);
         // Marca: el nombre que escribes se ve en el dibujo de lo que proteges
-        var muestra = root.querySelector(".pase__muestra .ilu--nombre");
+        var muestra = root.querySelector(".muestra .ilu--nombre");
         if (muestra) {
           var visible = r.nombre ? (r.nombre.length > 18 ? r.nombre.slice(0, 17) + "…" : r.nombre) : "Tu marca";
           muestra.textContent = visible;
           // Un nombre largo se achica para caber, sin apretar las letras
           muestra.style.fontSize = visible.length > 8 ? Math.max(10, Math.min(18, 84 / (visible.length * 0.56))).toFixed(1) + "px" : "";
         }
-        if (pon(out("valor"), s.valor) && !reduce) marcaCambio(out("valor"));
         Object.keys(s.filas).forEach(function (id) {
           var celda = out(id);
-          if (!celda) return;
-          var fila = celda.closest(".pase__linea");
-          if (s.filas[id] === null) { if (fila) fila.hidden = true; return; }
-          var aparece = fila && fila.hidden;
-          if (fila) fila.hidden = false;
-          var cambio = pon(celda, s.filas[id]);
-          if (!reduce && cambio) {
-            if (fila && aparece) { fila.classList.remove("is-nueva"); void fila.offsetWidth; fila.classList.add("is-nueva"); }
-            else marcaCambio(fila || celda);
-          }
+          if (celda && pon(celda, s.filas[id]) && !reduce) marcaCambio(celda);
         });
-        if (pase) {
-          // El pase muestra la respuesta: el capital, dónde firmas o qué se protege
-          if (s.estado) Object.keys(s.estado).forEach(function (k) { pase.setAttribute("data-" + k, s.estado[k]); });
-          if (s.proporcion) pase.style.setProperty("--p-serv", s.proporcion + "%");
-          // Constitución: el ícono del lugar de la firma es el de la ficha elegida
-          var icono = pase.querySelector("[data-out-icono]");
-          var elegido = root.querySelector('input[name="firma"]:checked');
-          var fuente = elegido && elegido.parentElement.querySelector(".ficha__icono, .lugar__icono");
-          if (icono && fuente && icono.innerHTML !== fuente.innerHTML) {
-            icono.innerHTML = fuente.innerHTML;
-            if (!reduce && avisar) {
-              marcaCambio(icono);
-              // El recorrido: la moto de la notaría vuelve a salir hacia el lugar recién elegido
-              var viaje = pase.querySelector("[data-viaje]");
-              if (viaje) marcaCambio(viaje);
-            }
+        // El pase lleva la respuesta en sus atributos (el capital, dónde firmas, qué se protege, las clases)
+        Object.keys(s.estado).forEach(function (k) { pase.setAttribute("data-" + k, s.estado[k]); });
+        // Constitución: el destino de la moto lleva el ícono de la ficha elegida, y la moto vuelve a salir hacia ahí
+        var icono = pase.querySelector("[data-out-icono]");
+        var elegido = root.querySelector('input[name="firma"]:checked');
+        var fuente = elegido && elegido.parentElement.querySelector(".chip__icono");
+        if (icono && fuente && icono.innerHTML !== fuente.innerHTML) {
+          icono.innerHTML = fuente.innerHTML;
+          if (!reduce && avisar) {
+            marcaCambio(icono);
+            var viaje = pase.querySelector("[data-viaje]");
+            if (viaje) marcaCambio(viaje);
           }
         }
-        // La barra del celular repite lo esencial y marca el cambio, para ver el efecto de cada respuesta sin bajar
+        // La barra del celular repite el total y marca el cambio, para ver el efecto de cada respuesta sin bajar
         var nuevoTotal = typeof s.filas.total === "number" ? soles(s.filas.total) : s.filas.total;
         if (barra) {
           var bv = barra.querySelector("[data-barra-valor]"), bt = barra.querySelector("[data-barra-total]");
-          var rotulo = s.rotulo || s.barra;
-          var cambia = sinEspacios(bt.textContent) !== sinEspacios(nuevoTotal) || sinEspacios(bv.textContent) !== sinEspacios(rotulo);
-          bv.textContent = rotulo;
+          var cambia = sinEspacios(bt.textContent) !== sinEspacios(nuevoTotal) || sinEspacios(bv.textContent) !== sinEspacios(s.rotulo);
+          bv.textContent = s.rotulo;
           bt.textContent = nuevoTotal;
           if (cambia && avisar && !reduce) marcaCambio(barra);
         }
@@ -746,7 +736,9 @@
           cta.setAttribute("href", WA_BASE + encodeURIComponent(s.wa));
         }
       }
-      root.addEventListener("change", function () {
+      root.addEventListener("change", function (e) {
+        // El nombre de la marca se atiende mientras se escribe (más abajo), no al salir del campo
+        if (e.target && e.target.type !== "radio") return;
         pinta(true);
         if (!usado) { usado = true; hzTrack("cotizador_uso", { servicio: root.getAttribute("data-cotiza") }); }
       });
@@ -757,100 +749,82 @@
       });
       pinta();
 
-      // Barra del total en el celular: aparece mientras se responden las preguntas y el pase no está a la vista
-      if (barra && "IntersectionObserver" in window) {
+      if (!("IntersectionObserver" in window)) return;
+
+      // Barra del total en el celular: acompaña mientras se leen las paradas y se retira cuando el talón,
+      // con el precio y el botón, ya está a la vista
+      if (barra) {
         barra.hidden = false;
-        var verForm = false, verPase = false;
-        var refrescarBarra = function () { barra.classList.toggle("is-visible", verForm && !verPase); };
-        // En el recorrido las preguntas están dentro del pase: la barra acompaña mientras se leen las paradas
-        // y se retira cuando el talón, con el precio y el botón, ya está a la vista
-        new IntersectionObserver(function (es) { verForm = es[0].isIntersecting; refrescarBarra(); },
-          { rootMargin: esRuta ? "-18% 0px -32% 0px" : "-25% 0px -25% 0px" })
-          .observe(root.querySelector(esRuta ? ".pase__cuerpo" : ".cotiza__form"));
-        new IntersectionObserver(function (es) { verPase = es[0].isIntersecting; refrescarBarra(); },
-          { threshold: esRuta ? 0.12 : 0.15 }).observe(root.querySelector(esRuta ? ".pase__talon" : ".cotiza__recibo"));
+        var verCamino = false, verTalon = false;
+        var refrescarBarra = function () { barra.classList.toggle("is-visible", verCamino && !verTalon); };
+        new IntersectionObserver(function (es) { verCamino = es[0].isIntersecting; refrescarBarra(); },
+          { rootMargin: "-18% 0px -32% 0px" }).observe(pase.querySelector(".pase__cuerpo"));
+        new IntersectionObserver(function (es) { verTalon = es[0].isIntersecting; refrescarBarra(); },
+          { threshold: 0.12 }).observe(pase.querySelector(".pase__talon"));
       }
 
-      // Los enlaces al precio: al llegar, la primera pregunta se ilumina un momento para decir "empieza aquí"
-      document.querySelectorAll('a[href="#' + root.parentElement.id + '"]').forEach(function (a) {
-        a.addEventListener("click", function () {
-          var q = root.querySelector(".cotiza__q");
-          if (!q || reduce) return;
-          window.setTimeout(function () { q.classList.remove("is-llegada"); void q.offsetWidth; q.classList.add("is-llegada"); }, 700);
+      // La primera vez que se ve, el pase se imprime. Después, cada parada se enciende cuando llega a la pantalla
+      // (las que llegan juntas, una tras otra) y su monto cuenta desde cero; el precio del talón cuenta al verse.
+      if (reduce) return;
+      pase.classList.add("is-pendiente");
+      var pasos = Array.prototype.slice.call(pase.querySelectorAll(".paso"));
+      pasos.forEach(function (p) { p.classList.add("is-espera"); });
+      // Los montos de una zona (una parada o el talón) cuentan desde cero
+      var desdeCero = function (zona) {
+        zona.querySelectorAll("[data-out]").forEach(function (el) {
+          var v = ultimo && ultimo.filas[el.getAttribute("data-out")];
+          if (typeof v !== "number") return;
+          el.textContent = el.hasAttribute("data-plano") ? "0" : soles(0);
+          pon(el, v);
         });
-      });
-
-      // La primera vez que se ve, el pase se imprime: los montos cuentan desde cero y lo incluido entra en orden
-      if (pase && !reduce && "IntersectionObserver" in window) {
-        pase.classList.add("is-pendiente");
-        // El recorrido (constitución): las paradas esperan apagadas hasta que llegan a la pantalla
-        var pasos = esRuta ? Array.prototype.slice.call(pase.querySelectorAll(".paso")) : [];
-        pasos.forEach(function (p) { p.classList.add("is-espera"); });
-        // Los montos de una zona (una parada o el talón) cuentan desde cero
-        var desdeCero = function (zona) {
-          zona.querySelectorAll("[data-out]").forEach(function (el) {
-            var v = ultimo && ultimo.filas[el.getAttribute("data-out")];
-            if (typeof v !== "number") return;
-            el.textContent = el.hasAttribute("data-plano") ? "0" : soles(0);
-            pon(el, v);
-          });
-        };
-        // Enciende una parada: su monto cuenta desde cero y, en la de la firma, la moto sale hacia el lugar elegido
-        var encender = function (p, espera) {
-          window.setTimeout(function () {
-            p.classList.remove("is-espera");
-            desdeCero(p);
-            var viaje = p.querySelector("[data-viaje]");
-            if (viaje) {
-              marcaCambio(viaje);
-              var destino = viaje.querySelector("[data-out-icono]");
-              if (destino) marcaCambio(destino);
-            }
-          }, espera);
-        };
-        var recorrer = function () {
-          // Cada parada se enciende al llegar a la pantalla; las que llegan juntas, una tras otra
-          var ioPasos = new IntersectionObserver(function (es) {
-            es.filter(function (e) { return e.isIntersecting; }).map(function (e) { return e.target; })
-              .sort(function (a, b) { return pasos.indexOf(a) - pasos.indexOf(b); })
-              .forEach(function (p, k) { ioPasos.unobserve(p); encender(p, k * 260); });
-          }, { threshold: 0.3, rootMargin: "0px 0px -8% 0px" });
-          // Las que ya están en pantalla se encienden mientras el pase se imprime: el observador no las ve
-          // hasta que termina el recorte del pase, y llegarían tarde
-          var alto = window.innerHeight, orden = 0;
-          pasos.forEach(function (p) {
-            var r = p.getBoundingClientRect();
-            if (r.top < alto * 0.85 && r.bottom > 0) encender(p, orden++ * 260);
-            else ioPasos.observe(p);
-          });
-          // El precio del talón cuenta cuando se ve
-          var talon = pase.querySelector(".pase__talon");
-          if (!talon) return;
-          if (talon.getBoundingClientRect().top < alto * 0.7) { window.setTimeout(function () { desdeCero(talon); }, 420); return; }
-          var ioTalon = new IntersectionObserver(function (es) {
-            if (!es[0].isIntersecting) return;
-            ioTalon.disconnect();
-            desdeCero(talon);
-          }, { threshold: 0.3 });
-          ioTalon.observe(talon);
-        };
-        // Se imprime cuando el pase ya ocupa parte de la pantalla. Antes se pedía ver la cuarta parte del pase
-        // entero, y en pantallas bajas (el celular echado) ese cuarto no cabía: el pase no llegaba a salir.
-        var io = new IntersectionObserver(function (entries) {
-          if (!entries[0].isIntersecting) return;
-          io.disconnect();
-          if (!esRuta) {
-            pase.querySelectorAll("dd").forEach(function (dd) {
-              if (/^S\/\s*[\d\s]+(\.\d+)?$/.test(sinEspacios(dd.textContent))) dd.textContent = soles(0);
-            });
+      };
+      // Enciende una parada; en la de la firma, la moto de la notaría sale hacia el lugar elegido
+      var encender = function (p, espera) {
+        window.setTimeout(function () {
+          p.classList.remove("is-espera");
+          desdeCero(p);
+          var viaje = p.querySelector("[data-viaje]");
+          if (viaje) {
+            marcaCambio(viaje);
+            var destino = viaje.querySelector("[data-out-icono]");
+            if (destino) marcaCambio(destino);
           }
-          pase.classList.remove("is-pendiente");
-          pase.classList.add("is-impreso");
-          window.setTimeout(esRuta ? recorrer : pinta, 250);
-        }, { rootMargin: "0px 0px -22% 0px" });
-        // Se observa el contenedor: el pase recortado no tiene área visible que medir
-        io.observe(pase.parentElement);
-      }
+        }, espera);
+      };
+      var recorrer = function () {
+        var ioPasos = new IntersectionObserver(function (es) {
+          es.filter(function (e) { return e.isIntersecting; }).map(function (e) { return e.target; })
+            .sort(function (a, b) { return pasos.indexOf(a) - pasos.indexOf(b); })
+            .forEach(function (p, k) { ioPasos.unobserve(p); encender(p, k * 260); });
+        }, { threshold: 0.3, rootMargin: "0px 0px -8% 0px" });
+        // Las que ya están en pantalla se encienden mientras el pase se imprime: el observador no las ve
+        // hasta que termina el recorte del pase, y llegarían tarde
+        var alto = window.innerHeight, orden = 0;
+        pasos.forEach(function (p) {
+          var r = p.getBoundingClientRect();
+          if (r.top < alto * 0.85 && r.bottom > 0) encender(p, orden++ * 260);
+          else ioPasos.observe(p);
+        });
+        var talon = pase.querySelector(".pase__talon");
+        if (talon.getBoundingClientRect().top < alto * 0.7) { window.setTimeout(function () { desdeCero(talon); }, 420); return; }
+        var ioTalon = new IntersectionObserver(function (es) {
+          if (!es[0].isIntersecting) return;
+          ioTalon.disconnect();
+          desdeCero(talon);
+        }, { threshold: 0.3 });
+        ioTalon.observe(talon);
+      };
+      // Se imprime cuando el pase ya ocupa parte de la pantalla. Antes se pedía ver la cuarta parte del pase
+      // entero, y en pantallas bajas (el celular echado) ese cuarto no cabía: el pase no llegaba a salir.
+      var io = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) return;
+        io.disconnect();
+        pase.classList.remove("is-pendiente");
+        pase.classList.add("is-impreso");
+        window.setTimeout(recorrer, 250);
+      }, { rootMargin: "0px 0px -22% 0px" });
+      // Se observa el contenedor: el pase recortado no tiene área visible que medir
+      io.observe(pase.parentElement);
     });
   }
 

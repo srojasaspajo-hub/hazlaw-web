@@ -36,7 +36,7 @@
 <!-- Jost servida desde la propia web (assets/fonts, licencia OFL); se pide desde el inicio -->
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/jost-latin.woff2" crossorigin>
 
-<link rel="stylesheet" href="assets/css/styles.css?v=172">
+<link rel="stylesheet" href="assets/css/styles.css?v=173">
 </head>
 <body class="page-constitucion" data-cta-main="empresa">
 
@@ -191,15 +191,15 @@
 
 <section class="block block--crema precio-sec" id="cotiza" aria-labelledby="cotiza-t">
   <div class="container precio precio--ruta" data-cotiza="empresa">
-    <div class="cotiza__form precio__cabeza">
+    <div class="precio__cabeza">
       <h2 class="h2 h2--xl precio__titulo" id="cotiza-t">Todo esto, en un solo precio.</h2>
       <p class="precio__bajada">Mira qué pasa y qué pagas en cada paso; al final, tu total. Te lo confirmamos por escrito antes de que pagues.</p>
     </div>
-    <div class="cotiza__recibo precio__lado" id="cotiza-recibo">
+    <div class="precio__lado">
       <article class="pase pase--ruta" data-capital="hasta" data-firma="casa" aria-labelledby="cotiza-t">
         <p class="sr-only" aria-live="polite" data-anuncio></p>
         <div class="pase__cuerpo">
-          <div class="ruta__capital" role="radiogroup" aria-labelledby="cotiza-capital-t">
+          <div class="ruta__pregunta" role="radiogroup" aria-labelledby="cotiza-capital-t">
             <p class="ruta__legend" id="cotiza-capital-t">¿Con cuánto capital empiezas?</p>
             <div class="segmento">
               <label class="segmento__op"><input type="radio" name="capital" value="hasta" checked><span class="segmento__cuerpo"><span class="segmento__t">Hasta S/&nbsp;20&nbsp;000</span><small>Precio fijo</small></span></label>
@@ -219,7 +219,7 @@
               <span class="paso__punto" aria-hidden="true"></span>
               <div class="paso__fila"><h3 class="paso__t">El día de la firma</h3><span class="paso__monto" data-monto data-out="resto">S/&nbsp;320</span></div>
               <p class="paso__x" data-out="completa">Así completas los S/&nbsp;500.</p>
-              <div class="paso__firma">
+              <div class="paso__elige">
                 <div class="viaje" data-viaje>
                   <div class="viaje__pista" aria-hidden="true">
                     <span class="viaje__punto viaje__punto--a"><svg viewBox="0 0 24 24"><path d="M3.5 9 12 4l8.5 5"/><path d="M5 9.5h14"/><path d="M6.5 10v8M10 10v8M14 10v8M17.5 10v8"/><path d="M4 20.5h16"/></svg></span>
@@ -228,13 +228,13 @@
                   </div>
                   <p class="viaje__frase"><span data-out="va-a">La notaría va a</span> <b data-out="va-b">tu casa</b>.</p>
                 </div>
-                <fieldset class="lugares">
-                  <legend class="lugares__legend">¿Dónde quieres firmar?</legend>
-                  <div class="lugares__ops">
-                    <label class="lugar"><input type="radio" name="firma" value="casa" checked><span class="lugar__cuerpo"><span class="lugar__icono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5"/><path d="M6 10v10.5h12V10"/><path d="M10 20.5v-6h4v6"/></svg></span>Mi casa</span></label>
-                    <label class="lugar"><input type="radio" name="firma" value="oficina"><span class="lugar__cuerpo"><span class="lugar__icono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 20.5h17"/><path d="M5.5 20.5v-15a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v15"/><path d="M14.5 9.5h3a1 1 0 0 1 1 1v10"/><path d="M8.5 8h3M8.5 11.5h3M8.5 15h3"/></svg></span>Mi oficina</span></label>
-                    <label class="lugar"><input type="radio" name="firma" value="negocio"><span class="lugar__cuerpo"><span class="lugar__icono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 9.5 5.5 4.5h13L20 9.5"/><path d="M4 9.5c0 1.4 1.1 2.5 2.5 2.5S9 10.9 9 9.5c0 1.4 1.1 2.5 2.5 2.5S14 10.9 14 9.5c0 1.4 1.1 2.5 2.5 2.5S19 10.9 19 9.5"/><path d="M5.5 12v8.5h13V12"/><path d="M10 20.5v-5h4v5"/></svg></span>Mi negocio</span></label>
-                    <label class="lugar"><input type="radio" name="firma" value="notaria"><span class="lugar__cuerpo"><span class="lugar__icono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 9 12 4l8.5 5"/><path d="M5 9.5h14"/><path d="M6.5 10v8M10 10v8M14 10v8M17.5 10v8"/><path d="M4 20.5h16"/></svg></span>La notaría</span></label>
+                <fieldset class="chips">
+                  <legend class="chips__legend">¿Dónde quieres firmar?</legend>
+                  <div class="chips__ops">
+                    <label class="chip"><input type="radio" name="firma" value="casa" checked><span class="chip__cuerpo"><span class="chip__icono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5"/><path d="M6 10v10.5h12V10"/><path d="M10 20.5v-6h4v6"/></svg></span>Mi casa</span></label>
+                    <label class="chip"><input type="radio" name="firma" value="oficina"><span class="chip__cuerpo"><span class="chip__icono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 20.5h17"/><path d="M5.5 20.5v-15a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v15"/><path d="M14.5 9.5h3a1 1 0 0 1 1 1v10"/><path d="M8.5 8h3M8.5 11.5h3M8.5 15h3"/></svg></span>Mi oficina</span></label>
+                    <label class="chip"><input type="radio" name="firma" value="negocio"><span class="chip__cuerpo"><span class="chip__icono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 9.5 5.5 4.5h13L20 9.5"/><path d="M4 9.5c0 1.4 1.1 2.5 2.5 2.5S9 10.9 9 9.5c0 1.4 1.1 2.5 2.5 2.5S14 10.9 14 9.5c0 1.4 1.1 2.5 2.5 2.5S19 10.9 19 9.5"/><path d="M5.5 12v8.5h13V12"/><path d="M10 20.5v-5h4v5"/></svg></span>Mi negocio</span></label>
+                    <label class="chip"><input type="radio" name="firma" value="notaria"><span class="chip__cuerpo"><span class="chip__icono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 9 12 4l8.5 5"/><path d="M5 9.5h14"/><path d="M6.5 10v8M10 10v8M14 10v8M17.5 10v8"/><path d="M4 20.5h16"/></svg></span>La notaría</span></label>
                   </div>
                 </fieldset>
               </div>
@@ -462,6 +462,6 @@
 </script>
 
 <script src="assets/js/analytics.js?v=11"></script>
-<script src="assets/js/main.js?v=87"></script>
+<script src="assets/js/main.js?v=88"></script>
 </body>
 </html>
