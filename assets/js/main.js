@@ -575,6 +575,8 @@
     return "S/" + NBSP + t.join(".");
   }
   function sinEspacios(s) { return String(s).replace(/[\s ]+/g, " ").trim(); }
+  // Un rango de montos que no se parte entre dos líneas: "S/ 100 a 200"
+  function rango(a, b) { return "S/" + NBSP + a + NBSP + "a" + NBSP + b; }
   function marcaCambio(el) {
     el.classList.remove("is-cambio");
     void el.offsetWidth;
@@ -594,12 +596,12 @@
         filas: {
           "serv-n": mas ? "A tu medida" : "500",
           "serv-det": mas ? "Según tu capital: te lo confirmamos antes de que pagues" : "Con derechos notariales y una toma de firmas",
-          reg: mas ? "Según tu capital" : "S/ 100 a 200",
-          total: mas ? "Te lo enviamos por escrito" : "S/ 600 a 700",
+          reg: mas ? "Según tu capital" : rango(100, 200),
+          total: mas ? "Te lo enviamos por escrito" : rango(600, 700),
           // Los S/ 500 en dos partes: S/ 180 para empezar y S/ 320 el día de la firma; los registrales, aparte
           adelanto: 180,
           resto: mas ? "El resto" : 320,
-          "reg-pago": mas ? "Según tu capital" : "S/ 100 a 200",
+          "reg-pago": mas ? "Según tu capital" : rango(100, 200),
           firma: lugar
         },
         wa: "Hola, vengo de la web. Quiero constituir mi empresa, con capital de " + (mas ? "más de" : "hasta") +
@@ -1507,21 +1509,23 @@
     var paneles = document.querySelectorAll(".cifras");
     if (!paneles.length || !("IntersectionObserver" in window) ||
         window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    function formato(v, decimales) {
-      var t = v.toFixed(decimales).replace(".", ",");
-      var partes = t.split(",");
+    // El separador decimal es el mismo que trae la cifra final (punto o coma)
+    function formato(v, decimales, sep) {
+      var partes = v.toFixed(decimales).split(".");
       partes[0] = partes[0].replace(/\B(?=(\d{3})+(?!\d))/g, "\u00a0");
-      return partes.join(",");
+      return partes.join(sep);
     }
     function contar(el) {
       var final = el.getAttribute("data-cifra");
       var limpio = final.replace(/[\s\u00a0]/g, "").replace(",", ".");
       var meta = parseFloat(limpio), decimales = (limpio.split(".")[1] || "").length;
+      var sep = final.indexOf(",") >= 0 ? "," : ".";
       var inicio = null, dura = 1500;
       function paso(ts) {
         if (!inicio) inicio = ts;
         var k = Math.min((ts - inicio) / dura, 1), e = 1 - Math.pow(1 - k, 4);
-        el.textContent = k < 1 ? formato(meta * e, decimales) : final;
+        // Al terminar queda la cifra tal como está escrita, con los miles unidos ("54 065" no se parte)
+        el.textContent = k < 1 ? formato(meta * e, decimales, sep) : final.replace(/ /g, " ");
         if (k < 1) requestAnimationFrame(paso);
       }
       requestAnimationFrame(paso);
@@ -1602,7 +1606,8 @@
       var res = barra.querySelector("[data-tasas-res]");
       var vacio = document.querySelector("[data-tasas-vacio]");
       var filtro = "todas";
-      var plano = function (t) { return String(t).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); };
+      // Los montos de la tabla llevan espacios que no se cortan: al buscar cuentan como espacios normales
+      var plano = function (t) { return String(t).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\u00a0/g, " "); };
       var aplicar = function () {
         var q = plano(campo.value).trim(), n = 0;
         filas.forEach(function (f) {
